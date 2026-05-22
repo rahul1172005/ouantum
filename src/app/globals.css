@@ -1,0 +1,611 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-bg: #f5f6f8;
+  --color-secondary-bg: #ffffff;
+  --color-electric-blue: #0033cc;
+  --color-ai-purple: #7b1fa2;
+  --color-success-green: #336600;
+  --color-alert-orange: #ff9900;
+  --color-danger-red: #cc0000;
+  --color-metallic-gray: #777777;
+  --color-white-text: #ffffff;
+}
+
+/* ======================================================
+   GLOBAL FONT — Segoe UI / Tahoma everywhere, no exceptions
+   ====================================================== */
+:root {
+  --background: #e8e8e8;
+  --foreground: #1e1e1e;
+  --font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+
+  /* Windows XP Luna panel tokens — white, raised */
+  --card-bg: #ffffff;
+  --card-border-outer: #a0a0a0;
+  --card-border-inner: #ffffff;
+  --card-radius: 3px;
+  /* Classic XP raised-panel border effect */
+  --card-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #888888 inset, 2px 3px 6px rgba(0,0,0,0.18);
+  --card-shadow-hover: 1px 1px 0 #ffffff inset, -1px -1px 0 #777777 inset, 3px 4px 9px rgba(0,0,0,0.22);
+  --card-header-bg: linear-gradient(to bottom, #f0f0f0 0%, #d8d8d8 100%);
+  --card-header-border: #a8a8a8;
+
+  /* Label / value colors */
+  --label-color: #555555;
+  --value-color: #1a1a1a;
+  --subtext-color: #888888;
+
+  /* Accents — no blue tints anywhere in cards */
+  --accent-green: #217346;
+  --accent-red:   #c0392b;
+  --accent-orange: #c07000;
+}
+
+/* ======================================================
+   FORCE FONT — override every element  
+   ====================================================== */
+*, *::before, *::after {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======================================================
+   CAD GRID (landing page only)
+   ====================================================== */
+.cad-grid {
+  background-color: #f8f9fa;
+  background-image:
+    linear-gradient(#eef1f4 1px, transparent 1px),
+    linear-gradient(90deg, #eef1f4 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.7;
+}
+
+/* ======================================================
+   WINDOWS XP LUNA — RAISED PANEL CARDS (pure white)
+   ====================================================== */
+
+/* ── Panel / section card ── */
+.zoho-card {
+  background: #ffffff;
+  border: 1px solid #a0a0a0;
+  border-radius: 3px;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.95),
+    inset -1px -1px 0 rgba(0,0,0,0.08),
+    2px 3px 7px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: box-shadow 0.12s ease;
+}
+.zoho-card:hover {
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.95),
+    inset -1px -1px 0 rgba(0,0,0,0.10),
+    3px 4px 10px rgba(0,0,0,0.20);
+}
+
+/* ── Card header — XP-style gray gradient title bar ── */
+.zoho-card-header {
+  background: linear-gradient(to bottom, #f6f6f6 0%, #dedede 100%);
+  border-bottom: 1px solid #aaaaaa;
+  padding: 8px 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1e1e1e;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* ── Card body ── */
+.zoho-card-body {
+  padding: 13px 14px;
+  background: #ffffff;
+}
+
+/* ── KPI stat card ── */
+.zoho-kpi-card {
+  background: #ffffff;
+  border: 1px solid #a8a8a8;
+  border-radius: 3px;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.9),
+    inset -1px -1px 0 rgba(0,0,0,0.07),
+    1px 2px 5px rgba(0,0,0,0.13);
+  padding: 15px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  transition: box-shadow 0.12s ease;
+  min-height: 92px;
+}
+.zoho-kpi-card:hover {
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.9),
+    inset -1px -1px 0 rgba(0,0,0,0.09),
+    2px 3px 8px rgba(0,0,0,0.18);
+}
+
+/* ── KPI label (small gray uppercase caption) ── */
+.zoho-kpi-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+/* ── KPI value (large bold number) ── */
+.zoho-kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+}
+
+/* ── KPI badge ── */
+.zoho-kpi-badge {
+  display: inline-block;
+  margin-top: 7px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #c8c8c8;
+  background: linear-gradient(to bottom, #f5f5f5, #e5e5e5);
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 1px rgba(0,0,0,0.08);
+}
+
+/* ── KPI icon box ── */
+.zoho-kpi-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 2px;
+  border: 1px solid #b8b8b8;
+  background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 2px rgba(0,0,0,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #444444;
+}
+
+/* ======================================================
+   PANEL & GLASS (legacy classes kept, now Zoho-style)
+   ====================================================== */
+.glass-panel, .glass-panel-purple {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--card-radius) !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: box-shadow 0.15s ease;
+}
+.glass-panel:hover, .glass-panel-purple:hover {
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+.tech-border  { border: 1px solid var(--card-border) !important; }
+.tech-border-double { border: 1px solid #c8c8c8 !important; background: #fafafa; }
+.tech-border-dashed { border: 1px dashed #c8c8c8 !important; }
+
+/* ======================================================
+   HAZARD PATTERNS
+   ====================================================== */
+.hazard-hatch {
+  background: repeating-linear-gradient(
+    45deg, #ffffff, #ffffff 8px, #f3f4f6 8px, #f3f4f6 16px
+  ) !important;
+  border: 1px solid var(--card-border) !important;
+}
+.hazard-hatch-dark {
+  background: repeating-linear-gradient(
+    45deg, #444, #444 8px, #555 8px, #555 16px
+  ) !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+}
+
+/* ======================================================
+   BUTTONS — skeuomorphic, NO font-mono override
+   ====================================================== */
+.btn-skeuo,
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]) {
+  background: linear-gradient(to bottom, #fdfdfd 0%, #e8e8e8 100%) !important;
+  border: 1px solid #b8b8b8 !important;
+  border-radius: 3px !important;
+  color: #2d2d2d !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.07) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  padding: 5px 12px !important;
+  cursor: pointer !important;
+  transition: all 0.1s ease !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+.btn-skeuo:hover,
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):hover {
+  background: linear-gradient(to bottom, #ffffff 0%, #efefef 100%) !important;
+  border-color: #9a9a9a !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.10) !important;
+}
+.btn-skeuo:active,
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):active {
+  background: #e2e2e2 !important;
+  border-color: #8a8a8a !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.12) !important;
+}
+
+/* ======================================================
+   TABLES — Zoho style
+   ====================================================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+th {
+  background-color: #f2f2f2 !important;
+  color: #3d3d3d !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid #d4d4d4 !important;
+  border-right: 1px solid #e8e8e8 !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+  text-align: left;
+}
+td {
+  border-bottom: 1px solid #ebebeb !important;
+  border-right: 1px dotted #ebebeb !important;
+  padding: 7px 10px !important;
+  color: #3d3d3d !important;
+  background-color: #ffffff;
+  font-size: 12px;
+}
+tr:hover td {
+  background-color: #f0f6ff !important;
+}
+
+/* ======================================================
+   SIDEBAR — blue links, green folders, no gradient btns
+   ====================================================== */
+.sidebar-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 3px !important;
+  color: #0033cc !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  padding: 4px 7px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: left !important;
+  width: 100% !important;
+  cursor: pointer !important;
+}
+.sidebar-btn:hover {
+  text-decoration: underline !important;
+  color: #001fa0 !important;
+  background: #e9f0f8 !important;
+}
+.sidebar-btn.active {
+  background: #dce8f8 !important;
+  color: #002299 !important;
+  font-weight: 600 !important;
+}
+.sidebar-folder {
+  color: #336600 !important;
+  font-weight: 700 !important;
+  font-size: 11.5px !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 4px 4px;
+  border-bottom: 1px dashed #ddd;
+  margin-top: 8px;
+}
+
+/* ======================================================
+   WORKSPACE TABS & TOOLBAR
+   ====================================================== */
+.workspace-tabs {
+  display: flex;
+  background: #e8e9eb;
+  border-bottom: 1px solid #cccccc;
+  padding-left: 8px;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+.workspace-tab {
+  padding: 6px 16px;
+  background: #dedede;
+  border: 1px solid #b8b8b8;
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-weight: 500;
+  font-size: 11.5px;
+  color: #555;
+  cursor: pointer;
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.workspace-tab.active {
+  background: #ffffff;
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: -1px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.workspace-toolbar {
+  background: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.toolbar-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+  padding: 4px 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer !important;
+  border-radius: 3px !important;
+}
+.toolbar-btn:hover {
+  background: #eaeaea !important;
+}
+.topbar-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+}
+
+/* ======================================================
+   INPUTS — Zoho style
+   ====================================================== */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
+  font-size: 12.5px !important;
+  border: 1px solid #c8c8c8 !important;
+  border-radius: 3px !important;
+  background: #ffffff !important;
+  color: #2d2d2d !important;
+  padding: 5px 8px !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+  outline: none !important;
+  transition: border-color 0.15s ease !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 2px rgba(13,110,253,0.12), inset 0 1px 2px rgba(0,0,0,0.03) !important;
+}
+
+/* ======================================================
+   SCROLLBARS
+   ====================================================== */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: #f1f1f1; border-left: 1px solid #e4e4e4; }
+::-webkit-scrollbar-thumb { background: #c4c4c4; border: 2px solid #f1f1f1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #aaaaaa; }
+
+/* ======================================================
+   GLOBAL SYSTEM CARDS HARMONIZATION — ZOHO SKEUOMORPHIC OVERRIDES
+   ====================================================== */
+
+/* Target all card-like containers inside workspaces (broadened and status-safe) */
+div[class*="border-2 border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border-2 border-slate-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border-2 border-zinc-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border-2 border-gray-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
+div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]) {
+  background: #ffffff !important;
+  border: 1px solid #a8a8a8 !important;
+  border-radius: 3px !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.95),
+    inset -1px -1px 0 rgba(0,0,0,0.06),
+    1px 2px 5px rgba(0,0,0,0.12) !important;
+  transition: all 0.12s ease !important;
+  overflow: hidden !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border-2 border-slate-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border-2 border-zinc-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border-2 border-gray-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
+div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover {
+  border-color: #989898 !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.95),
+    inset -1px -1px 0 rgba(0,0,0,0.08),
+    2px 3px 8px rgba(0,0,0,0.16) !important;
+}
+
+/* Header Title Bar Overrides — target first child or second child (if first is absolute span) with border-b in the container */
+div[class*="border-2 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-slate-900"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-slate-900"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-zinc-900"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-zinc-900"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-double"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-double"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]) {
+  background: linear-gradient(to bottom, #f6f6f6 0%, #dedede 100%) !important;
+  border-bottom: 1px solid #aaaaaa !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #1e1e1e !important;
+  letter-spacing: 0.03em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8) !important;
+  text-transform: uppercase !important;
+  border-radius: 2px 2px 0 0 !important;
+}
+
+/* Ensure modern, high-density alignment for header inner items */
+div[class*="border-2 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
+div[class*="border-2 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
+div[class*="border border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
+div[class*="border border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
+div[class*="border-4 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
+div[class*="border-4 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
+div[class*="border-4 border-double"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
+div[class*="border-4 border-double"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg {
+  color: #444444 !important;
+  stroke-width: 2.2 !important;
+}
+
+/* Dynamic negative margin overrides based on padding classes on the parent container to pull header to card boundaries */
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"] {
+  margin: -16px -16px 14px -16px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"] {
+  margin: -12px -12px 10px -12px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"] {
+  margin: -8px -8px 8px -8px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
+div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
+div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"] {
+  margin: -32px -32px 28px -32px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-1"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-1"] > :nth-child(2)[class*="border-b"] {
+  margin: -4px -4px 4px -4px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1.5"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1.5"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-1.5"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-1.5"] > :nth-child(2)[class*="border-b"] {
+  margin: -6px -6px 6px -6px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2.5"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2.5"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-2.5"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-2.5"] > :nth-child(2)[class*="border-b"] {
+  margin: -10px -10px 10px -10px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-5"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-5"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-5"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-5"] > :nth-child(2)[class*="border-b"] {
+  margin: -20px -20px 18px -20px !important;
+}
+
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-6"] > :first-child[class*="border-b"],
+div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-6"] > :nth-child(2)[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-6"] > :first-child[class*="border-b"],
+div[class*="border border-black"]:not([class*="dashed"])[class*="p-6"] > :nth-child(2)[class*="border-b"] {
+  margin: -24px -24px 22px -24px !important;
+}
+
+/* ======================================================
+   EMBOSSED INDUSTRIAL NAMEPLATES FOR PANEL BADGES
+   ====================================================== */
+div[class*="border"] > span[class*="absolute"],
+div[class*="border"] > span[class*="top-2"],
+div[class*="border"] > span[class*="-top-2"] {
+  background: linear-gradient(to bottom, #eaeaea 0%, #d8d8d8 100%) !important;
+  color: #222222 !important;
+  border: 1px solid #999999 !important;
+  border-radius: 2px !important;
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0,0,0,0.12) !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.85) !important;
+  font-weight: 700 !important;
+  font-size: 8px !important;
+  padding: 2px 6px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+
