@@ -831,7 +831,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
           <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">STRATIGRAPHY CROSS-SECTION PLOT</p>
           
           <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
-            <svg className="absolute inset-0 w-full h-full">
+            <svg viewBox="0 0 600 180" className="w-full h-full absolute inset-0">
               {/* Grid Background */}
               <defs>
                 <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">

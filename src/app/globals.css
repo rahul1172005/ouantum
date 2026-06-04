@@ -1,57 +1,68 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-bg: #f5f6f8;
-  --color-secondary-bg: #ffffff;
-  --color-electric-blue: #0033cc;
-  --color-ai-purple: #7b1fa2;
-  --color-success-green: #336600;
-  --color-alert-orange: #ff9900;
-  --color-danger-red: #cc0000;
-  --color-metallic-gray: #777777;
+  --color-primary-bg: #f2f3f3; /* AWS Page BG */
+  --color-secondary-bg: #ffffff; /* AWS Container BG */
+  --color-electric-blue: #0073bb; /* AWS Blue */
+  --color-ai-purple: #8c43fc; /* AWS AI purple */
+  --color-success-green: #1d8102; /* AWS Success green */
+  --color-alert-orange: #ec7211; /* AWS Orange accent */
+  --color-danger-red: #d13212; /* AWS Danger red */
+  --color-metallic-gray: #545b64; /* AWS secondary gray */
   --color-white-text: #ffffff;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
 }
 
 /* ======================================================
-   GLOBAL FONT — Segoe UI / Tahoma everywhere, no exceptions
+   GLOBAL FONT — AWS standard font stack
    ====================================================== */
 :root {
-  --background: #e8e8e8;
-  --foreground: #1e1e1e;
-  --font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+  --background: #f2f3f3;
+  --foreground: #16191f;
+  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  /* Windows XP Luna panel tokens — white, raised */
+  /* AWS Cloudscape card tokens */
   --card-bg: #ffffff;
-  --card-border-outer: #a0a0a0;
-  --card-border-inner: #ffffff;
-  --card-radius: 3px;
-  /* Classic XP raised-panel border effect */
-  --card-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #888888 inset, 2px 3px 6px rgba(0,0,0,0.18);
-  --card-shadow-hover: 1px 1px 0 #ffffff inset, -1px -1px 0 #777777 inset, 3px 4px 9px rgba(0,0,0,0.22);
-  --card-header-bg: linear-gradient(to bottom, #f0f0f0 0%, #d8d8d8 100%);
-  --card-header-border: #a8a8a8;
+  --card-border: #eaeded;
+  --card-border-outer: #d5dbdb;
+  --card-radius: 4px;
+  --card-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08);
+  --card-shadow-hover: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12);
+  --card-header-bg: #ffffff;
+  --card-header-border: #eaeded;
 
   /* Label / value colors */
-  --label-color: #555555;
-  --value-color: #1a1a1a;
-  --subtext-color: #888888;
+  --label-color: #545b64;
+  --value-color: #16191f;
+  --subtext-color: #545b64;
 
-  /* Accents — no blue tints anywhere in cards */
-  --accent-green: #217346;
-  --accent-red:   #c0392b;
-  --accent-orange: #c07000;
+  /* Accents */
+  --accent-green: #1d8102;
+  --accent-red:   #d13212;
+  --accent-orange: #ec7211;
 }
 
 /* ======================================================
-   FORCE FONT — override every element  
+   FORCE FONT — system-ui everywhere, no exceptions
    ====================================================== */
 *, *::before, *::after {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
   box-sizing: border-box;
 }
 
+html, body, button, input, select, textarea, span, p, h1, h2, h3, h4, h5, h6, a {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.font-mono, .font-mono *, code, pre, kbd, samp {
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+}
+
 html, body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
   background: var(--background);
   color: var(--foreground);
   font-size: 13px;
@@ -66,202 +77,254 @@ html, body {
 .cad-grid {
   background-color: #f8f9fa;
   background-image:
-    linear-gradient(#eef1f4 1px, transparent 1px),
-    linear-gradient(90deg, #eef1f4 1px, transparent 1px);
+    linear-gradient(#eaeded 1px, transparent 1px),
+    linear-gradient(90deg, #eaeded 1px, transparent 1px);
   background-size: 20px 20px;
   opacity: 0.7;
 }
 
 /* ======================================================
-   WINDOWS XP LUNA — RAISED PANEL CARDS (pure white)
+   AWS CLOUDSCAPE — FLAT CARDS
    ====================================================== */
 
 /* ── Panel / section card ── */
 .zoho-card {
-  background: #ffffff;
-  border: 1px solid #a0a0a0;
-  border-radius: 3px;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.95),
-    inset -1px -1px 0 rgba(0,0,0,0.08),
-    2px 3px 7px rgba(0,0,0,0.15);
-  overflow: hidden;
-  transition: box-shadow 0.12s ease;
+  background: #ffffff !important;
+  border: 1px solid #d5dbdb !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08) !important;
+  overflow: hidden !important;
+  transition: border-color 0.1s ease, box-shadow 0.1s ease !important;
 }
 .zoho-card:hover {
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.95),
-    inset -1px -1px 0 rgba(0,0,0,0.10),
-    3px 4px 10px rgba(0,0,0,0.20);
+  border-color: #aab7b8 !important;
+  box-shadow: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12) !important;
 }
 
-/* ── Card header — XP-style gray gradient title bar ── */
+/* ── Card header — AWS Cloudscape style flat title bar ── */
 .zoho-card-header {
-  background: linear-gradient(to bottom, #f6f6f6 0%, #dedede 100%);
-  border-bottom: 1px solid #aaaaaa;
-  padding: 8px 13px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #1e1e1e;
-  letter-spacing: 0.01em;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  height: 48px !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #eaeded !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #16191f !important;
+  text-shadow: none !important;
+  letter-spacing: normal !important;
 }
 
 /* ── Card body ── */
 .zoho-card-body {
-  padding: 13px 14px;
-  background: #ffffff;
+  padding: 20px !important;
+  background: #ffffff !important;
+}
+
+/* ── Card footer ── */
+.zoho-card-footer {
+  background: #fafafa !important;
+  border-top: 1px solid #eaeded !important;
+  height: 42px !important;
+  padding: 0 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 12px !important;
+  color: #545b64 !important;
 }
 
 /* ── KPI stat card ── */
 .zoho-kpi-card {
   background: #ffffff;
-  border: 1px solid #a8a8a8;
-  border-radius: 3px;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.9),
-    inset -1px -1px 0 rgba(0,0,0,0.07),
-    1px 2px 5px rgba(0,0,0,0.13);
-  padding: 15px 16px;
+  border: 1px solid #d5dbdb;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08);
+  padding: 18px 20px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  transition: box-shadow 0.12s ease;
-  min-height: 92px;
+  transition: border-color 0.1s ease;
+  min-height: 96px;
 }
 .zoho-kpi-card:hover {
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.9),
-    inset -1px -1px 0 rgba(0,0,0,0.09),
-    2px 3px 8px rgba(0,0,0,0.18);
+  border-color: #aab7b8;
 }
 
-/* ── KPI label (small gray uppercase caption) ── */
+/* ── KPI label ── */
 .zoho-kpi-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: #666666;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #545b64;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: 4px;
 }
 
-/* ── KPI value (large bold number) ── */
+/* ── KPI value ── */
 .zoho-kpi-value {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #16191f;
   line-height: 1.1;
 }
 
 /* ── KPI badge ── */
 .zoho-kpi-badge {
   display: inline-block;
-  margin-top: 7px;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 2px;
-  border: 1px solid #c8c8c8;
-  background: linear-gradient(to bottom, #f5f5f5, #e5e5e5);
-  color: #444;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 1px rgba(0,0,0,0.08);
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid #d5dbdb;
+  background: #f2f3f3;
+  color: #545b64;
+  text-transform: none;
+  letter-spacing: normal;
+  box-shadow: none;
 }
 
 /* ── KPI icon box ── */
 .zoho-kpi-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 2px;
-  border: 1px solid #b8b8b8;
-  background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 2px rgba(0,0,0,0.10);
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  border: 1px solid #d5dbdb;
+  background: #f2f3f3;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #444444;
+  color: #545b64;
 }
 
 /* ======================================================
-   PANEL & GLASS (legacy classes kept, now Zoho-style)
+   PANEL & GLASS (legacy classes mapping to AWS theme)
    ====================================================== */
 .glass-panel, .glass-panel-purple {
   background: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
+  border: 1px solid var(--card-border-outer) !important;
   border-radius: var(--card-radius) !important;
   box-shadow: var(--card-shadow) !important;
-  transition: box-shadow 0.15s ease;
+  transition: border-color 0.1s ease;
 }
 .glass-panel:hover, .glass-panel-purple:hover {
-  box-shadow: var(--card-shadow-hover) !important;
+  border-color: #aab7b8 !important;
 }
 
-.tech-border  { border: 1px solid var(--card-border) !important; }
-.tech-border-double { border: 1px solid #c8c8c8 !important; background: #fafafa; }
-.tech-border-dashed { border: 1px dashed #c8c8c8 !important; }
+.tech-border  { border: 1px solid var(--card-border-outer) !important; }
+.tech-border-double { border: 1px solid var(--card-border-outer) !important; background: #ffffff; }
+.tech-border-dashed { border: 1px dashed var(--card-border-outer) !important; }
 
 /* ======================================================
    HAZARD PATTERNS
    ====================================================== */
 .hazard-hatch {
   background: repeating-linear-gradient(
-    45deg, #ffffff, #ffffff 8px, #f3f4f6 8px, #f3f4f6 16px
+    45deg, #ffffff, #ffffff 8px, #f2f3f3 8px, #f2f3f3 16px
   ) !important;
-  border: 1px solid var(--card-border) !important;
+  border: 1px solid var(--card-border-outer) !important;
 }
 .hazard-hatch-dark {
   background: repeating-linear-gradient(
-    45deg, #444, #444 8px, #555 8px, #555 16px
+    45deg, #16191f, #16191f 8px, #232f3e 8px, #232f3e 16px
   ) !important;
   color: #fff !important;
-  border: 1px solid #333 !important;
+  border: 1px solid #16191f !important;
 }
 
 /* ======================================================
-   BUTTONS — skeuomorphic, NO font-mono override
+   BUTTONS — AWS Cloudscape flat buttons
    ====================================================== */
 .btn-skeuo,
-button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]) {
-  background: linear-gradient(to bottom, #fdfdfd 0%, #e8e8e8 100%) !important;
-  border: 1px solid #b8b8b8 !important;
-  border-radius: 3px !important;
-  color: #2d2d2d !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.8) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.07) !important;
-  font-weight: 600 !important;
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button) {
+  background: #ffffff !important;
+  border: 1px solid #545b64 !important;
+  border-radius: 4px !important;
+  color: #545b64 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
   font-size: 12px !important;
-  padding: 5px 12px !important;
+  padding: 6px 16px !important;
   cursor: pointer !important;
   transition: all 0.1s ease !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   letter-spacing: normal !important;
   text-transform: none !important;
 }
 .btn-skeuo:hover,
-button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):hover {
-  background: linear-gradient(to bottom, #ffffff 0%, #efefef 100%) !important;
-  border-color: #9a9a9a !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.10) !important;
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button):hover {
+  background: #f1f3f3 !important;
+  color: #16191f !important;
+  border-color: #16191f !important;
 }
 .btn-skeuo:active,
-button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):active {
-  background: #e2e2e2 !important;
-  border-color: #8a8a8a !important;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.12) !important;
+button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button):active {
+  background: #eaeded !important;
 }
 
 /* ======================================================
-   TABLES — Zoho style
+   BUTTON LAYOUT & STATE COMPLIANCE OVERRIDES
+   ====================================================== */
+button[class*="w-full"] {
+  display: block !important;
+}
+button[class*="flex"] {
+  display: flex !important;
+}
+button[class*="flex-col"] {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Primary AWS CTA Button styles (orange with white text) */
+button.bg-black,
+button[class*="bg-black"],
+button.active-btn,
+button[type="submit"] {
+  background: #ec7211 !important;
+  border: 1px solid #ec7211 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+}
+button.bg-black:hover,
+button[class*="bg-black"]:hover,
+button[type="submit"]:hover {
+  background: #dd5a12 !important;
+  border-color: #dd5a12 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+button.bg-black:active,
+button[class*="bg-black"]:active,
+button[type="submit"]:active {
+  background: #c54e0e !important;
+  border-color: #c54e0e !important;
+}
+
+/* Respect original Tailwind padding utility classes on custom buttons */
+button[class*="p-2"] { padding: 8px 12px !important; }
+button[class*="p-3"] { padding: 12px 16px !important; }
+button[class*="p-4"] { padding: 16px 20px !important; }
+button[class*="py-1.5"] { padding-top: 6px !important; padding-bottom: 6px !important; }
+button[class*="py-2"] { padding-top: 8px !important; padding-bottom: 8px !important; }
+button[class*="py-0.5"] { padding-top: 2px !important; padding-bottom: 2px !important; }
+button[class*="px-2"] { padding-left: 8px !important; padding-right: 8px !important; }
+
+/* ======================================================
+   TABLES — AWS Cloudscape table styling
    ====================================================== */
 table {
   width: 100%;
@@ -269,109 +332,139 @@ table {
   font-size: 12px;
 }
 th {
-  background-color: #f2f2f2 !important;
-  color: #3d3d3d !important;
+  background-color: #f2f3f3 !important;
+  color: #545b64 !important;
   font-weight: 600 !important;
-  border-bottom: 1px solid #d4d4d4 !important;
-  border-right: 1px solid #e8e8e8 !important;
-  padding: 7px 10px !important;
+  border-bottom: 1px solid #eaeded !important;
+  border-right: none !important;
+  padding: 10px 14px !important;
   font-size: 11px !important;
   text-align: left;
 }
 td {
-  border-bottom: 1px solid #ebebeb !important;
-  border-right: 1px dotted #ebebeb !important;
-  padding: 7px 10px !important;
-  color: #3d3d3d !important;
+  border-bottom: 1px solid #eaeded !important;
+  border-right: none !important;
+  padding: 10px 14px !important;
+  color: #16191f !important;
   background-color: #ffffff;
   font-size: 12px;
 }
 tr:hover td {
-  background-color: #f0f6ff !important;
+  background-color: #f1f3f3 !important;
 }
 
 /* ======================================================
-   SIDEBAR — blue links, green folders, no gradient btns
+   SIDEBAR — AWS Console Left Navigation Drawer style
    ====================================================== */
 .sidebar-btn {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
-  border-radius: 3px !important;
-  color: #0033cc !important;
+  border-radius: 0px !important;
+  color: #545b64 !important;
   font-weight: 500 !important;
-  font-size: 12px !important;
-  padding: 4px 7px !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
   display: flex !important;
   align-items: center !important;
   text-align: left !important;
   width: 100% !important;
   cursor: pointer !important;
+  border-left: 3px solid transparent !important;
 }
 .sidebar-btn:hover {
-  text-decoration: underline !important;
-  color: #001fa0 !important;
-  background: #e9f0f8 !important;
+  text-decoration: none !important;
+  color: #16191f !important;
+  background: #f1f3f3 !important;
 }
 .sidebar-btn.active {
-  background: #dce8f8 !important;
-  color: #002299 !important;
-  font-weight: 600 !important;
+  background: #f1f3f3 !important;
+  color: #16191f !important;
+  font-weight: 700 !important;
+  border-left: 3px solid #ec7211 !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
 }
 .sidebar-folder {
-  color: #336600 !important;
+  color: #545b64 !important;
   font-weight: 700 !important;
-  font-size: 11.5px !important;
+  font-size: 11px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 4px 4px;
-  border-bottom: 1px dashed #ddd;
-  margin-top: 8px;
+  padding: 12px 16px 6px;
+  border-bottom: none !important;
+  margin-top: 12px;
 }
 
 /* ======================================================
-   WORKSPACE TABS & TOOLBAR
+   WORKSPACE TABS & TOOLBAR — AWS Tabs style
    ====================================================== */
 .workspace-tabs {
   display: flex;
-  background: #e8e9eb;
-  border-bottom: 1px solid #cccccc;
-  padding-left: 8px;
-  padding-top: 6px;
+  flex-wrap: wrap;
+  background: #ffffff !important;
+  border-bottom: 1px solid #eaeded !important;
+  padding: 0 16px !important;
   flex-shrink: 0;
+  position: relative;
+  min-height: 48px !important;
+  align-items: center !important;
+  gap: 20px !important;
 }
 .workspace-tab {
-  padding: 6px 16px;
-  background: #dedede;
-  border: 1px solid #b8b8b8;
-  border-bottom: none;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  font-weight: 500;
-  font-size: 11.5px;
-  color: #555;
-  cursor: pointer;
-  margin-right: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  padding: 12px 4px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  color: #545b64 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  position: relative !important;
+  transition: all 0.1s ease !important;
+  height: 48px !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  border-bottom: 2px solid transparent !important;
+}
+.workspace-tab:hover {
+  background: transparent !important;
+  color: #16191f !important;
+  border-bottom: 2px solid #aab7b8 !important;
+  box-shadow: none !important;
 }
 .workspace-tab.active {
-  background: #ffffff;
-  border-bottom: 1px solid #ffffff;
-  margin-bottom: -1px;
-  color: #1a1a1a;
-  font-weight: 600;
+  background: transparent !important;
+  border-bottom: 2px solid #ec7211 !important;
+  color: #16191f !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
+}
+.workspace-tab.active:hover {
+  background: transparent !important;
+  border-bottom: 2px solid #ec7211 !important;
+  color: #16191f !important;
 }
 .workspace-toolbar {
-  background: #fafafa;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 5px 12px;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeded;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-shrink: 0;
 }
 .toolbar-btn {
@@ -380,17 +473,18 @@ tr:hover td {
   box-shadow: none !important;
   text-shadow: none !important;
   font-size: 12px !important;
-  font-weight: 500 !important;
-  color: #333 !important;
-  padding: 4px 8px !important;
+  font-weight: 600 !important;
+  color: #545b64 !important;
+  padding: 6px 12px !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 4px !important;
+  gap: 6px !important;
   cursor: pointer !important;
-  border-radius: 3px !important;
+  border-radius: 4px !important;
 }
 .toolbar-btn:hover {
-  background: #eaeaea !important;
+  background: #f1f3f3 !important;
+  color: #16191f !important;
 }
 .topbar-btn {
   background: transparent !important;
@@ -401,211 +495,386 @@ tr:hover td {
 }
 
 /* ======================================================
-   INPUTS — Zoho style
+   INPUTS — AWS standard input fields
    ====================================================== */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 select,
 textarea {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif !important;
-  font-size: 12.5px !important;
-  border: 1px solid #c8c8c8 !important;
-  border-radius: 3px !important;
+  font-family: var(--font-ui) !important;
+  font-size: 13px !important;
+  border: 1px solid #aab7b8 !important;
+  border-radius: 4px !important;
   background: #ffffff !important;
-  color: #2d2d2d !important;
-  padding: 5px 8px !important;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05) !important;
+  color: #16191f !important;
+  padding: 6px 10px !important;
+  box-shadow: none !important;
   outline: none !important;
-  transition: border-color 0.15s ease !important;
+  transition: all 0.1s ease !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: #0d6efd !important;
-  box-shadow: 0 0 0 2px rgba(13,110,253,0.12), inset 0 1px 2px rgba(0,0,0,0.03) !important;
+  border-color: #0073bb !important;
+  box-shadow: 0 0 0 1px #0073bb !important;
 }
 
 /* ======================================================
    SCROLLBARS
    ====================================================== */
-::-webkit-scrollbar { width: 9px; height: 9px; }
-::-webkit-scrollbar-track { background: #f1f1f1; border-left: 1px solid #e4e4e4; }
-::-webkit-scrollbar-thumb { background: #c4c4c4; border: 2px solid #f1f1f1; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #aaaaaa; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f2f3f3; border-left: none; }
+::-webkit-scrollbar-thumb { background: #c4c8c8; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #aab7b8; }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
 
 /* ======================================================
-   GLOBAL SYSTEM CARDS HARMONIZATION — ZOHO SKEUOMORPHIC OVERRIDES
+   /* ======================================================
+   WORKSPACE DIV CARDS -> AWS CLOUDSCAPE OVERRIDES
    ====================================================== */
-
-/* Target all card-like containers inside workspaces (broadened and status-safe) */
-div[class*="border-2 border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border-2 border-slate-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border-2 border-zinc-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border-2 border-gray-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]),
-div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]) {
+div[class*="border-2 border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-slate-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-zinc-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-gray-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper) {
   background: #ffffff !important;
-  border: 1px solid #a8a8a8 !important;
-  border-radius: 3px !important;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.95),
-    inset -1px -1px 0 rgba(0,0,0,0.06),
-    1px 2px 5px rgba(0,0,0,0.12) !important;
-  transition: all 0.12s ease !important;
-  overflow: hidden !important;
+  border: 1px solid #d5dbdb !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08) !important;
+  transition: border-color 0.1s ease !important;
+  overflow: visible !important;
+  padding: 20px !important;
 }
 
-div[class*="border-2 border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border-2 border-slate-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border-2 border-zinc-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border-2 border-gray-900"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border border-black"]:not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover,
-div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="dashed"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):hover {
-  border-color: #989898 !important;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.95),
-    inset -1px -1px 0 rgba(0,0,0,0.08),
-    2px 3px 8px rgba(0,0,0,0.16) !important;
+div[class*="border-2 border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border-2 border-slate-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border-2 border-zinc-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border-2 border-gray-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
+div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover {
+  border-color: #aab7b8 !important;
+  box-shadow: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12) !important;
 }
 
-/* Header Title Bar Overrides — target first child or second child (if first is absolute span) with border-b in the container */
-div[class*="border-2 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-2 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-2 border-slate-900"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-2 border-slate-900"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-2 border-zinc-900"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-2 border-zinc-900"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-4 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-4 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-4 border-double"]:not([class*="dashed"]) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
-div[class*="border-4 border-double"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]) {
-  background: linear-gradient(to bottom, #f6f6f6 0%, #dedede 100%) !important;
-  border-bottom: 1px solid #aaaaaa !important;
-  padding: 8px 12px !important;
+/* Card containers containing absolute floating nameplates */
+div[class*="border-2 border-black"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-slate-900"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-zinc-900"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-2 border-gray-900"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border border-black"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-4 border-black"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
+div[class*="border-4 border-double"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper) {
+  overflow: visible !important;
+  padding: 20px !important;
+  padding-top: 32px !important;
+}
+
+/* Header Title Bar Overrides */
+div[class*="border-2 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-slate-900"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-slate-900"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-zinc-900"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-2 border-zinc-900"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border border-black"]:not([class*="rounded-full"]):not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border border-black"]:not([class*="rounded-full"]):not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-double"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
+div[class*="border-4 border-double"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]) {
+  height: 48px !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #eaeded !important;
+  padding: 0 20px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  font-size: 11px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
-  color: #1e1e1e !important;
-  letter-spacing: 0.03em !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.8) !important;
-  text-transform: uppercase !important;
-  border-radius: 2px 2px 0 0 !important;
+  color: #16191f !important;
+  letter-spacing: normal !important;
+  text-shadow: none !important;
+  text-transform: none !important;
+  border-radius: 4px 4px 0 0 !important;
 }
 
-/* Ensure modern, high-density alignment for header inner items */
-div[class*="border-2 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
-div[class*="border-2 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
-div[class*="border border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
-div[class*="border border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
-div[class*="border-4 border-black"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
-div[class*="border-4 border-black"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg,
-div[class*="border-4 border-double"]:not([class*="dashed"]) > :first-child[class*="border-b"] svg,
-div[class*="border-4 border-double"]:not([class*="dashed"]) > :nth-child(2)[class*="border-b"] svg {
-  color: #444444 !important;
-  stroke-width: 2.2 !important;
-}
-
-/* Dynamic negative margin overrides based on padding classes on the parent container to pull header to card boundaries */
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-4"] > :first-child[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-4"] > :nth-child(2)[class*="border-b"] {
-  margin: -16px -16px 14px -16px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-3"] > :first-child[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-3"] > :nth-child(2)[class*="border-b"] {
-  margin: -12px -12px 10px -12px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-2"] > :first-child[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-2"] > :nth-child(2)[class*="border-b"] {
-  margin: -8px -8px 8px -8px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
-div[class*="border-4 border-black"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-8"] > :first-child[class*="border-b"],
-div[class*="border-4 border-double"]:not([class*="dashed"])[class*="p-8"] > :nth-child(2)[class*="border-b"] {
-  margin: -32px -32px 28px -32px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-1"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-1"] > :nth-child(2)[class*="border-b"] {
-  margin: -4px -4px 4px -4px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1.5"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-1.5"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-1.5"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-1.5"] > :nth-child(2)[class*="border-b"] {
-  margin: -6px -6px 6px -6px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2.5"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-2.5"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-2.5"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-2.5"] > :nth-child(2)[class*="border-b"] {
-  margin: -10px -10px 10px -10px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-5"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-5"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-5"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-5"] > :nth-child(2)[class*="border-b"] {
-  margin: -20px -20px 18px -20px !important;
-}
-
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-6"] > :first-child[class*="border-b"],
-div[class*="border-2 border-black"]:not([class*="dashed"])[class*="p-6"] > :nth-child(2)[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-6"] > :first-child[class*="border-b"],
-div[class*="border border-black"]:not([class*="dashed"])[class*="p-6"] > :nth-child(2)[class*="border-b"] {
-  margin: -24px -24px 22px -24px !important;
+/* Header inner items */
+div[class*="border-2 border-black"] > :first-child[class*="border-b"] svg,
+div[class*="border-2 border-black"] > :nth-child(2)[class*="border-b"] svg,
+div[class*="border border-black"] > :first-child[class*="border-b"] svg,
+div[class*="border border-black"] > :nth-child(2)[class*="border-b"] svg,
+div[class*="border-4 border-black"] > :first-child[class*="border-b"] svg,
+div[class*="border-4 border-black"] > :nth-child(2)[class*="border-b"] svg,
+div[class*="border-4 border-double"] > :first-child[class*="border-b"] svg,
+div[class*="border-4 border-double"] > :nth-child(2)[class*="border-b"] svg {
+  color: #545b64 !important;
+  stroke-width: 2.0 !important;
 }
 
 /* ======================================================
-   EMBOSSED INDUSTRIAL NAMEPLATES FOR PANEL BADGES
+   AWS CLOUDSCAPE STATUS BADGES
    ====================================================== */
 div[class*="border"] > span[class*="absolute"],
 div[class*="border"] > span[class*="top-2"],
 div[class*="border"] > span[class*="-top-2"] {
-  background: linear-gradient(to bottom, #eaeaea 0%, #d8d8d8 100%) !important;
-  color: #222222 !important;
-  border: 1px solid #999999 !important;
-  border-radius: 2px !important;
-  box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0,0,0,0.12) !important;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.85) !important;
+  background: #f2f3f3 !important;
+  color: #545b64 !important;
+  border: 1px solid #d5dbdb !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
   font-weight: 700 !important;
-  font-size: 8px !important;
-  padding: 2px 6px !important;
+  font-size: 10px !important;
+  padding: 2px 8px !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+/* Success Status Badges */
+div[class*="border"] > span[class*="absolute"][class*="green"],
+div[class*="border"] > span[class*="absolute"][class*="emerald"],
+div[class*="border"] > span[class*="absolute"][class*="success"],
+div[class*="border"] > span[class*="top-2"][class*="green"],
+div[class*="border"] > span[class*="top-2"][class*="success"] {
+  background: #edf7ed !important;
+  color: #1d8102 !important;
+  border: 1px solid #c3e6cb !important;
+}
+
+/* Warning/Alert Status Badges */
+div[class*="border"] > span[class*="absolute"][class*="amber"],
+div[class*="border"] > span[class*="absolute"][class*="orange"],
+div[class*="border"] > span[class*="absolute"][class*="warning"],
+div[class*="border"] > span[class*="top-2"][class*="amber"],
+div[class*="border"] > span[class*="top-2"][class*="warning"] {
+  background: #fff3cd !important;
+  color: #ec7211 !important;
+  border: 1px solid #ffeeba !important;
+}
+
+/* Danger/Alert Status Badges */
+div[class*="border"] > span[class*="absolute"][class*="red"],
+div[class*="border"] > span[class*="absolute"][class*="danger"],
+div[class*="border"] > span[class*="top-2"][class*="red"],
+div[class*="border"] > span[class*="top-2"][class*="danger"] {
+  background: #f8d7da !important;
+  color: #d13212 !important;
+  border: 1px solid #f5c6cb !important;
+}
+
+.no-zoho-card {
+  /* Isolation token */
+}
+
+.no-zoho-table-wrapper {
+  border: 1px solid #d5dbdb !important;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15) !important;
+  overflow-x: auto !important;
+  padding: 0px !important;
+  position: relative !important;
+}
+
+.no-vertical-borders th,
+.no-vertical-borders td {
+  border-right: none !important;
+}
+
+/* Specific styling for command palette input */
+input.command-palette-input {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Strict override to force all dashed borders in workspaces to be solid flat AWS borders */
+div[class*="border-dashed"]:not(svg):not(path):not(line),
+div[class*="dashed"]:not(svg):not(path):not(line),
+div[style*="dashed"]:not(svg):not(path):not(line) {
+  border-style: solid !important;
+  border-color: #d5dbdb !important;
+  border-width: 1px !important;
+}
+
+/* ======================================================
+   AWS CLOUDSCAPE — WORKSPACE VIEWPORT GENERAL OVERRIDES
+   ====================================================== */
+
+/* Force all buttons in workspace-viewport to match AWS styling rules */
+.workspace-viewport button:not(.workspace-tab) {
+  font-family: var(--font-ui) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  transition: all 0.1s ease !important;
+  padding: 6px 14px !important;
+}
+
+/* Primary buttons in workspace (e.g. submit, black bg, or green actions) */
+.workspace-viewport button.bg-black:not(.workspace-tab),
+.workspace-viewport button[class*="bg-black"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-blue-"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-indigo-"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-emerald-"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-green-"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-red-"]:not(.workspace-tab),
+.workspace-viewport button[class*="bg-orange-"]:not(.workspace-tab),
+.workspace-viewport button[type="submit"]:not(.workspace-tab),
+.workspace-viewport button.active-btn:not(.workspace-tab) {
+  background: #ec7211 !important;
+  border: 1px solid #ec7211 !important;
+  color: #ffffff !important;
+}
+.workspace-viewport button.bg-black:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-black"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-blue-"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-indigo-"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-emerald-"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-green-"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-red-"]:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-orange-"]:not(.workspace-tab):hover,
+.workspace-viewport button[type="submit"]:not(.workspace-tab):hover,
+.workspace-viewport button.active-btn:not(.workspace-tab):hover {
+  background: #dd5a12 !important;
+  border-color: #dd5a12 !important;
+  color: #ffffff !important;
+}
+.workspace-viewport button.bg-black:not(.workspace-tab):active,
+.workspace-viewport button[class*="bg-black"]:not(.workspace-tab):active,
+.workspace-viewport button[type="submit"]:not(.workspace-tab):active {
+  background: #c54e0e !important;
+  border-color: #c54e0e !important;
+}
+
+/* Secondary/Default buttons in workspace (e.g. bg-white, transparent, grey outlines) */
+.workspace-viewport button.bg-white:not(.workspace-tab),
+.workspace-viewport button[class*="bg-white"]:not(.workspace-tab),
+.workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab) {
+  background: #ffffff !important;
+  border: 1px solid #545b64 !important;
+  color: #545b64 !important;
+}
+.workspace-viewport button.bg-white:not(.workspace-tab):hover,
+.workspace-viewport button[class*="bg-white"]:not(.workspace-tab):hover,
+.workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab):hover {
+  background: #f1f3f3 !important;
+  color: #16191f !important;
+  border-color: #16191f !important;
+}
+.workspace-viewport button.bg-white:not(.workspace-tab):active,
+.workspace-viewport button[class*="bg-white"]:not(.workspace-tab):active,
+.workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab):active {
+  background: #eaeded !important;
+}
+
+/* Typography control - force sans-serif by default inside workspace viewport to keep it user friendly */
+.workspace-viewport,
+.workspace-viewport *,
+.workspace-viewport p,
+.workspace-viewport span,
+.workspace-viewport table,
+.workspace-viewport td,
+.workspace-viewport input,
+.workspace-viewport select,
+.workspace-viewport textarea {
+  font-family: var(--font-ui) !important;
+}
+
+/* Maintain Monaco monospace only for codes or charts where mono is specifically designated */
+.workspace-viewport code,
+.workspace-viewport pre,
+.workspace-viewport kbd,
+.workspace-viewport samp,
+.workspace-viewport [class*="font-mono"],
+.workspace-viewport [class*="font-mono"] *,
+.workspace-viewport .font-mono,
+.workspace-viewport .font-mono * {
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+}
+
+/* AWS table header styles */
+.workspace-viewport th {
+  background-color: #f2f3f3 !important;
+  color: #545b64 !important;
+  font-weight: 600 !important;
+  border-bottom: 1px solid #eaeded !important;
+  padding: 10px 14px !important;
+  font-size: 11px !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.04em !important;
+}
+
+/* Disable raw uppercase transforms on body lists/paragraph content inside workspace to look user-friendly */
+.workspace-viewport td,
+.workspace-viewport p,
+.workspace-viewport li {
+  text-transform: none !important;
+}
+
+/* AWS standard inputs overrides in workspace */
+.workspace-viewport input[type="text"],
+.workspace-viewport input[type="number"],
+.workspace-viewport select,
+.workspace-viewport textarea {
+  border: 1px solid #aab7b8 !important;
+  border-radius: 4px !important;
+  background-color: #ffffff !important;
+  color: #16191f !important;
+  font-size: 13px !important;
+}
+
+.workspace-viewport input[type="text"]:focus,
+.workspace-viewport input[type="number"]:focus,
+.workspace-viewport select:focus,
+.workspace-viewport textarea:focus {
+  border-color: #0073bb !important;
+  box-shadow: 0 0 0 1px #0073bb !important;
+}
+
+/* Destructive actions in header toolbar */
+.toolbar-btn-danger {
+  color: #d13212 !important;
+}
+.toolbar-btn-danger:hover {
+  background: #fdf3f2 !important;
+  color: #d13212 !important;
+}
+.toolbar-btn-danger svg {
+  color: #d13212 !important;
+}
+
+/* AWS Console search bar header styling */
+header input[placeholder*="Search"] {
+  background-color: #2b343f !important;
+  border: 1px solid #545b64 !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  transition: all 0.15s ease !important;
+}
+header input[placeholder*="Search"]::placeholder {
+  color: #aab7b8 !important;
+}
+header input[placeholder*="Search"]:focus {
+  background-color: #ffffff !important;
+  border-color: #0073bb !important;
+  color: #16191f !important;
+  box-shadow: 0 0 0 1px #0073bb !important;
 }
 

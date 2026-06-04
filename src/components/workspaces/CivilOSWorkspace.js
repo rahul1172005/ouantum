@@ -32,6 +32,26 @@ import {
   BarChart2
 } from 'lucide-react';
 
+function LevelCard({ icon: Icon, title, children, className = '', headerAction = null, flex = false, footer = null }) {
+  return (
+    <div className={`zoho-card flex flex-col ${className}`}>
+      <div className="zoho-card-header">
+        {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
+        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
+      </div>
+      <div className={`zoho-card-body ${flex ? 'flex-1 flex flex-col justify-between' : ''} space-y-4`}>
+        {children}
+      </div>
+      <div className="zoho-card-footer">
+        <span className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal">
+          {footer || 'Click highlighted items to view real-time data logs'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function CivilOSWorkspace({ selectedElement, setSelectedElement }) {
   const addTicket = useCRMStore(state => state.addTicket);
   const addAccount = useCRMStore(state => state.addAccount);
@@ -323,30 +343,34 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
   };
 
   return (
-    <div className="min-h-[500px] border-4 border-double border-black bg-white flex flex-col font-mono text-black relative shadow-[4px_4px_0px_rgba(0,0,0,1)] select-none">
+    <div className="min-h-[500px] bg-[#f8f9fa] flex flex-col text-gray-800 relative select-none rounded border border-[#cccccc] shadow-sm">
       
       {/* Background Engineering Grids Overlay */}
       <div className="absolute inset-0 cad-grid opacity-30 pointer-events-none z-0"></div>
 
       {/* Header Watermark */}
-      <div className="relative border-b-2 border-black bg-gray-50 p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 z-10">
+      <div className="relative border-b border-[#cccccc] bg-gradient-to-b from-[#fdfdfd] to-[#eaeaea] p-3 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 z-10 shadow-[0_1px_1px_rgba(0,0,0,0.05)]">
         <div>
-          <h2 className="text-[11px] font-black uppercase tracking-wider flex items-center gap-1.5">
-            <Globe className="h-4.5 w-4.5" /> CIVIL & INFRASTRUCTURE OS [COCKPIT ENGINE]
-            <span className="text-[8px] px-1 border border-black bg-black text-white">LEVELS 1-11</span>
+          <h2 className="text-[12px] font-bold text-gray-800 uppercase tracking-wide flex items-center gap-1.5">
+            <Globe className="h-4.5 w-4.5 text-black" /> CIVIL & INFRASTRUCTURE OS [COCKPIT ENGINE]
+            <span className="text-[9px] px-1.5 py-0.5 rounded border border-black font-bold bg-gray-50 text-black uppercase tracking-normal">LEVELS 1-11</span>
           </h2>
-          <p className="text-[8.5px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">
+          <p className="text-[9.5px] text-gray-500 font-semibold tracking-normal mt-0.5">
             System status: nominal // 42hz IoT stream telemetry active // SSOT linked
           </p>
         </div>
         
         {/* Active level metrics */}
         <div className="flex gap-2">
-          <div className="border border-black px-2 py-0.5 bg-white text-[9px] font-bold flex items-center gap-1.5 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-            <ShieldCheck className="h-3.5 w-3.5" /> QA/QC TARGETS: <span className="bg-black text-white px-1 text-[8px]">PASSING</span>
+          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[10px] font-bold text-[#0b4c8c] rounded shadow-sm flex items-center gap-2">
+            <ShieldCheck className="h-3.5 w-3.5 text-black flex-shrink-0" />
+            <span>QA/QC TARGETS:</span>
+            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[3px] text-[8.5px] uppercase font-extrabold">PASSING</span>
           </div>
-          <div className="border border-black px-2 py-0.5 bg-black text-white text-[9px] font-bold flex items-center gap-1.5 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-            <Database className="h-3.5 w-3.5" /> CRM TICKETS: {tickets.filter(t => t.status === 'OPEN').length} OPEN
+          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[10px] font-bold text-[#0b4c8c] rounded shadow-sm flex items-center gap-2">
+            <Database className="h-3.5 w-3.5 text-black flex-shrink-0" />
+            <span>CRM TICKETS:</span>
+            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[3px] text-[8.5px] font-extrabold">{tickets.filter(t => t.status === 'OPEN').length} OPEN</span>
           </div>
         </div>
       </div>
@@ -355,11 +379,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
       <div className="flex-1 flex flex-col lg:flex-row z-10">
         
         {/* Left Side: 11 levels Navigation (1/4 columns) */}
-        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r-2 border-black flex flex-col justify-between bg-gray-50">
-          <div className="p-2 border-b border-black bg-white">
-            <span className="text-[7.5px] font-bold border border-black px-1.5 py-0.5 uppercase tracking-widest text-gray-500 bg-gray-100 block text-center">
-              Infrastructure Lifecycle Index
-            </span>
+        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-[#cccccc] flex flex-col justify-between bg-[#f4f6f8]">
+          <div className="px-3 py-2 bg-[#eaecee] border-b border-[#cccccc] flex items-center font-bold text-gray-700 text-xs">
+            <span>Lifecycle Explorer Index</span>
           </div>
           
           <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
@@ -386,32 +408,32 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     setActiveLevel(lvl.num);
                     if (lvl.num === 5) setActiveSubTab('Cube');
                   }}
-                  className={`w-full flex items-center justify-between p-2 rounded border font-mono text-[9px] uppercase font-bold tracking-wide transition-all ${
+                  className={`w-full flex items-center justify-between p-2 rounded text-[11px] font-bold uppercase transition-all border ${
                     isSelected 
-                      ? 'bg-black text-white border-black shadow-[2px_2px_0px_rgba(0,0,0,0.15)] font-black' 
-                      : 'text-gray-600 bg-white border-transparent hover:border-black hover:text-black'
+                      ? 'bg-[#e2e2e2] text-black border-[#b8b8b8] shadow-sm' 
+                      : 'text-[#2d2d2d] bg-transparent border-transparent hover:underline hover:bg-[#ececec]'
                   }`}
                 >
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[7px] px-1 border ${isSelected ? 'border-white text-white' : 'border-black text-black'}`}>L{lvl.num}</span>
-                    <Icon className="h-3.5 w-3.5" />
-                    <span className="truncate max-w-[110px]">{lvl.name}</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className={`text-[8px] px-1.5 py-0.5 border rounded-sm font-semibold flex-shrink-0 ${isSelected ? 'border-[#a8a8a8] bg-white text-black' : 'border-gray-300 bg-gray-50 text-gray-600'}`}>L{lvl.num}</span>
+                    <Icon className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="truncate max-w-[125px] xl:max-w-[155px] text-left">{lvl.name}</span>
                   </div>
-                  <ChevronRight className="h-3 w-3" />
+                  <ChevronRight className="h-3 w-3 text-gray-400 flex-shrink-0" />
                 </button>
               );
             })}
           </nav>
           
-          <div className="p-3 border-t border-black bg-white space-y-1">
-            <div className="flex justify-between items-center text-[7.5px] uppercase font-bold text-gray-500">
-              <span>ACTIVE COCKPIT TELEMETRY</span>
-              <span className="animate-pulse">●</span>
+          <div className="p-3 border-t border-[#cccccc] bg-white space-y-1">
+            <div className="flex justify-between items-center text-[10px] uppercase font-bold text-gray-500">
+              <span>Cockpit Telemetry</span>
+              <span className="h-2 w-2 rounded-full bg-black"></span>
             </div>
-            <div className="text-[9px] font-mono leading-tight uppercase font-semibold text-black">
-              LOAD FACTORS: NOMINAL<br />
-              W/C RATIO INDEX: 0.42<br />
-              CONCRETE CLOUD SYNC: ONLINE
+            <div className="text-[10px] text-gray-700 leading-normal uppercase">
+              Load Factors: <span className="font-bold text-black">Nominal</span><br />
+              W/C Ratio Index: <span className="font-bold">0.42</span><br />
+              Cloud Sync: <span className="font-bold text-black">Online</span>
             </div>
           </div>
         </div>
@@ -422,10 +444,11 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 1: PRE-CONSTRUCTION INTELLIGENCE */}
           {activeLevel === 1 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 1 - Land & Foundation Intelligence</span>
-                
-                <h3 className="font-bold text-[10px] uppercase border-b border-black pb-1 mb-3">Terzaghi Ultimate Bearing Capacity Simulator</h3>
+              <LevelCard 
+                icon={Compass} 
+                title="Level 1 - Terzaghi Ultimate Bearing Capacity Simulator"
+                footer="Soil bearing capacities simulated under Terzaghi mechanics"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="space-y-1">
@@ -477,10 +500,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-dashed border-black p-3 bg-white flex flex-col justify-between">
+                  <div className="border border-dashed border-[#c8c8c8] rounded-[3px] p-3 bg-white flex flex-col justify-between">
                     <div className="space-y-2 text-[9px] font-mono">
-                      <p className="font-bold border-b border-black pb-1 uppercase">TERZAGHI PHYSICS FORMULA</p>
-                      <p className="italic bg-gray-50 p-1.5 border font-semibold select-all text-center">
+                      <p className="font-bold border-b border-[#eeeeee] pb-1 uppercase">TERZAGHI PHYSICS FORMULA</p>
+                      <p className="italic bg-gray-50 p-1.5 border border-[#e8e8e8] rounded-[2px] font-semibold select-all text-center">
                         q_u = c·N_c + q·N_q + 0.5·γ·B·N_γ
                       </p>
                       <p className="text-[7.5px] text-gray-500 uppercase leading-normal">
@@ -488,35 +511,38 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-2 border-t border-black flex justify-between items-center">
+                    <div className="mt-4 pt-2 border-t border-[#eeeeee] flex justify-between items-center">
                       <div>
                         <p className="text-[8px] text-gray-500 uppercase">Allowable Capacity (q_a = q_u / 3)</p>
                         <p className="text-sm font-black text-black">{allowableCapacity} kPa</p>
                       </div>
                       <div className="text-right">
                         <p className="text-[8px] text-gray-500 uppercase">Soil Safety Multiplier</p>
-                        <span className={`text-[9px] px-1 border font-bold ${Number(soilSafetyIndex) >= 1.0 ? 'bg-black text-white border-black' : 'border-black text-black bg-red-100 animate-pulse'}`}>
+                        <span className={`text-[9px] px-2 py-0.5 border rounded-[2px] font-bold ${Number(soilSafetyIndex) >= 1.0 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-[#2d2d2d] bg-gray-100 animate-pulse'}`}>
                           {soilSafetyIndex} x (Target: 1.0x)
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </LevelCard>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* 3. GIS Waypoint Simulator */}
-                <div className="border border-black p-3 bg-gray-50 relative">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">LiDAR Terrain Scanning & GIS mapping</span>
+                <LevelCard 
+                  icon={Map} 
+                  title="Level 1 - LiDAR Terrain Scanning & GIS mapping"
+                  footer="LiDAR mesh data streams live to GIS database"
+                >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-[9px] font-bold uppercase">Asset Target Area</span>
+                    <span className="text-[9px] font-bold uppercase text-gray-700">Asset Target Area</span>
                     <select 
                       value={gisLocation} onChange={(e) => {
                         setGisLocation(e.target.value);
                         setSelectedWaypoint(null);
                       }} 
-                      className="border border-black bg-white p-1 text-[8.5px] font-bold focus:outline-none"
+                      className="border border-[#c8c8c8] bg-white p-1 text-[8.5px] font-bold focus:outline-none"
                     >
                       <option>Bandra-Worli (Mumbai)</option>
                       <option>Chennai Metro Line 3</option>
@@ -524,9 +550,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </select>
                   </div>
                   
-                  <div className="border border-black bg-white h-28 relative overflow-hidden flex flex-col justify-center items-center">
+                  <div className="border border-[#d4d4d4] bg-white h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[3px] shadow-inner">
                     <div className="absolute inset-0 cad-grid opacity-60 pointer-events-none"></div>
-                    <span className="text-[7.5px] text-gray-400 absolute top-1 left-1">TOPOGRAPHIC GRID RADAR</span>
+                    <span className="text-[7.5px] text-gray-400 absolute top-1 left-1 font-semibold uppercase">TOPOGRAPHIC GRID RADAR</span>
                     
                     {/* Simulated survey dots */}
                     <div className="flex gap-4">
@@ -538,9 +564,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         <button
                           key={dot.id}
                           onClick={() => setSelectedWaypoint(dot)}
-                          className={`h-8 w-16 border border-black rounded text-[8px] flex flex-col items-center justify-center font-bold tracking-wider cursor-pointer shadow-[1px_1px_0px_rgba(0,0,0,1)] ${
-                            selectedWaypoint?.id === dot.id ? 'bg-black text-white' : 'bg-gray-50 hover:bg-gray-200'
+                          className={`h-8 w-16 btn-skeuo text-[8px] flex flex-col items-center justify-center font-bold tracking-wider cursor-pointer ${
+                            selectedWaypoint?.id === dot.id ? 'btn-skeuo-dark text-white' : ''
                           }`}
+                          style={{ minHeight: 'auto', padding: '2px 4px' }}
                         >
                           <span>{dot.id}</span>
                           <span className="text-[6.5px] font-normal font-mono">{dot.elev}</span>
@@ -550,21 +577,24 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   </div>
 
                   {selectedWaypoint && (
-                    <div className="mt-2 text-[8px] font-mono bg-white border border-black p-2 uppercase font-semibold leading-tight">
+                    <div className="mt-2 text-[8px] font-mono bg-white border border-[#d4d4d4] rounded-[3px] p-2 uppercase font-semibold leading-tight text-gray-700">
                       Waypoint: {selectedWaypoint.id} <br />
                       Coordinates: {selectedWaypoint.lat}, {selectedWaypoint.lng} <br />
                       Elevation: {selectedWaypoint.elev} | Sub-grade Water Table: {selectedWaypoint.wt}
                     </div>
                   )}
-                </div>
+                </LevelCard>
 
                 {/* 4. Legal permit tracker */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Legal approvals & Zoning Clearances</span>
+                <LevelCard 
+                  icon={FileText} 
+                  title="Level 1 - Legal approvals & Zoning Clearances"
+                  footer="Municipal and environmental clearance ledger sync active"
+                >
                   <div className="space-y-1.5 pt-1">
                     {Object.keys(permits).map((permitKey) => (
-                      <label key={permitKey} className="flex items-center justify-between text-[9px] font-bold uppercase cursor-pointer hover:bg-gray-100 p-1 border border-transparent hover:border-black">
-                        <span className="flex items-center gap-1.5">
+                      <label key={permitKey} className="flex items-center justify-between text-[9px] font-bold uppercase cursor-pointer hover:bg-gray-50 p-1 border border-transparent rounded hover:border-[#c8c8c8]">
+                        <span className="flex items-center gap-1.5 text-gray-700">
                           <input
                             type="checkbox"
                             checked={permits[permitKey]}
@@ -576,7 +606,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                           />
                           {permitKey.replace(/([A-Z])/g, ' $1').trim()} Clearance
                         </span>
-                        <span className={`text-[7.5px] px-1 border font-bold ${permits[permitKey] ? 'bg-black text-white border-black' : 'border-black text-black bg-white'}`}>
+                        <span className={`text-[7.5px] px-1.5 py-0.5 border rounded-[2px] font-bold ${permits[permitKey] ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-gray-700 bg-white'}`}>
                           {permits[permitKey] ? 'APPROVED' : 'PENDING'}
                         </span>
                       </label>
@@ -593,18 +623,18 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                           setPermitScanResult('🚨 AI INSPECTOR: COMPLIANCE BREACH. missing environment/coastal approval certificates.');
                         }
                       }}
-                      className="flex-1 py-1.5 border-2 border-black bg-white hover:bg-black hover:text-white text-black text-[9px] font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5 text-center"
+                      className="flex-1 btn-skeuo-dark text-center"
                     >
                       Audit Regulatory Compliances
                     </button>
                   </div>
 
                   {permitScanResult && (
-                    <div className="mt-2 text-[7.5px] font-mono leading-snug uppercase border border-black p-1.5 bg-white font-semibold">
+                    <div className={`mt-2 p-2.5 rounded border text-[10px] font-semibold uppercase ${permitScanResult.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] font-bold animate-pulse'}`}>
                       {permitScanResult}
                     </div>
                   )}
-                </div>
+                </LevelCard>
 
               </div>
             </div>
@@ -616,8 +646,11 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* MEP balance */}
-                <div className="border border-black p-3 bg-gray-50 relative">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">MEP Engineering load balance gauges</span>
+                <LevelCard 
+                  icon={Wrench} 
+                  title="Level 2 - MEP Engineering Load Balance Gauges"
+                  footer="Substation capacity monitored relative to building demand"
+                >
                   <div className="space-y-3 pt-2">
                     <div className="space-y-1">
                       <div className="flex justify-between text-[9px] font-bold uppercase">
@@ -654,18 +687,20 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-black flex justify-between items-center text-[9px] font-bold">
-                    <span>GRID OVERLOAD RISK STATUS:</span>
-                    <span className={`px-1 border ${electricalKva > 850 ? 'bg-black text-white border-black animate-pulse' : 'border-black bg-white text-black'}`}>
+                  <div className="mt-4 pt-3 border-t border-[#eeeeee] flex justify-between items-center text-[9px] font-bold">
+                    <span className="text-gray-700">GRID OVERLOAD RISK STATUS:</span>
+                    <span className={`px-2 py-0.5 border rounded-[2px] ${electricalKva > 850 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
                       {electricalKva > 850 ? 'CRITICAL EXCESSED (850 kVA Limit)' : 'STABLE'}
                     </span>
                   </div>
-                </div>
+                </LevelCard>
 
                 {/* Sunlight optimization */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Ventilation & sunlight thermal flow</span>
-                  
+                <LevelCard 
+                  icon={Layers} 
+                  title="Level 2 - Ventilation & Sunlight Thermal Flow"
+                  footer="Daylight coefficient calibrated to building orientation"
+                >
                   <div className="space-y-2 pt-2">
                     <div className="flex justify-between text-[9px] font-bold uppercase">
                       <span>Solar Angle Time of Day</span>
@@ -677,75 +712,71 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       className="w-full accent-black cursor-ew-resize"
                     />
                     
-                    <div className="text-[8.5px] font-mono space-y-1 pt-2 uppercase">
+                    <div className="text-[8.5px] font-mono space-y-1 pt-2 uppercase text-gray-700">
                       <div className="flex justify-between">
                         <span>Calculated Solar Radiant Flux:</span>
-                        <span className="font-bold">{(Math.sin((timeOfDay - 6) * Math.PI / 12) * 850).toFixed(0)} W/m²</span>
+                        <span className="font-bold text-gray-900">{(Math.sin((timeOfDay - 6) * Math.PI / 12) * 850).toFixed(0)} W/m²</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Emergency Evacuation Egress Speed:</span>
-                        <span className="font-bold">4.2m/s (Egress route open)</span>
+                        <span className="font-bold text-gray-900">4.2m/s (Egress route open)</span>
                       </div>
                       <div className="flex justify-between text-gray-500">
                         <span>Natural daylight coefficient:</span>
-                        <span>{timeOfDay >= 11 && timeOfDay <= 14 ? 'EXCELLENT (0.84)' : 'NOMINAL (0.42)'}</span>
+                        <span className="font-semibold">{timeOfDay >= 11 && timeOfDay <= 14 ? 'EXCELLENT (0.84)' : 'NOMINAL (0.42)'}</span>
                       </div>
                     </div>
                   </div>
-
-                  <div className="text-[7px] text-gray-500 italic mt-3">
-                    Simulated in Bangalore grid. High space efficiency, sunlight ventilation loops validated.
-                  </div>
-                </div>
+                </LevelCard>
 
               </div>
 
               {/* BIM Level 1-7 Clash detector */}
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 2 - BIM Level 1–7 clash detection platform</span>
-                <div className="flex justify-between items-center mb-3">
-                  <h3 className="font-bold text-[9.5px] uppercase">Active Autodesk Revit / IFC Clashes</h3>
-                  <span className="text-[8px] bg-black text-white px-1 font-bold">BIM MODEL: LEVEL 5 (LOD-400)</span>
-                </div>
-
-                <div className="border border-black overflow-hidden bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                  <table className="w-full text-left font-mono text-[9px]">
+              <LevelCard 
+                icon={Check} 
+                title="Level 2 - BIM Level 1–7 Clash Detection Platform" 
+                headerAction={<span className="text-[8px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">BIM MODEL: LEVEL 5 (LOD-400)</span>}
+                footer="Unified BIM coordination room and clash detection matrix"
+              >
+                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                  <table className="w-full text-left font-mono text-[9px] leading-normal border-collapse no-vertical-borders">
                     <thead>
-                      <tr className="bg-gray-100 border-b border-black font-bold uppercase text-[7.5px]">
-                        <th className="p-2 border-r border-black">Element Structural A</th>
-                        <th className="p-2 border-r border-black">Element Mech/Elec B</th>
-                        <th className="p-2 border-r border-black">Clash Type</th>
-                        <th className="p-2 border-r border-black">Status</th>
+                      <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[8px] text-gray-600">
+                        <th className="p-2">Element Structural A</th>
+                        <th className="p-2">Element Mech/Elec B</th>
+                        <th className="p-2">Clash Type</th>
+                        <th className="p-2">Status</th>
                         <th className="p-2">CRM Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {bimClashes.map((clash) => (
-                        <tr key={clash.id} className="border-b border-black last:border-b-0">
-                          <td className="p-2 border-r border-black font-semibold uppercase">{clash.elementA}</td>
-                          <td className="p-2 border-r border-black font-semibold uppercase">{clash.elementB}</td>
-                          <td className="p-2 border-r border-black">
-                            <span className={`px-1 border text-[7.5px] font-bold ${clash.type === 'Hard Clash' ? 'bg-red-50 text-red-700 border-red-200' : 'bg-yellow-50 text-yellow-700 border-yellow-200'}`}>
+                        <tr key={clash.id} className="border-b border-[#eeeeee] last:border-b-0 hover:bg-[#f0f6ff] transition-colors">
+                          <td className="p-2 font-bold uppercase text-gray-800">{clash.elementA}</td>
+                          <td className="p-2 font-bold uppercase text-gray-800">{clash.elementB}</td>
+                          <td className="p-2">
+                            <span className={`px-1.5 py-0.5 border rounded-[2px] text-[7.5px] font-bold ${clash.type === 'Hard Clash' ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'bg-gray-50 text-gray-700 border-[#d4d4d4]'}`}>
                               {clash.type}
                             </span>
                           </td>
-                          <td className="p-2 border-r border-black font-bold">
+                          <td className="p-2 font-bold">
                             {clash.resolved ? (
-                              <span className="text-black bg-gray-100 border border-black px-1 text-[7.5px]">RESOLVED</span>
+                              <span className="text-gray-600 bg-gray-50 border border-[#d4d4d4] px-1.5 py-0.5 rounded-[2px] text-[7.5px]">RESOLVED</span>
                             ) : (
-                              <span className="bg-black text-white px-1 text-[7.5px] animate-pulse">PENDING</span>
+                              <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1.5 py-0.5 rounded-[2px] text-[7.5px] animate-pulse">PENDING</span>
                             )}
                           </td>
                           <td className="p-2">
                             {!clash.resolved ? (
                               <button
                                 onClick={() => handleResolveBimClash(clash.id)}
-                                className="px-2 py-0.5 border border-black bg-white hover:bg-black hover:text-white text-[7.5px] font-black uppercase tracking-wider transition-colors cursor-pointer"
+                                className="btn-skeuo text-[7.5px] uppercase font-bold px-2 py-0.5 rounded-[2px]"
+                                style={{ minHeight: 'auto', padding: '3px 6px' }}
                               >
                                 Issue Rework Ticket
                               </button>
                             ) : (
-                              <span className="text-[7.5px] text-gray-500 italic">Ticket Logged [SSOT]</span>
+                              <span className="text-[8px] text-gray-500 italic">Ticket Logged [SSOT]</span>
                             )}
                           </td>
                         </tr>
@@ -753,7 +784,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
@@ -763,15 +794,17 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Quarry sourcing grading */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Quarry & aggregates source origin</span>
-                  
+                <LevelCard 
+                  icon={Database} 
+                  title="Level 3 - Quarry & Aggregates Source Origin"
+                  footer="Sieve fineness grading conforms to IS 383 specification standards"
+                >
                   <div className="space-y-3 pt-2">
                     <div className="flex justify-between items-center text-[9px] font-bold uppercase">
-                      <span>Source Quarry</span>
+                      <span className="text-gray-700">Source Quarry</span>
                       <select 
                         value={quarrySource} onChange={(e) => setQuarrySource(e.target.value)} 
-                        className="border border-black bg-white p-1 text-[8.5px] focus:outline-none"
+                        className="border border-[#c8c8c8] bg-white p-1 text-[8.5px] focus:outline-none"
                       >
                         <option>Pune Aggregate Quarry</option>
                         <option>Ennore River Sand (TN)</option>
@@ -792,35 +825,30 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-black p-2 bg-white mt-3 font-mono text-[8.5px] space-y-1.5 uppercase font-semibold">
-                    <p className="font-bold border-b border-black pb-0.5">AGGREGATE SIEVE ANALYSIS</p>
+                  <div className="border border-[#d4d4d4] p-3 rounded-[3px] bg-white font-mono text-[8.5px] space-y-1.5 uppercase font-semibold text-gray-700">
+                    <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800">AGGREGATE SIEVE ANALYSIS</p>
                     <div className="flex justify-between">
                       <span>Passing 4.75mm Sieve:</span>
-                      <span>{Math.min(100, 95 + (aggregateSieveModulus - 2.8) * 8).toFixed(1)}% (Grading Zone II)</span>
+                      <span className="text-gray-900 font-bold">{Math.min(100, 95 + (aggregateSieveModulus - 2.8) * 8).toFixed(1)}% (Grading Zone II)</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Passing 150μm Sieve:</span>
-                      <span>{(5 - (aggregateSieveModulus - 2.8) * 2).toFixed(1)}%</span>
+                      <span className="text-gray-900 font-bold">{(5 - (aggregateSieveModulus - 2.8) * 2).toFixed(1)}%</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Sustainability carbon Rating:</span>
-                      <span className="bg-black text-white px-1">VERIFIED CLEAN SOURCING (A+)</span>
+                      <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1 rounded-[2px]">VERIFIED CLEAN SOURCING (A+)</span>
                     </div>
                   </div>
-
-                  <p className="text-[7.5px] text-gray-500 uppercase mt-2 leading-none">
-                    * Aggregate grading complies with IS 383 specification standard criteria.
-                  </p>
-                </div>
+                </LevelCard>
 
                 {/* Logistics tracker */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Cement Logistics Transit controller</span>
-                  
+                <LevelCard 
+                  icon={Truck} 
+                  title="Level 3 - Cement Logistics Transit Controller"
+                  footer="Mixer rotation speeds synced to telemetry receiver"
+                >
                   <div className="space-y-3 pt-2">
-                    <p className="text-[9px] font-bold uppercase border-b border-black pb-0.5 flex items-center gap-1.5">
-                      <Truck className="h-4 w-4" /> Live Mixer Fleet Telemetry
-                    </p>
                     <div className="space-y-1">
                       <div className="flex justify-between text-[8.5px] font-mono font-bold uppercase">
                         <span>Active Cement Drum Rotation Speed</span>
@@ -833,74 +861,69 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       />
                     </div>
                     
-                    <div className="text-[8.5px] font-mono space-y-1 pt-2 uppercase font-semibold">
+                    <div className="text-[8.5px] font-mono space-y-1 pt-2 uppercase font-semibold text-gray-700">
                       <div className="flex justify-between">
-                        <span>Truck Dispatch ID:</span>
-                        <span>MH-12-CT-8942 // Cement mixer</span>
+                        <span>Transit Truck ID:</span>
+                        <span className="text-gray-900">MH-12-CT-8942 // Cement mixer</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Concrete Slurry Temperature:</span>
-                        <span className={cementTemp > 32 ? 'text-red-600 animate-pulse' : ''}>{cementTemp}°C (Safe limit &lt; 32°C)</span>
+                        <span className={`font-bold ${cementTemp > 32 ? 'text-black font-extrabold animate-pulse' : 'text-gray-900'}`}>{cementTemp}°C (Safe limit &lt; 32°C)</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Transit duration:</span>
-                        <span>42 mins | Delay prediction: NIL</span>
+                        <span className="text-gray-900">42 mins | Delay prediction: NIL</span>
                       </div>
                     </div>
                   </div>
-
-                  <p className="text-[7.5px] text-gray-500 uppercase mt-2">
-                    Sieve grading and logistics variables verified against site requirements.
-                  </p>
-                </div>
+                </LevelCard>
 
               </div>
 
               {/* Vendor Intelligence */}
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 3 - Vendor Intelligence System</span>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-[9px] font-black uppercase">Material Vendor Fraud & Quality rating index</span>
-                  <span className="text-[8px] bg-black text-white px-1 font-bold">FRAUD DETECTION MODULE ACTIVE</span>
-                </div>
-
-                <div className="border border-black overflow-hidden bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                  <table className="w-full text-left font-mono text-[9px]">
+              <LevelCard 
+                icon={Users} 
+                title="Level 3 - Vendor Intelligence System" 
+                headerAction={<span className="text-[8px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">FRAUD DETECTION MODULE ACTIVE</span>}
+                footer="Supplier audit trials and risk evaluation statistics"
+              >
+                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                  <table className="w-full text-left font-mono text-[9px] border-collapse no-vertical-borders">
                     <thead>
-                      <tr className="bg-gray-100 border-b border-black font-bold uppercase text-[7.5px]">
-                        <th className="p-2 border-r border-black">Supplier Name</th>
-                        <th className="p-2 border-r border-black">Material Supplied</th>
-                        <th className="p-2 border-r border-black">Historical Defect Rate</th>
-                        <th className="p-2 border-r border-black">Financial Stability Score</th>
+                      <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[8px] text-gray-600">
+                        <th className="p-2">Supplier Name</th>
+                        <th className="p-2">Material Supplied</th>
+                        <th className="p-2">Historical Defect Rate</th>
+                        <th className="p-2">Financial Stability Score</th>
                         <th className="p-2">Fraud Risk Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-black">
-                        <td className="p-2 border-r border-black font-bold uppercase">Deccan Cement Corp</td>
-                        <td className="p-2 border-r border-black">Cement (OPC-53)</td>
-                        <td className="p-2 border-r border-black">0.4% (Nominal)</td>
-                        <td className="p-2 border-r border-black">94 / 100</td>
-                        <td className="p-2"><span className="px-1 border border-black text-[7.5px] bg-gray-100">SAFE</span></td>
+                      <tr className="border-b border-[#eeeeee] hover:bg-[#f0f6ff] transition-colors">
+                        <td className="p-2 font-bold uppercase text-gray-800">Deccan Cement Corp</td>
+                        <td className="p-2 text-gray-700">Cement (OPC-53)</td>
+                        <td className="p-2 text-gray-700">0.4% (Nominal)</td>
+                        <td className="p-2 font-bold text-gray-800">94 / 100</td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[7.5px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
                       </tr>
-                      <tr className="border-b border-black">
-                        <td className="p-2 border-r border-black font-bold uppercase">Western Aggregate Mining</td>
-                        <td className="p-2 border-r border-black">Coarse Aggregate</td>
-                        <td className="p-2 border-r border-black">3.8% (Elevated)</td>
-                        <td className="p-2 border-r border-black">81 / 100</td>
-                        <td className="p-2"><span className="px-1 border border-black text-[7.5px] bg-yellow-100 font-bold">LOW VARIANCE</span></td>
+                      <tr className="border-b border-[#eeeeee] hover:bg-[#f0f6ff] transition-colors">
+                        <td className="p-2 font-bold uppercase text-gray-800">Western Aggregate Mining</td>
+                        <td className="p-2 text-gray-700">Coarse Aggregate</td>
+                        <td className="p-2 text-gray-700">3.8% (Elevated)</td>
+                        <td className="p-2 font-bold text-gray-800">81 / 100</td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[7.5px] bg-[#fdfdfd] text-gray-700 font-bold">LOW VARIANCE</span></td>
                       </tr>
-                      <tr>
-                        <td className="p-2 border-r border-black font-bold uppercase">Vizag Steel Depot</td>
-                        <td className="p-2 border-r border-black">Steel rebars</td>
-                        <td className="p-2 border-r border-black">0.1% (Excellent)</td>
-                        <td className="p-2 border-r border-black">98 / 100</td>
-                        <td className="p-2"><span className="px-1 border border-black text-[7.5px] bg-gray-100">SAFE</span></td>
+                      <tr className="hover:bg-[#f0f6ff] transition-colors">
+                        <td className="p-2 font-bold uppercase text-gray-800">Vizag Steel Depot</td>
+                        <td className="p-2 text-gray-700">Steel rebars</td>
+                        <td className="p-2 text-gray-700">0.1% (Excellent)</td>
+                        <td className="p-2 font-bold text-gray-800">98 / 100</td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[7.5px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
@@ -910,284 +933,257 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Smart PPE scanner */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Smart PPE Camera gate scanner</span>
-                  
-                  <div className="space-y-3 pt-2">
-                    <p className="text-[9px] font-bold uppercase border-b border-black pb-0.5 flex items-center gap-1.5">
-                      <HardHat className="h-4 w-4" /> CV Smart PPE Webcam Simulation
-                    </p>
-                    
-                    <div className="border border-black bg-white p-3 h-28 relative overflow-hidden flex flex-col justify-center items-center">
-                      <div className="absolute inset-0 cad-grid opacity-50 pointer-events-none"></div>
-                      <span className="text-[7.5px] text-gray-400 absolute top-1 left-1">SITE PORTAL WEBCAM SCAN</span>
+                <LevelCard 
+                  icon={HardHat} 
+                  title="Level 4 - Smart PPE Camera Gate Scanner"
+                  footer="Smart PPE camera feeds processed automatically via on-site AI edge server"
+                >
+                  <div className="border border-[#d4d4d4] bg-white p-3 h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[3px] shadow-inner">
+                    <div className="absolute inset-0 cad-grid opacity-50 pointer-events-none"></div>
+                    <span className="text-[7.5px] text-gray-400 absolute top-1 left-1 font-semibold uppercase">SITE PORTAL WEBCAM SCAN</span>
 
-                      {scanningPpe ? (
-                        <div className="text-center space-y-2">
-                          <span className="animate-spin h-5 w-5 border-2 border-black border-t-transparent rounded-full block mx-auto"></span>
-                          <span className="text-[8px] font-black uppercase tracking-wider block">Scanning labour face profile...</span>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={handlePpeWebcamScan}
-                          className="px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white text-black text-[9px] font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5"
-                        >
-                          Trigger Smart PPE Gate Check
-                        </button>
-                      )}
-                    </div>
+                    {scanningPpe ? (
+                      <div className="text-center space-y-2">
+                        <span className="animate-spin h-5 w-5 border-2 border-[#2d2d2d] border-t-transparent rounded-full block mx-auto"></span>
+                        <span className="text-[8px] font-black uppercase tracking-wider block text-gray-700">Scanning labour face profile...</span>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={handlePpeWebcamScan}
+                        className="btn-skeuo"
+                      >
+                        Trigger Smart PPE Gate Check
+                      </button>
+                    )}
                   </div>
 
                   {latestPpeAlert && (
-                    <div className="mt-2 text-[7.5px] font-mono leading-snug uppercase border border-black p-1.5 bg-white font-semibold">
+                    <div className={`mt-2 p-2.5 border rounded font-semibold text-[10px] uppercase ${latestPpeAlert.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
                       {latestPpeAlert}
                     </div>
                   )}
-
-                  <p className="text-[7.5px] text-gray-500 uppercase mt-2">
-                    * Automated PPE verification complying with ACI structural safety norms.
-                  </p>
-                </div>
+                </LevelCard>
 
                 {/* Workforce metrics */}
-                <div className="border border-black p-3 bg-gray-50 relative flex flex-col justify-between">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Workforce Productivity & fatigue</span>
-                  
-                  <div className="space-y-3 pt-2">
-                    <p className="text-[9px] font-bold uppercase border-b border-black pb-0.5 flex items-center gap-1.5">
-                      <Users className="h-4 w-4" /> Labour Attendance & safety records
-                    </p>
-                    
-                    <div className="border border-black overflow-hidden bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                      <table className="w-full text-left font-mono text-[8px]">
-                        <thead>
-                          <tr className="bg-gray-100 border-b border-black font-bold uppercase text-[7px]">
-                            <th className="p-1.5 border-r border-black">Labour Name</th>
-                            <th className="p-1.5 border-r border-black">Duty Role</th>
-                            <th className="p-1.5 border-r border-black">Fatigue</th>
-                            <th className="p-1.5">Zoning safety</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="p-1.5 border-r border-black font-bold">R. Jadhav</td>
-                            <td className="p-1.5 border-r border-black">Rebar Welder</td>
-                            <td className="p-1.5 border-r border-black">NOMINAL (12%)</td>
-                            <td className="p-1.5 text-black font-bold">VERIFIED</td>
-                          </tr>
-                          <tr className="border-t border-black">
-                            <td className="p-1.5 border-r border-black font-bold">S. Pillai</td>
-                            <td className="p-1.5 border-r border-black">Masonry Expert</td>
-                            <td className="p-1.5 border-r border-black">ELEVATED (48%)</td>
-                            <td className="p-1.5 text-red-600 font-bold animate-pulse">BREACH ALERT</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                <LevelCard 
+                  icon={Users} 
+                  title="Level 4 - Workforce Productivity & Fatigue"
+                  footer="Real-time personnel fatigue values tracked from RFID telemetry"
+                >
+                  <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                    <table className="w-full text-left font-mono text-[8px] border-collapse no-vertical-borders">
+                      <thead>
+                        <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[7px] text-gray-600">
+                          <th className="p-1.5">Labour Name</th>
+                          <th className="p-1.5">Duty Role</th>
+                          <th className="p-1.5">Fatigue</th>
+                          <th className="p-1.5">Zoning safety</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b border-[#eeeeee] hover:bg-[#f0f6ff] transition-colors">
+                          <td className="p-1.5 font-bold text-gray-800">R. Jadhav</td>
+                          <td className="p-1.5 text-gray-700">Rebar Welder</td>
+                          <td className="p-1.5 text-gray-700">NOMINAL (12%)</td>
+                          <td className="p-1.5 text-gray-900 font-bold">VERIFIED</td>
+                        </tr>
+                        <tr className="hover:bg-[#f0f6ff] transition-colors">
+                          <td className="p-1.5 font-bold text-gray-800">S. Pillai</td>
+                          <td className="p-1.5 text-gray-700">Masonry Expert</td>
+                          <td className="p-1.5 text-gray-700 text-black font-semibold">ELEVATED (48%)</td>
+                          <td className="p-1.5"><span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 text-[7px] font-bold animate-pulse">BREACH ALERT</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-
-                  <p className="text-[7.5px] text-gray-500 uppercase mt-2">
-                    Attendance vectors linked with Smart RFID safety badges.
-                  </p>
-                </div>
+                </LevelCard>
 
               </div>
 
               {/* Progress AI */}
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 4 - Construction GANTT & delay tracker</span>
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-[9px] font-bold uppercase">Autonomous schedule verification</span>
-                  <span className="text-[8px] bg-black text-white px-1 font-bold">CONSTRUCTION PROGRESS RATE: 78.4%</span>
-                </div>
-
-                <div className="space-y-2 bg-white border border-black p-3 shadow-[2px_2px_0px_rgba(0,0,0,1)] text-[8.5px] font-mono font-semibold uppercase">
-                  <div className="flex justify-between">
-                    <span>Task Name:</span>
+              <LevelCard 
+                icon={Activity} 
+                title="Level 4 - Construction GANTT & Delay Tracker" 
+                footer="Aggregated schedule diagnostics compiled from field manager report"
+              >
+                <div className="space-y-2 bg-white border border-[#d4d4d4] rounded-[3px] p-3 shadow-sm text-[8.5px] font-mono font-semibold uppercase text-gray-700">
+                  <div className="flex justify-between text-gray-500 font-bold border-b border-[#eeeeee] pb-1.5">
+                    <span>Task Name</span>
                     <span>Target completion date // delay variance</span>
                   </div>
-                  <div className="flex justify-between border-t border-black pt-1.5">
+                  <div className="flex justify-between pt-1">
                     <span>01. Foundation concreting:</span>
-                    <span>COMPLETED // 0 days delay</span>
+                    <span className="text-gray-900 font-bold">COMPLETED // 0 days delay</span>
                   </div>
-                  <div className="flex justify-between border-t border-black pt-1.5">
+                  <div className="flex justify-between border-t border-[#eeeeee] pt-1.5">
                     <span>02. Column Pillar reinforcements:</span>
-                    <span>COMPLETED // +2 days delay</span>
+                    <span className="text-gray-900 font-bold">COMPLETED // +2 days delay</span>
                   </div>
-                  <div className="flex justify-between border-t border-black pt-1.5">
+                  <div className="flex justify-between border-t border-[#eeeeee] pt-1.5">
                     <span>03. Slab Level-3 concrete pour:</span>
-                    <span className="bg-black text-white px-1">IN PROGRESS // +4 days delay predicted</span>
+                    <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 text-[8px] font-bold animate-pulse">IN PROGRESS // +4 days delay predicted</span>
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 5: ADVANCED QA/QC (LIMS) */}
           {activeLevel === 5 && (
-            <div className="space-y-6">
-              
-              {/* LIMS Subtab selector */}
-              <div className="flex border border-black bg-white rounded overflow-hidden shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div className="zoho-card flex flex-col">
+              {/* LIMS Subtab selector acting as unified Card Header */}
+              <div className="workspace-tabs flex-shrink-0 select-none">
                 {[
-                  { id: 'Cube', label: 'Concrete Cube Compressive Strength (LIMS)' },
-                  { id: 'Slump', label: 'Slump Cone & Water/Cement Index' },
-                  { id: 'NDT', label: 'Ultrasonic Pulse NDT & Steel Yield' }
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveSubTab(tab.id)}
-                    className={`flex-1 py-2 text-[9px] font-black border-r last:border-r-0 border-black uppercase tracking-wider transition-colors cursor-pointer ${
-                      activeSubTab === tab.id 
-                        ? 'bg-black text-white' 
-                        : 'bg-white text-black hover:bg-gray-100'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
+                  { id: 'Cube', label: 'Concrete Compressive Strength' },
+                  { id: 'Slump', label: 'Slump Cone & Workability' },
+                  { id: 'NDT', label: 'Ultrasonic Pulse NDT & Yield' }
+                ].map((tab) => {
+                  const isActive = activeSubTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveSubTab(tab.id)}
+                      className={`workspace-tab ${isActive ? 'active' : ''}`}
+                    >
+                      {tab.label}
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* LIMS SUBTAB: Concrete cube test */}
-              {activeSubTab === 'Cube' && (
-                <div className="border border-black p-3 bg-gray-50 relative space-y-4">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 5 - Concrete Cube compression test station</span>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center text-[9px] font-bold uppercase">
-                        <span>Designed Concrete Grade</span>
-                        <select 
-                          value={limsConcreteGrade} onChange={(e) => setLimsConcreteGrade(e.target.value)} 
-                          className="border border-black bg-white p-1 text-[8.5px] focus:outline-none"
-                        >
-                          <option>M20</option>
-                          <option>M25</option>
-                          <option>M30</option>
-                          <option>M40</option>
-                        </select>
+              {/* LIMS Content Body */}
+              <div className="zoho-card-body space-y-4">
+                {/* LIMS SUBTAB: Concrete cube test */}
+                {activeSubTab === 'Cube' && (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center text-[10px] font-bold uppercase text-gray-700">
+                          <span>Designed Concrete Grade</span>
+                          <select 
+                            value={limsConcreteGrade} onChange={(e) => setLimsConcreteGrade(e.target.value)} 
+                            className="border border-[#cccccc] bg-white p-1 text-[11px] focus:outline-none"
+                          >
+                            <option>M20</option>
+                            <option>M25</option>
+                            <option>M30</option>
+                            <option>M40</option>
+                          </select>
+                        </div>
+
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[10px] font-bold uppercase text-gray-700">
+                            <span>Ultimate Compressive Load (P)</span>
+                            <span className="font-mono">{limsCompressiveForce} kN</span>
+                          </div>
+                          <input
+                            type="range" min="200" max="1100" value={limsCompressiveForce}
+                            onChange={(e) => setLimsCompressiveForce(Number(e.target.value))}
+                            className="w-full accent-black cursor-ew-resize"
+                          />
+                          <div className="flex justify-between text-[8px] text-gray-500 font-mono">
+                            <span>200 kN</span>
+                            <span>1100 kN</span>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-[9px] font-bold uppercase">
-                          <span>Ultimate Compressive Load ($P$)</span>
-                          <span>{limsCompressiveForce} kN</span>
+                      <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between">
+                        <div className="space-y-1.5 text-[11px] text-gray-700">
+                          <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[10px]">Cube physical specifications</p>
+                          <div className="flex justify-between">
+                            <span>Standard cube dimensions:</span>
+                            <span className="font-semibold text-gray-900">150mm x 150mm x 150mm</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span>Cross sectional Area (A):</span>
+                            <span className="font-semibold text-gray-900">22,500 mm² (0.0225 m²)</span>
+                          </div>
+                          <div className="flex justify-between border-t border-[#eeeeee] pt-1 text-gray-800 font-bold">
+                            <span>Target Strength (f<sub>ck</sub>):</span>
+                            <span>{concreteTarget} MPa (min limit)</span>
+                          </div>
+                          <div className="flex justify-between font-bold">
+                            <span>Calculated Strength (P/A):</span>
+                            <span className={concretePassed ? 'text-black font-extrabold' : 'bg-black text-white px-1 font-bold animate-pulse'}>
+                              {concreteMpa} MPa
+                            </span>
+                          </div>
                         </div>
-                        <input
-                          type="range" min="200" max="1100" value={limsCompressiveForce}
-                          onChange={(e) => setLimsCompressiveForce(Number(e.target.value))}
-                          className="w-full accent-black cursor-ew-resize"
-                        />
-                        <div className="flex justify-between text-[7px] text-gray-500">
-                          <span>200 kN</span>
-                          <span>1100 kN</span>
+
+                        <div className="mt-4 pt-2 border-t border-[#eeeeee]">
+                          <button
+                            onClick={handleCertifyConcreteCube}
+                            className="w-full btn-skeuo-dark"
+                          >
+                            Certify strength and log to CRM
+                          </button>
                         </div>
                       </div>
                     </div>
 
-                    <div className="border border-dashed border-black p-3 bg-white flex flex-col justify-between">
-                      <div className="space-y-1.5 text-[8.5px] font-mono uppercase font-semibold">
-                        <p className="font-bold border-b border-black pb-0.5">Cube physical specifications</p>
-                        <div className="flex justify-between">
-                          <span>Standard cube dimensions:</span>
-                          <span>150mm x 150mm x 150mm</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Cross sectional Area ($A$):</span>
-                          <span>22500 mm² (0.0225 m²)</span>
-                        </div>
-                        <div className="flex justify-between border-t border-black pt-1 text-black font-bold">
-                          <span>Target Strength (f<sub>ck</sub>):</span>
-                          <span>{concreteTarget} MPa (min limit)</span>
-                        </div>
-                        <div className="flex justify-between text-black font-bold">
-                          <span>Calculated Strength ($P/A$):</span>
-                          <span className={concretePassed ? 'text-black' : 'text-red-600 animate-pulse'}>
-                            {concreteMpa} MPa
-                          </span>
-                        </div>
+                    {limsLogMsg && (
+                      <div className={`p-2.5 border rounded-[3px] font-semibold text-[10.5px] ${concretePassed ? 'bg-[#f4f5f6] border-[#d4d4d4] text-[#2d2d2d]' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
+                        {limsLogMsg}
                       </div>
-
-                      <div className="mt-4 pt-2 border-t border-black flex gap-2">
-                        <button
-                          onClick={handleCertifyConcreteCube}
-                          className="w-full py-1.5 border-2 border-black bg-white hover:bg-black hover:text-white text-black text-[9px] font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5 text-center"
-                        >
-                          Certify strength and log to CRM
-                        </button>
-                      </div>
-                    </div>
+                    )}
                   </div>
+                )}
 
-                  {limsLogMsg && (
-                    <div className="text-[7.5px] font-mono leading-snug uppercase border border-black p-2 bg-white font-semibold">
-                      {limsLogMsg}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* LIMS SUBTAB: Slump test */}
-              {activeSubTab === 'Slump' && (
-                <div className="border border-black p-3 bg-gray-50 relative space-y-4">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 5 - Concrete slump cone workability index</span>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                {/* LIMS SUBTAB: Slump test */}
+                {activeSubTab === 'Slump' && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <div className="space-y-1">
-                        <div className="flex justify-between text-[9px] font-bold uppercase">
+                        <div className="flex justify-between text-[10px] font-bold uppercase text-gray-700">
                           <span>Measured Slump Height</span>
-                          <span>{limsSlumpConeValue} mm</span>
+                          <span className="font-mono">{limsSlumpConeValue} mm</span>
                         </div>
                         <input
                           type="range" min="10" max="180" value={limsSlumpConeValue}
                           onChange={(e) => setLimsSlumpConeValue(Number(e.target.value))}
                           className="w-full accent-black cursor-ew-resize"
                         />
-                        <div className="flex justify-between text-[7px] text-gray-500">
+                        <div className="flex justify-between text-[8px] text-gray-500 font-mono">
                           <span>10 mm (Dry mix)</span>
                           <span>180 mm (High slump flow)</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="border border-dashed border-black p-3 bg-white flex flex-col justify-between text-[8.5px] font-mono uppercase font-semibold">
+                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between text-[11px] text-gray-700">
                       <div className="space-y-1.5">
-                        <p className="font-bold border-b border-black pb-0.5">Slump grading classification</p>
+                        <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[10px]">Slump grading classification</p>
                         <div className="flex justify-between">
                           <span>Slump Height:</span>
-                          <span>{limsSlumpConeValue} mm</span>
+                          <span className="font-semibold text-gray-900">{limsSlumpConeValue} mm</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Workability Grade:</span>
-                          <span className="font-bold">
+                          <span className="font-bold text-black border-b border-black">
                             {limsSlumpConeValue < 25 && 'VERY LOW (Zero Slump)'}
-                            {limsSlumpConeValue >= 25 && limsSlumpConeValue < 75 && 'LOW (Dry Slump mix)'}
-                            {limsSlumpConeValue >= 75 && limsSlumpConeValue < 125 && 'MEDIUM (Pillar Concrete mix)'}
-                            {limsSlumpConeValue >= 125 && 'HIGH (Flowing pump Concrete)'}
+                            {limsSlumpConeValue >= 25 && limsSlumpConeValue < 75 && 'LOW (Dry Slump)'}
+                            {limsSlumpConeValue >= 75 && limsSlumpConeValue < 125 && 'MEDIUM (Pillar Concrete)'}
+                            {limsSlumpConeValue >= 125 && 'HIGH (Flowing pump)'}
                           </span>
                         </div>
                         <div className="flex justify-between">
                           <span>Estimated w/c ratio:</span>
-                          <span>{(0.35 + limsSlumpConeValue * 0.0015).toFixed(3)}</span>
+                          <span className="font-semibold font-mono text-gray-900">{(0.35 + limsSlumpConeValue * 0.0015).toFixed(3)}</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {/* LIMS SUBTAB: NDT */}
-              {activeSubTab === 'NDT' && (
-                <div className="border border-black p-3 bg-gray-50 relative space-y-4">
-                  <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 5 - Ultrasonic pulse NDT & steel yield tests</span>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                {/* LIMS SUBTAB: NDT */}
+                {activeSubTab === 'NDT' && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <div className="space-y-1">
-                        <div className="flex justify-between text-[9px] font-bold uppercase">
+                        <div className="flex justify-between text-[10px] font-bold uppercase text-gray-700">
                           <span>Ultrasonic wave velocity</span>
-                          <span>{limsAcousticSpeed} m/s</span>
+                          <span className="font-mono">{limsAcousticSpeed} m/s</span>
                         </div>
                         <input
                           type="range" min="2000" max="5000" step="50" value={limsAcousticSpeed}
@@ -1197,9 +1193,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </div>
 
                       <div className="space-y-1">
-                        <div className="flex justify-between text-[9px] font-bold uppercase">
-                          <span>Steel Yield strength ($F_y$)</span>
-                          <span>{limsSteelYieldStrength} MPa</span>
+                        <div className="flex justify-between text-[10px] font-bold uppercase text-gray-700">
+                          <span>Steel Yield strength (Fy)</span>
+                          <span className="font-mono">{limsSteelYieldStrength} MPa</span>
                         </div>
                         <input
                           type="range" min="300" max="650" value={limsSteelYieldStrength}
@@ -1209,38 +1205,46 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </div>
                     </div>
 
-                    <div className="border border-dashed border-black p-3 bg-white flex flex-col justify-between text-[8.5px] font-mono uppercase font-semibold">
+                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between text-[11px] text-gray-700">
                       <div className="space-y-1.5">
-                        <p className="font-bold border-b border-black pb-0.5">Acoustic & steel properties</p>
+                        <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[10px]">Acoustic & steel properties</p>
                         <div className="flex justify-between">
                           <span>Concrete NDT Quality:</span>
-                          <span className="font-bold">
+                          <span className="font-bold text-black uppercase">
                             {limsAcousticSpeed >= 4000 ? 'EXCELLENT' : limsAcousticSpeed >= 3200 ? 'GOOD' : 'POOR'}
                           </span>
                         </div>
                         <div className="flex justify-between">
                           <span>Steel Grade Equivalent:</span>
-                          <span>Fe-{limsSteelYieldStrength > 500 ? '550D' : '500'}</span>
+                          <span className="font-semibold text-gray-900">Fe-{limsSteelYieldStrength > 500 ? '550D' : '500'}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Defect Void Index:</span>
-                          <span>{limsAcousticSpeed < 3000 ? 'HIGH VOIDS WARNING' : 'NOMINAL'}</span>
+                          <span className={`font-bold rounded-[2px] px-1.5 py-0.5 ${limsAcousticSpeed < 3000 ? 'bg-[#2d2d2d] text-white border border-[#2d2d2d] font-bold animate-pulse' : 'text-gray-900 border border-transparent'}`}>
+                            {limsAcousticSpeed < 3000 ? 'HIGH VOIDS WARNING' : 'NOMINAL'}
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-
+                )}
+              </div>
+              <div className="zoho-card-footer">
+                <span className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal">
+                  LIMS concrete mix testing station calibrated to regional ACI thresholds // SSOT certified
+                </span>
+              </div>
             </div>
           )}
 
           {/* LEVEL 6: LIVE OPERATIONS & SCADA */}
           {activeLevel === 6 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 6 - Live Operations PLC SCADA Telemetry</span>
-                
+              <LevelCard 
+                icon={Radio} 
+                title="Level 6 - Live Operations PLC SCADA Telemetry"
+                footer="SCADA PLC Telemetry Stream Sync: 42Hz Active // nominal loop duration: 4ms"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-4 pt-1">
                     <div className="space-y-1">
@@ -1268,25 +1272,27 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-black bg-white p-3 flex flex-col justify-center items-center relative overflow-hidden">
-                    <span className="text-[7.5px] text-gray-400 absolute top-1 left-1">SCADA OSCILLATOR SPECTRUM</span>
-                    <canvas ref={scadaCanvasRef} width={280} height={90} className="w-full h-24 border border-black bg-white" />
+                  <div className="border border-[#d4d4d4] bg-white p-4 relative flex flex-col justify-center items-center rounded-[3px] shadow-inner">
+                    <span className="absolute -top-2.5 left-3 text-[8px] font-bold uppercase z-10">SCADA OSCILLATOR SPECTRUM</span>
+                    <canvas ref={scadaCanvasRef} width={280} height={90} className="w-full h-24 bg-white" />
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 7: DISASTER SIMULATION */}
           {activeLevel === 7 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 7 - Multi-Physics Disaster Simulation Engine</span>
-                
+              <LevelCard 
+                icon={Sliders} 
+                title="Level 7 - Multi-Physics Disaster Simulation Engine"
+                footer="Disaster simulation suite synchronized with structural stress forecasts"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
                   <div className="space-y-3">
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] font-bold uppercase">
+                      <div className="flex justify-between text-[8px] font-bold uppercase">
                         <span>Richter Earthquake Shaking</span>
                         <span>{disasterEarthquake.toFixed(1)} Mw</span>
                       </div>
@@ -1298,7 +1304,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
 
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px] font-bold uppercase">
+                      <div className="flex justify-between text-[8px] font-bold uppercase">
                         <span>Rising Flood Depth</span>
                         <span>{disasterFloodDepth.toFixed(1)} m</span>
                       </div>
@@ -1310,68 +1316,72 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-dashed border-black p-3 bg-white text-[8.5px] font-mono uppercase font-semibold flex flex-col justify-between">
+                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[3px] bg-white text-[8.5px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
                     <div className="space-y-1.5">
-                      <p className="font-bold border-b border-black pb-0.5">Computed disaster stress indexes</p>
+                      <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800 uppercase">Computed disaster stress indexes</p>
                       <div className="flex justify-between">
                         <span>Ground Shear Force increment:</span>
-                        <span>{(disasterEarthquake * 42.5).toFixed(1)}%</span>
+                        <span className="text-gray-900 font-bold">{(disasterEarthquake * 42.5).toFixed(1)}%</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Hydrostatic pressure on foundation:</span>
-                        <span>{(disasterFloodDepth * 9.81).toFixed(2)} kPa</span>
+                        <span className="text-gray-900 font-bold">{(disasterFloodDepth * 9.81).toFixed(2)} kPa</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 8: FINANCIAL ERP & CARBON */}
           {activeLevel === 8 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 8 - ERP Inventory & materials cost tracker</span>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-[9px] font-black uppercase">Steel, Sand, Aggregates and cement Ledger</span>
-                  <span className="text-[8px] bg-black text-white px-1 font-bold">PLANNED VS ACTUAL SPEND</span>
-                </div>
-
-                <div className="border border-black overflow-hidden bg-white shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-                  <table className="w-full text-left font-mono text-[8px] leading-tight">
+              <LevelCard 
+                icon={BarChart2} 
+                title="Level 8 - ERP Inventory & materials cost tracker" 
+                headerAction={<span className="text-[8px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">PLANNED VS ACTUAL SPEND</span>}
+                footer="ERP Financial ledger linked with project accounts // carbon offset verified"
+              >
+                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                  <table className="w-full text-left font-mono text-[9px] border-collapse no-vertical-borders">
                     <thead>
-                      <tr className="bg-gray-100 border-b border-black font-bold uppercase text-[7.5px]">
-                        <th className="p-2 border-r border-black">Material Spec</th>
-                        <th className="p-2 border-r border-black">Planned Qty</th>
-                        <th className="p-2 border-r border-black">Actual Qty</th>
-                        <th className="p-2 border-r border-black">Planned Price</th>
+                      <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[8px] text-gray-600">
+                        <th className="p-2">Material Spec</th>
+                        <th className="p-2">Planned Qty</th>
+                        <th className="p-2">Actual Qty</th>
+                        <th className="p-2">Planned Price</th>
                         <th className="p-2">Actual Price</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {erpInventory.map((item) => (
-                        <tr key={item.id} className="border-b border-black last:border-b-0">
-                          <td className="p-2 border-r border-black font-bold uppercase">{item.material}</td>
-                          <td className="p-2 border-r border-black">{item.plannedQty} {item.unit}</td>
-                          <td className="p-2 border-r border-black">{item.actualQty} {item.unit}</td>
-                          <td className="p-2 border-r border-black">₹{item.plannedCost}</td>
-                          <td className="p-2">₹{item.actualCost}</td>
-                        </tr>
-                      ))}
+                      {erpInventory.map((item) => {
+                        const isRiverSand = item.material.includes('River Sand');
+                        return (
+                          <tr key={item.id} className={`border-b border-[#eeeeee] last:border-b-0 hover:bg-[#f0f6ff] transition-colors ${isRiverSand ? 'bg-[#f0f6ff]' : ''}`}>
+                            <td className="p-2 font-bold uppercase text-gray-800">{item.material}</td>
+                            <td className="p-2 text-gray-700">{item.plannedQty} {item.unit}</td>
+                            <td className="p-2 text-gray-700">{item.actualQty} {item.unit}</td>
+                            <td className="p-2 font-bold text-gray-800">₹{item.plannedCost}</td>
+                            <td className="p-2 font-bold text-gray-800">₹{item.actualCost}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 9: POST-CONSTRUCTION LIFE */}
           {activeLevel === 9 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 9 - expected structural decay & lifespan</span>
-                
+              <LevelCard 
+                icon={Clock} 
+                title="Level 9 - Expected Structural Decay & Lifespan"
+                footer="Acoustic aging and elasticity forecast module online // lifecycle prediction"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
                   <div className="space-y-2">
                     <div className="flex justify-between text-[9px] font-bold uppercase">
@@ -1385,60 +1395,68 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     />
                   </div>
 
-                  <div className="border border-dashed border-black p-3 bg-white text-[8.5px] font-mono uppercase font-semibold flex flex-col justify-between">
+                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[3px] bg-white text-[8.5px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
                     <div className="space-y-1.5">
-                      <p className="font-bold border-b border-black pb-0.5">Lifespan structural forecast</p>
+                      <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800 uppercase">Lifespan structural forecast</p>
                       <div className="flex justify-between">
                         <span>Aggregate corrosion factor:</span>
-                        <span>{(lifecycleAgeYears * 0.15).toFixed(2)} mm rust thickness</span>
+                        <span className="text-gray-900 font-bold">{(lifecycleAgeYears * 0.15).toFixed(2)} mm rust thickness</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Expected Concrete Elasticity decay:</span>
-                        <span>{(lifecycleAgeYears * 0.42).toFixed(1)}% tension loss</span>
+                        <span className="text-gray-900 font-bold">{(lifecycleAgeYears * 0.42).toFixed(1)}% tension loss</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 10: NATIONAL INFRASTRUCTURE SYSTEM */}
           {activeLevel === 10 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 10 - Municipal Utilities Smart City control desk</span>
-                <div className="grid grid-cols-3 gap-4 pt-1">
-                  <div className="border border-black p-3 bg-white uppercase font-bold text-center">
-                    <p className="text-[8px] text-gray-500">Power grid strain</p>
-                    <p className="text-xs">420 kW // SAFE</p>
+              <LevelCard 
+                icon={Globe} 
+                title="Level 10 - Municipal Utilities Smart City Control Desk"
+                footer="Smart City macro-utility grid indicators active // municipal systems online"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                    <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">Power Grid Strain</span>
+                    <span className="text-xs font-black text-gray-850 mt-1">420 kW</span>
+                    <span className="text-[8px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">SAFE</span>
                   </div>
-                  <div className="border border-black p-3 bg-white uppercase font-bold text-center">
-                    <p className="text-[8px] text-gray-500">Water pressure</p>
-                    <p className="text-xs">45 PSI // STABLE</p>
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                    <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">Water Pressure</span>
+                    <span className="text-xs font-black text-gray-850 mt-1">45 PSI</span>
+                    <span className="text-[8px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">STABLE</span>
                   </div>
-                  <div className="border border-black p-3 bg-white uppercase font-bold text-center">
-                    <p className="text-[8px] text-gray-500">Transit operations</p>
-                    <p className="text-xs">98.4% ON-TIME</p>
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                    <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">Transit Operations</span>
+                    <span className="text-xs font-black text-gray-850 mt-1">98.4%</span>
+                    <span className="text-[8px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">ON-TIME</span>
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 
           {/* LEVEL 11: FUTURE TECH */}
           {activeLevel === 11 && (
             <div className="space-y-6">
-              <div className="border border-black p-3 bg-gray-50 relative">
-                <span className="text-[7.5px] font-bold border border-black px-1 bg-black text-white absolute -top-2 left-2">Level 11 - Generative Engineering AI design workspace</span>
-                
+              <LevelCard 
+                icon={Cpu} 
+                title="Level 11 - Generative Engineering AI Design Workspace"
+                footer="AI Generative synthesis engine: calibrated and running"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center text-[9px] font-bold uppercase">
+                    <div className="flex justify-between items-center text-[10px] font-bold uppercase text-gray-700">
                       <span>Generative Design optimization target</span>
                       <select 
                         value={aiDesignGoal} onChange={(e) => setAiDesignGoal(e.target.value)} 
-                        className="border border-black bg-white p-1 text-[8.5px] focus:outline-none"
+                        className="border border-[#cccccc] bg-white p-1 text-[11px] focus:outline-none"
                       >
                         <option>Reduce Pillar Cross Section</option>
                         <option>Optimize Rebar Steel Layout</option>
@@ -1449,38 +1467,38 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     <button
                       onClick={handleGenerativeAI}
                       disabled={isAiGenerating}
-                      className="w-full py-2 border-2 border-black bg-white hover:bg-black hover:text-white text-black text-[9px] font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-0.5 text-center disabled:opacity-50"
+                      className="w-full btn-skeuo-dark"
                     >
                       {isAiGenerating ? 'AI Synthesizing design arrays...' : 'Generate Optimized Design Blueprint'}
                     </button>
                   </div>
 
-                  <div className="border border-dashed border-black p-3 bg-white text-[8.5px] font-mono uppercase font-semibold flex flex-col justify-between min-h-[140px]">
+                  <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[3px] shadow-sm text-[11px] flex flex-col justify-between min-h-[140px] text-gray-700">
                     {aiDesignOutput ? (
                       <div className="space-y-2">
-                        <p className="font-bold border-b border-black pb-0.5 text-black">GENERATED BLUEPRINT [COORDINATES]:</p>
-                        <p className="text-[7.5px] text-gray-500">{aiDesignOutput.layoutSpec}</p>
-                        <div className="flex justify-between border-t border-black pt-1">
+                        <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[10px]">GENERATED BLUEPRINT [COORDINATES]:</p>
+                        <p className="text-[10px] text-gray-500">{aiDesignOutput.layoutSpec}</p>
+                        <div className="flex justify-between border-t border-[#eeeeee] pt-1">
                           <span>Weight savings achieved:</span>
-                          <span className="font-black text-black">{aiDesignOutput.weightSaved}</span>
+                          <span className="font-bold text-gray-900">{aiDesignOutput.weightSaved}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Carbon reduction factor:</span>
-                          <span className="font-black text-black">{aiDesignOutput.carbonSaved}</span>
+                          <span className="font-bold text-gray-900">{aiDesignOutput.carbonSaved}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Safety Factor compliance:</span>
-                          <span className="bg-black text-white px-1 font-bold">{aiDesignOutput.safetyFactor}x</span>
+                          <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold">{aiDesignOutput.safetyFactor}x</span>
                         </div>
                       </div>
                     ) : (
-                      <div className="h-full flex items-center justify-center text-center text-gray-400 font-bold uppercase text-[9px]">
+                      <div className="h-full flex items-center justify-center text-center text-gray-400 font-bold uppercase text-[10px]">
                         Select target goal and press Generate.
                       </div>
                     )}
                   </div>
                 </div>
-              </div>
+              </LevelCard>
             </div>
           )}
 

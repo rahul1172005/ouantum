@@ -190,9 +190,10 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
       <div className="xl:col-span-2 space-y-6">
         
         {/* Dynamic Parameter Sliders */}
-        <div className="border-2 border-black p-4 bg-white space-y-4">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <FlaskConical className="h-3.5 w-3.5" />
+            <span>
               {activeTab === 'aggregate' && 'AGGREGATE GRADATION & CRUSHING'}
               {activeTab === 'cement' && 'VICAT & BLAINE PHYSICAL INDEX'}
               {activeTab === 'concrete_mix' && 'STRENGTH TARGET & WORKABILITY'}
@@ -202,8 +203,9 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               {activeTab === 'durability' && 'CONCRETE INGRESS DEPTHS'}
               {activeTab === 'test_matrix' && 'STANDARD REFERENCE METRIC TABLES'}
             </span>
-            <span className="text-[8px] bg-black text-white px-1 py-0.5">LAB INPUTS</span>
+            <span className="ml-auto text-[8px] bg-black text-white px-1 py-0.5">LAB INPUTS</span>
           </div>
+          <div className="zoho-card-body">
 
           {activeTab === 'aggregate' && (
             <div className="space-y-3">
@@ -581,7 +583,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               </div>
             </div>
           )}
-
+          </div>
         </div>
 
         {/* Diagnostic Specimen Node trigger */}
@@ -598,11 +600,13 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
       <div className="xl:col-span-2 space-y-6">
         
         {/* Real-time Math Output Card */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">DERIVED MATH VECTORS</span>
-            <span className="text-[8px] bg-black text-white px-1">OUTPUTS</span>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Sliders className="h-3.5 w-3.5" />
+            <span>DERIVED MATH VECTORS</span>
+            <span className="ml-auto text-[8px] bg-black text-white px-1">OUTPUTS</span>
           </div>
+          <div className="zoho-card-body">
 
           {activeTab === 'aggregate' && (
             <div className="space-y-2">
@@ -755,7 +759,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span className="font-mono font-bold">{rebarCoverDepth} mm</span>
               </div>
               <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
-                <span>Carbonation Ingress Depth ($d = k \sqrt{t}$):</span>
+                <span>{"Carbonation Ingress Depth ($d = k \\sqrt{t}$):"}</span>
                 <span className="font-mono">{carbonationDepth.toFixed(1)} mm</span>
               </div>
               <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
@@ -776,15 +780,19 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               <p>* Calibration interval of loading compression machines is standard 6 months.</p>
             </div>
           )}
-
+          </div>
         </div>
 
         {/* Dynamic plotting chart CAD layout */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">LAB ANALYTIC VECTOR CHART</p>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Sliders className="h-3.5 w-3.5" />
+            LAB ANALYTIC VECTOR CHART
+          </div>
+          <div className="zoho-card-body">
           
           <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
-            <svg className="absolute inset-0 w-full h-full">
+            <svg viewBox="0 0 320 180" className="w-full h-full absolute inset-0">
               <rect width="100%" height="100%" fill="url(#grid)" />
 
               {/* Draw stress-strain curve for concrete or fatigue steel curve */}
@@ -838,11 +846,16 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               )}
             </svg>
           </div>
+          </div>
         </div>
 
         {/* CRM Compliance Lock In system */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">CRM INTEGRITY LOCK-IN</p>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            CRM INTEGRITY LOCK-IN
+          </div>
+          <div className="zoho-card-body">
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
@@ -881,6 +894,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               {crmSuccess}
             </div>
           )}
+          </div>
         </div>
 
       </div>

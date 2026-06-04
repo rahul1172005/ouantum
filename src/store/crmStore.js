@@ -26,6 +26,11 @@ export const WORKSPACES = {
   MATERIALS: 'MATERIALS INTELLIGENCE LAB',
   STRUCTURAL_SAFETY: 'STRUCTURAL SAFETY & STABILITY',
   PROJECT_INTEL: 'PROJECT LIFECYCLE INTELLIGENCE',
+  // Phase 2 — Full Platform Expansion
+  DEFECT_DETECTION: 'AI DEFECT DETECTION & COMPUTER VISION',
+  SITE_INSPECTION: 'DIGITAL SITE INSPECTION & NCR',
+  CONSTRUCTION_MONITOR: 'CONSTRUCTION PROGRESS MONITORING',
+  COMPLIANCE_ENGINE: 'STANDARDS & COMPLIANCE ENGINE',
 };
 
 // Initial Seed Data mapping CRM SSOT to infrastructure tracking
@@ -72,18 +77,41 @@ export const useCRMStore = create((set, get) => ({
   searchQuery: '',
   showCommandPalette: false,
   
-  // Data lists (SSOT)
-  accounts: initialAccounts,
-  contacts: initialContacts,
-  deals: initialDeals,
-  tickets: initialTickets,
-  activities: initialActivities,
-  documents: initialDocuments,
+  // Data lists (SSOT) - start empty, loaded from backend
+  accounts: [],
+  contacts: [],
+  deals: [],
+  tickets: [],
+  activities: [],
+  documents: [],
+  isLoadingBackend: false,
   
   // System metrics & logs
   auditLogs: [
-    { timestamp: '2026-05-21T06:00:00Z', user: 'System', action: 'Initialized CRM Store with Indian Infrastructure database', target: 'SSOT Engine' }
+    { timestamp: new Date().toISOString(), user: 'System', action: 'Initialized CRM Store connected to live Neon PostgreSQL database', target: 'SSOT Engine' }
   ],
+  
+  // Fetch real-time CRM data from PostgreSQL backend
+  fetchBackendData: async () => {
+    set({ isLoadingBackend: true });
+    try {
+      const res = await fetch('/api/data');
+      if (!res.ok) throw new Error('Failed to fetch CRM data');
+      const data = await res.json();
+      set({
+        accounts: data.accounts || [],
+        contacts: data.contacts || [],
+        deals: data.deals || [],
+        tickets: data.tickets || [],
+        activities: data.activities || [],
+        documents: data.documents || [],
+        isLoadingBackend: false
+      });
+    } catch (err) {
+      console.error('Error loading CRM data from backend:', err);
+      set({ isLoadingBackend: false });
+    }
+  },
   
   // Role & workspace modifiers
   setRole: (role) => {
@@ -106,101 +134,158 @@ export const useCRMStore = create((set, get) => ({
   toggleCommandPalette: (show) => set((state) => ({ showCommandPalette: show !== undefined ? show : !state.showCommandPalette })),
 
   // Accounts Operations (SSOT deduplication)
-  addAccount: (account) => {
-    const existing = get().accounts.find(a => a.name.toLowerCase().trim() === account.name.toLowerCase().trim());
-    if (existing) {
-      // Automatic merge / warning
-      const action = `Duplicate Account '${account.name}' detected and merged.`;
-      set((state) => ({
-        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action, target: 'Deduplication' }, ...state.auditLogs]
-      }));
-      return { success: false, message: 'Duplicate Account detected! System auto-merged metrics.', accountId: existing.id };
-    }
+  addAccount: async (account) => {
+    try {
+      const res = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'account', payload: account })
+      });
+      const result = await res.json();
+      if (!result.success) {
+        // Handle deduplication merge
+        const action = `Duplicate Account '${account.name}' detected and merged.`;
+        set((state) => ({
+          auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action, target: 'Deduplication' }, ...state.auditLogs]
+        }));
+        return { success: false, message: result.message, accountId: result.accountId };
+      }
 
-    const newAcc = { id: `acc-${Date.now()}`, riskScore: 100, ...account };
-    set((state) => ({
-      accounts: [...state.accounts, newAcc],
-      auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Created Account '${newAcc.name}'`, target: newAcc.id }, ...state.auditLogs]
-    }));
-    return { success: true, accountId: newAcc.id };
+      const newAcc = { id: result.id, riskScore: 100, ...account };
+      set((state) => ({
+        accounts: [...state.accounts, newAcc],
+        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Created Account '${newAcc.name}'`, target: newAcc.id }, ...state.auditLogs]
+      }));
+      return { success: true, accountId: newAcc.id };
+    } catch (err) {
+      console.error(err);
+      return { success: false, message: 'Backend Server Connection Error' };
+    }
   },
 
   // Contact Operations (Must belong to Account)
-  addContact: (contact) => {
+  addContact: async (contact) => {
     if (!contact.accountId) {
       return { success: false, message: 'RULE 2.2 Violation: Contact cannot exist without an Associated Account.' };
     }
-    
-    // Automatic Deduplication by email
-    const duplicate = get().contacts.find(c => c.email.toLowerCase() === contact.email.toLowerCase());
-    if (duplicate) {
-      return { success: false, message: 'Deduplication Alert: Email belongs to an existing Contact.' };
-    }
 
-    const newCon = { id: `con-${Date.now()}`, ...contact };
-    set((state) => ({
-      contacts: [...state.contacts, newCon],
-      activities: [
-        { id: `act-${Date.now()}`, accountId: contact.accountId, type: 'System Log', description: `Added associated contact '${contact.name}'.`, timestamp: new Date().toISOString(), critical: false },
-        ...state.activities
-      ],
-      auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Added Contact '${newCon.name}'`, target: newCon.id }, ...state.auditLogs]
-    }));
-    return { success: true, contactId: newCon.id };
+    try {
+      const res = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'contact', payload: contact })
+      });
+      const result = await res.json();
+      if (!result.success) {
+        return { success: false, message: result.message };
+      }
+
+      const newCon = { id: result.id, ...contact };
+      
+      // Fetch fresh activities and contacts from backend
+      await get().fetchBackendData();
+
+      set((state) => ({
+        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Added Contact '${newCon.name}'`, target: newCon.id }, ...state.auditLogs]
+      }));
+      return { success: true, contactId: newCon.id };
+    } catch (err) {
+      console.error(err);
+      return { success: false, message: 'Backend Server Connection Error' };
+    }
   },
 
   // Deal Operations (Must belong to Account)
-  addDeal: (deal) => {
+  addDeal: async (deal) => {
     if (!deal.accountId) {
       return { success: false, message: 'RULE 2.2 Violation: Deal cannot exist without an Associated Account.' };
     }
 
-    const newDeal = { id: `deal-${Date.now()}`, healthScore: 100, ...deal };
-    set((state) => ({
-      deals: [...state.deals, newDeal],
-      activities: [
-        { id: `act-${Date.now()}`, accountId: deal.accountId, type: 'System Log', description: `Opened Deal / Project '${deal.title}' for ₹${deal.amount.toLocaleString('en-IN')}`, timestamp: new Date().toISOString(), critical: false },
-        ...state.activities
-      ],
-      auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Opened Deal '${newDeal.title}'`, target: newDeal.id }, ...state.auditLogs]
-    }));
-    return { success: true, dealId: newDeal.id };
+    try {
+      const res = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'deal', payload: deal })
+      });
+      const result = await res.json();
+      if (!result.success) {
+        return { success: false, message: result.message };
+      }
+
+      const newDeal = { id: result.id, healthScore: 100, ...deal };
+
+      await get().fetchBackendData();
+
+      set((state) => ({
+        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Opened Deal '${newDeal.title}'`, target: newDeal.id }, ...state.auditLogs]
+      }));
+      return { success: true, dealId: newDeal.id };
+    } catch (err) {
+      console.error(err);
+      return { success: false, message: 'Backend Server Connection Error' };
+    }
   },
 
   // Ticket Operations (Associated with Account and optionally Deal)
-  addTicket: (ticket) => {
+  addTicket: async (ticket) => {
     if (!ticket.accountId) {
       return { success: false, message: 'RULE 2.2 Violation: Ticket / Anomaly must be associated with an Account.' };
     }
 
-    const newTicket = { id: `tick-${Date.now()}`, detectedAt: new Date().toISOString(), status: 'OPEN', ...ticket };
-    
-    // Auto-create severe alarm activity
-    const isCritical = ticket.severity === 'CRITICAL' || ticket.severity === 'HIGH';
-    
-    set((state) => ({
-      tickets: [...state.tickets, newTicket],
-      activities: [
-        { 
-          id: `act-${Date.now()}`, 
-          accountId: ticket.accountId, 
-          type: isCritical ? 'Emergency Alert' : 'Structural Anomaly', 
-          description: `ANOMALY: ${ticket.title} detected on ${ticket.assetName}. Severity: ${ticket.severity}.`, 
-          timestamp: new Date().toISOString(), 
-          critical: isCritical 
-        },
-        ...state.activities
-      ],
-      auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Logged Ticket '${newTicket.title}'`, target: newTicket.id }, ...state.auditLogs]
-    }));
-    return { success: true, ticketId: newTicket.id };
+    try {
+      const res = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'ticket', payload: ticket })
+      });
+      const result = await res.json();
+      if (!result.success) {
+        return { success: false, message: result.message };
+      }
+
+      const newTicket = { id: result.id, detectedAt: new Date().toISOString(), status: 'OPEN', ...ticket };
+
+      await get().fetchBackendData();
+
+      set((state) => ({
+        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Logged Ticket '${newTicket.title}'`, target: newTicket.id }, ...state.auditLogs]
+      }));
+      return { success: true, ticketId: newTicket.id };
+    } catch (err) {
+      console.error(err);
+      return { success: false, message: 'Backend Server Connection Error' };
+    }
   },
 
   // Resolve Ticket
-  resolveTicket: (ticketId) => {
+  resolveTicket: async (ticketId) => {
+    try {
+      await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'resolve_ticket', payload: { ticketId } })
+      });
+
+      set((state) => ({
+        tickets: state.tickets.map(t => t.id === ticketId ? { ...t, status: 'RESOLVED' } : t),
+        auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Resolved Ticket '${ticketId}'`, target: ticketId }, ...state.auditLogs]
+      }));
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  addAuditLogEntry: (action, target) => {
     set((state) => ({
-      tickets: state.tickets.map(t => t.id === ticketId ? { ...t, status: 'RESOLVED' } : t),
-      auditLogs: [{ timestamp: new Date().toISOString(), user: 'Dr. Rajesh Mehta', action: `Resolved Ticket '${ticketId}'`, target: ticketId }, ...state.auditLogs]
+      auditLogs: [
+        {
+          timestamp: new Date().toISOString(),
+          user: 'Dr. Rajesh Mehta',
+          action,
+          target
+        },
+        ...state.auditLogs
+      ]
     }));
   }
 }));

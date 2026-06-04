@@ -23,24 +23,26 @@ const IndiaMap = ({ onHotspotClick }) => (
   <svg viewBox="0 0 400 450" className="w-full h-full max-h-[260px] select-none">
     <path
       d="M150 40 L190 30 L210 60 L240 80 L250 110 L230 140 L240 180 L270 200 L250 250 L200 320 L160 380 L170 410 L160 430 L150 410 L140 370 L110 320 L90 280 L100 240 L120 220 L90 180 L80 140 L100 90 Z"
-      fill="#f0f6ff"
-      stroke="#b0c4de"
+      fill="#f5f5f5"
+      stroke="#b0b0b0"
       strokeWidth="1.5"
     />
     {/* Mumbai */}
     <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'MSRDC — Bandra-Worli Sea Link', loc: 'Mumbai, MH', score: 84, activeDeals: '₹4.5 Cr' })}>
-      <circle cx="108" cy="270" r="5" fill="#0d6efd" />
-      <circle cx="108" cy="270" r="9" fill="none" stroke="#0d6efd" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
+      <circle cx="108" cy="270" r="5" fill="#333333" />
+      <circle cx="108" cy="270" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
       <text x="120" y="274" fill="#1a1a1a" fontSize="8.5" fontWeight="600">MUMBAI [BWSL]</text>
     </g>
     {/* Chennai */}
     <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'CMRL — Chennai Metro Line 3', loc: 'Chennai, TN', score: 92, activeDeals: '₹12.0 Cr' })}>
-      <circle cx="152" cy="370" r="5" fill="#217346" />
+      <circle cx="152" cy="370" r="5" fill="#333333" />
+      <circle cx="152" cy="370" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
       <text x="164" y="374" fill="#1a1a1a" fontSize="8.5" fontWeight="600">CHENNAI [CMRL]</text>
     </g>
     {/* Delhi */}
     <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'NHAI — Highway Bridge-42', loc: 'New Delhi, DL', score: 78, activeDeals: '₹8.5 Cr' })}>
-      <circle cx="140" cy="120" r="5" fill="#e67e22" />
+      <circle cx="140" cy="120" r="5" fill="#333333" />
+      <circle cx="140" cy="120" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
       <text x="152" y="124" fill="#1a1a1a" fontSize="8.5" fontWeight="600">DELHI [NHAI]</text>
     </g>
   </svg>
@@ -157,8 +159,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
   };
 
   /* ── health score color ── */
-  const healthColor = (score) =>
-    score >= 80 ? '#217346' : score >= 60 ? '#b45309' : '#c0392b';
+  const healthColor = (score) => '#1a1a1a';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -203,41 +204,32 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
 
         {/* Regional map */}
-        <div className="zoho-card" style={{ minHeight: 360 }}>
+        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
           <CardHeader icon={MapPin} label="Regional Hotspot Index" iconColor="#444" />
-          <div className="zoho-card-body" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 42px)' }}>
+          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 84px)', overflow: 'hidden' }}>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <IndiaMap onHotspotClick={handleHotspotClick} />
             </div>
-            <div style={{
-              marginTop: 10,
-              padding: '8px 10px',
-              background: '#f5f5f5',
-              border: '1px solid #c0c0c0',
-              borderRadius: 2,
-              fontSize: 11,
-              color: '#444',
-              boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.06)',
-            }}>
-              {selectedAsset ? (
-                <div>
-                  <div style={{ fontWeight: 700, color: '#1a1a1a', marginBottom: 4 }}>{selectedAsset.name}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span>{selectedAsset.loc}</span>
-                    <span style={{ fontWeight: 700, color: '#333' }}>Index: {selectedAsset.score}%</span>
-                  </div>
+          </div>
+          <div className="zoho-card-footer" style={{ height: 42, overflow: 'hidden' }}>
+            {selectedAsset ? (
+              <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ fontWeight: 700, color: '#1a1a1a', fontSize: '9.5px', lineHeight: 1.1 }}>{selectedAsset.name}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#555', marginTop: 1 }}>
+                  <span>{selectedAsset.loc}</span>
+                  <span style={{ fontWeight: 700, color: '#333' }}>Index: {selectedAsset.score}%</span>
                 </div>
-              ) : (
-                <span style={{ color: '#999' }}>Click highlighted hotspots to view details</span>
-              )}
-            </div>
+              </div>
+            ) : (
+              <span style={{ color: '#777', fontSize: '11px' }}>Click highlighted hotspots to view details</span>
+            )}
           </div>
         </div>
 
         {/* Acoustic telemetry chart */}
-        <div className="zoho-card" style={{ minHeight: 360 }}>
+        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
           <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#444" />
-          <div className="zoho-card-body" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 42px)', gap: 10 }}>
+          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 84px)', gap: 10, overflow: 'hidden' }}>
             <div style={{ fontSize: 11, color: '#888', marginBottom: 4 }}>
               Channel Feed: Pillar-B12 Strain Transducers
             </div>
@@ -267,40 +259,28 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                 </AreaChart>
               </ResponsiveContainer>
             </div>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '5px 9px',
-              background: 'linear-gradient(to bottom, #f5f5f5, #e8e8e8)',
-              border: '1px solid #b8b8b8',
+          </div>
+          <div className="zoho-card-footer">
+            <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+              <Activity size={12} color="#555" /> Sensor Link Matrix On-Site
+            </span>
+            <span style={{
+              background: 'linear-gradient(to bottom, #eee, #ddd)',
+              color: '#333',
+              border: '1px solid #b0b0b0',
               borderRadius: 2,
-              fontSize: 11,
-              color: '#444',
-              fontWeight: 600,
+              padding: '2px 7px',
+              fontSize: 10,
+              fontWeight: 700,
               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7)',
-            }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                <Activity size={12} color="#555" /> Sensor Link Matrix On-Site
-              </span>
-              <span style={{
-                background: 'linear-gradient(to bottom, #eee, #ddd)',
-                color: '#333',
-                border: '1px solid #b0b0b0',
-                borderRadius: 2,
-                padding: '2px 7px',
-                fontSize: 10,
-                fontWeight: 700,
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7)',
-              }}>SECURE</span>
-            </div>
+            }}>SECURE</span>
           </div>
         </div>
 
         {/* AI Diagnostics log */}
-        <div className="zoho-card" style={{ minHeight: 360 }}>
+        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
           <CardHeader icon={ShieldCheck} label="AI Diagnostics HUD Log" iconColor="#444" />
-          <div className="zoho-card-body" style={{ overflowY: 'auto', maxHeight: 320 }}>
+          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 42px)', overflowY: 'auto' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {activities.map((act) => (
                 <div
@@ -338,7 +318,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
       </div>
 
       {/* ── Row 3: Deal table + Create form ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 14 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-3.5">
 
         {/* Pipeline contract table */}
         <div className="zoho-card">

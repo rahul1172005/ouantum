@@ -436,10 +436,10 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
   };
 
   return (
-    <div className="h-full flex flex-col border-2 border-black bg-white font-mono text-xs text-black">
+    <div className="zoho-card h-full flex flex-col font-mono text-xs text-black">
       
       {/* 3D Wireframe Render Area */}
-      <div className="flex-1 min-h-[360px] relative border-b border-black" ref={mountRef}>
+      <div className="flex-1 min-h-[360px] relative" style={{ borderBottom: '1px solid #a6a6a6' }} ref={mountRef}>
         
         {/* Grayscale Wireframe Layer selector */}
         <div className="absolute top-3 left-3 z-20 flex flex-wrap gap-2">
@@ -500,7 +500,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
       </div>
 
       {/* Physics Engine & Degradation Timetravel control deck */}
-      <div className="p-4 bg-gray-50 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="zoho-card-body grid grid-cols-1 md:grid-cols-3 gap-6" style={{ background: '#f8f8f8' }}>
         
         {/* Degradation Timeline travel */}
         <div className="space-y-2">

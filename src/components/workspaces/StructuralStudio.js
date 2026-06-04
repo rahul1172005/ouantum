@@ -87,71 +87,51 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 font-mono text-xs text-black">
       
       {/* Simulation Controls & Numerical Formulations */}
-      <div className="xl:col-span-1 space-y-6 flex flex-col justify-between">
+      <div className="xl:col-span-1 space-y-4">
         
-        <div className="p-4 border-2 border-black space-y-4 bg-white">
-          <div className="flex items-center justify-between border-b border-black pb-2">
-            <span className="font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-              <Sigma className="h-4 w-4" /> Calculations Console
-            </span>
-            <span className="text-[9px] px-1 py-0.5 border border-black bg-black text-white">READY</span>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Sigma className="h-3.5 w-3.5" />
+            <span>CALCULATIONS CONSOLE</span>
+            <span className="ml-auto text-[9px] px-1 py-0.5 border border-white bg-black text-white">READY</span>
           </div>
-
-          {/* Form Controls */}
-          <div className="space-y-3">
+          <div className="zoho-card-body space-y-3">
             <div>
               <label className="block font-bold mb-1 uppercase tracking-wide text-[10px]">Applied Force (P): {load} kN</label>
               <input 
-                type="range" 
-                min="10" 
-                max="500" 
-                value={load} 
+                type="range" min="10" max="500" value={load} 
                 onChange={(e) => setLoad(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
               <div className="flex justify-between text-[9px] text-gray-500">
-                <span>10 kN</span>
-                <span>500 kN</span>
+                <span>10 kN</span><span>500 kN</span>
               </div>
             </div>
-
             <div>
               <label className="block font-bold mb-1 uppercase tracking-wide text-[10px]">Span Length (L): {length} m</label>
               <input 
-                type="range" 
-                min="2.0" 
-                max="15.0" 
-                step="0.5"
-                value={length} 
+                type="range" min="2.0" max="15.0" step="0.5" value={length} 
                 onChange={(e) => setLength(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
               <div className="flex justify-between text-[9px] text-gray-500">
-                <span>2.0 m</span>
-                <span>15.0 m</span>
+                <span>2.0 m</span><span>15.0 m</span>
               </div>
             </div>
-
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Elastic Modulus (E)</label>
-                <select 
-                  value={modulus} 
-                  onChange={(e) => setModulus(Number(e.target.value))}
-                  className="w-full p-1.5 border border-black bg-white focus:outline-none"
-                >
+                <select value={modulus} onChange={(e) => setModulus(Number(e.target.value))} className="w-full p-1.5 border border-black bg-white focus:outline-none">
                   <option value="200">200 GPa (Steel)</option>
                   <option value="30">30 GPa (Concrete)</option>
                   <option value="70">70 GPa (Aluminum)</option>
                   <option value="120">120 GPa (Cast Iron)</option>
                 </select>
               </div>
-
               <div>
                 <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Inertia (I) [cm⁴]</label>
                 <input 
-                  type="number"
-                  value={inertia}
+                  type="number" value={inertia}
                   onChange={(e) => setInertia(Math.max(100, Number(e.target.value)))}
                   className="w-full p-1 border border-black bg-white focus:outline-none text-[10px]"
                 />
@@ -161,20 +141,23 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
         </div>
 
         {/* Real-time Math Formulation display */}
-        <div className="p-4 border-2 border-black bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1 uppercase text-[10px]">Active Numerical Formulations</p>
-          
-          <div className="p-2 border border-dashed border-gray-400 bg-gray-50 font-sans text-center space-y-2">
-            <div className="border-b border-gray-200 pb-2">
-              <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Shear Stress Equation"}</p>
-              <span className="text-sm font-serif block my-1">σ = F / A</span>
-              <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.stressKpa} kPa</span>
-            </div>
-
-            <div>
-              <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Beam Max Deflection"}</p>
-              <span className="text-sm font-serif block my-1">δ_max = (P·L³) / (48·E·I)</span>
-              <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.deflectionMm} mm</span>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Sigma className="h-3.5 w-3.5" />
+            ACTIVE NUMERICAL FORMULATIONS
+          </div>
+          <div className="zoho-card-body">
+            <div className="p-2 border border-dashed border-gray-400 bg-gray-50 font-sans text-center space-y-2">
+              <div className="border-b border-gray-200 pb-2">
+                <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Shear Stress Equation"}</p>
+                <span className="text-sm font-serif block my-1">σ = F / A</span>
+                <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.stressKpa} kPa</span>
+              </div>
+              <div>
+                <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Beam Max Deflection"}</p>
+                <span className="text-sm font-serif block my-1">δ_max = (P·L³) / (48·E·I)</span>
+                <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.deflectionMm} mm</span>
+              </div>
             </div>
           </div>
         </div>
@@ -183,88 +166,51 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
 
       {/* Interactive Vector Grid Drawing Board */}
       <div className="xl:col-span-2 space-y-4">
-        <div className="border-2 border-black p-2 bg-white flex items-center justify-between">
-          <span className="font-bold uppercase tracking-wider">CAD Grid Workspace [Vector Schematic]</span>
-          <div className="flex items-center gap-2">
-            <span className="text-[9px] text-gray-500">{"// Click canvas empty space to plot structural nodes"}</span>
-          </div>
+        
+        {/* CAD header bar */}
+        <div className="zoho-card-header" style={{ border: '1px solid #a6a6a6' }}>
+          <Sigma className="h-3.5 w-3.5" />
+          <span>CAD GRID WORKSPACE [VECTOR SCHEMATIC]</span>
+          <span className="ml-auto text-[9px] text-gray-500 font-normal">{"// Click canvas empty space to plot structural nodes"}</span>
         </div>
 
         {/* Vector SVG Board */}
         <div 
           onClick={handleAddNode}
-          className="w-full h-[360px] border-2 border-black relative bg-white cad-grid cursor-crosshair overflow-hidden"
+          className="w-full h-[360px] border border-black relative bg-white cad-grid cursor-crosshair overflow-hidden"
+          style={{ marginTop: 0 }}
         >
-          <svg className="w-full h-full absolute inset-0 pointer-events-none">
-            {/* Grid watermark coordinates lines */}
+          <svg viewBox="0 0 520 360" className="w-full h-full absolute inset-0 pointer-events-none">
             <line x1="0" y1="200" x2="100%" y2="200" stroke="#cccccc" strokeDasharray="5,5" strokeWidth="1" />
             <line x1="300" y1="0" x2="300" y2="100%" stroke="#cccccc" strokeDasharray="5,5" strokeWidth="1" />
 
-            {/* Draw Structural Beam Members */}
             {members.map((member) => {
               const fromNode = nodes.find(n => n.id === member.from);
               const toNode = nodes.find(n => n.id === member.to);
               if (!fromNode || !toNode) return null;
-              
               const isSelected = selectedElement?.type === 'Beam Member' && selectedElement?.id === member.id;
-              
               return (
                 <g key={member.id} className="pointer-events-auto cursor-pointer" onClick={(e) => handleMemberClick(member, e)}>
-                  <line 
-                    x1={fromNode.x} 
-                    y1={fromNode.y} 
-                    x2={toNode.x} 
-                    y2={toNode.y} 
-                    stroke={isSelected ? '#000000' : '#4b5563'} 
-                    strokeWidth={isSelected ? '6' : '3'} 
-                  />
-                  {isSelected && (
-                    <line 
-                      x1={fromNode.x} 
-                      y1={fromNode.y} 
-                      x2={toNode.x} 
-                      y2={toNode.y} 
-                      stroke="#ffffff" 
-                      strokeWidth="2" 
-                      strokeDasharray="4,4"
-                    />
-                  )}
-                  {/* Label Member */}
-                  <text 
-                    x={(fromNode.x + toNode.x) / 2} 
-                    y={(fromNode.y + toNode.y) / 2 - 10} 
-                    fill="#000000" 
-                    fontSize="9" 
-                    fontWeight="bold" 
-                    textAnchor="middle"
-                    className="select-none font-mono"
-                  >
+                  <line x1={fromNode.x} y1={fromNode.y} x2={toNode.x} y2={toNode.y} stroke={isSelected ? '#000000' : '#4b5563'} strokeWidth={isSelected ? '6' : '3'} />
+                  {isSelected && <line x1={fromNode.x} y1={fromNode.y} x2={toNode.x} y2={toNode.y} stroke="#ffffff" strokeWidth="2" strokeDasharray="4,4" />}
+                  <text x={(fromNode.x + toNode.x) / 2} y={(fromNode.y + toNode.y) / 2 - 10} fill="#000000" fontSize="9" fontWeight="bold" textAnchor="middle" className="select-none font-mono">
                     {member.id} ({member.material.includes('Steel') ? 'Steel' : 'Concrete'})
                   </text>
                 </g>
               );
             })}
 
-            {/* Draw Force Vector Arrow */}
             {nodes.find(n => n.id === 'N2') && (
               <g>
-                <path d="M 300 70 L 300 140" stroke="#000000" strokeWidth="3" markerEnd="url(#arrow)" />
+                <path d="M 300 70 L 300 140" stroke="#000000" strokeWidth="3" />
                 <path d="M 295 130 L 300 140 L 305 130" fill="none" stroke="#000000" strokeWidth="2" />
                 <text x="312" y="100" fill="#000000" fontSize="10" fontWeight="black" className="font-mono">P = {load} kN</text>
               </g>
             )}
 
-            {/* Draw Support Symbols */}
             {nodes.map((node) => {
               if (node.type === 'support-fixed') {
-                return (
-                  <path 
-                    key={`support-${node.id}`} 
-                    d={`M ${node.x - 15} ${node.y + 10} L ${node.x + 15} ${node.y + 10} M ${node.x - 12} ${node.y + 10} L ${node.x - 17} ${node.y + 15} M ${node.x - 4} ${node.y + 10} L ${node.x - 9} ${node.y + 15} M ${node.x + 4} ${node.y + 10} L ${node.x - 1} ${node.y + 15} M ${node.x + 12} ${node.y + 10} L ${node.x + 7} ${node.y + 15}`} 
-                    stroke="#000000" 
-                    strokeWidth="2" 
-                  />
-                );
+                return <path key={`support-${node.id}`} d={`M ${node.x - 15} ${node.y + 10} L ${node.x + 15} ${node.y + 10} M ${node.x - 12} ${node.y + 10} L ${node.x - 17} ${node.y + 15} M ${node.x - 4} ${node.y + 10} L ${node.x - 9} ${node.y + 15} M ${node.x + 4} ${node.y + 10} L ${node.x - 1} ${node.y + 15} M ${node.x + 12} ${node.y + 10} L ${node.x + 7} ${node.y + 15}`} stroke="#000000" strokeWidth="2" />;
               }
               if (node.type === 'support-roller') {
                 return (
@@ -277,37 +223,20 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
               return null;
             })}
 
-            {/* Draw Support Nodes (Circles) */}
             {nodes.map((node) => {
               const isSelected = selectedElement?.type === 'Node' && selectedElement?.id === node.id;
               return (
-                <circle 
-                  key={node.id} 
-                  cx={node.x} 
-                  cy={node.y} 
-                  r={isSelected ? '8' : '5'} 
-                  fill={isSelected ? '#000000' : '#ffffff'} 
-                  stroke="#000000" 
-                  strokeWidth="2" 
-                  className="pointer-events-auto cursor-pointer"
-                  onClick={(e) => handleNodeClick(node, e)}
-                />
+                <circle key={node.id} cx={node.x} cy={node.y} r={isSelected ? '8' : '5'} fill={isSelected ? '#000000' : '#ffffff'} stroke="#000000" strokeWidth="2" className="pointer-events-auto cursor-pointer" onClick={(e) => handleNodeClick(node, e)} />
               );
             })}
           </svg>
 
-          {/* Node Labels */}
           {nodes.map((node) => (
-            <span 
-              key={`lbl-${node.id}`} 
-              style={{ left: node.x + 8, top: node.y - 18 }} 
-              className="absolute font-bold text-[9px] bg-white border border-black px-1 pointer-events-none select-none font-mono"
-            >
+            <span key={`lbl-${node.id}`} style={{ left: node.x + 8, top: node.y - 18 }} className="absolute font-bold text-[9px] bg-white border border-black px-1 pointer-events-none select-none font-mono">
               {node.id}
             </span>
           ))}
 
-          {/* Canvas details overlay */}
           <div className="absolute bottom-2 left-2 p-1.5 border border-black bg-white font-mono text-[9px] space-y-0.5">
             <div>SCALE: 1:50</div>
             <div>MESH TYPE: Linear Timoshenko Beam Elements</div>
@@ -316,34 +245,35 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
         </div>
 
         {/* Structural Assessment Output Block */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1 uppercase text-[10px]">Structural Diagnostics Matrix</p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-2 border border-black">
-              <p className="text-gray-500 text-[9px] uppercase">Max Displacement</p>
-              <p className="text-lg font-bold font-mono mt-1">{metrics.deflectionMm} mm</p>
-              <span className={`text-[8px] px-1 border inline-block mt-1 ${Number(metrics.deflectionMm) > 8 ? 'bg-black text-white' : 'border-black'}`}>
-                {Number(metrics.deflectionMm) > 8 ? 'EXCEEDS LIMIT' : 'WITHIN BOUNDS'}
-              </span>
-            </div>
-
-            <div className="p-2 border border-black">
-              <p className="text-gray-500 text-[9px] uppercase">Safety Factor</p>
-              <p className="text-lg font-bold font-mono mt-1">{metrics.safetyFactor}</p>
-              <span className="text-[8px] px-1 border border-black inline-block mt-1">LIMIT: &gt; 1.5</span>
-            </div>
-
-            <div className="p-2 border border-black">
-              <p className="text-gray-500 text-[9px] uppercase">Applied Moment</p>
-              <p className="text-lg font-bold font-mono mt-1">{metrics.moment} kN·m</p>
-              <span className="text-[8px] text-gray-500 font-mono inline-block mt-1">M_max = PL/4</span>
-            </div>
-
-            <div className="p-2 border border-black">
-              <p className="text-gray-500 text-[9px] uppercase">Stress Status</p>
-              <p className="text-lg font-bold font-mono mt-1">NORMAL</p>
-              <span className="text-[8px] px-1 border border-black inline-block mt-1">NO BUCKLING</span>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Sigma className="h-3.5 w-3.5" />
+            STRUCTURAL DIAGNOSTICS MATRIX
+          </div>
+          <div className="zoho-card-body">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="p-2 border border-black">
+                <p className="text-gray-500 text-[9px] uppercase">Max Displacement</p>
+                <p className="text-lg font-bold font-mono mt-1">{metrics.deflectionMm} mm</p>
+                <span className={`text-[8px] px-1 border inline-block mt-1 ${Number(metrics.deflectionMm) > 8 ? 'bg-black text-white' : 'border-black'}`}>
+                  {Number(metrics.deflectionMm) > 8 ? 'EXCEEDS LIMIT' : 'WITHIN BOUNDS'}
+                </span>
+              </div>
+              <div className="p-2 border border-black">
+                <p className="text-gray-500 text-[9px] uppercase">Safety Factor</p>
+                <p className="text-lg font-bold font-mono mt-1">{metrics.safetyFactor}</p>
+                <span className="text-[8px] px-1 border border-black inline-block mt-1">LIMIT: &gt; 1.5</span>
+              </div>
+              <div className="p-2 border border-black">
+                <p className="text-gray-500 text-[9px] uppercase">Applied Moment</p>
+                <p className="text-lg font-bold font-mono mt-1">{metrics.moment} kN·m</p>
+                <span className="text-[8px] text-gray-500 font-mono inline-block mt-1">M_max = PL/4</span>
+              </div>
+              <div className="p-2 border border-black">
+                <p className="text-gray-500 text-[9px] uppercase">Stress Status</p>
+                <p className="text-lg font-bold font-mono mt-1">NORMAL</p>
+                <span className="text-[8px] px-1 border border-black inline-block mt-1">NO BUCKLING</span>
+              </div>
             </div>
           </div>
         </div>

@@ -19,6 +19,26 @@ import {
   FileText
 } from 'lucide-react';
 
+function LevelCard({ icon: Icon, title, children, className = '', headerAction = null, footerText = null }) {
+  return (
+    <div className={`zoho-card flex flex-col ${className}`}>
+      <div className="zoho-card-header">
+        {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
+        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
+      </div>
+      <div className="zoho-card-body space-y-4 flex-1 flex flex-col justify-between">
+        {children}
+      </div>
+      {footerText && (
+        <div className="zoho-card-footer">
+          <span className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal">{footerText}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function BuildingValidation({ selectedElement, setSelectedElement }) {
   const addTicket = useCRMStore(state => state.addTicket);
   const mountRef = useRef(null);
@@ -246,6 +266,19 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     currentMount.appendChild(renderer.domElement);
+
+    // Resize Observer for dynamic, responsive WebGL viewport scaling
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width: newWidth, height: newHeight } = entry.contentRect;
+        if (newWidth > 0 && newHeight > 0) {
+          renderer.setSize(newWidth, newHeight);
+          camera.aspect = newWidth / newHeight;
+          camera.updateProjectionMatrix();
+        }
+      }
+    });
+    resizeObserver.observe(currentMount);
 
     // Monochrome Lights for engineering shadows
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
@@ -1095,6 +1128,8 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           mat.dispose();
         }
       });
+
+      resizeObserver.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [floors, floorHeight, columnWidth, concreteGrade, liveLoad]);
@@ -1141,24 +1176,22 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
       
       {/* 1. Parameters Left Control Panel */}
-      <div className="xl:col-span-1 space-y-4 flex flex-col justify-between">
+      <div className="xl:col-span-1 space-y-6 flex flex-col justify-between">
         
         {/* Param Inputs Form */}
-        <div className="border-2 border-black p-4 bg-white space-y-4 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <div className="flex items-center justify-between border-b border-black pb-2">
-            <span className="font-bold uppercase tracking-wider text-[10px] flex items-center gap-1.5">
-              <Wrench className="h-4 w-4" /> Parameters Console
-            </span>
-            <span className="text-[8px] px-1 border border-black bg-black text-white">MANUAL</span>
-          </div>
-
-          <div className="space-y-2">
+        <LevelCard
+          icon={Wrench}
+          title="Parameters Console"
+          headerAction={<span className="text-[8px] px-1.5 py-0.5 border border-black bg-black text-white font-bold rounded-sm uppercase">MANUAL</span>}
+          footerText="Adjust variables to run multi-physics structural twin simulations"
+        >
+          <div className="space-y-3">
             <div>
-              <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Building Type</label>
+              <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Building Type</label>
               <select 
                 value={buildingType} 
                 onChange={(e) => setBuildingType(e.target.value)}
-                className="w-full p-1 border border-black bg-white focus:outline-none text-[10px]"
+                className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[10px]"
               >
                 <option value="Commercial">Commercial Structural</option>
                 <option value="Residential">Residential Block</option>
@@ -1168,7 +1201,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Floors: {floors}</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Floors: {floors}</label>
                 <input 
                   type="range" min="1" max="15" value={floors}
                   onChange={(e) => setFloors(Number(e.target.value))}
@@ -1176,7 +1209,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Height: {floorHeight}m</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Height: {floorHeight}m</label>
                 <input 
                   type="range" min="3.0" max="4.5" step="0.1" value={floorHeight}
                   onChange={(e) => setFloorHeight(Number(e.target.value))}
@@ -1187,11 +1220,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Concrete Spec</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Concrete Spec</label>
                 <select 
                   value={concreteGrade} 
                   onChange={(e) => setConcreteGrade(e.target.value)}
-                  className="w-full p-1 border border-black bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
                 >
                   <option value="M20">M20 Concrete</option>
                   <option value="M25">M25 Grade</option>
@@ -1200,11 +1233,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 </select>
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Soil Profile</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Soil Profile</label>
                 <select 
                   value={soilType} 
                   onChange={(e) => setSoilType(e.target.value)}
-                  className="w-full p-1 border border-black bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
                 >
                   <option value="Hard Rock">Hard Rock (600 kPa)</option>
                   <option value="Sandy Soil">Sandy Soil (250 kPa)</option>
@@ -1216,7 +1249,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Col Width: {columnWidth}mm</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Col Width: {columnWidth}mm</label>
                 <input 
                   type="range" min="300" max="800" step="50" value={columnWidth}
                   onChange={(e) => setColumnWidth(Number(e.target.value))}
@@ -1224,7 +1257,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Beam Depth: {beamDepth}mm</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Beam Depth: {beamDepth}mm</label>
                 <input 
                   type="range" min="300" max="800" step="50" value={beamDepth}
                   onChange={(e) => setBeamDepth(Number(e.target.value))}
@@ -1233,13 +1266,13 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 border-t border-black pt-2 mt-2">
+            <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Seismic Zone</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Seismic Zone</label>
                 <select 
                   value={seismicZone} 
                   onChange={(e) => setSeismicZone(e.target.value)}
-                  className="w-full p-1 border border-black bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
                 >
                   <option value="Zone II">Zone II (Low)</option>
                   <option value="Zone III">Zone III (Mod)</option>
@@ -1248,7 +1281,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 </select>
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Live load: {liveLoad} kN</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Live load: {liveLoad} kN</label>
                 <input 
                   type="range" min="1.5" max="10.0" step="0.5" value={liveLoad}
                   onChange={(e) => setLiveLoad(Number(e.target.value))}
@@ -1257,9 +1290,9 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 border-t border-black pt-2 mt-2">
+            <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Flood Depth: {floodHeight}m</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Flood Depth: {floodHeight}m</label>
                 <input 
                   type="range" min="0.0" max="8.0" step="0.5" value={floodHeight}
                   onChange={(e) => setFloodHeight(Number(e.target.value))}
@@ -1267,7 +1300,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-600 mb-0.5">Fire Temp: {fireTemp}°C</label>
+                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Fire Temp: {fireTemp}°C</label>
                 <input 
                   type="range" min="25" max="1000" step="25" value={fireTemp}
                   onChange={(e) => setFireTemp(Number(e.target.value))}
@@ -1275,173 +1308,185 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
             </div>
-
           </div>
-        </div>
+        </LevelCard>
 
         {/* 2. File Upload CAD Ingestion */}
-        <div className="border-2 border-black p-4 bg-white space-y-3 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[9px] flex items-center gap-1">
-            <Upload className="h-3.5 w-3.5" /> Ingest Drawings (CAD/BIM)
-          </p>
-          <div className="border border-dashed border-gray-400 p-3 bg-gray-50 text-center relative cursor-pointer group hover:bg-gray-100 transition-colors">
-            <input 
-              type="file" accept=".dwg,.ifc,.pdf,.png,.jpg" 
-              onChange={handleFileUpload}
-              className="absolute inset-0 opacity-0 cursor-pointer"
-              disabled={isScanningFile}
-            />
-            <FileText className="h-5 w-5 mx-auto text-gray-500 mb-1 group-hover:scale-105 transition-transform" />
-            <span className="text-[9px] font-bold uppercase block text-black">Upload .dwg / .ifc / drawings</span>
-            <span className="text-[7.5px] text-gray-400 block mt-0.5">AI automatically extracts coordinates</span>
-          </div>
-
-          {/* Upload progress & queue */}
-          {isScanningFile && (
-            <div className="p-2 border border-black bg-white space-y-1.5 text-[8.5px]">
-              <div className="flex justify-between font-bold">
-                <span className="animate-pulse">PARSING VECTORS...</span>
-                <span>{scanProgress}%</span>
-              </div>
-              <div className="w-full h-1 bg-gray-100 border border-black overflow-hidden">
-                <div style={{ width: `${scanProgress}%` }} className="h-full bg-black transition-all"></div>
-              </div>
+        <LevelCard
+          icon={Upload}
+          title="Ingest Drawings (CAD/BIM)"
+          footerText="Extracting coordinate vectors for 3D digital twin"
+        >
+          <div className="space-y-3">
+            <div className="border border-dashed border-[#cccccc] rounded-[3px] p-3 bg-gray-50 text-center relative cursor-pointer group hover:bg-gray-100 transition-colors">
+              <input 
+                type="file" accept=".dwg,.ifc,.pdf,.png,.jpg" 
+                onChange={handleFileUpload}
+                className="absolute inset-0 opacity-0 cursor-pointer"
+                disabled={isScanningFile}
+              />
+              <FileText className="h-5 w-5 mx-auto text-gray-500 mb-1 group-hover:scale-105 transition-transform" />
+              <span className="text-[9px] font-bold uppercase block text-black">Upload .dwg / .ifc / drawings</span>
+              <span className="text-[7.5px] text-gray-400 block mt-0.5">AI automatically extracts coordinates</span>
             </div>
-          )}
 
-          {uploadedFiles.length > 0 && (
-            <div className="space-y-1.5 max-h-24 overflow-y-auto">
-              {uploadedFiles.map((file, idx) => (
-                <div key={idx} className="flex justify-between items-center p-1.5 border border-black bg-gray-50 text-[8px] font-bold">
-                  <span className="truncate w-3/5">{file.name}</span>
-                  <span className="text-[7px] text-gray-400">{file.size}</span>
-                  <span className={`px-1 border ${file.status === 'PARSED' ? 'bg-black text-white' : 'border-black animate-pulse'}`}>
-                    {file.status}
-                  </span>
+            {/* Upload progress & queue */}
+            {isScanningFile && (
+              <div className="p-2 border border-[#d4d4d4] rounded bg-white space-y-1.5 text-[8.5px]">
+                <div className="flex justify-between font-bold">
+                  <span className="animate-pulse">PARSING VECTORS...</span>
+                  <span>{scanProgress}%</span>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+                <div className="w-full h-1 bg-gray-100 border border-[#d4d4d4] rounded overflow-hidden">
+                  <div style={{ width: `${scanProgress}%` }} className="h-full bg-black transition-all"></div>
+                </div>
+              </div>
+            )}
+
+            {uploadedFiles.length > 0 && (
+              <div className="space-y-1.5 max-h-24 overflow-y-auto pr-1">
+                {uploadedFiles.map((file, idx) => (
+                  <div key={idx} className="flex justify-between items-center p-1.5 border border-[#d4d4d4] rounded bg-gray-50 text-[8px] font-bold">
+                    <span className="truncate w-3/5 text-gray-700">{file.name}</span>
+                    <span className="text-[7px] text-gray-400">{file.size}</span>
+                    <span className={`px-1 border rounded-sm text-[7px] ${file.status === 'PARSED' ? 'bg-black text-white border-black' : 'border-[#d4d4d4] bg-white text-gray-500 animate-pulse'}`}>
+                      {file.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </LevelCard>
 
       </div>
 
       {/* 2. Interactive Viewport & Render View modes */}
-      <div className="xl:col-span-2 space-y-4">
+      <div className="xl:col-span-2 space-y-4 flex flex-col">
         
-        {/* Layer Mode selector */}
-        <div className="border-2 border-black p-2 bg-white flex flex-wrap items-center justify-between gap-2 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <div className="flex flex-wrap items-center gap-1.5">
-            {['Skeleton', 'Stress Heatmap', 'Load Flow', 'Crack Prediction', 'Corrosion', 'Seismic', 'Wind', 'Flood', 'Fire', 'X-Ray'].map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setViewMode(mode)}
-                className={`px-2 py-0.5 border text-[8px] uppercase font-bold transition-colors cursor-pointer ${
-                  viewMode === mode 
-                    ? 'bg-black text-white border-black' 
-                    : 'bg-white text-black border-black hover:bg-gray-100'
-                }`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
-          <span className="text-[8px] text-gray-500 font-bold hidden sm:inline">Interactive Orbit Viewport</span>
-        </div>
-
-        {/* 3D WebGL Canvas */}
-        <div 
-          ref={mountRef}
-          className="w-full h-[380px] border-2 border-black relative bg-white overflow-hidden shadow-[3px_3px_0px_rgba(0,0,0,1)]"
-        >
-          {/* Overlay Diagnostics overlay HUD details */}
-          <div className="absolute bottom-2 left-2 p-2 border border-black bg-white/95 font-mono text-[8px] space-y-0.5 z-10 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-            <div className="font-bold border-b border-black pb-0.5 mb-1 text-black">PHYSICS DIAGNOSTICS HUD</div>
-            <div>MESH TYPE: 3D Frame Timoshenko Beams</div>
-            <div>STORY LEVEL COUNT: {floors} Floors ({floorHeight}m height)</div>
-            <div>VIEW MODE: <span className="font-bold underline uppercase">{viewMode}</span></div>
-            <div>AIR SPEED SWAY: {windSpeed > 15 ? `${(windSpeed * 0.12).toFixed(1)} cm/s sways` : 'NOMINAL'}</div>
+        {/* Unified 3D Structural Twin Zoho Card Container */}
+        <div className="zoho-card flex flex-col flex-1 justify-between" style={{ minHeight: '460px' }}>
+          
+          {/* View selector — fully closed button strip acting as card header */}
+          <div className="workspace-tabs flex-shrink-0 select-none">
+            {['Skeleton', 'Stress Heatmap', 'Load Flow', 'Crack Prediction', 'Corrosion', 'Seismic', 'Wind', 'Flood', 'Fire', 'X-Ray'].map((mode) => {
+              const isActive = viewMode === mode;
+              return (
+                <button
+                  key={mode}
+                  onClick={() => setViewMode(mode)}
+                  className={`workspace-tab ${isActive ? 'active' : ''}`}
+                >
+                  {mode}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="absolute top-2 left-2 z-10 flex flex-col gap-1.5">
-            <div className="p-1 border border-black bg-white/95 text-[8px] font-bold uppercase shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-              Concrete strength: <span className="underline">{concreteGrade}</span> (E: {getModulusOfElasticity()} GPa)
-            </div>
-            {metrics.healthScore < 80 && (
-              <div className="p-1 border border-black bg-black text-white text-[7.5px] font-bold uppercase animate-pulse flex items-center gap-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <AlertTriangle className="h-3 w-3" /> CRITICAL SETTLEMENT LIMIT SPIKE
+          {/* WebGL viewport body */}
+          <div 
+            ref={mountRef}
+            className="w-full relative bg-white overflow-hidden flex-1"
+            style={{ padding: '0px', minHeight: '340px' }}
+          >
+            <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1.5">
+              <div className="p-1.5 border border-[#d4d4d4] bg-white/95 text-[8.5px] font-bold uppercase shadow-sm rounded-sm text-gray-800">
+                Concrete strength: <span className="underline">{concreteGrade}</span> (E: {getModulusOfElasticity()} GPa)
               </div>
-            )}
+              {metrics.healthScore < 80 && (
+                <div className="p-1.5 border border-black bg-black text-white text-[7.5px] font-bold uppercase animate-pulse flex items-center gap-1 shadow-sm rounded-sm">
+                  <AlertTriangle className="h-3.5 w-3.5 text-white" /> CRITICAL SETTLEMENT LIMIT SPIKE
+                </div>
+              )}
+            </div>
           </div>
+
+          {/* Physics HUD — skeuomorphic card footer */}
+          <div className="zoho-card-footer flex flex-wrap items-center justify-between gap-3 text-gray-500 select-none font-mono text-[8px] font-semibold">
+            <div className="flex items-center gap-1.5">
+              <span className="px-1.5 py-0.5 bg-gray-600 text-white rounded-[1px] uppercase tracking-wider text-[7px] font-bold">PHYSICS HUD</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[7.5px]">
+              <div>MESH: <span className="text-gray-700 font-bold uppercase">3D Timoshenko Beams</span></div>
+              <div>STORY: <span className="text-gray-700 font-bold uppercase">{floors} Floors ({floorHeight}m)</span></div>
+              <div>MODE: <span className="text-gray-700 font-bold uppercase underline">{viewMode}</span></div>
+              <div>SWAY: <span className="text-gray-700 font-bold uppercase">{windSpeed > 15 ? `${(windSpeed * 0.12).toFixed(1)} cm/s` : 'NOMINAL'}</span></div>
+            </div>
+          </div>
+
         </div>
 
         {/* Dynamic Physics Simulation sliders panel */}
-        <div className="border-2 border-black p-4 bg-white grid grid-cols-1 md:grid-cols-3 gap-6 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          
-          {/* Timeline Degradation timeline */}
-          <div className="space-y-2">
-            <p className="font-bold uppercase tracking-wider text-[9px] flex items-center gap-1">
-              <Clock className="h-4 w-4" /> Lifetime Progression
-            </p>
-            <div className="flex border border-black bg-white rounded overflow-hidden">
-              {['Present', '+1 Year', '+5 Years', '+10 Years', '+25 Years'].map((step) => (
-                <button
-                  key={step}
-                  onClick={() => setTimeProgression(step)}
-                  className={`flex-1 py-1 text-[7.5px] font-bold border-r last:border-r-0 border-black transition-colors cursor-pointer ${
-                    timeProgression === step 
-                      ? 'bg-black text-white' 
-                      : 'bg-white text-black hover:bg-gray-100'
-                  }`}
-                >
-                  {step}
-                </button>
-              ))}
+        <LevelCard
+          icon={Sliders}
+          title="Environmental Disaster Controllers"
+          footerText="Simulating cyclic earthquake load waves and dynamic hurricane drift forces"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-[9px]">
+            {/* Timeline Degradation */}
+            <div className="space-y-2">
+              <p className="font-bold uppercase tracking-wider text-[9px] text-gray-700 flex items-center gap-1">
+                <Clock className="h-4 w-4 text-gray-500" /> Lifetime Progression
+              </p>
+              <div className="flex border border-[#c8c8c8] bg-white rounded overflow-hidden">
+                {['Present', '+1 Year', '+5 Years', '+10 Years', '+25 Years'].map((step) => (
+                  <button
+                    key={step}
+                    onClick={() => setTimeProgression(step)}
+                    className={`flex-1 py-1 text-[7.5px] font-bold border-r last:border-r-0 border-[#c8c8c8] transition-colors cursor-pointer ${
+                      timeProgression === step 
+                        ? 'bg-black text-white border-black' 
+                        : 'bg-white text-black hover:bg-gray-100'
+                    }`}
+                  >
+                    {step}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[7.5px] text-gray-400 font-mono italic">
+                {timeProgression === 'Present' && '// Geometry fully aligned with blueprint spec.'}
+                {timeProgression === '+1 Year' && '// Minor concrete shrinkage cracking simulated.'}
+                {timeProgression === '+5 Years' && '// Steel rebar corrosion begins. Modulus reduction modeled.'}
+                {timeProgression === '+10 Years' && '// Tension fatigue loss. Cracking indices: +4.2%.'}
+                {timeProgression === '+25 Years' && '// CRITICAL: Spalling and core delamination risk spikes by 28%.'}
+              </p>
             </div>
-            <p className="text-[7.5px] text-gray-500 font-mono italic">
-              {timeProgression === 'Present' && '// Geometry fully aligned with blueprint spec.'}
-              {timeProgression === '+1 Year' && '// Minor concrete shrinkage cracking simulated.'}
-              {timeProgression === '+5 Years' && '// Steel rebar corrosion begins. Modulus reduction modeled.'}
-              {timeProgression === '+10 Years' && '// Tension fatigue loss. Cracking indices: +4.2%.'}
-              {timeProgression === '+25 Years' && '// CRITICAL: Spalling and core delamination risk spikes by 28%.'}
-            </p>
-          </div>
 
-          {/* Dynamic Earthquake Richter controller */}
-          <div className="space-y-2">
-            <div className="flex justify-between font-bold text-[9px] uppercase">
-              <span className="flex items-center gap-1"><ShieldAlert className="h-4 w-4" /> Seismic Richter</span>
-              <span>{earthquakeMagnitude.toFixed(1)} M_w</span>
+            {/* Dynamic Earthquake Richter */}
+            <div className="space-y-2">
+              <div className="flex justify-between font-bold text-[9px] uppercase text-gray-700">
+                <span className="flex items-center gap-1"><ShieldAlert className="h-4 w-4 text-gray-500" /> Seismic Richter</span>
+                <span>{earthquakeMagnitude.toFixed(1)} M_w</span>
+              </div>
+              <input
+                type="range" min="0.0" max="9.0" step="0.5" value={earthquakeMagnitude}
+                onChange={(e) => setEarthquakeMagnitude(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
+              <div className="flex justify-between text-[7.5px] text-gray-400">
+                <span>0.0 Magnitude</span>
+                <span>9.0 Richter Scale</span>
+              </div>
             </div>
-            <input
-              type="range" min="0.0" max="9.0" step="0.5" value={earthquakeMagnitude}
-              onChange={(e) => setEarthquakeMagnitude(Number(e.target.value))}
-              className="w-full accent-black cursor-ew-resize"
-            />
-            <div className="flex justify-between text-[7.5px] text-gray-500">
-              <span>0.0 Magnitude</span>
-              <span>9.0 Richter Scale</span>
+
+            {/* Wind speed */}
+            <div className="space-y-2">
+              <div className="flex justify-between font-bold text-[9px] uppercase text-gray-700">
+                <span className="flex items-center gap-1"><Sliders className="h-4 w-4 text-gray-500" /> Wind Gust Speed</span>
+                <span>{windSpeed} km/h</span>
+              </div>
+              <input
+                type="range" min="0" max="150" value={windSpeed}
+                onChange={(e) => setWindSpeed(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
+              <div className="flex justify-between text-[7.5px] text-gray-400">
+                <span>0 km/h</span>
+                <span>150 km/h (Cat 5 Hurricane)</span>
+              </div>
             </div>
           </div>
-
-          {/* Wind speed controller */}
-          <div className="space-y-2">
-            <div className="flex justify-between font-bold text-[9px] uppercase">
-              <span className="flex items-center gap-1"><Sliders className="h-4 w-4" /> Wind Gust Speed</span>
-              <span>{windSpeed} km/h</span>
-            </div>
-            <input
-              type="range" min="0" max="150" value={windSpeed}
-              onChange={(e) => setWindSpeed(Number(e.target.value))}
-              className="w-full accent-black cursor-ew-resize"
-            />
-            <div className="flex justify-between text-[7.5px] text-gray-500">
-              <span>0 km/h</span>
-              <span>150 km/h (Cat 5 Hurricane)</span>
-            </div>
-          </div>
-
-        </div>
+        </LevelCard>
 
       </div>
 
@@ -1449,124 +1494,130 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
       <div className="xl:col-span-1 space-y-4 flex flex-col justify-between">
         
         {/* Core health scorecard */}
-        <div className="border-2 border-black p-4 bg-white space-y-4 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[9px]">Structural Health Audits</p>
-          
-          {/* Health index card */}
-          <div className="p-3 border border-black bg-gray-50 text-center relative">
-            <p className="text-[8px] text-gray-500 uppercase tracking-widest font-bold">Overall Building Health</p>
-            <p className="text-3xl font-black font-mono mt-1 text-black">{metrics.healthScore} / 100</p>
-            <span className={`text-[8px] px-1 border inline-block mt-2 font-bold ${metrics.healthScore < 80 ? 'bg-black text-white border-black animate-pulse' : 'border-black'}`}>
-              {metrics.healthScore >= 90 ? 'STRUCTURALLY SECURE' : metrics.healthScore >= 80 ? 'STABILIZED WARNING' : 'CRITICAL DEFICIT'}
-            </span>
-          </div>
+        <LevelCard
+          icon={Activity}
+          title="Structural Health Audits"
+          footerText="Overall safety score calculated based on ACI 318 code criteria"
+        >
+          <div className="space-y-4 flex-1 flex flex-col justify-between">
+            {/* Health index card */}
+            <div className="p-3 border border-[#d4d4d4] rounded bg-gray-50 text-center relative">
+              <p className="text-[8px] text-gray-500 uppercase tracking-widest font-bold">Overall Building Health</p>
+              <p className="text-3xl font-black font-mono mt-1 text-black">{metrics.healthScore} / 100</p>
+              <span className={`text-[8px] px-1.5 py-0.5 border inline-block mt-2 font-bold rounded-sm ${metrics.healthScore < 80 ? 'bg-black text-white border-black animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
+                {metrics.healthScore >= 90 ? 'STRUCTURALLY SECURE' : metrics.healthScore >= 80 ? 'STABILIZED WARNING' : 'CRITICAL DEFICIT'}
+              </span>
+            </div>
 
-          {/* Risk Factors grids */}
-          <div className="space-y-2 text-[9px] font-bold">
-            <div className="flex justify-between border-b border-gray-200 pb-1">
-              <span className="text-gray-500 uppercase">Seismic Risk Rating</span>
-              <span className={seismicZone === 'Zone V' ? 'underline font-black' : ''}>
-                {seismicZone === 'Zone V' ? 'HIGH RISK' : seismicZone === 'Zone IV' ? 'MODERATE' : 'LOW RISK'}
-              </span>
-            </div>
-            <div className="flex justify-between border-b border-gray-200 pb-1">
-              <span className="text-gray-500 uppercase">Wind Sway deflection</span>
-              <span>{Number(metrics.deflectionMm) > 8 ? 'WARNING LIMIT' : 'SAFE'}</span>
-            </div>
-            <div className="flex justify-between border-b border-gray-200 pb-1">
-              <span className="text-gray-500 uppercase">Foundation Settlement</span>
-              <span className={Number(metrics.soilSafety) < 1.0 ? 'underline font-black' : ''}>
-                {Number(metrics.soilSafety) < 1.0 ? 'CRITICAL LIMIT' : 'NOMINAL'}
-              </span>
+            {/* Risk Factors grids */}
+            <div className="space-y-2 text-[9px] font-bold">
+              <div className="flex justify-between border-b border-gray-200 pb-1">
+                <span className="text-gray-500 uppercase">Seismic Risk Rating</span>
+                <span className={seismicZone === 'Zone V' ? 'underline font-black text-black' : 'text-gray-700'}>
+                  {seismicZone === 'Zone V' ? 'HIGH RISK' : seismicZone === 'Zone IV' ? 'MODERATE' : 'LOW RISK'}
+                </span>
+              </div>
+              <div className="flex justify-between border-b border-gray-200 pb-1">
+                <span className="text-gray-500 uppercase">Wind Sway deflection</span>
+                <span className="text-gray-700">{Number(metrics.deflectionMm) > 8 ? 'WARNING LIMIT' : 'SAFE'}</span>
+              </div>
+              <div className="flex justify-between border-b border-gray-200 pb-1">
+                <span className="text-gray-500 uppercase">Foundation Settlement</span>
+                <span className={Number(metrics.soilSafety) < 1.0 ? 'underline font-black text-black' : 'text-gray-700'}>
+                  {Number(metrics.soilSafety) < 1.0 ? 'CRITICAL LIMIT' : 'NOMINAL'}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </LevelCard>
 
         {/* Senior AI Compliance Inspector */}
-        <div className="border-2 border-black p-4 bg-white space-y-3 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[9px] flex items-center gap-1">
-            <ShieldAlert className="h-3.5 w-3.5 text-black" /> Senior AI Code Compliance
-          </p>
-          <div className="space-y-2 max-h-[180px] overflow-y-auto pr-1">
+        <LevelCard
+          icon={ShieldAlert}
+          title="Senior AI Code Compliance"
+          footerText="Real-time compliance validation checking against ACI & IS codes"
+        >
+          <div className="space-y-2 max-h-[160px] overflow-y-auto pr-1">
             {seismicComplianceWarning && (
-              <div className="p-2 border border-black bg-white text-[8px] space-y-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-center border-b border-black pb-0.5">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+                <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §18.7</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5">NON-COMPLIANT</span>
+                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">NON-COMPLIANT</span>
                 </div>
-                <p className="font-bold text-black uppercase">Seismic Confinement Warning</p>
-                <p className="text-[7.5px] text-gray-700 font-semibold uppercase leading-normal">
+                <p className="font-bold text-gray-800 uppercase">Seismic Confinement Warning</p>
+                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
                   Seismic zone ({seismicZone}) and structural grade ({concreteGrade}) are non-compliant under high hazard conditions. Confinement failure risk.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-300 pt-0.5 mt-0.5">RECOM: Upgrade concrete spec to M30/M40.</p>
+                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Upgrade concrete spec to M30/M40.</p>
               </div>
             )}
             {slendernessWarning && (
-              <div className="p-2 border border-black bg-white text-[8px] space-y-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-center border-b border-black pb-0.5">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+                <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">IS 456 CL. 26.5</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5">WARNING LIMIT</span>
+                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">WARNING LIMIT</span>
                 </div>
-                <p className="font-bold text-black uppercase">Column Slenderness Spike</p>
-                <p className="text-[7.5px] text-gray-700 font-semibold uppercase leading-normal">
+                <p className="font-bold text-gray-800 uppercase">Column Slenderness Spike</p>
+                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
                   Column width ({columnWidth}mm) fails safety limit for a {floors}-story system. Buckling force limit critical ({metrics.bucklingK_N} kN).
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-300 pt-0.5 mt-0.5">RECOM: Expand column size to 500mm+.</p>
+                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Expand column size to 500mm+.</p>
               </div>
             )}
             {beamDeflectionWarning && (
-              <div className="p-2 border border-black bg-white text-[8px] space-y-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-center border-b border-black pb-0.5">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+                <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §10.7</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5">STRESS THRESHOLD</span>
+                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">STRESS THRESHOLD</span>
                 </div>
-                <p className="font-bold text-black uppercase">Flexural Deflection Span</p>
-                <p className="text-[7.5px] text-gray-700 font-semibold uppercase leading-normal">
+                <p className="font-bold text-gray-800 uppercase">Flexural Deflection Span</p>
+                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
                   Deep beam section depth ({beamDepth}mm) is non-compliant under high live loading ({liveLoad} kN). Shear limit risk.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-300 pt-0.5 mt-0.5">RECOM: Increase beam depth to 600mm+.</p>
+                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Increase beam depth to 600mm+.</p>
               </div>
             )}
             {floodSaturationWarning && (
-              <div className="p-2 border border-black bg-white text-[8px] space-y-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-center border-b border-black pb-0.5">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+                <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">IS 456 TAB. 19</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5">CRITICAL EXPOSURE</span>
+                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">CRITICAL EXPOSURE</span>
                 </div>
-                <p className="font-bold text-black uppercase">Sub-grade Moisture Saturation</p>
-                <p className="text-[7.5px] text-gray-700 font-semibold uppercase leading-normal">
+                <p className="font-bold text-gray-800 uppercase">Sub-grade Moisture Saturation</p>
+                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
                   Soil type ({soilType}) saturated under {floodHeight}m flooding. Bearing index is critical ({metrics.soilSafety}). Piping danger.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-300 pt-0.5 mt-0.5">RECOM: Deploy deep foundation piles, waterproof.</p>
+                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Deploy deep foundation piles, waterproof.</p>
               </div>
             )}
             {thermalModulusWarning && (
-              <div className="p-2 border border-black bg-white text-[8px] space-y-1 shadow-[1px_1px_0px_rgba(0,0,0,1)]">
-                <div className="flex justify-between items-center border-b border-black pb-0.5">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+                <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §21.2.2</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5">THERMAL FAILURE</span>
+                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">THERMAL FAILURE</span>
                 </div>
-                <p className="font-bold text-black uppercase">Thermal Modulus Sagging</p>
-                <p className="text-[7.5px] text-gray-700 font-semibold uppercase leading-normal">
+                <p className="font-bold text-gray-800 uppercase">Thermal Modulus Sagging</p>
+                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
                   Concrete strength modulus deteriorated under fire temp ({fireTemp}°C). Elastic safety factor compromised.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-300 pt-0.5 mt-0.5">RECOM: Apply sacrificial fireproofing, activate sprinklers.</p>
+                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Apply sacrificial fireproofing, activate sprinklers.</p>
               </div>
             )}
             {!seismicComplianceWarning && !slendernessWarning && !beamDeflectionWarning && !floodSaturationWarning && !thermalModulusWarning && (
-              <div className="p-3 border border-dashed border-gray-300 text-center text-gray-400 text-[8px] font-bold uppercase">
+              <div className="p-3 border border-dashed border-gray-300 rounded text-center text-gray-400 text-[8px] font-bold uppercase select-none">
                 &radic; ALL CODES FULLY COMPLIANT (ACI 318 & IS 456)
               </div>
             )}
           </div>
-        </div>
+        </LevelCard>
 
         {/* Math Calculation Log display */}
-        <div className="border-2 border-black p-4 bg-white space-y-2 flex-1 flex flex-col justify-between shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <p className="font-bold border-b border-black pb-1 uppercase text-[9px] flex items-center gap-1.5">
-            <Sigma className="h-3.5 w-3.5" /> Engineering Calculations Log
-          </p>
-          <div className="flex-1 bg-gray-50 border border-black p-2 font-mono text-[7.5px] leading-normal overflow-y-auto max-h-[160px] space-y-1.5 select-all pr-1">
+        <LevelCard
+          icon={Sigma}
+          title="Engineering Calculations Log"
+          footerText="Real-time mathematical telemetry logged to core SSOT"
+        >
+          <div className="flex-grow bg-gray-50 border border-[#d4d4d4] rounded-[3px] p-2 font-mono text-[7.5px] leading-normal overflow-y-auto max-h-[130px] space-y-1.5 select-all pr-1">
             {calculationFeed.map((feed) => (
               <div key={feed.id} className="border-b border-gray-200 last:border-b-0 pb-1 text-gray-700">
                 <span className="text-[6.5px] border border-black bg-black text-white px-0.5 rounded font-black mr-1 uppercase">
@@ -1576,23 +1627,27 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
             ))}
           </div>
-        </div>
+        </LevelCard>
 
         {/* AI validation controls trigger */}
-        <div className="border-2 border-black p-4 bg-white space-y-3 shadow-[2px_2px_0px_rgba(0,0,0,1)]">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[9px] flex items-center gap-1">
-            <Cpu className="h-3.5 w-3.5" /> AI Recommendation Actions
-          </p>
-          <button
-            onClick={triggerAIRecommendationLog}
-            className="w-full py-2 bg-black text-white hover:bg-white hover:text-black border-2 border-black font-black uppercase text-[8.5px] tracking-wider text-center cursor-pointer transition-colors shadow-[2px_2px_0px_rgba(0,0,0,0.1)]"
-          >
-            Log Safety upgrades Ticket
-          </button>
-        </div>
+        <LevelCard
+          icon={Cpu}
+          title="AI Recommendation Actions"
+          footerText="Commit safety upgrades tickets to corporate compliance logs"
+        >
+          <div className="space-y-3">
+            <button
+              onClick={triggerAIRecommendationLog}
+              className="w-full btn-skeuo-dark text-[8.5px] uppercase tracking-wider text-center"
+            >
+              Log Safety Upgrades Ticket
+            </button>
+          </div>
+        </LevelCard>
 
       </div>
 
     </div>
   );
 }
+

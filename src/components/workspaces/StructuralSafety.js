@@ -208,9 +208,10 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
       <div className="xl:col-span-2 space-y-6">
         
         {/* Dynamic Parameter Sliders */}
-        <div className="border-2 border-black p-4 bg-white space-y-4">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Layers className="h-3.5 w-3.5" />
+            <span>
               {activeTab === 'load' && 'ENVIRONMENTAL WIND & SEISMIC INDEX'}
               {activeTab === 'stability' && 'COLUMN INERTIA & BEAM LOADS'}
               {activeTab === 'behavior' && 'FATIGUE CYCLES STRESS AMPLITUDE'}
@@ -219,8 +220,9 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               {activeTab === 'corrosion' && 'ELECTROCHEMICAL POTENTIAL'}
               {activeTab === 'dynamic' && 'LUMPED MASS & SHEAR STIFFNESS'}
             </span>
-            <span className="text-[8px] bg-black text-white px-1 py-0.5">STRUCTURAL INPUTS</span>
+            <span className="ml-auto text-[8px] bg-black text-white px-1 py-0.5">STRUCTURAL INPUTS</span>
           </div>
+          <div className="zoho-card-body">
 
           {activeTab === 'load' && (
             <div className="space-y-3">
@@ -526,7 +528,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               </div>
             </div>
           )}
-
+          </div>
         </div>
 
         {/* Diagnostic Structural Node trigger */}
@@ -543,11 +545,13 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
       <div className="xl:col-span-2 space-y-6">
         
         {/* Real-time Math Output Card */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">DERIVED MATH VECTORS</span>
-            <span className="text-[8px] bg-black text-white px-1">OUTPUTS</span>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Activity className="h-3.5 w-3.5" />
+            <span>DERIVED MATH VECTORS</span>
+            <span className="ml-auto text-[8px] bg-black text-white px-1">OUTPUTS</span>
           </div>
+          <div className="zoho-card-body">
 
           {activeTab === 'load' && (
             <div className="space-y-2">
@@ -691,15 +695,19 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               </p>
             </div>
           )}
-
+          </div>
         </div>
 
         {/* Structural Deformed Frame Plot CAD layout */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">STRUCTURAL VECTOR GRAPHIC PLOT</p>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <Activity className="h-3.5 w-3.5" />
+            STRUCTURAL VECTOR GRAPHIC PLOT
+          </div>
+          <div className="zoho-card-body">
           
           <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
-            <svg className="absolute inset-0 w-full h-full">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 520 180">
               <rect width="100%" height="100%" fill="url(#grid)" />
 
               {activeTab === 'stability' ? (
@@ -754,11 +762,16 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               )}
             </svg>
           </div>
+          </div>
         </div>
 
         {/* CRM Compliance Lock In system */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">CRM INTEGRITY LOCK-IN</p>
+        <div className="zoho-card">
+          <div className="zoho-card-header">
+            <CheckCircle2 className="h-3.5 w-3.5" />
+            CRM INTEGRITY LOCK-IN
+          </div>
+          <div className="zoho-card-body">
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
@@ -797,6 +810,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               {crmSuccess}
             </div>
           )}
+          </div>
         </div>
 
       </div>

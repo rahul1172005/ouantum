@@ -99,7 +99,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         { label: 'Materials Intelligence Lab', type: 'table', workspace: WORKSPACES.MATERIALS },
         { label: 'Structural Safety & Stability', type: 'table', workspace: WORKSPACES.STRUCTURAL_SAFETY },
         { label: 'Structural Analysis Studio', type: 'chart', workspace: WORKSPACES.STRUCTURAL },
-        { label: 'NDT Intelligence Lab', type: 'chart', workspace: WORKSPACES.NDT }
+        { label: 'NDT Intelligence Lab', type: 'chart', workspace: WORKSPACES.NDT },
+        { label: 'AI Defect Detection', type: 'chart', workspace: WORKSPACES.DEFECT_DETECTION },
       ]
     },
     {
@@ -110,7 +111,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         { label: 'Digital Twin Engine', type: 'dashboard', workspace: WORKSPACES.TWIN },
         { label: 'AI Structural Validation', type: 'dashboard', workspace: WORKSPACES.VALIDATION },
         { label: 'Infrastructure GIS Engine', type: 'table', workspace: WORKSPACES.GIS },
-        { label: 'Emergency Response System', type: 'dashboard', workspace: WORKSPACES.EMERGENCY }
+        { label: 'Emergency Response System', type: 'dashboard', workspace: WORKSPACES.EMERGENCY },
+        { label: 'Digital Site Inspection', type: 'table', workspace: WORKSPACES.SITE_INSPECTION },
+        { label: 'Construction Monitoring', type: 'chart', workspace: WORKSPACES.CONSTRUCTION_MONITOR },
       ]
     },
     {
@@ -118,7 +121,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       label: 'Systems & Settings',
       items: [
         { label: 'Audit Intelligence Engine', type: 'table', workspace: WORKSPACES.AUDIT },
-        { label: 'Predictive AI Engine', type: 'chart', workspace: WORKSPACES.PREDICTIVE }
+        { label: 'Predictive AI Engine', type: 'chart', workspace: WORKSPACES.PREDICTIVE },
+        { label: 'Standards & Compliance Engine', type: 'table', workspace: WORKSPACES.COMPLIANCE_ENGINE },
       ]
     }
   ];
@@ -143,28 +147,40 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
   return (
     <aside 
-      className={`fixed top-16 left-0 h-[calc(100vh-4rem)] z-40 bg-[#f4f6f8] flex flex-col transition-all duration-200 ${
+      className={`fixed top-16 left-0 h-[calc(100vh-4rem)] z-40 bg-[#ffffff] flex flex-col transition-all duration-200 ${
         isOpen ? 'w-60' : 'w-14'
-      } border-r border-[#cccccc] select-none`}
+      } border-r border-[#eaeded] select-none`}
     >
       {isOpen ? (
         <div className="flex flex-col flex-1 overflow-hidden">
           
-          {/* 1. Explorer Tab Title */}
-          <div className="px-3 py-2 bg-[#eaecee] border-b border-[#cccccc] flex items-center gap-1.5 font-bold text-gray-700 text-xs">
-            <YellowFolderIcon />
-            <span>Explorer</span>
+          {/* 1. Explorer Tab Title with Collapse Arrow Button */}
+          <div className="px-4 py-3 bg-[#ffffff] border-b border-[#eaeded] flex items-center justify-between font-bold text-gray-700 text-xs">
+            <div className="flex items-center gap-1.5">
+              <YellowFolderIcon />
+              <span className="text-gray-800 text-[12px] font-semibold">Explorer</span>
+            </div>
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="p-0.5 hover:bg-neutral-100 rounded-sm text-gray-400 hover:text-gray-800 transition-colors"
+              title="Collapse Sidebar"
+              style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
           </div>
 
           {/* 2. Search tables/reports bar */}
-          <div className="p-2.5 border-b border-[#dddddd] bg-[#fdfdfd] space-y-2">
+          <div className="p-3 border-b border-[#eaeded] bg-[#ffffff] space-y-2">
             <div className="relative flex items-center">
               <input
                 type="text"
                 placeholder="Search Tables/Reports"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full h-6 px-1.5 pr-6 bg-white border border-[#b5b5b5] text-xs focus:outline-none focus:border-[#888888] rounded-sm"
+                className="w-full h-8 px-2 pr-6 bg-white border border-[#aab7b8] text-xs focus:outline-none focus:border-[#0073bb] rounded"
               />
               <button className="absolute right-1.5 p-0.5 icon-btn hover:bg-gray-100 rounded-sm">
                 <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +196,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 <select 
                   value={viewBy}
                   onChange={(e) => setViewBy(e.target.value)}
-                  className="bg-white border border-[#cccccc] rounded-sm py-0.5 px-1 font-medium text-[11px] outline-none"
+                  className="bg-white border border-[#aab7b8] rounded py-0.5 px-1 font-medium text-[11px] outline-none"
                 >
                   <option value="Folder">Folder</option>
                   <option value="Type">Type</option>
@@ -189,19 +205,19 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               <a 
                 href="#refresh" 
                 onClick={handleRefresh} 
-                className="text-[#0033cc] hover:underline"
+                className="text-gray-500 hover:text-gray-800 hover:underline"
               >
                 Refresh
               </a>
             </div>
 
             {/* 4. Create New Folder Link */}
-            <div className="pt-1.5 border-t border-[#f0f0f0] flex items-center gap-1.5">
+            <div className="pt-2 border-t border-[#eaeded] flex items-center gap-1.5">
               <FolderNewIcon />
               <a 
                 href="#create-folder" 
                 onClick={(e) => { e.preventDefault(); alert("Create Folder prompt: Feature restricted under role governance (SSOT)."); }}
-                className="text-[#0033cc] hover:underline text-[11px] font-medium"
+                className="text-gray-600 hover:text-gray-800 hover:underline text-[11px] font-medium"
               >
                 Create New Folder
               </a>
@@ -210,7 +226,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           </div>
 
           {/* 5. Nav Tree Options */}
-          <nav className="flex-1 px-2.5 py-2 overflow-y-auto space-y-1 bg-[#f4f6f8]">
+          <nav className="flex-1 px-1 py-2 overflow-y-auto space-y-1 bg-[#ffffff]">
             {folders.map((folder) => {
               const collapsed = collapsedFolders[folder.key];
               
@@ -227,7 +243,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                   {/* Folder Group Header */}
                   <div 
                     onClick={() => toggleFolder(folder.key)}
-                    className="sidebar-folder cursor-pointer hover:bg-gray-200/50 rounded-sm py-1 px-1 transition-colors flex items-center select-none"
+                    className="sidebar-folder cursor-pointer hover:bg-neutral-100 rounded-sm py-1 px-3 transition-colors flex items-center select-none"
                   >
                     <CollapseIcon collapsed={collapsed} />
                     <span className="truncate">{folder.label}</span>
@@ -235,7 +251,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
                   {/* Folder Items */}
                   {!collapsed && (
-                    <div className="pl-4 space-y-0.5">
+                    <div className="pl-2 space-y-0.5">
                       {filteredItems.map((item, idx) => {
                         const isActive = currentWorkspace === item.workspace;
                         return (
@@ -244,7 +260,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                             onClick={() => setWorkspace(item.workspace)}
                             className={`sidebar-btn ${isActive ? 'active' : ''}`}
                           >
-                            <span className="mr-1.5">{getWorkspaceIcon(item.type)}</span>
+                            <span className="mr-2">{getWorkspaceIcon(item.type)}</span>
                             <span className="truncate">{item.label}</span>
                           </button>
                         );
@@ -259,14 +275,14 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         </div>
       ) : (
         /* Collapsed Sidebar View (Simplified vertical icons list) */
-        <nav className="flex-1 px-1 py-3 space-y-3 overflow-y-auto flex flex-col items-center">
-          <button onClick={() => setIsOpen(true)} className="p-1 hover:bg-[#eaecee] rounded-sm topbar-btn">
-            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+        <nav className="flex-1 px-1 py-3 space-y-3 overflow-y-auto flex flex-col items-center bg-[#ffffff]">
+          <button onClick={() => setIsOpen(true)} className="p-1.5 hover:bg-neutral-100 rounded text-gray-500 hover:text-gray-800 topbar-btn">
+            <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
             </svg>
           </button>
           
-          <div className="w-8 border-b border-[#cccccc] my-1"></div>
+          <div className="w-8 border-b border-[#eaeded] my-1"></div>
           
           {folders.flatMap(f => f.items).map((item, index) => {
             const isActive = currentWorkspace === item.workspace;
@@ -275,9 +291,10 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 key={`${item.label}-${index}`}
                 onClick={() => setWorkspace(item.workspace)}
                 title={item.label}
-                className={`p-2 rounded-sm transition-colors topbar-btn ${
-                  isActive ? 'bg-[#e9f0f8] border border-[#a8c3e5]' : 'hover:bg-[#eaecee]'
+                className={`p-2 rounded-sm transition-colors topbar-btn flex items-center justify-center ${
+                  isActive ? 'bg-neutral-100 border-l-3 border-[#ec7211]' : 'hover:bg-neutral-100'
                 }`}
+                style={{ width: '38px', height: '38px', borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}
               >
                 {getWorkspaceIcon(item.type)}
               </button>
