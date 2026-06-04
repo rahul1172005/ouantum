@@ -20,12 +20,12 @@ export function NotificationDropdown() {
   return (
     <div className="relative">
       <button
-        className="relative w-8 h-8 flex items-center justify-center rounded hover:bg-surface-hover text-text-secondary cursor-pointer border-none bg-transparent"
+        className="relative w-8 h-8 flex items-center justify-center rounded-[8px] hover:bg-surface-hover text-text-secondary cursor-pointer border-none bg-transparent"
         onClick={() => setOpen(o => !o)}
       >
         <Bell className="w-4 h-4" />
         {unread > 0 && (
-          <span className="absolute top-1 right-1 w-2 h-2 bg-btn-danger rounded-full" />
+          <span className="absolute top-1 right-1 w-2 h-2 bg-btn-danger rounded-[8px]-full" />
         )}
       </button>
 

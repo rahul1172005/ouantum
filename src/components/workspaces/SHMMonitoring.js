@@ -156,7 +156,7 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
                 }`}
               >
                 <span>{sensor}</span>
-                <span className={`h-2.5 w-2.5 rounded-full border ${activeSensor === sensor ? 'bg-white border-white' : 'bg-black border-border-default'}`}></span>
+                <span className={`h-2.5 w-2.5 rounded-[8px]-full border ${activeSensor === sensor ? 'bg-white border-white' : 'bg-black border-border-default'}`}></span>
               </button>
             ))}
           </div>

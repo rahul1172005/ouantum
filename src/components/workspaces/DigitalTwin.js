@@ -507,7 +507,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
           <p className="font-bold uppercase tracking-wider text-[12px] flex items-center gap-1.5">
             <Clock className="h-4 w-4" /> AI Timeline Travel (Degradation)
           </p>
-          <div className="flex border border-border-default bg-white rounded overflow-hidden">
+          <div className="flex border border-border-default bg-white rounded-[8px] overflow-hidden">
             {['Present', '+6 Months', '+1 Year', '+5 Years', '+20 Years'].map((step) => (
               <button
                 key={step}

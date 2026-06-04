@@ -61,7 +61,7 @@ export default function HelpGuide({ isOpen, onClose }) {
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 border border-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] rounded-[4px] transition-all flex items-center justify-center cursor-pointer bg-white text-[#545b64]"
+            className="p-1.5 border border-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] rounded-[8px]-[4px] transition-all flex items-center justify-center cursor-pointer bg-white text-[#545b64]"
           >
             <X className="h-4 w-4" />
           </button>
@@ -78,7 +78,7 @@ export default function HelpGuide({ isOpen, onClose }) {
             
             <button 
               onClick={() => setActiveSection(SECTIONS.WELCOME)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.WELCOME 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -90,7 +90,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.NAVIGATION)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.NAVIGATION 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -102,7 +102,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.TABLES)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.TABLES 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -114,7 +114,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.LABS)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.LABS 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -126,7 +126,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.IOT)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.IOT 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -138,7 +138,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.CIVIL_LEVELS)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.CIVIL_LEVELS 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -150,7 +150,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.SYSTEMS)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.SYSTEMS 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -162,7 +162,7 @@ export default function HelpGuide({ isOpen, onClose }) {
 
             <button 
               onClick={() => setActiveSection(SECTIONS.COMMANDS)}
-              className={`w-full text-left text-xs px-3 py-2 rounded-none transition-all flex items-center gap-2 cursor-pointer ${
+              className={`w-full text-left text-xs px-3 py-2 rounded-[8px]-none transition-all flex items-center gap-2 cursor-pointer ${
                 activeSection === SECTIONS.COMMANDS 
                   ? 'bg-[#f1f3f3] text-[#16191f] font-bold border-l-[3px] border-[#ec7211] pl-[9px]' 
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
@@ -172,7 +172,7 @@ export default function HelpGuide({ isOpen, onClose }) {
               <span>AI Command Console</span>
             </button>
 
-            <div className="mt-auto p-3 border border-[#eaeded] bg-[#f2f3f3] rounded-[4px] text-[12px] text-[#545b64] font-sans leading-relaxed">
+            <div className="mt-auto p-3 border border-[#eaeded] bg-[#f2f3f3] rounded-[8px]-[4px] text-[12px] text-[#545b64] font-sans leading-relaxed">
               <span className="font-bold text-[#16191f] block mb-0.5">Quick Directives</span>
               Type Ctrl + K to launch Command directives anytime.
             </div>
@@ -198,18 +198,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                 <div className="space-y-3">
                   <h4 className="font-bold text-[#16191f] text-[13px] uppercase tracking-wider font-sans">Core Operating Rules:</h4>
                   
-                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] rounded-[4px] bg-[#ebf3fb] space-y-1.5 font-sans">
+                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] rounded-[8px]-[4px] bg-[#ebf3fb] space-y-1.5 font-sans">
                     <p className="font-bold text-[#16191f] text-[13px]">Rule 1: Single Source of Truth (SSOT)</p>
                     <p className="text-[#545b64] text-[12px] leading-relaxed">Every contact, deal, ticket, sensor feed, and document must belong to a canonical Account (example: MSRDC). Isolated orphan records are programmatically blocked to preserve database integrity.</p>
                   </div>
 
-                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#ec7211] rounded-[4px] bg-[#fffbf7] space-y-1.5 font-sans">
+                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#ec7211] rounded-[8px]-[4px] bg-[#fffbf7] space-y-1.5 font-sans">
                     <p className="font-bold text-[#16191f] text-[13px]">Rule 2: AI Must Assist, Not Decide</p>
                     <p className="text-[#545b64] text-[12px] leading-relaxed">Artificial intelligence processes live strain feeds, models crack propagation, and highlights critical alarms, but the final safety validation checks and audit records require manual engineering signatures.</p>
                   </div>
                 </div>
 
-                <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] bg-[#ebf3fb] rounded-[4px] text-[#16191f] font-sans">
+                <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] bg-[#ebf3fb] rounded-[8px]-[4px] text-[#16191f] font-sans">
                   <span className="font-bold block mb-1 text-[13px]">Role-Based Access Control (RBAC) Switcher</span>
                   <span className="text-[12px] text-[#545b64]">Access is governed by zero-trust Role-Based Access Control (RBAC). Use the Scope switcher in the Topbar to switch access levels (example: Admin, Sales/Ops, Viewer) to test view limitations.</span>
                 </div>
@@ -263,10 +263,10 @@ export default function HelpGuide({ isOpen, onClose }) {
 
                 <div className="space-y-4">
                   {/* Executive Overview */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Executive Overview</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[8px]-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -283,10 +283,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Civil & Infrastructure OS */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Civil & Infrastructure OS</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[8px]-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -303,10 +303,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Project Lifecycle Intel */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Project Lifecycle Intel</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[8px]-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -323,10 +323,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Reporting & Intel Studio */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. Reporting & Intel Studio</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[8px]-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -357,10 +357,10 @@ export default function HelpGuide({ isOpen, onClose }) {
 
                 <div className="space-y-4">
                   {/* Materials Intelligence Lab */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Materials Intelligence Lab</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[8px]-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -377,10 +377,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Structural Safety & Stability */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Structural Safety & Stability</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[8px]-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -397,10 +397,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Structural Analysis Studio */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Structural Analysis Studio</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[8px]-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -417,10 +417,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* NDT Intelligence Lab */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. NDT Intelligence Lab</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[8px]-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -437,10 +437,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* AI Defect Detection */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">5. AI Defect Detection</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[8px]-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -471,10 +471,10 @@ export default function HelpGuide({ isOpen, onClose }) {
 
                 <div className="space-y-4">
                   {/* SHM Monitoring Center */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. SHM Monitoring Center</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -491,10 +491,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Digital Twin Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Digital Twin Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -511,10 +511,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* AI Structural Validation */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. AI Structural Validation & Simulation Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -531,10 +531,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Infrastructure GIS Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. Infrastructure GIS Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -551,10 +551,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Emergency Response System */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">5. Emergency Response System</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -571,10 +571,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Digital Site Inspection */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">6. Digital Site Inspection & NCR</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -591,10 +591,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Construction Monitoring */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">7. Construction Progress Monitoring</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -611,10 +611,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Geotechnical & Hydrology Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">8. Geotechnical & Hydrology Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[8px]-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -646,7 +646,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                 <div className="space-y-5">
                   
                   {/* Level 1 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 1: Pre-Construction Intel</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -663,7 +663,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 2 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 2: Design & Planning</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -680,7 +680,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 3 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 3: Procurement Logistics</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -697,7 +697,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 4 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 4: Execution Intelligence</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -714,7 +714,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 5 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 5: Advanced QA/QC LIMS</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -731,7 +731,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 6 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 6: Live Operations SCADA</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -748,7 +748,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 7 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 7: Disaster Simulation</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -765,7 +765,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 8 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 8: Financial ERP Engine</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -782,7 +782,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 9 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 9: Post-Construction Life</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -799,7 +799,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 10 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 10: National Smart City OS</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -816,7 +816,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Level 11 */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 11: Future Generative AI</span>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -848,10 +848,10 @@ export default function HelpGuide({ isOpen, onClose }) {
 
                 <div className="space-y-4">
                   {/* Audit Intelligence Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Audit Intelligence Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[8px]-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -868,10 +868,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Predictive AI Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Predictive AI Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[8px]-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -888,10 +888,10 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
 
                   {/* Standards & Compliance Engine */}
-                  <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
+                  <div className="p-4 border border-[#eaeded] rounded-[8px]-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Standards & Compliance Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[8px]-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
                       <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
@@ -924,7 +924,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   Ouantum OS provides a keyboard-driven search console to easily search engineering files, swap roles, and execute diagnostics directives.
                 </p>
 
-                <div className="p-4 border border-[#eaeded] bg-[#f2f3f3] rounded-[4px] space-y-3 text-[13px] leading-relaxed text-[#16191f] font-sans">
+                <div className="p-4 border border-[#eaeded] bg-[#f2f3f3] rounded-[8px]-[4px] space-y-3 text-[13px] leading-relaxed text-[#16191f] font-sans">
                   <span className="font-bold text-[#16191f] block text-[13px]">HOW IT IS USED:</span>
                   <div>
                     <strong className="text-[#545b64] text-[12px] block font-bold">Step 1: Open the Console</strong>

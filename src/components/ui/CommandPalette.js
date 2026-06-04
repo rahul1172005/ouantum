@@ -85,7 +85,7 @@ export default function CommandPalette() {
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-[#00070d]/40 backdrop-blur-sm">
       <div 
         ref={containerRef}
-        className="w-full max-w-2xl rounded-[4px] border border-[#d5dbdb] bg-[#ffffff] shadow-[0_4px_20px_0_rgba(0,28,36,0.3)] overflow-hidden animate-in fade-in zoom-in-95 duration-100 text-[#16191f] font-sans"
+        className="w-full max-w-2xl rounded-[8px]-[4px] border border-[#d5dbdb] bg-[#ffffff] shadow-[0_4px_20px_0_rgba(0,28,36,0.3)] overflow-hidden animate-in fade-in zoom-in-95 duration-100 text-[#16191f] font-sans"
       >
         {/* Search header bar */}
         <div className="flex items-center px-4 border-b border-[#eaeded] h-14 bg-[#ffffff]">
@@ -100,7 +100,7 @@ export default function CommandPalette() {
           />
           <button 
             onClick={() => toggleCommandPalette(false)}
-            className="p-1.5 border border-[#545b64] text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] rounded-[4px] transition-colors flex items-center justify-center bg-white cursor-pointer"
+            className="p-1.5 border border-[#545b64] text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] rounded-[8px]-[4px] transition-colors flex items-center justify-center bg-white cursor-pointer"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -119,13 +119,13 @@ export default function CommandPalette() {
                   <button 
                     key={index}
                     onClick={() => handleAction(cmd.action, cmd.value)}
-                    className="flex items-center justify-between p-2.5 rounded-[4px] border border-[#d5dbdb] bg-[#ffffff] hover:bg-[#f1f3f3] hover:border-[#aab7b8] text-left text-xs font-semibold text-[#16191f] transition-all group min-w-0 cursor-pointer"
+                    className="flex items-center justify-between p-2.5 rounded-[8px]-[4px] border border-[#d5dbdb] bg-[#ffffff] hover:bg-[#f1f3f3] hover:border-[#aab7b8] text-left text-xs font-semibold text-[#16191f] transition-all group min-w-0 cursor-pointer"
                   >
                     <span className="flex items-center gap-2 min-w-0 flex-1">
                       <Icon className="h-3.5 w-3.5 text-[#545b64] flex-shrink-0" /> 
                       <span className="truncate">{cmd.label}</span>
                     </span>
-                    <span className="text-[12px] border border-[#aab7b8] bg-[#f2f3f3] text-[#545b64] px-1.5 py-0.5 rounded-[4px] flex-shrink-0 ml-2 group-hover:border-[#545b64] transition-colors font-bold">
+                    <span className="text-[12px] border border-[#aab7b8] bg-[#f2f3f3] text-[#545b64] px-1.5 py-0.5 rounded-[8px]-[4px] flex-shrink-0 ml-2 group-hover:border-[#545b64] transition-colors font-bold">
                       EXEC
                     </span>
                   </button>
@@ -143,7 +143,7 @@ export default function CommandPalette() {
                   <div 
                     key={a.id} 
                     onClick={() => handleAction('workspace', WORKSPACES.EXECUTIVE)}
-                    className="flex items-center justify-between p-2.5 border border-transparent hover:border-[#aab7b8] bg-[#f2f3f3] hover:bg-[#ffffff] rounded-[4px] cursor-pointer transition-all text-xs text-[#16191f]"
+                    className="flex items-center justify-between p-2.5 border border-transparent hover:border-[#aab7b8] bg-[#f2f3f3] hover:bg-[#ffffff] rounded-[8px]-[4px] cursor-pointer transition-all text-xs text-[#16191f]"
                   >
                     <span className="flex items-center gap-2 font-semibold text-[#16191f]"><Folder className="h-3.5 w-3.5 text-[#545b64] flex-shrink-0" /> <span className="truncate">{a.name}</span></span>
                     <span className="text-[12px] text-[#545b64] flex-shrink-0 ml-2">{a.location}</span>

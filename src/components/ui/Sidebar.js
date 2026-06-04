@@ -162,7 +162,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="p-0.5 hover:bg-neutral-100 rounded-sm text-gray-400 hover:text-gray-800 transition-colors"
+              className="p-0.5 hover:bg-neutral-100 rounded-[8px]-[8px] text-gray-400 hover:text-gray-800 transition-colors"
               title="Collapse Sidebar"
               style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
@@ -180,9 +180,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 placeholder="Search Tables/Reports"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full h-8 px-2 pr-6 bg-white border border-[#aab7b8] text-xs focus:outline-none focus:border-[#0073bb] rounded"
+                className="w-full h-8 px-2 pr-6 bg-white border border-[#aab7b8] text-xs focus:outline-none focus:border-[#0073bb] rounded-[8px]"
               />
-              <button className="absolute right-1.5 p-0.5 icon-btn hover:bg-gray-100 rounded-sm">
+              <button className="absolute right-1.5 p-0.5 icon-btn hover:bg-gray-100 rounded-[8px]-[8px]">
                 <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -196,7 +196,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 <select 
                   value={viewBy}
                   onChange={(e) => setViewBy(e.target.value)}
-                  className="bg-white border border-[#aab7b8] rounded py-0.5 px-1 font-medium text-[12px] outline-none"
+                  className="bg-white border border-[#aab7b8] rounded-[8px] py-0.5 px-1 font-medium text-[12px] outline-none"
                 >
                   <option value="Folder">Folder</option>
                   <option value="Type">Type</option>
@@ -243,7 +243,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                   {/* Folder Group Header */}
                   <div 
                     onClick={() => toggleFolder(folder.key)}
-                    className="sidebar-folder cursor-pointer hover:bg-neutral-100 rounded-sm py-1 px-3 transition-colors flex items-center select-none"
+                    className="sidebar-folder cursor-pointer hover:bg-neutral-100 rounded-[8px]-[8px] py-1 px-3 transition-colors flex items-center select-none"
                   >
                     <CollapseIcon collapsed={collapsed} />
                     <span className="truncate">{folder.label}</span>
@@ -276,7 +276,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       ) : (
         /* Collapsed Sidebar View (Simplified vertical icons list) */
         <nav className="flex-1 px-1 py-3 space-y-3 overflow-y-auto flex flex-col items-center bg-[#ffffff]">
-          <button onClick={() => setIsOpen(true)} className="p-1.5 hover:bg-neutral-100 rounded text-gray-500 hover:text-gray-800 topbar-btn">
+          <button onClick={() => setIsOpen(true)} className="p-1.5 hover:bg-neutral-100 rounded-[8px] text-gray-500 hover:text-gray-800 topbar-btn">
             <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
             </svg>
@@ -291,7 +291,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 key={`${item.label}-${index}`}
                 onClick={() => setWorkspace(item.workspace)}
                 title={item.label}
-                className={`p-2 rounded-sm transition-colors topbar-btn flex items-center justify-center ${
+                className={`p-2 rounded-[8px]-[8px] transition-colors topbar-btn flex items-center justify-center ${
                   isActive ? 'bg-neutral-100 border-l-3 border-[#ec7211]' : 'hover:bg-neutral-100'
                 }`}
                 style={{ width: '38px', height: '38px', borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}

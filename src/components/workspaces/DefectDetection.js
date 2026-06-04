@@ -120,7 +120,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
             <div className="space-y-1.5">
               {SOURCE_TYPES.map(s => (
                 <button key={s} onClick={() => setActiveSource(s)}
-                  className={`w-full text-left p-2 border text-[12px] font-bold uppercase rounded-sm transition-colors ${activeSource === s ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
+                  className={`w-full text-left p-2 border text-[12px] font-bold uppercase rounded-[8px]-[8px] transition-colors ${activeSource === s ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
                   {s}
                 </button>
               ))}
@@ -129,12 +129,12 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
 
           <LevelCard icon={Eye} title="Defect Class Filter" footerText="Filter by defect category">
             <div className="space-y-1">
-              <button onClick={() => setActiveFilter('all')} className={`w-full text-left p-1.5 border text-[12px] font-bold uppercase rounded-sm ${activeFilter === 'all' ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
+              <button onClick={() => setActiveFilter('all')} className={`w-full text-left p-1.5 border text-[12px] font-bold uppercase rounded-[8px]-[8px] ${activeFilter === 'all' ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
                 All Classes ({SIMULATED_DETECTIONS.length})
               </button>
               {DEFECT_TYPES.map(d => (
                 <button key={d.id} onClick={() => setActiveFilter(d.id)}
-                  className={`w-full text-left p-1.5 border text-[12px] font-bold rounded-sm flex items-center gap-1.5 ${activeFilter === d.id ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
+                  className={`w-full text-left p-1.5 border text-[12px] font-bold rounded-[8px]-[8px] flex items-center gap-1.5 ${activeFilter === d.id ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
                   <span style={{ width: 8, height: 8, background: d.color, display: 'inline-block', flexShrink: 0, borderRadius: 1 }} />
                   {d.label} ({SIMULATED_DETECTIONS.filter(x => x.type === d.id).length})
                 </button>
@@ -153,11 +153,11 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
               </button>
             }>
             {isAnalyzing && (
-              <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded overflow-hidden mb-2">
+              <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded-[8px] overflow-hidden mb-2">
                 <div style={{ width: `${progress}%` }} className="h-full bg-black transition-all animate-pulse" />
               </div>
             )}
-            <canvas ref={canvasRef} width={580} height={260} className="w-full border border-[#d4d4d4] rounded-sm block" />
+            <canvas ref={canvasRef} width={580} height={260} className="w-full border border-[#d4d4d4] rounded-[8px]-[8px] block" />
             {!analyzed && !isAnalyzing && <p className="text-[12px] text-gray-400 text-center">{'Click "Run AI Analysis" to detect defects'}</p>}
           </LevelCard>
 
@@ -166,7 +166,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
               {filtered.map(d => {
                 const defType = DEFECT_TYPES.find(t => t.id === d.type);
                 return (
-                  <div key={d.id} className="p-2 border border-[#d4d4d4] bg-white rounded-sm cursor-pointer hover:bg-gray-50"
+                  <div key={d.id} className="p-2 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] cursor-pointer hover:bg-gray-50"
                     onClick={() => setSelectedElement({ type: `AI Defect Detection — ${defType?.label}`, id: d.id, metrics: { Type: defType?.label, Location: d.location, Confidence: `${d.confidence}%`, Severity: d.severity, ...(d.width ? { Width: d.width, Length: d.length } : {}), ...(d.area ? { Area: d.area } : {}), ...(d.depth ? { Depth: d.depth } : {}), Action: d.action } })}>
                     <div className="flex justify-between items-center mb-1">
                       <div className="flex items-center gap-1.5">
@@ -175,7 +175,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="text-[12px] text-gray-500">{d.confidence}% conf.</span>
-                        <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${d.severity === 'CRITICAL' ? 'bg-black text-white border-border-default animate-pulse' : d.severity === 'HIGH' ? 'bg-gray-700 text-white border-gray-700' : 'border-[#d4d4d4] text-gray-700'}`}>{d.severity}</span>
+                        <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${d.severity === 'CRITICAL' ? 'bg-black text-white border-border-default animate-pulse' : d.severity === 'HIGH' ? 'bg-gray-700 text-white border-gray-700' : 'border-[#d4d4d4] text-gray-700'}`}>{d.severity}</span>
                       </div>
                     </div>
                     <p className="text-[12px] text-gray-600 uppercase">{d.location}</p>

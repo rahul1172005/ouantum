@@ -52,7 +52,7 @@ const DashboardPanelIcon = () => (
 
 const CollapseIcon = ({ collapsed }) => (
   <span 
-    className="w-3.5 h-3.5 border border-border-default bg-surface-body flex items-center justify-center text-[12px] font-bold text-text-secondary select-none mr-2 flex-shrink-0 rounded-[2px]"
+    className="w-3.5 h-3.5 border border-border-default bg-surface-body flex items-center justify-center text-[12px] font-bold text-text-secondary select-none mr-2 flex-shrink-0 rounded-[8px]-[2px]"
   >
     {collapsed ? '+' : '−'}
   </span>
@@ -153,7 +153,7 @@ export function Sidebar({ isOpen, setIsOpen }) {
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-surface-hover rounded text-text-muted hover:text-text-primary transition-colors cursor-pointer border-none bg-transparent flex items-center justify-center"
+              className="p-1 hover:bg-surface-hover rounded-[8px] text-text-muted hover:text-text-primary transition-colors cursor-pointer border-none bg-transparent flex items-center justify-center"
               title="Collapse Sidebar"
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,9 +170,9 @@ export function Sidebar({ isOpen, setIsOpen }) {
                 placeholder="Search Tables/Reports..."
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full h-8 px-2 pr-6 bg-surface-body border border-border-input text-text-primary text-xs focus:outline-none focus:border-border-focus rounded"
+                className="w-full h-8 px-2 pr-6 bg-surface-body border border-border-input text-text-primary text-xs focus:outline-none focus:border-border-focus rounded-[8px]"
               />
-              <button className="absolute right-1.5 p-0.5 hover:bg-surface-hover rounded-sm border-none bg-transparent">
+              <button className="absolute right-1.5 p-0.5 hover:bg-surface-hover rounded-[8px]-[8px] border-none bg-transparent">
                 <svg className="w-3.5 h-3.5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -186,7 +186,7 @@ export function Sidebar({ isOpen, setIsOpen }) {
                 <select 
                   value={viewBy}
                   onChange={(e) => setViewBy(e.target.value)}
-                  className="bg-surface-body border border-border-input rounded py-0.5 px-1 font-medium text-[12px] outline-none text-text-primary"
+                  className="bg-surface-body border border-border-input rounded-[8px] py-0.5 px-1 font-medium text-[12px] outline-none text-text-primary"
                 >
                   <option value="Folder">Folder</option>
                   <option value="Type">Type</option>
@@ -227,7 +227,7 @@ export function Sidebar({ isOpen, setIsOpen }) {
                   {/* Folder Group Header */}
                   <div 
                     onClick={() => toggleFolder(folder.key)}
-                    className="sidebar-folder cursor-pointer hover:bg-surface-hover rounded-sm py-1.5 px-3 transition-colors flex items-center select-none text-[12px] font-bold text-text-secondary uppercase tracking-wide"
+                    className="sidebar-folder cursor-pointer hover:bg-surface-hover rounded-[8px]-[8px] py-1.5 px-3 transition-colors flex items-center select-none text-[12px] font-bold text-text-secondary uppercase tracking-wide"
                   >
                     <CollapseIcon collapsed={collapsed} />
                     <span className="truncate">{folder.label}</span>
@@ -266,7 +266,7 @@ export function Sidebar({ isOpen, setIsOpen }) {
         <nav className="flex-1 px-1 py-3 space-y-3 overflow-y-auto flex flex-col items-center bg-surface-body">
           <button 
             onClick={() => setIsOpen(true)} 
-            className="p-2 hover:bg-surface-hover rounded text-text-secondary hover:text-text-primary cursor-pointer border-none bg-transparent flex items-center justify-center"
+            className="p-2 hover:bg-surface-hover rounded-[8px] text-text-secondary hover:text-text-primary cursor-pointer border-none bg-transparent flex items-center justify-center"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
@@ -282,7 +282,7 @@ export function Sidebar({ isOpen, setIsOpen }) {
                 key={`${item.label}-${index}`}
                 onClick={() => setWorkspace(item.workspace)}
                 title={item.label}
-                className={`p-2 rounded-sm transition-colors cursor-pointer flex items-center justify-center border-none bg-transparent ${
+                className={`p-2 rounded-[8px]-[8px] transition-colors cursor-pointer flex items-center justify-center border-none bg-transparent ${
                   isActive ? 'bg-surface-hover border-l-2 border-btn-primary' : 'hover:bg-surface-hover'
                 }`}
                 style={{ width: '38px', height: '38px', borderTop: 'none', borderRight: 'none', borderBottom: 'none' }}

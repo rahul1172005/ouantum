@@ -20,7 +20,7 @@ import { useCRMStore } from '@/store/crmStore';
 
 function SubCard({ icon: Icon, title, children, footerText = null, headerAction = null }) {
   return (
-    <div className="border border-[#d4d4d4] bg-white rounded-sm flex flex-col shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
+    <div className="border border-[#d4d4d4] bg-white rounded-[8px]-[8px] flex flex-col shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
       <div className="bg-gradient-to-b from-[#fbfbfb] to-[#ececec] border-b border-[#c8c8c8] px-3 py-2 flex items-center gap-1.5 min-h-[36px]">
         {Icon && <Icon className="h-3.5 w-3.5 text-gray-700 flex-shrink-0" />}
         <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
@@ -128,12 +128,12 @@ function OscilloscopePanel({ activePt, selectedPointId }) {
   const dPath = points.join(' ');
 
   return (
-    <div className="p-3 border border-[#d4d4d4] rounded-sm bg-black text-white space-y-1.5 flex flex-col justify-between flex-1">
+    <div className="p-3 border border-[#d4d4d4] rounded-[8px]-[8px] bg-black text-white space-y-1.5 flex flex-col justify-between flex-1">
       <div className="flex justify-between items-center text-[12px] text-gray-400 font-bold uppercase">
         <span>Ultrasonic Signal Waveform</span>
         <span className="animate-pulse text-[#10b981]">● LIVE RX SIGNAL</span>
       </div>
-      <div className="h-20 bg-gray-950 border border-gray-800 rounded relative overflow-hidden flex items-center">
+      <div className="h-20 bg-gray-950 border border-gray-800 rounded-[8px] relative overflow-hidden flex items-center">
         <svg className="w-full h-full" viewBox="0 0 200 60">
           <line x1="0" y1="30" x2="200" y2="30" stroke="#1f2937" strokeWidth="0.5" />
           <line x1="50" y1="0" x2="50" y2="60" stroke="#1f2937" strokeWidth="0.5" strokeDasharray="2,2" />
@@ -521,7 +521,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 type="text" 
                 value={structureId} 
                 onChange={(e) => setStructureId(e.target.value.toUpperCase())}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               />
             </div>
             <div>
@@ -529,7 +529,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <select 
                 value={elementType} 
                 onChange={(e) => setElementType(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Column', 'Beam', 'Slab', 'Pier'].map(t => <option key={t} value={t}>{t}</option>)}
               </select>
@@ -539,7 +539,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <select 
                 value={concreteGrade} 
                 onChange={(e) => setConcreteGrade(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['M20', 'M30', 'M40'].map(g => <option key={g} value={g}>{g}</option>)}
               </select>
@@ -552,7 +552,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 max="365"
                 value={ageDays} 
                 onChange={(e) => setAgeDays(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               />
             </div>
           </div>
@@ -563,7 +563,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <select 
                 value={transmissionMethod} 
                 onChange={(e) => setTransmissionMethod(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Direct', 'Semi-direct', 'Indirect'].map(m => <option key={m} value={m}>{m} Transmission</option>)}
               </select>
@@ -573,7 +573,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <select 
                 value={couplantType} 
                 onChange={(e) => setCouplantType(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Grease', 'Vaseline', 'Gel'].map(c => <option key={c} value={c}>{c}</option>)}
               </select>
@@ -583,7 +583,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <select 
                 value={moistureCondition} 
                 onChange={(e) => setMoistureCondition(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded-[8px] bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Dry', 'Wet', 'SSD'].map(m => <option key={m} value={m}>{m} (Saturated Surface Dry)</option>)}
               </select>
@@ -592,7 +592,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <label className="text-[12px] text-gray-500 font-bold block mb-1">Calibration Check</label>
               <button 
                 onClick={() => setCalibrationOk(!calibrationOk)}
-                className={`w-full text-left border px-1.5 py-1 text-[12px] font-bold rounded flex items-center justify-between ${calibrationOk ? 'bg-green-50 border-green-300 text-green-700' : 'bg-red-50 border-red-300 text-red-700'}`}
+                className={`w-full text-left border px-1.5 py-1 text-[12px] font-bold rounded-[8px] flex items-center justify-between ${calibrationOk ? 'bg-green-50 border-green-300 text-green-700' : 'bg-red-50 border-red-300 text-red-700'}`}
               >
                 <span>{calibrationOk ? 'ACTIVE' : 'LOCKOUT'}</span>
                 <span className="text-[12px]">⚙️ Toggle</span>
@@ -630,7 +630,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                           value={r.distance}
                           disabled={!calibrationOk}
                           onChange={(e) => handleReadingChange(r.id, 'distance', e.target.value)}
-                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded-[8px] text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </td>
                       <td className="py-2">
@@ -639,7 +639,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                           value={r.time}
                           disabled={!calibrationOk}
                           onChange={(e) => handleReadingChange(r.id, 'time', e.target.value)}
-                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded-[8px] text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </td>
                       <td className="py-2 font-bold text-gray-900">{r.velocity} km/s</td>
@@ -647,7 +647,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                         {z ? z.zScore : '0.00'}
                       </td>
                       <td className="py-2 text-right">
-                        <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${r.statusClass}`}>
+                        <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-[8px]-[8px] uppercase tracking-wide ${r.statusClass}`}>
                           {r.classification}
                         </span>
                       </td>
@@ -674,10 +674,10 @@ export default function UPVTestSection({ setSelectedElement }) {
             ].map(([label, val, status]) => {
               const isCrit = status === 'WARNING' || status === 'NON-UNIFORM' || status === 'CRITICAL' || status === 'HIGH RISK' || status === 'AUDIT';
               return (
-                <div key={label} className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
+                <div key={label} className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
                   <span className="text-[12px] text-gray-500 uppercase font-bold block">{label}</span>
                   <div className="font-bold text-gray-800 text-[12px] mt-0.5">{val}</div>
-                  <span className={`inline-block text-[12px] font-black uppercase mt-1 px-1 py-0.2 border rounded-sm ${isCrit ? 'bg-black text-white border-border-default' : 'border-gray-300 text-gray-600'}`}>
+                  <span className={`inline-block text-[12px] font-black uppercase mt-1 px-1 py-0.2 border rounded-[8px]-[8px] ${isCrit ? 'bg-black text-white border-border-default' : 'border-gray-300 text-gray-600'}`}>
                     {status}
                   </span>
                 </div>
@@ -695,7 +695,7 @@ export default function UPVTestSection({ setSelectedElement }) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
               
               {/* Deviation Gauge Block */}
-              <div className="h-36 p-4 border border-[#d4d4d4] rounded-sm flex flex-col justify-center items-center bg-[#fafafa] text-center">
+              <div className="h-36 p-4 border border-[#d4d4d4] rounded-[8px]-[8px] flex flex-col justify-center items-center bg-[#fafafa] text-center">
                 <div className="text-[12px] text-gray-500 uppercase font-bold">Velocity Deviation</div>
                 <div className={`text-lg font-black mt-2 ${velocityDeviation < -10 ? 'text-red-700 animate-pulse' : 'text-gray-800'}`}>
                   {velocityDeviation > 0 ? `+${velocityDeviation}` : velocityDeviation}%
@@ -706,7 +706,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               </div>
 
               {/* Curve visualization in SVG */}
-              <div className="sm:col-span-2 h-36 border border-[#d4d4d4] bg-white rounded-sm p-3 relative flex items-center justify-center">
+              <div className="sm:col-span-2 h-36 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] p-3 relative flex items-center justify-center">
                 <svg viewBox="0 0 260 80" className="w-full h-full">
                   {/* Grid lines */}
                   <line x1="15" y1="62" x2="245" y2="62" stroke="#eaeaea" strokeWidth="1" />
@@ -779,7 +779,7 @@ export default function UPVTestSection({ setSelectedElement }) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               
               {/* 2D Heatmap Canvas (lg:col-span-8) */}
-              <div className="lg:col-span-8 border border-[#d4d4d4] bg-white rounded-sm relative overflow-hidden h-[380px] md:h-[450px] flex flex-col justify-between p-4 select-none">
+              <div className="lg:col-span-8 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] relative overflow-hidden h-[380px] md:h-[450px] flex flex-col justify-between p-4 select-none">
                 <div className="flex justify-between w-full text-[12px] text-gray-500 font-bold z-20">
                   <span>ELEMENT LAYOUT AREA MATRIX</span>
                   <span>SPATIAL INTERPOLATION GRAPH (IDW)</span>
@@ -803,7 +803,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                     return (
                       <div 
                         key={r.id} 
-                        className={`absolute w-24 h-24 rounded-full ${color}`}
+                        className={`absolute w-24 h-24 rounded-[8px]-full ${color}`}
                         style={{ left: coords.x, top: coords.y }}
                       />
                     );
@@ -865,10 +865,10 @@ export default function UPVTestSection({ setSelectedElement }) {
               <div className="lg:col-span-4 flex flex-col justify-between h-[380px] md:h-[450px] gap-3">
                 
                 {/* Active Node Telemetry Details */}
-                <div className="p-3 border border-[#d4d4d4] rounded-sm bg-gray-50 space-y-2 flex-shrink-0">
+                <div className="p-3 border border-[#d4d4d4] rounded-[8px]-[8px] bg-gray-50 space-y-2 flex-shrink-0">
                   <div className="flex justify-between items-center border-b border-gray-200 pb-1.5">
                     <span className="text-[12px] text-gray-500 font-bold uppercase">Active Node Telemetry</span>
-                    <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${
+                    <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-[8px]-[8px] uppercase tracking-wide ${
                       calculatedReadings.find(r => r.id === selectedPointId)?.velocity < 3.0
                         ? 'bg-black text-white border-border-default animate-pulse'
                         : 'border-gray-300 text-gray-600'
@@ -909,7 +909,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                         </div>
                         <div className="col-span-2">
                           <span className="text-[12px] text-gray-400 block font-bold uppercase">QA Verdict Classification</span>
-                          <span className={`inline-block font-black uppercase text-[12px] mt-0.5 px-1 py-0.2 border rounded-sm ${activePt?.statusClass}`}>
+                          <span className={`inline-block font-black uppercase text-[12px] mt-0.5 px-1 py-0.2 border rounded-[8px]-[8px] ${activePt?.statusClass}`}>
                             {activePt?.classification}
                           </span>
                         </div>
@@ -919,7 +919,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 </div>
 
                 {/* Checklist */}
-                <div className="p-3 border border-[#d4d4d4] rounded-sm bg-white flex-1 flex flex-col justify-between overflow-y-auto">
+                <div className="p-3 border border-[#d4d4d4] rounded-[8px]-[8px] bg-white flex-1 flex flex-col justify-between overflow-y-auto">
                   <span className="text-[12px] text-gray-500 font-bold block uppercase border-b border-gray-100 pb-1.5 mb-1.5">Point Status Checklist</span>
                   <div className="text-[12px] space-y-1.5 font-semibold text-gray-700">
                     {calculatedReadings.map(r => {
@@ -928,7 +928,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                         <div 
                           key={r.id} 
                           onClick={() => selectScanPoint(r)}
-                          className={`flex justify-between items-center p-1 rounded-sm cursor-pointer transition-colors ${isSelected ? 'bg-gray-100 border border-gray-300' : 'hover:bg-gray-50'}`}
+                          className={`flex justify-between items-center p-1 rounded-[8px]-[8px] cursor-pointer transition-colors ${isSelected ? 'bg-gray-100 border border-gray-300' : 'hover:bg-gray-50'}`}
                         >
                           <span className="font-bold">Point {r.id}:</span>
                           <span className={r.velocity < 3.0 ? 'text-red-700 font-black animate-pulse' : 'text-green-700'}>
@@ -941,7 +941,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 </div>
 
                 {/* Spatial Score Block */}
-                <div className="p-3 border border-[#d4d4d4] rounded-sm bg-gray-50 space-y-1 flex-shrink-0">
+                <div className="p-3 border border-[#d4d4d4] rounded-[8px]-[8px] bg-gray-50 space-y-1 flex-shrink-0">
                   <span className="text-[12px] text-gray-500 font-bold block uppercase">Spatial Anomaly Score</span>
                   <div className="text-lg font-black text-gray-800">
                     {Math.round((failedLocationsCount / numPoints) * 100)}%
@@ -973,7 +973,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
-                className="lg:col-span-8 border border-[#d4d4d4] bg-white rounded-sm relative overflow-hidden h-[380px] md:h-[450px] flex flex-col justify-between p-4 select-none"
+                className="lg:col-span-8 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] relative overflow-hidden h-[380px] md:h-[450px] flex flex-col justify-between p-4 select-none"
                 style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
               >
                 
@@ -1277,7 +1277,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 </svg>
 
                 {/* Telemetry info HUD */}
-                <div className="flex justify-between w-full text-[12px] font-bold z-20 bg-gray-50/90 border border-gray-200 p-1 rounded-sm">
+                <div className="flex justify-between w-full text-[12px] font-bold z-20 bg-gray-50/90 border border-gray-200 p-1 rounded-[8px]-[8px]">
                   {(() => {
                     const calculated = calculatedReadings.find(r => r.id === selectedPointId);
                     return (
@@ -1296,7 +1296,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               <div className="lg:col-span-4 flex flex-col justify-between h-[380px] md:h-[450px] gap-3">
                 
                 {/* 3D Transducers Metadata */}
-                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm space-y-1.5 text-[12px]">
+                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px] space-y-1.5 text-[12px]">
                   <span className="text-[12px] text-gray-500 font-bold block uppercase border-b border-gray-200 pb-1 mb-1">Ultrasonic Calibration</span>
                   {(() => {
                     const activePt = calculatedReadings.find(r => r.id === selectedPointId);
@@ -1323,7 +1323,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 />
 
                 {/* HUD Action Status */}
-                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm text-[12px] leading-relaxed text-gray-500">
+                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px] text-[12px] leading-relaxed text-gray-500">
                   <span className="font-bold block text-gray-700 uppercase mb-0.5">Workstation Diagnostics</span>
                   Sensor parameters verified against IS 13311-1. Telemetry channels acquired at 1.2 megasamples/sec.
                 </div>
@@ -1345,7 +1345,7 @@ export default function UPVTestSection({ setSelectedElement }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             {/* Primary Diagnosis Output */}
-            <div className="border border-[#c8c8c8] p-3 rounded-sm bg-black text-white flex flex-col justify-between">
+            <div className="border border-[#c8c8c8] p-3 rounded-[8px]-[8px] bg-black text-white flex flex-col justify-between">
               <div>
                 <span className="text-[12px] text-gray-400 font-bold uppercase tracking-wide block">Primary AI Diagnosis</span>
                 <div className="text-sm font-black uppercase mt-1">
@@ -1379,7 +1379,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                       <span>{d.name}</span>
                       <span className={isHigh ? 'font-bold text-red-600' : 'text-gray-500'}>{d.prob}%</span>
                     </div>
-                    <div className="w-full h-1.5 bg-gray-100 border border-[#e0e0e0] rounded overflow-hidden">
+                    <div className="w-full h-1.5 bg-gray-100 border border-[#e0e0e0] rounded-[8px] overflow-hidden">
                       <div 
                         style={{ width: `${d.prob}%` }} 
                         className={`h-full transition-all ${isHigh ? 'bg-black' : 'bg-gray-400'}`} 
@@ -1419,7 +1419,7 @@ export default function UPVTestSection({ setSelectedElement }) {
         <SubCard icon={Info} title="NDT Interpretation & Capability Guide" footerText="Compliance matrix from IS 13311-1 and ACI standards">
           
           {/* Warning block */}
-          <div className="p-2.5 border border-yellow-500 bg-yellow-50 text-[12px] text-yellow-800 rounded-sm leading-relaxed flex items-start gap-2 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
+          <div className="p-2.5 border border-yellow-500 bg-yellow-50 text-[12px] text-yellow-800 rounded-[8px]-[8px] leading-relaxed flex items-start gap-2 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
             <AlertTriangle className="h-4.5 w-4.5 text-yellow-700 flex-shrink-0 mt-0.5" />
             <div>
               <span className="font-bold">UPV Standalone Limitations:</span> UPV is a quality assessment and anomaly indication tool, not a standalone defect identifier. Low velocity readings (e.g. &lt; 3.0 km/s) indicate localized density loss but cannot definitively isolate the cause (honeycombing vs voids vs cracks) without complementary rebound hammer or core sample testing.
@@ -1449,7 +1449,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                   <tr key={cond} className="border-b border-[#f0f0f0]">
                     <td className="py-1.5 font-semibold text-gray-800">{cond}</td>
                     <td className="py-1.5 text-right">
-                      <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${badgeClass}`}>
+                      <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-[8px]-[8px] uppercase tracking-wide ${badgeClass}`}>
                         {cap}
                       </span>
                     </td>
@@ -1474,14 +1474,14 @@ export default function UPVTestSection({ setSelectedElement }) {
               disabled={isSignedOff}
               onChange={(e) => setEngineerNotes(e.target.value)}
               placeholder="Enter compliance clearance remarks, rebound hammer cross-check recommendations, or sign-off overrides..."
-              className="w-full h-16 border border-[#c8c8c8] p-2 rounded text-[12px] focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500"
+              className="w-full h-16 border border-[#c8c8c8] p-2 rounded-[8px] text-[12px] focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500"
             />
           </div>
 
           {/* Action and Stamp Block */}
           <div className="flex flex-col gap-2 justify-center">
             {isSignedOff ? (
-              <div className="border border-green-500 bg-green-50 p-2.5 rounded-sm flex items-center gap-2.5 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
+              <div className="border border-green-500 bg-green-50 p-2.5 rounded-[8px]-[8px] flex items-center gap-2.5 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
                 <CheckCircle className="h-7 w-7 text-green-600 flex-shrink-0" />
                 <div className="text-[12px]">
                   <div className="font-black text-green-800 uppercase tracking-wide">CLEARANCE CERTIFIED</div>

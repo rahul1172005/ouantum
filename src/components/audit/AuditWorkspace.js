@@ -157,7 +157,7 @@ export default function AuditWorkspace() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
       {/* 1. Left Column: Checklist & Scoring metrics */}
-      <div className="glass-panel rounded-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
+      <div className="glass-panel rounded-[8px]-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
         <div>
           <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-electric-blue flex items-center gap-1.5 border-b border-white/5 pb-2 mb-4">
             <ClipboardCheck className="h-4 w-4" /> Compliance Audit Worksheets
@@ -169,7 +169,7 @@ export default function AuditWorkspace() {
             <select
               value={selectedAuditType}
               onChange={(e) => setSelectedAuditType(e.target.value)}
-              className="w-full h-9 px-3 rounded bg-black/40 border border-white/10 text-white-text focus:outline-none focus:border-electric-blue transition-colors font-mono text-xs"
+              className="w-full h-9 px-3 rounded-[8px] bg-black/40 border border-white/10 text-white-text focus:outline-none focus:border-electric-blue transition-colors font-mono text-xs"
             >
               {['Structural Assessment', 'Environmental Impact Study', 'Non-Destructive Concrete Testing', 'Safety Compliance Audit'].map(type => (
                 <option key={type} value={type} className="bg-secondary-bg text-white-text">{type}</option>
@@ -182,13 +182,13 @@ export default function AuditWorkspace() {
             {checklist.map((item) => (
               <label 
                 key={item.id}
-                className="flex items-start gap-2.5 p-2 rounded bg-black/30 border border-white/5 hover:border-electric-blue/20 cursor-pointer transition-colors"
+                className="flex items-start gap-2.5 p-2 rounded-[8px] bg-black/30 border border-white/5 hover:border-electric-blue/20 cursor-pointer transition-colors"
               >
                 <input 
                   type="checkbox" 
                   checked={item.checked} 
                   onChange={() => handleToggleCheck(item.id)}
-                  className="mt-0.5 rounded border-white/15 bg-transparent text-electric-blue accent-electric-blue focus:ring-0 focus:outline-none"
+                  className="mt-0.5 rounded-[8px] border-white/15 bg-transparent text-electric-blue accent-electric-blue focus:ring-0 focus:outline-none"
                 />
                 <span className={item.checked ? 'text-metallic-gray line-through' : 'text-white-text'}>
                   {item.label}
@@ -211,7 +211,7 @@ export default function AuditWorkspace() {
             <button 
               onClick={triggerPDFExport}
               disabled={isExporting}
-              className="flex-1 h-10 bg-electric-blue/15 hover:bg-electric-blue/25 text-electric-blue border border-electric-blue/35 rounded font-bold font-mono text-xs uppercase flex items-center justify-center gap-1.5 transition-colors"
+              className="flex-1 h-10 bg-electric-blue/15 hover:bg-electric-blue/25 text-electric-blue border border-electric-blue/35 rounded-[8px] font-bold font-mono text-xs uppercase flex items-center justify-center gap-1.5 transition-colors"
             >
               <FileText className="h-4 w-4" /> {isExporting ? 'COMPILING REPORT...' : 'EXPORT INTEL PDF'}
             </button>
@@ -221,7 +221,7 @@ export default function AuditWorkspace() {
       </div>
 
       {/* 2. Middle/Right Columns: Visual Defect Annotation Board Canvas */}
-      <div className="lg:col-span-2 glass-panel rounded-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
+      <div className="lg:col-span-2 glass-panel rounded-[8px]-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
         <div>
           <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-3">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-electric-blue flex items-center gap-1.5">
@@ -235,7 +235,7 @@ export default function AuditWorkspace() {
           </p>
 
           {/* Interactive Annotation Canvas */}
-          <div className="relative border border-white/10 rounded-lg overflow-hidden flex items-center justify-center bg-slate-950">
+          <div className="relative border border-white/10 rounded-[8px]-lg overflow-hidden flex items-center justify-center bg-slate-950">
             <canvas
               ref={canvasRef}
               width="500"
@@ -258,15 +258,15 @@ export default function AuditWorkspace() {
             <div className="flex gap-2">
               <button 
                 onClick={() => setBrushColor('#ff4d6d')} // Critical defect color
-                className={`w-5 h-5 rounded-full border bg-[#ff4d6d] ${brushColor === '#ff4d6d' ? 'ring-2 ring-electric-blue' : ''}`}
+                className={`w-5 h-5 rounded-[8px]-full border bg-[#ff4d6d] ${brushColor === '#ff4d6d' ? 'ring-2 ring-electric-blue' : ''}`}
               />
               <button 
                 onClick={() => setBrushColor('#ff9f43')} // Warning defect color
-                className={`w-5 h-5 rounded-full border bg-[#ff9f43] ${brushColor === '#ff9f43' ? 'ring-2 ring-electric-blue' : ''}`}
+                className={`w-5 h-5 rounded-[8px]-full border bg-[#ff9f43] ${brushColor === '#ff9f43' ? 'ring-2 ring-electric-blue' : ''}`}
               />
               <button 
                 onClick={() => setBrushColor('#00ffb2')} // Normal inspection indicator
-                className={`w-5 h-5 rounded-full border bg-[#00ffb2] ${brushColor === '#00ffb2' ? 'ring-2 ring-electric-blue' : ''}`}
+                className={`w-5 h-5 rounded-[8px]-full border bg-[#00ffb2] ${brushColor === '#00ffb2' ? 'ring-2 ring-electric-blue' : ''}`}
               />
             </div>
           </div>
@@ -275,13 +275,13 @@ export default function AuditWorkspace() {
           <div className="flex gap-2">
             <button 
               onClick={handleAutoLogCrackDefect}
-              className="px-3.5 py-2 bg-danger-red/15 hover:bg-danger-red/35 text-danger-red border border-danger-red/35 rounded font-bold text-[12px] uppercase flex items-center gap-1 transition-colors neon-glow-red"
+              className="px-3.5 py-2 bg-danger-red/15 hover:bg-danger-red/35 text-danger-red border border-danger-red/35 rounded-[8px] font-bold text-[12px] uppercase flex items-center gap-1 transition-colors neon-glow-red"
             >
               <Camera className="h-3.5 w-3.5" /> Auto-log Anomaly
             </button>
             <button 
               onClick={clearCanvas}
-              className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded text-metallic-gray hover:text-white-text transition-colors flex items-center gap-1"
+              className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[8px] text-metallic-gray hover:text-white-text transition-colors flex items-center gap-1"
             >
               <Trash2 className="h-3.5 w-3.5" /> Clear Sketch
             </button>

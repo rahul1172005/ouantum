@@ -188,7 +188,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
               {activeTab === 'lifecycle' && 'DISCOUNT RATE CAPITAL VALUE'}
               {activeTab === 'ai_intel' && 'PREDICTIVE AI SIGNAL DRIFT'}
             </span>
-            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OPS INPUTS</span>
+            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[8px]-[1px]">OPS INPUTS</span>
           </div>
           <div className="zoho-card-body space-y-4">
 
@@ -519,7 +519,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         <div className="zoho-card">
           <div className="zoho-card-header flex justify-between items-center">
             <span className="font-bold uppercase tracking-wider text-[12px]">DERIVED MATH VECTORS</span>
-            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OUTPUTS</span>
+            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[8px]-[1px]">OUTPUTS</span>
           </div>
           <div className="zoho-card-body space-y-3">
 

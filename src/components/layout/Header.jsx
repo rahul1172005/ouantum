@@ -23,7 +23,7 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
       <div className="flex items-center gap-3">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-1.5 hover:bg-surface-hover text-text-secondary hover:text-text-primary rounded cursor-pointer border-none bg-transparent flex items-center justify-center"
+          className="p-1.5 hover:bg-surface-hover text-text-secondary hover:text-text-primary rounded-[8px] cursor-pointer border-none bg-transparent flex items-center justify-center"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -53,9 +53,9 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => toggleCommandPalette(true)}
-            className="w-full h-[34px] pl-9 pr-16 border border-border-input bg-surface-input text-text-primary placeholder:text-text-muted text-xs focus:outline-none focus:border-border-focus focus:ring-1 focus:ring-border-focus/20 rounded"
+            className="w-full h-[34px] pl-9 pr-16 border border-border-input bg-surface-input text-text-primary placeholder:text-text-muted text-xs focus:outline-none focus:border-border-focus focus:ring-1 focus:ring-border-focus/20 rounded-[8px]"
           />
-          <span className="absolute right-2 px-1.5 py-0.5 rounded border border-border-default text-[12px] bg-surface-footer text-text-muted select-none">Ctrl + K</span>
+          <span className="absolute right-2 px-1.5 py-0.5 rounded-[8px] border border-border-default text-[12px] bg-surface-footer text-text-muted select-none">Ctrl + K</span>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
         <div className="relative">
           <button
             onClick={() => setShowRoleDropdown(!showRoleDropdown)}
-            className="flex items-center gap-1.5 px-3 h-[34px] border border-border-input rounded text-[12px] font-semibold bg-surface-footer text-text-primary hover:bg-surface-hover cursor-pointer"
+            className="flex items-center gap-1.5 px-3 h-[34px] border border-border-input rounded-[8px] text-[12px] font-semibold bg-surface-footer text-text-primary hover:bg-surface-hover cursor-pointer"
           >
             <ShieldCheck className="h-4 w-4 text-text-secondary" />
             <span>Scope: {currentRole}</span>
@@ -82,7 +82,7 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
           </button>
 
           {showRoleDropdown && (
-            <div className="absolute right-0 mt-1 w-48 rounded border border-border-default bg-surface-body shadow-lg p-1 z-50">
+            <div className="absolute right-0 mt-1 w-48 rounded-[8px] border border-border-default bg-surface-body shadow-lg p-1 z-50">
               <p className="text-[12px] font-medium text-text-muted px-2 py-1 border-b border-border-default mb-1">Select Access Scope</p>
               {Object.values(ROLES).map((role) => (
                 <button
@@ -91,7 +91,7 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
                     setRole(role);
                     setShowRoleDropdown(false);
                   }}
-                  className={`w-full text-left text-xs font-semibold p-2 rounded transition-colors border-none bg-transparent cursor-pointer ${
+                  className={`w-full text-left text-xs font-semibold p-2 rounded-[8px] transition-colors border-none bg-transparent cursor-pointer ${
                     currentRole === role
                       ? 'text-white bg-btn-primary hover:bg-btn-primary-hv'
                       : 'text-text-secondary hover:bg-surface-hover hover:text-text-primary'
@@ -112,26 +112,26 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative p-2 hover:bg-surface-hover text-text-secondary hover:text-text-primary rounded cursor-pointer border-none bg-transparent flex items-center justify-center"
+            className="relative p-2 hover:bg-surface-hover text-text-secondary hover:text-text-primary rounded-[8px] cursor-pointer border-none bg-transparent flex items-center justify-center"
           >
             <Bell className="h-5 w-5 text-text-secondary" />
             {openTickets.length > 0 && (
-              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-btn-danger border border-surface-body"></span>
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-[8px]-full bg-btn-danger border border-surface-body"></span>
             )}
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-2 w-80 rounded border border-border-default bg-surface-body shadow-lg p-3 z-50 text-text-primary">
+            <div className="absolute right-0 mt-2 w-80 rounded-[8px] border border-border-default bg-surface-body shadow-lg p-3 z-50 text-text-primary">
               <div className="flex items-center justify-between border-b border-border-default pb-1.5 mb-2">
                 <span className="text-[12px] text-text-secondary font-bold">ACTIVE ANOMALY ALARMS ({openTickets.length})</span>
-                <span className="text-[12px] border border-border-error px-1 py-0.25 rounded font-bold bg-state-error text-text-danger animate-pulse">LIVE</span>
+                <span className="text-[12px] border border-border-error px-1 py-0.25 rounded-[8px] font-bold bg-state-error text-text-danger animate-pulse">LIVE</span>
               </div>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {openTickets.length === 0 ? (
                   <p className="text-xs text-text-muted text-center py-4">No active anomalies detected.</p>
                 ) : (
                   openTickets.map((t) => (
-                    <div key={t.id} className="p-2 border border-border-default rounded bg-surface-footer text-xs">
+                    <div key={t.id} className="p-2 border border-border-default rounded-[8px] bg-surface-footer text-xs">
                       <div className="flex items-center justify-between font-bold">
                         <span className="text-text-danger text-[12px] uppercase">{t.severity}</span>
                         <span className="text-text-secondary text-[12px]">{t.assetName}</span>
@@ -147,9 +147,9 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
         </div>
 
         {/* User initials box */}
-        <div className="relative flex h-8 w-8 items-center justify-center border border-border-default rounded bg-btn-primary text-white shadow-none overflow-hidden select-none">
+        <div className="relative flex h-8 w-8 items-center justify-center border border-border-default rounded-[8px] bg-btn-primary text-white shadow-none overflow-hidden select-none">
           <span className="text-[12px] text-white font-bold">AI</span>
-          <span className="absolute bottom-0.5 right-0.5 h-2 w-2 rounded-full bg-border-success border border-white"></span>
+          <span className="absolute bottom-0.5 right-0.5 h-2 w-2 rounded-[8px]-full bg-border-success border border-white"></span>
         </div>
 
       </div>

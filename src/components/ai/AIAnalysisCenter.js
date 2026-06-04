@@ -107,7 +107,7 @@ export default function AIAnalysisCenter() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
       {/* Left Columns: Chat intelligence console */}
-      <div className="lg:col-span-2 glass-panel rounded-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
+      <div className="lg:col-span-2 glass-panel rounded-[8px]-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
         
         {/* Chat Header */}
         <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 font-mono text-xs">
@@ -127,7 +127,7 @@ export default function AIAnalysisCenter() {
               }`}
             >
               {/* Avatar indicator */}
-              <div className={`w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0 ${
+              <div className={`w-8 h-8 rounded-[8px]-full border flex items-center justify-center flex-shrink-0 ${
                 msg.role === 'user' 
                   ? 'bg-electric-blue/10 border-electric-blue/30 text-electric-blue' 
                   : 'bg-ai-purple/10 border-ai-purple/30 text-ai-purple'
@@ -136,7 +136,7 @@ export default function AIAnalysisCenter() {
               </div>
 
               {/* Message block */}
-              <div className={`p-3 rounded-lg border leading-relaxed ${
+              <div className={`p-3 rounded-[8px]-lg border leading-relaxed ${
                 msg.role === 'user' 
                   ? 'bg-electric-blue/10 border-electric-blue/20 text-white-text' 
                   : 'bg-black/40 border-white/5 text-metallic-gray'
@@ -160,13 +160,13 @@ export default function AIAnalysisCenter() {
           <div className="flex flex-wrap gap-2 text-[12px] font-mono">
             <button 
               onClick={() => handleSendMessage("Inspect structural health anomalies in Pillar B-12")}
-              className="px-2.5 py-1.5 rounded bg-black/40 hover:bg-ai-purple/15 border border-white/5 hover:border-ai-purple/40 text-metallic-gray hover:text-white-text transition-all"
+              className="px-2.5 py-1.5 rounded-[8px] bg-black/40 hover:bg-ai-purple/15 border border-white/5 hover:border-ai-purple/40 text-metallic-gray hover:text-white-text transition-all"
             >
               Analyze Pillar B-12 Anomaly
             </button>
             <button 
               onClick={() => handleSendMessage("Perform risk forecast for NHAI Highway Bridge corrosion")}
-              className="px-2.5 py-1.5 rounded bg-black/40 hover:bg-ai-purple/15 border border-white/5 hover:border-ai-purple/40 text-metallic-gray hover:text-white-text transition-all"
+              className="px-2.5 py-1.5 rounded-[8px] bg-black/40 hover:bg-ai-purple/15 border border-white/5 hover:border-ai-purple/40 text-metallic-gray hover:text-white-text transition-all"
             >
               Corrosion wear mapping NHAI
             </button>
@@ -182,14 +182,14 @@ export default function AIAnalysisCenter() {
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-              className="w-full h-10 px-4 rounded-lg bg-black/40 border border-white/10 text-white-text focus:outline-none focus:border-electric-blue transition-colors font-mono text-xs placeholder-metallic-gray/50"
+              className="w-full h-10 px-4 rounded-[8px]-lg bg-black/40 border border-white/10 text-white-text focus:outline-none focus:border-electric-blue transition-colors font-mono text-xs placeholder-metallic-gray/50"
             />
             {/* Holographic Waveform input canvas overlay */}
             <canvas ref={waveformRef} width="80" height="24" className="absolute right-4 top-2 opacity-65 pointer-events-none"></canvas>
           </div>
           <button 
             onClick={() => handleSendMessage()}
-            className="w-10 h-10 rounded-lg bg-ai-purple/15 hover:bg-ai-purple/35 text-ai-purple border border-ai-purple/30 flex items-center justify-center transition-colors"
+            className="w-10 h-10 rounded-[8px]-lg bg-ai-purple/15 hover:bg-ai-purple/35 text-ai-purple border border-ai-purple/30 flex items-center justify-center transition-colors"
           >
             <Send className="h-4 w-4" />
           </button>
@@ -198,7 +198,7 @@ export default function AIAnalysisCenter() {
       </div>
 
       {/* Right Column: Predictive fatigue curves and charts */}
-      <div className="glass-panel rounded-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
+      <div className="glass-panel rounded-[8px]-xl border border-electric-blue/15 bg-secondary-bg/60 p-4 flex flex-col justify-between min-h-[460px]">
         <div>
           <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-electric-blue flex items-center gap-1.5 border-b border-white/5 pb-2 mb-4">
             <LineChart className="h-4 w-4" /> 180-Day Structural Wear Forecasting
@@ -226,12 +226,12 @@ export default function AIAnalysisCenter() {
 
         {/* Fatigue alerts diagnostics list */}
         <div className="mt-4 space-y-2 font-mono text-[12px]">
-          <div className="p-2.5 bg-black/40 rounded border border-white/5 flex items-center justify-between text-metallic-gray">
+          <div className="p-2.5 bg-black/40 rounded-[8px] border border-white/5 flex items-center justify-between text-metallic-gray">
             <span className="flex items-center gap-1"><Cpu className="h-3.5 w-3.5 text-ai-purple" /> MODEL ACCURACY CRITERION</span>
             <span className="text-white-text font-bold">R² = 0.985</span>
           </div>
 
-          <div className="p-2.5 bg-black/40 rounded border border-white/5 flex items-center justify-between text-metallic-gray">
+          <div className="p-2.5 bg-black/40 rounded-[8px] border border-white/5 flex items-center justify-between text-metallic-gray">
             <span className="flex items-center gap-1"><Hourglass className="h-3.5 w-3.5 text-alert-orange" /> FATIGUE LIMIT VIOLATION</span>
             <span className="text-alert-orange font-bold">EST. DAY 210</span>
           </div>

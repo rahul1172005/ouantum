@@ -83,7 +83,7 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <ClipboardCheck className="h-3.5 w-3.5" />
             <span>SMART INSPECTION TASK LISTS</span>
-            <div className="ml-auto flex border border-gray-400 rounded overflow-hidden">
+            <div className="ml-auto flex border border-gray-400 rounded-[8px] overflow-hidden">
               {['Structural', 'Safety', 'Material'].map((cat) => (
                 <button
                   key={cat}

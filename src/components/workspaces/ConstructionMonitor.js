@@ -83,10 +83,10 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                     <span className="font-bold text-gray-800 uppercase">{p.activity}</span>
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500">{p.actual}% / {p.planned}%</span>
-                      <span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status.replace('_',' ')}</span>
+                      <span className={`text-[12px] px-1.5 py-0.5 rounded-[8px]-[8px] font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status.replace('_',' ')}</span>
                     </div>
                   </div>
-                  <div className="w-full h-3 bg-gray-100 border border-[#d4d4d4] rounded-sm overflow-hidden relative">
+                  <div className="w-full h-3 bg-gray-100 border border-[#d4d4d4] rounded-[8px]-[8px] overflow-hidden relative">
                     <div style={{ width: `${p.planned}%` }} className="absolute h-full bg-gray-300 border-r border-gray-400" />
                     <div style={{ width: `${p.actual}%` }} className="absolute h-full bg-black" />
                   </div>
@@ -103,7 +103,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                   <tr key={p.id} className="cursor-pointer" onClick={() => setSelectedElement({ type: 'Concrete Pour Record', id: p.id, metrics: { Element: p.element, Volume: p.volume, Grade: p.grade, PourDate: p.date, SlumpValue: p.slump, Temperature: p.temp, CubesSent: p.cubesSent, Status: p.status } })}>
                     <td className="font-bold">{p.id}</td><td>{p.element}</td><td>{p.volume}</td><td className="font-bold">{p.grade}</td>
                     <td>{p.date}</td><td>{p.slump}</td><td>{p.temp}</td><td>{p.cubesSent}</td>
-                    <td><span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span></td>
+                    <td><span className={`text-[12px] px-1.5 py-0.5 rounded-[8px]-[8px] font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -116,17 +116,17 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                 const daysSince = Math.round((new Date('2026-05-31') - new Date(p.date)) / 86400000);
                 const curingPct = Math.min(100, Math.round(daysSince / 28 * 100));
                 return (
-                  <div key={p.id} className="p-3 border border-[#d4d4d4] bg-white rounded-sm space-y-2">
+                  <div key={p.id} className="p-3 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] space-y-2">
                     <div className="flex justify-between items-start">
                       <div>
                         <p className="font-black text-[12px] uppercase">{p.element}</p>
                         <p className="text-[12px] text-gray-500">Grade {p.grade} — Poured {p.date}</p>
                       </div>
-                      <span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span>
+                      <span className={`text-[12px] px-1.5 py-0.5 rounded-[8px]-[8px] font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span>
                     </div>
                     <div className="space-y-1">
                       <div className="flex justify-between text-[12px]"><span className="text-gray-500">Curing Progress (28-day)</span><span className="font-bold">{curingPct}%</span></div>
-                      <div className="w-full h-2 bg-gray-100 border border-[#d4d4d4] rounded-sm overflow-hidden">
+                      <div className="w-full h-2 bg-gray-100 border border-[#d4d4d4] rounded-[8px]-[8px] overflow-hidden">
                         <div style={{ width: `${curingPct}%` }} className="h-full bg-black transition-all" />
                       </div>
                       <p className="text-[12px] text-gray-400">Day {daysSince} of 28 minimum curing period</p>
@@ -139,7 +139,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
 
           {activeTab === 'AI vs Actual' && (
             <div className="space-y-4">
-              <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm">
+              <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
                 <p className="text-[12px] font-bold uppercase text-gray-500 mb-2">AI Schedule Prediction vs Actual Progress</p>
                 <div className="space-y-2">
                   {PROGRESS_ITEMS.map(p => {
@@ -161,7 +161,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                   })}
                 </div>
               </div>
-              <div className="p-3 border border-[#d4d4d4] bg-white rounded-sm text-[12px] space-y-1.5">
+              <div className="p-3 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] text-[12px] space-y-1.5">
                 <p className="font-black uppercase">AI Forecast Summary</p>
                 <p className="text-gray-700">Overall project is <span className="font-black">4 days behind</span> the AI-predicted baseline schedule.</p>
                 <p className="text-gray-700">Critical path delay: Level 1 Formwork Erection ({PROGRESS_ITEMS[3].actual}% vs {PROGRESS_ITEMS[3].planned}% planned).</p>

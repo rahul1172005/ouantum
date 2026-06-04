@@ -343,7 +343,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
   };
 
   return (
-    <div className="min-h-[500px] bg-[#f8f9fa] flex flex-col text-gray-800 relative select-none rounded border border-[#cccccc] shadow-sm">
+    <div className="min-h-[500px] bg-[#f8f9fa] flex flex-col text-gray-800 relative select-none rounded-[8px] border border-[#cccccc] shadow-sm">
       
       {/* Background Engineering Grids Overlay */}
       <div className="absolute inset-0 cad-grid opacity-30 pointer-events-none z-0"></div>
@@ -353,7 +353,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
         <div>
           <h2 className="text-[12px] font-bold text-gray-800 uppercase tracking-wide flex items-center gap-1.5">
             <Globe className="h-4.5 w-4.5 text-black" /> CIVIL & INFRASTRUCTURE OS [COCKPIT ENGINE]
-            <span className="text-[12px] px-1.5 py-0.5 rounded border border-border-default font-bold bg-gray-50 text-black uppercase tracking-normal">LEVELS 1-11</span>
+            <span className="text-[12px] px-1.5 py-0.5 rounded-[8px] border border-border-default font-bold bg-gray-50 text-black uppercase tracking-normal">LEVELS 1-11</span>
           </h2>
           <p className="text-[12px] text-gray-500 font-semibold tracking-normal mt-0.5">
             System status: nominal // 42hz IoT stream telemetry active // SSOT linked
@@ -362,15 +362,15 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
         
         {/* Active level metrics */}
         <div className="flex gap-2">
-          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[12px] font-bold text-[#0b4c8c] rounded shadow-sm flex items-center gap-2">
+          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[12px] font-bold text-[#0b4c8c] rounded-[8px] shadow-sm flex items-center gap-2">
             <ShieldCheck className="h-3.5 w-3.5 text-black flex-shrink-0" />
             <span>QA/QC TARGETS:</span>
-            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[3px] text-[12px] uppercase font-extrabold">PASSING</span>
+            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[8px]-[3px] text-[12px] uppercase font-extrabold">PASSING</span>
           </div>
-          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[12px] font-bold text-[#0b4c8c] rounded shadow-sm flex items-center gap-2">
+          <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[12px] font-bold text-[#0b4c8c] rounded-[8px] shadow-sm flex items-center gap-2">
             <Database className="h-3.5 w-3.5 text-black flex-shrink-0" />
             <span>CRM TICKETS:</span>
-            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[3px] text-[12px] font-extrabold">{tickets.filter(t => t.status === 'OPEN').length} OPEN</span>
+            <span className="bg-[#f4f5f6] border border-[#d4d4d4] text-[#0b4c8c] px-1.5 py-0.5 rounded-[8px]-[3px] text-[12px] font-extrabold">{tickets.filter(t => t.status === 'OPEN').length} OPEN</span>
           </div>
         </div>
       </div>
@@ -408,14 +408,14 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     setActiveLevel(lvl.num);
                     if (lvl.num === 5) setActiveSubTab('Cube');
                   }}
-                  className={`w-full flex items-center justify-between p-2 rounded text-[12px] font-bold uppercase transition-all border ${
+                  className={`w-full flex items-center justify-between p-2 rounded-[8px] text-[12px] font-bold uppercase transition-all border ${
                     isSelected 
                       ? 'bg-[#e2e2e2] text-black border-[#b8b8b8] shadow-sm' 
                       : 'text-[#2d2d2d] bg-transparent border-transparent hover:underline hover:bg-[#ececec]'
                   }`}
                 >
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-semibold flex-shrink-0 ${isSelected ? 'border-[#a8a8a8] bg-white text-black' : 'border-gray-300 bg-gray-50 text-gray-600'}`}>L{lvl.num}</span>
+                    <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-semibold flex-shrink-0 ${isSelected ? 'border-[#a8a8a8] bg-white text-black' : 'border-gray-300 bg-gray-50 text-gray-600'}`}>L{lvl.num}</span>
                     <Icon className="h-3.5 w-3.5 flex-shrink-0" />
                     <span className="truncate max-w-[125px] xl:max-w-[155px] text-left">{lvl.name}</span>
                   </div>
@@ -428,7 +428,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           <div className="p-3 border-t border-[#cccccc] bg-white space-y-1">
             <div className="flex justify-between items-center text-[12px] uppercase font-bold text-gray-500">
               <span>Cockpit Telemetry</span>
-              <span className="h-2 w-2 rounded-full bg-black"></span>
+              <span className="h-2 w-2 rounded-[8px]-full bg-black"></span>
             </div>
             <div className="text-[12px] text-gray-700 leading-normal uppercase">
               Load Factors: <span className="font-bold text-black">Nominal</span><br />
@@ -500,10 +500,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-dashed border-[#c8c8c8] rounded-[3px] p-3 bg-white flex flex-col justify-between">
+                  <div className="border border-dashed border-[#c8c8c8] rounded-[8px]-[3px] p-3 bg-white flex flex-col justify-between">
                     <div className="space-y-2 text-[12px] font-mono">
                       <p className="font-bold border-b border-[#eeeeee] pb-1 uppercase">TERZAGHI PHYSICS FORMULA</p>
-                      <p className="italic bg-gray-50 p-1.5 border border-[#e8e8e8] rounded-[2px] font-semibold select-all text-center">
+                      <p className="italic bg-gray-50 p-1.5 border border-[#e8e8e8] rounded-[8px]-[2px] font-semibold select-all text-center">
                         q_u = c·N_c + q·N_q + 0.5·γ·B·N_γ
                       </p>
                       <p className="text-[12px] text-gray-500 uppercase leading-normal">
@@ -518,7 +518,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </div>
                       <div className="text-right">
                         <p className="text-[12px] text-gray-500 uppercase">Soil Safety Multiplier</p>
-                        <span className={`text-[12px] px-2 py-0.5 border rounded-[2px] font-bold ${Number(soilSafetyIndex) >= 1.0 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-[#2d2d2d] bg-gray-100 animate-pulse'}`}>
+                        <span className={`text-[12px] px-2 py-0.5 border rounded-[8px]-[2px] font-bold ${Number(soilSafetyIndex) >= 1.0 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-[#2d2d2d] bg-gray-100 animate-pulse'}`}>
                           {soilSafetyIndex} x (Target: 1.0x)
                         </span>
                       </div>
@@ -550,7 +550,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </select>
                   </div>
                   
-                  <div className="border border-[#d4d4d4] bg-white h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[3px] shadow-inner">
+                  <div className="border border-[#d4d4d4] bg-white h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[8px]-[3px] shadow-inner">
                     <div className="absolute inset-0 cad-grid opacity-60 pointer-events-none"></div>
                     <span className="text-[12px] text-gray-400 absolute top-1 left-1 font-semibold uppercase">TOPOGRAPHIC GRID RADAR</span>
                     
@@ -577,7 +577,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   </div>
 
                   {selectedWaypoint && (
-                    <div className="mt-2 text-[12px] font-mono bg-white border border-[#d4d4d4] rounded-[3px] p-2 uppercase font-semibold leading-tight text-gray-700">
+                    <div className="mt-2 text-[12px] font-mono bg-white border border-[#d4d4d4] rounded-[8px]-[3px] p-2 uppercase font-semibold leading-tight text-gray-700">
                       Waypoint: {selectedWaypoint.id} <br />
                       Coordinates: {selectedWaypoint.lat}, {selectedWaypoint.lng} <br />
                       Elevation: {selectedWaypoint.elev} | Sub-grade Water Table: {selectedWaypoint.wt}
@@ -593,7 +593,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 >
                   <div className="space-y-1.5 pt-1">
                     {Object.keys(permits).map((permitKey) => (
-                      <label key={permitKey} className="flex items-center justify-between text-[12px] font-bold uppercase cursor-pointer hover:bg-gray-50 p-1 border border-transparent rounded hover:border-[#c8c8c8]">
+                      <label key={permitKey} className="flex items-center justify-between text-[12px] font-bold uppercase cursor-pointer hover:bg-gray-50 p-1 border border-transparent rounded-[8px] hover:border-[#c8c8c8]">
                         <span className="flex items-center gap-1.5 text-gray-700">
                           <input
                             type="checkbox"
@@ -606,7 +606,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                           />
                           {permitKey.replace(/([A-Z])/g, ' $1').trim()} Clearance
                         </span>
-                        <span className={`text-[12px] px-1.5 py-0.5 border rounded-[2px] font-bold ${permits[permitKey] ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-gray-700 bg-white'}`}>
+                        <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[2px] font-bold ${permits[permitKey] ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'border-[#d4d4d4] text-gray-700 bg-white'}`}>
                           {permits[permitKey] ? 'APPROVED' : 'PENDING'}
                         </span>
                       </label>
@@ -630,7 +630,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   </div>
 
                   {permitScanResult && (
-                    <div className={`mt-2 p-2.5 rounded border text-[12px] font-semibold uppercase ${permitScanResult.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] font-bold animate-pulse'}`}>
+                    <div className={`mt-2 p-2.5 rounded-[8px] border text-[12px] font-semibold uppercase ${permitScanResult.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] font-bold animate-pulse'}`}>
                       {permitScanResult}
                     </div>
                   )}
@@ -689,7 +689,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
 
                   <div className="mt-4 pt-3 border-t border-[#eeeeee] flex justify-between items-center text-[12px] font-bold">
                     <span className="text-gray-700">GRID OVERLOAD RISK STATUS:</span>
-                    <span className={`px-2 py-0.5 border rounded-[2px] ${electricalKva > 850 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
+                    <span className={`px-2 py-0.5 border rounded-[8px]-[2px] ${electricalKva > 850 ? 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
                       {electricalKva > 850 ? 'CRITICAL EXCESSED (850 kVA Limit)' : 'STABLE'}
                     </span>
                   </div>
@@ -735,10 +735,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <LevelCard 
                 icon={Check} 
                 title="Level 2 - BIM Level 1–7 Clash Detection Platform" 
-                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">BIM MODEL: LEVEL 5 (LOD-400)</span>}
+                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">BIM MODEL: LEVEL 5 (LOD-400)</span>}
                 footer="Unified BIM coordination room and clash detection matrix"
               >
-                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                <div className="border border-[#d4d4d4] rounded-[8px]-[3px] overflow-hidden bg-white shadow-sm">
                   <table className="w-full text-left font-mono text-[12px] leading-normal border-collapse no-vertical-borders">
                     <thead>
                       <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[12px] text-gray-600">
@@ -755,22 +755,22 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                           <td className="p-2 font-bold uppercase text-gray-800">{clash.elementA}</td>
                           <td className="p-2 font-bold uppercase text-gray-800">{clash.elementB}</td>
                           <td className="p-2">
-                            <span className={`px-1.5 py-0.5 border rounded-[2px] text-[12px] font-bold ${clash.type === 'Hard Clash' ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'bg-gray-50 text-gray-700 border-[#d4d4d4]'}`}>
+                            <span className={`px-1.5 py-0.5 border rounded-[8px]-[2px] text-[12px] font-bold ${clash.type === 'Hard Clash' ? 'bg-[#2d2d2d] text-white border-[#2d2d2d]' : 'bg-gray-50 text-gray-700 border-[#d4d4d4]'}`}>
                               {clash.type}
                             </span>
                           </td>
                           <td className="p-2 font-bold">
                             {clash.resolved ? (
-                              <span className="text-gray-600 bg-gray-50 border border-[#d4d4d4] px-1.5 py-0.5 rounded-[2px] text-[12px]">RESOLVED</span>
+                              <span className="text-gray-600 bg-gray-50 border border-[#d4d4d4] px-1.5 py-0.5 rounded-[8px]-[2px] text-[12px]">RESOLVED</span>
                             ) : (
-                              <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1.5 py-0.5 rounded-[2px] text-[12px] animate-pulse">PENDING</span>
+                              <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1.5 py-0.5 rounded-[8px]-[2px] text-[12px] animate-pulse">PENDING</span>
                             )}
                           </td>
                           <td className="p-2">
                             {!clash.resolved ? (
                               <button
                                 onClick={() => handleResolveBimClash(clash.id)}
-                                className="btn-skeuo text-[12px] uppercase font-bold px-2 py-0.5 rounded-[2px]"
+                                className="btn-skeuo text-[12px] uppercase font-bold px-2 py-0.5 rounded-[8px]-[2px]"
                                 style={{ minHeight: 'auto', padding: '3px 6px' }}
                               >
                                 Issue Rework Ticket
@@ -825,7 +825,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-[#d4d4d4] p-3 rounded-[3px] bg-white font-mono text-[12px] space-y-1.5 uppercase font-semibold text-gray-700">
+                  <div className="border border-[#d4d4d4] p-3 rounded-[8px]-[3px] bg-white font-mono text-[12px] space-y-1.5 uppercase font-semibold text-gray-700">
                     <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800">AGGREGATE SIEVE ANALYSIS</p>
                     <div className="flex justify-between">
                       <span>Passing 4.75mm Sieve:</span>
@@ -837,7 +837,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                     <div className="flex justify-between">
                       <span>Sustainability carbon Rating:</span>
-                      <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1 rounded-[2px]">VERIFIED CLEAN SOURCING (A+)</span>
+                      <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] px-1 rounded-[8px]-[2px]">VERIFIED CLEAN SOURCING (A+)</span>
                     </div>
                   </div>
                 </LevelCard>
@@ -884,10 +884,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <LevelCard 
                 icon={Users} 
                 title="Level 3 - Vendor Intelligence System" 
-                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">FRAUD DETECTION MODULE ACTIVE</span>}
+                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">FRAUD DETECTION MODULE ACTIVE</span>}
                 footer="Supplier audit trials and risk evaluation statistics"
               >
-                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                <div className="border border-[#d4d4d4] rounded-[8px]-[3px] overflow-hidden bg-white shadow-sm">
                   <table className="w-full text-left font-mono text-[12px] border-collapse no-vertical-borders">
                     <thead>
                       <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[12px] text-gray-600">
@@ -904,21 +904,21 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         <td className="p-2 text-gray-700">Cement (OPC-53)</td>
                         <td className="p-2 text-gray-700">0.4% (Nominal)</td>
                         <td className="p-2 font-bold text-gray-800">94 / 100</td>
-                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[12px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[8px]-[2px] text-[12px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
                       </tr>
                       <tr className="border-b border-[#eeeeee] hover:bg-[#f0f6ff] transition-colors">
                         <td className="p-2 font-bold uppercase text-gray-800">Western Aggregate Mining</td>
                         <td className="p-2 text-gray-700">Coarse Aggregate</td>
                         <td className="p-2 text-gray-700">3.8% (Elevated)</td>
                         <td className="p-2 font-bold text-gray-800">81 / 100</td>
-                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[12px] bg-[#fdfdfd] text-gray-700 font-bold">LOW VARIANCE</span></td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[8px]-[2px] text-[12px] bg-[#fdfdfd] text-gray-700 font-bold">LOW VARIANCE</span></td>
                       </tr>
                       <tr className="hover:bg-[#f0f6ff] transition-colors">
                         <td className="p-2 font-bold uppercase text-gray-800">Vizag Steel Depot</td>
                         <td className="p-2 text-gray-700">Steel rebars</td>
                         <td className="p-2 text-gray-700">0.1% (Excellent)</td>
                         <td className="p-2 font-bold text-gray-800">98 / 100</td>
-                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[2px] text-[12px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
+                        <td className="p-2"><span className="px-1.5 py-0.5 border border-[#d4d4d4] rounded-[8px]-[2px] text-[12px] bg-gray-50 text-gray-600 font-bold">SAFE</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -938,13 +938,13 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   title="Level 4 - Smart PPE Camera Gate Scanner"
                   footer="Smart PPE camera feeds processed automatically via on-site AI edge server"
                 >
-                  <div className="border border-[#d4d4d4] bg-white p-3 h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[3px] shadow-inner">
+                  <div className="border border-[#d4d4d4] bg-white p-3 h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[8px]-[3px] shadow-inner">
                     <div className="absolute inset-0 cad-grid opacity-50 pointer-events-none"></div>
                     <span className="text-[12px] text-gray-400 absolute top-1 left-1 font-semibold uppercase">SITE PORTAL WEBCAM SCAN</span>
 
                     {scanningPpe ? (
                       <div className="text-center space-y-2">
-                        <span className="animate-spin h-5 w-5 border-2 border-[#2d2d2d] border-t-transparent rounded-full block mx-auto"></span>
+                        <span className="animate-spin h-5 w-5 border-2 border-[#2d2d2d] border-t-transparent rounded-[8px]-full block mx-auto"></span>
                         <span className="text-[12px] font-black uppercase tracking-wider block text-gray-700">Scanning labour face profile...</span>
                       </div>
                     ) : (
@@ -958,7 +958,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   </div>
 
                   {latestPpeAlert && (
-                    <div className={`mt-2 p-2.5 border rounded font-semibold text-[12px] uppercase ${latestPpeAlert.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
+                    <div className={`mt-2 p-2.5 border rounded-[8px] font-semibold text-[12px] uppercase ${latestPpeAlert.includes('✓') ? 'bg-[#f4f5f6] border-[#d4d4d4] text-black' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
                       {latestPpeAlert}
                     </div>
                   )}
@@ -970,7 +970,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   title="Level 4 - Workforce Productivity & Fatigue"
                   footer="Real-time personnel fatigue values tracked from RFID telemetry"
                 >
-                  <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                  <div className="border border-[#d4d4d4] rounded-[8px]-[3px] overflow-hidden bg-white shadow-sm">
                     <table className="w-full text-left font-mono text-[12px] border-collapse no-vertical-borders">
                       <thead>
                         <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[12px] text-gray-600">
@@ -991,7 +991,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                           <td className="p-1.5 font-bold text-gray-800">S. Pillai</td>
                           <td className="p-1.5 text-gray-700">Masonry Expert</td>
                           <td className="p-1.5 text-gray-700 text-black font-semibold">ELEVATED (48%)</td>
-                          <td className="p-1.5"><span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 text-[12px] font-bold animate-pulse">BREACH ALERT</span></td>
+                          <td className="p-1.5"><span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 text-[12px] font-bold animate-pulse">BREACH ALERT</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -1006,7 +1006,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 title="Level 4 - Construction GANTT & Delay Tracker" 
                 footer="Aggregated schedule diagnostics compiled from field manager report"
               >
-                <div className="space-y-2 bg-white border border-[#d4d4d4] rounded-[3px] p-3 shadow-sm text-[12px] font-mono font-semibold uppercase text-gray-700">
+                <div className="space-y-2 bg-white border border-[#d4d4d4] rounded-[8px]-[3px] p-3 shadow-sm text-[12px] font-mono font-semibold uppercase text-gray-700">
                   <div className="flex justify-between text-gray-500 font-bold border-b border-[#eeeeee] pb-1.5">
                     <span>Task Name</span>
                     <span>Target completion date // delay variance</span>
@@ -1021,7 +1021,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   </div>
                   <div className="flex justify-between border-t border-[#eeeeee] pt-1.5">
                     <span>03. Slab Level-3 concrete pour:</span>
-                    <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 text-[12px] font-bold animate-pulse">IN PROGRESS // +4 days delay predicted</span>
+                    <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 text-[12px] font-bold animate-pulse">IN PROGRESS // +4 days delay predicted</span>
                   </div>
                 </div>
               </LevelCard>
@@ -1088,7 +1088,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         </div>
                       </div>
 
-                      <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between">
+                      <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[8px] shadow-sm flex flex-col justify-between">
                         <div className="space-y-1.5 text-[12px] text-gray-700">
                           <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[12px]">Cube physical specifications</p>
                           <div className="flex justify-between">
@@ -1123,7 +1123,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
 
                     {limsLogMsg && (
-                      <div className={`p-2.5 border rounded-[3px] font-semibold text-[12px] ${concretePassed ? 'bg-[#f4f5f6] border-[#d4d4d4] text-[#2d2d2d]' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
+                      <div className={`p-2.5 border rounded-[8px]-[3px] font-semibold text-[12px] ${concretePassed ? 'bg-[#f4f5f6] border-[#d4d4d4] text-[#2d2d2d]' : 'bg-[#2d2d2d] text-white border-[#2d2d2d] animate-pulse'}`}>
                         {limsLogMsg}
                       </div>
                     )}
@@ -1151,7 +1151,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </div>
                     </div>
 
-                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between text-[12px] text-gray-700">
+                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[8px] shadow-sm flex flex-col justify-between text-[12px] text-gray-700">
                       <div className="space-y-1.5">
                         <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[12px]">Slump grading classification</p>
                         <div className="flex justify-between">
@@ -1205,7 +1205,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       </div>
                     </div>
 
-                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded shadow-sm flex flex-col justify-between text-[12px] text-gray-700">
+                    <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[8px] shadow-sm flex flex-col justify-between text-[12px] text-gray-700">
                       <div className="space-y-1.5">
                         <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[12px]">Acoustic & steel properties</p>
                         <div className="flex justify-between">
@@ -1220,7 +1220,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         </div>
                         <div className="flex justify-between">
                           <span>Defect Void Index:</span>
-                          <span className={`font-bold rounded-[2px] px-1.5 py-0.5 ${limsAcousticSpeed < 3000 ? 'bg-[#2d2d2d] text-white border border-[#2d2d2d] font-bold animate-pulse' : 'text-gray-900 border border-transparent'}`}>
+                          <span className={`font-bold rounded-[8px]-[2px] px-1.5 py-0.5 ${limsAcousticSpeed < 3000 ? 'bg-[#2d2d2d] text-white border border-[#2d2d2d] font-bold animate-pulse' : 'text-gray-900 border border-transparent'}`}>
                             {limsAcousticSpeed < 3000 ? 'HIGH VOIDS WARNING' : 'NOMINAL'}
                           </span>
                         </div>
@@ -1272,7 +1272,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-[#d4d4d4] bg-white p-4 relative flex flex-col justify-center items-center rounded-[3px] shadow-inner">
+                  <div className="border border-[#d4d4d4] bg-white p-4 relative flex flex-col justify-center items-center rounded-[8px]-[3px] shadow-inner">
                     <span className="absolute -top-2.5 left-3 text-[12px] font-bold uppercase z-10">SCADA OSCILLATOR SPECTRUM</span>
                     <canvas ref={scadaCanvasRef} width={280} height={90} className="w-full h-24 bg-white" />
                   </div>
@@ -1316,7 +1316,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </div>
                   </div>
 
-                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[3px] bg-white text-[12px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
+                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[8px]-[3px] bg-white text-[12px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
                     <div className="space-y-1.5">
                       <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800 uppercase">Computed disaster stress indexes</p>
                       <div className="flex justify-between">
@@ -1340,10 +1340,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               <LevelCard 
                 icon={BarChart2} 
                 title="Level 8 - ERP Inventory & materials cost tracker" 
-                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold uppercase">PLANNED VS ACTUAL SPEND</span>}
+                headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">PLANNED VS ACTUAL SPEND</span>}
                 footer="ERP Financial ledger linked with project accounts // carbon offset verified"
               >
-                <div className="border border-[#d4d4d4] rounded-[3px] overflow-hidden bg-white shadow-sm">
+                <div className="border border-[#d4d4d4] rounded-[8px]-[3px] overflow-hidden bg-white shadow-sm">
                   <table className="w-full text-left font-mono text-[12px] border-collapse no-vertical-borders">
                     <thead>
                       <tr className="bg-gray-50 border-b border-[#d4d4d4] font-bold uppercase text-[12px] text-gray-600">
@@ -1395,7 +1395,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     />
                   </div>
 
-                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[3px] bg-white text-[12px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
+                  <div className="border border-dashed border-[#c8c8c8] p-3 rounded-[8px]-[3px] bg-white text-[12px] font-mono uppercase font-semibold flex flex-col justify-between text-gray-700">
                     <div className="space-y-1.5">
                       <p className="font-bold border-b border-[#eeeeee] pb-0.5 text-gray-800 uppercase">Lifespan structural forecast</p>
                       <div className="flex justify-between">
@@ -1422,20 +1422,20 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 footer="Smart City macro-utility grid indicators active // municipal systems online"
               >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[8px]-[3px] shadow-sm">
                     <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wider">Power Grid Strain</span>
                     <span className="text-xs font-black text-gray-850 mt-1">420 kW</span>
-                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">SAFE</span>
+                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[8px]-[2px] text-gray-700">SAFE</span>
                   </div>
-                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[8px]-[3px] shadow-sm">
                     <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wider">Water Pressure</span>
                     <span className="text-xs font-black text-gray-850 mt-1">45 PSI</span>
-                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">STABLE</span>
+                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[8px]-[2px] text-gray-700">STABLE</span>
                   </div>
-                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[3px] shadow-sm">
+                  <div className="zoho-card p-4 flex flex-col justify-between items-center text-center bg-[#fdfdfd] border border-[#d4d4d4] rounded-[8px]-[3px] shadow-sm">
                     <span className="text-[12px] font-bold text-gray-500 uppercase tracking-wider">Transit Operations</span>
                     <span className="text-xs font-black text-gray-850 mt-1">98.4%</span>
-                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[2px] text-gray-700">ON-TIME</span>
+                    <span className="text-[12px] mt-2 px-2 py-0.5 border border-[#d4d4d4] bg-gray-50 font-bold uppercase rounded-[8px]-[2px] text-gray-700">ON-TIME</span>
                   </div>
                 </div>
               </LevelCard>
@@ -1473,7 +1473,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     </button>
                   </div>
 
-                  <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[3px] shadow-sm text-[12px] flex flex-col justify-between min-h-[140px] text-gray-700">
+                  <div className="p-3 bg-[#fdfdfd] border border-[#cccccc] rounded-[8px]-[3px] shadow-sm text-[12px] flex flex-col justify-between min-h-[140px] text-gray-700">
                     {aiDesignOutput ? (
                       <div className="space-y-2">
                         <p className="font-bold border-b border-[#eeeeee] pb-1 text-gray-800 uppercase text-[12px]">GENERATED BLUEPRINT [COORDINATES]:</p>
@@ -1488,7 +1488,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         </div>
                         <div className="flex justify-between">
                           <span>Safety Factor compliance:</span>
-                          <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[2px] px-1.5 py-0.5 font-bold">{aiDesignOutput.safetyFactor}x</span>
+                          <span className="bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold">{aiDesignOutput.safetyFactor}x</span>
                         </div>
                       </div>
                     ) : (

@@ -152,20 +152,20 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
         <div className="xl:col-span-1 space-y-4">
           <LevelCard icon={Cpu} title="Test Configuration" footerText={`Standard: ${mode.standard}`}>
             <div className="space-y-2 text-[12px]">
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
+              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
                 <p className="text-[12px] text-gray-500 uppercase font-bold">Full Test Name</p>
                 <p className="font-bold text-gray-800 mt-0.5">{mode.fullLabel}</p>
               </div>
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
+              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
                 <p className="text-[12px] text-gray-500 uppercase font-bold">Compliance Standard</p>
                 <p className="font-bold text-gray-800 mt-0.5">{mode.standard}</p>
               </div>
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
+              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
                 <p className="text-[12px] text-gray-500 uppercase font-bold">Scan Status</p>
                 {isScanning ? (
                   <div className="mt-1 space-y-1">
                     <div className="flex justify-between text-[12px] font-bold"><span className="animate-pulse">SCANNING...</span><span>{scanProgress}%</span></div>
-                    <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded overflow-hidden">
+                    <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded-[8px] overflow-hidden">
                       <div style={{ width: `${scanProgress}%` }} className="h-full bg-black transition-all" />
                     </div>
                   </div>
@@ -204,7 +204,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             title={`${mode.fullLabel} — Scan Viewport`}
             footerText="Hover over viewport to position scan probe"
             headerAction={
-              <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${VERDICT_STYLE[result.verdict]}`}>
+              <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${VERDICT_STYLE[result.verdict]}`}>
                 {result.verdict}
               </span>
             }
@@ -301,7 +301,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             </div>
 
             {/* Verdict banner */}
-            <div className={`p-2 border rounded-sm text-[12px] font-bold uppercase leading-relaxed ${VERDICT_STYLE[result.verdict]}`}>
+            <div className={`p-2 border rounded-[8px]-[8px] text-[12px] font-bold uppercase leading-relaxed ${VERDICT_STYLE[result.verdict]}`}>
               <AlertTriangle className="h-3 w-3 inline mr-1" />
               {result.note}
             </div>
@@ -324,7 +324,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       <td className="font-bold">{r}</td>
                       <td className="text-gray-500">{mode.standard}</td>
                       <td>
-                        <span className={`px-1 py-0.5 text-[12px] font-black border rounded-sm uppercase ${isCrit ? 'bg-black text-white border-border-default' : 'border-[#d4d4d4] text-gray-600'}`}>
+                        <span className={`px-1 py-0.5 text-[12px] font-black border rounded-[8px]-[8px] uppercase ${isCrit ? 'bg-black text-white border-border-default' : 'border-[#d4d4d4] text-gray-600'}`}>
                           {isCrit ? result.verdict : 'PASS'}
                         </span>
                       </td>

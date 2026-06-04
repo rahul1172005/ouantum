@@ -54,7 +54,7 @@ export function DataTable({ columns, rows, onRowClick }) {
                 type="checkbox" 
                 onChange={handleSelectAll}
                 checked={rows.length > 0 && selected.length === rows.length}
-                className="w-3.5 h-3.5 rounded border-border-input cursor-pointer" 
+                className="w-3.5 h-3.5 rounded-[8px] border-border-input cursor-pointer" 
               />
             </th>
             {columns.map(col => (
@@ -91,7 +91,7 @@ export function DataTable({ columns, rows, onRowClick }) {
                     type="checkbox" 
                     checked={isRowSelected}
                     onChange={(e) => handleSelectRow(e, rowId)}
-                    className="w-3.5 h-3.5 rounded border-border-input cursor-pointer" 
+                    className="w-3.5 h-3.5 rounded-[8px] border-border-input cursor-pointer" 
                   />
                 </td>
                 {columns.map(col => (
@@ -100,7 +100,7 @@ export function DataTable({ columns, rows, onRowClick }) {
                   </td>
                 ))}
                 <td className="px-3 h-[40px]" onClick={e => e.stopPropagation()}>
-                  <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-footer text-text-muted cursor-pointer border-none bg-transparent">
+                  <button className="w-7 h-7 flex items-center justify-center rounded-[8px] hover:bg-surface-footer text-text-muted cursor-pointer border-none bg-transparent">
                     <MoreHorizontal className="w-4 h-4" />
                   </button>
                 </td>
