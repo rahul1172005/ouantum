@@ -180,7 +180,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
       
       {/* Top Banner Tab Controls */}
-      <div className="col-span-1 xl:col-span-4 flex flex-wrap border-2 border-black bg-gray-50 p-1 gap-1">
+      <div className="col-span-1 xl:col-span-4 flex flex-wrap border border-border-default bg-gray-50 p-1 gap-1">
         {[
           { id: 'load', label: 'Load Analysis (IS 875/1893)' },
           { id: 'stability', label: 'Euler Buckling & Deflection' },
@@ -193,10 +193,10 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-3 py-1.5 border font-bold uppercase text-[9px] tracking-wide transition-all ${
+            className={`px-3 py-1.5 border font-bold uppercase text-[12px] tracking-wide transition-all ${
               activeTab === tab.id
-                ? 'bg-black text-white border-black shadow-[1px_1px_0px_rgba(0,0,0,0.15)]'
-                : 'bg-white border-gray-300 hover:border-black text-gray-700 hover:text-black'
+                ? 'bg-black text-white border-border-default shadow-sm'
+                : 'bg-white border-gray-300 hover:border-border-default text-gray-700 hover:text-black'
             }`}
           >
             {tab.label}
@@ -220,7 +220,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               {activeTab === 'corrosion' && 'ELECTROCHEMICAL POTENTIAL'}
               {activeTab === 'dynamic' && 'LUMPED MASS & SHEAR STIFFNESS'}
             </span>
-            <span className="ml-auto text-[8px] bg-black text-white px-1 py-0.5">STRUCTURAL INPUTS</span>
+            <span className="ml-auto text-[12px] bg-black text-white px-1 py-0.5">STRUCTURAL INPUTS</span>
           </div>
           <div className="zoho-card-body">
 
@@ -239,11 +239,11 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
               </div>
 
               <div>
-                <label className="block font-bold mb-1 font-mono text-[9px] uppercase">Terrain Category (k2 height factor modifier):</label>
+                <label className="block font-bold mb-1 font-mono text-[12px] uppercase">Terrain Category (k2 height factor modifier):</label>
                 <select 
                   value={terrainCategory} 
                   onChange={(e) => setTerrainCategory(Number(e.target.value))} 
-                  className="w-full border border-black p-1 bg-white text-[10px]"
+                  className="w-full border border-border-default p-1 bg-white text-[12px]"
                 >
                   <option value={1}>Category 1 (Open water, desert - Rating k2=1.05)</option>
                   <option value={2}>Category 2 (Open fields, scattered trees - Rating k2=0.98)</option>
@@ -252,7 +252,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 </select>
               </div>
 
-              <div className="border-t border-black pt-3">
+              <div className="border-t border-border-default pt-3">
                 <div className="flex justify-between font-bold mb-1">
                   <span>Seismic Zone Factor ($Z$):</span>
                   <span>{seismicZ} (Zone IV)</span>
@@ -309,7 +309,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <select 
                   value={endConditions} 
                   onChange={(e) => setEndConditions(e.target.value)} 
-                  className="w-full border border-black p-1 bg-white text-[10px]"
+                  className="w-full border border-border-default p-1 bg-white text-[12px]"
                 >
                   <option value="fixed">Both Ends Fixed (K = 0.5)</option>
                   <option value="fixed_pinned">One Fixed, One Pinned (K = 0.7)</option>
@@ -318,7 +318,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 </select>
               </div>
 
-              <div className="border-t border-black pt-3">
+              <div className="border-t border-border-default pt-3">
                 <div className="flex justify-between font-bold mb-1">
                   <span>Applied Beam Service Point Load ($P$):</span>
                   <span>{beamLoad} kN</span>
@@ -334,7 +334,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
 
           {activeTab === 'behavior' && (
             <div className="space-y-3">
-              <p className="font-bold text-[9px] uppercase border-b border-black pb-1">Stress Cycle Fatigue Cumulative Load cases:</p>
+              <p className="font-bold text-[12px] uppercase border-b border-border-default pb-1">Stress Cycle Fatigue Cumulative Load cases:</p>
               
               <div>
                 <div className="flex justify-between font-bold mb-1">
@@ -394,7 +394,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                   <input 
                     type="number" min="150" max="600" step="25" value={beamWidth}
                     onChange={(e) => setBeamWidth(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono"
+                    className="w-full border border-border-default p-1 font-mono"
                   />
                 </div>
                 <div>
@@ -402,7 +402,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                   <input 
                     type="number" min="200" max="1000" step="25" value={effectiveDepth}
                     onChange={(e) => setEffectiveDepth(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono"
+                    className="w-full border border-border-default p-1 font-mono"
                   />
                 </div>
               </div>
@@ -534,7 +534,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
         {/* Diagnostic Structural Node trigger */}
         <button
           onClick={handleSelectStructureNode}
-          className="w-full py-2 bg-white text-black border-2 border-black hover:bg-black hover:text-white font-bold uppercase text-[9px] transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5"
+          className="w-full py-2 bg-white text-black border border-border-default hover:bg-black hover:text-white font-bold uppercase text-[12px] transition-colors shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5"
         >
           INSPECT ST-COL MEMBER VECTORS
         </button>
@@ -549,7 +549,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
           <div className="zoho-card-header">
             <Activity className="h-3.5 w-3.5" />
             <span>DERIVED MATH VECTORS</span>
-            <span className="ml-auto text-[8px] bg-black text-white px-1">OUTPUTS</span>
+            <span className="ml-auto text-[12px] bg-black text-white px-1">OUTPUTS</span>
           </div>
           <div className="zoho-card-body">
 
@@ -563,7 +563,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Design Wind Pressure ($p = 0.6 V_z^2$):</span>
                 <span className="font-mono">{designWindPressure.toFixed(0)} N/m² (Pa)</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Seismic Horizontal Coeff ($A_h$):</span>
                 <span className="font-mono">{seismicAh.toFixed(4)} g</span>
               </div>
@@ -580,13 +580,13 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Euler Critical Buckling Load ({"$P_{cr}$"}):</span>
                 <span className="font-mono">{eulerBucklingLoad.toFixed(1)} kN</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Beam Deflection ($\delta = PL^3/48EI$):</span>
                 <span className="font-mono">{pointLoadDeflection.toFixed(2)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {beamLoad >= eulerBucklingLoad ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Applied load exceeds Euler critical load! Column collapse risk!
                   </span>
                 ) : (
@@ -606,13 +606,13 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Damage Case 2 Fraction ($n_2/N_2$):</span>
                 <span className="font-mono font-bold">{damageRatio2.toFixed(3)}</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Miner&apos;s Cumulative Damage ({"$\\Sigma \\frac{n_i}{N_i}$"}):</span>
                 <span className="font-mono">{totalCumulativeDamage.toFixed(3)}</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {totalCumulativeDamage >= 1.0 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     HAZARD: Total fatigue damage limit breached! Impending fatigue failure!
                   </span>
                 ) : (
@@ -632,13 +632,13 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Nominal Steel Stirrup shear capacity ($V_s$):</span>
                 <span className="font-mono font-bold">{(concreteShearCapacity * 0.5).toFixed(1)} kN</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Shear Demand-to-Capacity Ratio:</span>
                 <span className="font-mono">{ultimateLimitCapacityRatio.toFixed(2)}</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {ultimateLimitCapacityRatio > 1.0 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Applied shear force exceeds beam design strength! Reinforce stirrups!
                   </span>
                 ) : (
@@ -654,11 +654,11 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>ISO 834 Core Temperature reached:</span>
                 <span className="font-mono font-bold">{fireTemperature.toFixed(0)} °C</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Thermal Degradation Factor (Strength ratio):</span>
                 <span className="font-mono">{standardThermalDegradation.toFixed(3)}</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Structural note: A degraded yield strength below 0.50 of nominal requires immediate evacuation during thermal incidents.
               </p>
             </div>
@@ -670,11 +670,11 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Half-Cell Potential Verdict:</span>
                 <span className="font-mono font-bold">{corrosionProbability} RISK</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Butler-Volmer Penetration Rate:</span>
                 <span className="font-mono">{annualCorrosionRate.toFixed(4)} mm/year loss</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Corrosion danger: A rate &gt; 0.01 mm/year under CSE potential of -350mV leads to concrete spalling and reinforcement cross-section loss.
               </p>
             </div>
@@ -686,11 +686,11 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                 <span>Lateral Structural stiffness ($k$):</span>
                 <span className="font-mono font-bold">{stiffnessK} MN/m</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Structural Natural Frequency ($f_n$):</span>
                 <span className="font-mono">{naturalFrequencyHz.toFixed(2)} Hz</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Dynamic Resonance Warning: Ensure natural frequency ($f_n$) does not map to walking resonance frequencies (1.8 - 2.2 Hz) to prevent high structural oscillations.
               </p>
             </div>
@@ -706,7 +706,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
           </div>
           <div className="zoho-card-body">
           
-          <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
+          <div className="h-[180px] w-full border border-border-default bg-white relative overflow-hidden select-none">
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 520 180">
               <rect width="100%" height="100%" fill="url(#grid)" />
 
@@ -775,7 +775,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
-              <p className="text-[10px] uppercase font-black flex items-center gap-1.5 text-black">
+              <p className="text-[12px] uppercase font-black flex items-center gap-1.5 text-black">
                 {systemAlertTriggered ? (
                   <>
                     <ShieldAlert className="h-4.5 w-4.5 text-black" />
@@ -788,17 +788,17 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
                   </>
                 )}
               </p>
-              <p className="text-[8px] text-gray-500 font-mono mt-0.5 leading-relaxed">
+              <p className="text-[12px] text-gray-500 font-mono mt-0.5 leading-relaxed">
                 Applies strict safety boundaries. Automatically merges telemetry failures into CRM tickets.
               </p>
             </div>
             
             <button
               onClick={handleLogTicket}
-              className={`px-4 py-2 border-2 font-bold uppercase text-[9.5px] transition-all cursor-pointer shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
+              className={`px-4 py-2 border-2 font-bold uppercase text-[12px] transition-all cursor-pointer shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
                 systemAlertTriggered 
-                  ? 'bg-black text-white border-black' 
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-black text-white border-border-default' 
+                  : 'bg-white text-black border-border-default hover:bg-gray-100'
               }`}
             >
               LOG STRUCTURAL TICKET
@@ -806,7 +806,7 @@ export default function StructuralSafety({ selectedElement, setSelectedElement }
           </div>
 
           {crmSuccess && (
-            <div className="p-2 border border-black bg-gray-50 text-black font-black uppercase text-[8px] text-center">
+            <div className="p-2 border border-border-default bg-gray-50 text-black font-black uppercase text-[12px] text-center">
               {crmSuccess}
             </div>
           )}

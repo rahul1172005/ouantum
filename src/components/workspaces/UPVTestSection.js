@@ -23,7 +23,7 @@ function SubCard({ icon: Icon, title, children, footerText = null, headerAction 
     <div className="border border-[#d4d4d4] bg-white rounded-sm flex flex-col shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
       <div className="bg-gradient-to-b from-[#fbfbfb] to-[#ececec] border-b border-[#c8c8c8] px-3 py-2 flex items-center gap-1.5 min-h-[36px]">
         {Icon && <Icon className="h-3.5 w-3.5 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="p-4 space-y-3 flex-1">
@@ -31,7 +31,7 @@ function SubCard({ icon: Icon, title, children, footerText = null, headerAction 
       </div>
       {footerText && (
         <div className="bg-[#f4f5f6] border-t border-[#d4d4d4] px-3 py-2.5">
-          <span className="text-gray-500 font-semibold text-[8.5px] uppercase tracking-normal">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase tracking-normal">{footerText}</span>
         </div>
       )}
     </div>
@@ -129,7 +129,7 @@ function OscilloscopePanel({ activePt, selectedPointId }) {
 
   return (
     <div className="p-3 border border-[#d4d4d4] rounded-sm bg-black text-white space-y-1.5 flex flex-col justify-between flex-1">
-      <div className="flex justify-between items-center text-[7.5px] text-gray-400 font-bold uppercase">
+      <div className="flex justify-between items-center text-[12px] text-gray-400 font-bold uppercase">
         <span>Ultrasonic Signal Waveform</span>
         <span className="animate-pulse text-[#10b981]">● LIVE RX SIGNAL</span>
       </div>
@@ -148,7 +148,7 @@ function OscilloscopePanel({ activePt, selectedPointId }) {
           />
         </svg>
       </div>
-      <div className="flex justify-between text-[7px] text-gray-500 font-bold uppercase">
+      <div className="flex justify-between text-[12px] text-gray-500 font-bold uppercase">
         <span>Transit Time: {activePt?.time} us</span>
         <span>Amplitude: {selectedPointId === 'P5' ? 'LOW (ATTENUATED)' : 'NOMINAL'}</span>
       </div>
@@ -250,7 +250,7 @@ export default function UPVTestSection({ setSelectedElement }) {
     // Wavelength λ (mm) = (V (km/s) * 1000) / 54 (kHz)
     const wavelength = velocity > 0 ? parseFloat(((velocity * 1000) / 54).toFixed(2)) : 0;
     let classification = 'Doubtful';
-    let statusClass = 'bg-black text-white border-black';
+    let statusClass = 'bg-black text-white border-border-default';
     if (velocity > 4.5) {
       classification = 'Excellent';
       statusClass = 'border-green-600 bg-green-50 text-green-700';
@@ -516,86 +516,86 @@ export default function UPVTestSection({ setSelectedElement }) {
           {/* Metadata Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Structure ID</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Structure ID</label>
               <input 
                 type="text" 
                 value={structureId} 
                 onChange={(e) => setStructureId(e.target.value.toUpperCase())}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               />
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Element Type</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Element Type</label>
               <select 
                 value={elementType} 
                 onChange={(e) => setElementType(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Column', 'Beam', 'Slab', 'Pier'].map(t => <option key={t} value={t}>{t}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Concrete Grade</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Concrete Grade</label>
               <select 
                 value={concreteGrade} 
                 onChange={(e) => setConcreteGrade(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['M20', 'M30', 'M40'].map(g => <option key={g} value={g}>{g}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Concrete Age (Days)</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Concrete Age (Days)</label>
               <input 
                 type="number" 
                 min="1" 
                 max="365"
                 value={ageDays} 
                 onChange={(e) => setAgeDays(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4 border-b border-[#e0e0e0] pb-3">
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Transmission</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Transmission</label>
               <select 
                 value={transmissionMethod} 
                 onChange={(e) => setTransmissionMethod(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Direct', 'Semi-direct', 'Indirect'].map(m => <option key={m} value={m}>{m} Transmission</option>)}
               </select>
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Couplant Agent</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Couplant Agent</label>
               <select 
                 value={couplantType} 
                 onChange={(e) => setCouplantType(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Grease', 'Vaseline', 'Gel'].map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Moisture Matrix</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Moisture Matrix</label>
               <select 
                 value={moistureCondition} 
                 onChange={(e) => setMoistureCondition(e.target.value)}
-                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[10px] focus:outline-none focus:border-black font-semibold"
+                className="w-full border border-[#c8c8c8] px-1.5 py-1 rounded bg-[#ffffff] text-[12px] focus:outline-none focus:border-border-default font-semibold"
               >
                 {['Dry', 'Wet', 'SSD'].map(m => <option key={m} value={m}>{m} (Saturated Surface Dry)</option>)}
               </select>
             </div>
             <div>
-              <label className="text-[8px] text-gray-500 font-bold block mb-1">Calibration Check</label>
+              <label className="text-[12px] text-gray-500 font-bold block mb-1">Calibration Check</label>
               <button 
                 onClick={() => setCalibrationOk(!calibrationOk)}
-                className={`w-full text-left border px-1.5 py-1 text-[10px] font-bold rounded flex items-center justify-between ${calibrationOk ? 'bg-green-50 border-green-300 text-green-700' : 'bg-red-50 border-red-300 text-red-700'}`}
+                className={`w-full text-left border px-1.5 py-1 text-[12px] font-bold rounded flex items-center justify-between ${calibrationOk ? 'bg-green-50 border-green-300 text-green-700' : 'bg-red-50 border-red-300 text-red-700'}`}
               >
                 <span>{calibrationOk ? 'ACTIVE' : 'LOCKOUT'}</span>
-                <span className="text-[8px]">⚙️ Toggle</span>
+                <span className="text-[12px]">⚙️ Toggle</span>
               </button>
             </div>
           </div>
@@ -604,7 +604,7 @@ export default function UPVTestSection({ setSelectedElement }) {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[400px]">
               <thead>
-                <tr className="border-b border-[#e0e0e0] text-gray-500 text-[9px]">
+                <tr className="border-b border-[#e0e0e0] text-gray-500 text-[12px]">
                   <th className="text-left pb-1.5 font-bold uppercase">Point</th>
                   <th className="text-left pb-1.5 font-bold uppercase">Path L (mm)</th>
                   <th className="text-left pb-1.5 font-bold uppercase">Time T (us)</th>
@@ -630,7 +630,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                           value={r.distance}
                           disabled={!calibrationOk}
                           onChange={(e) => handleReadingChange(r.id, 'distance', e.target.value)}
-                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[10.5px] text-center focus:outline-none focus:border-black font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </td>
                       <td className="py-2">
@@ -639,7 +639,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                           value={r.time}
                           disabled={!calibrationOk}
                           onChange={(e) => handleReadingChange(r.id, 'time', e.target.value)}
-                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[10.5px] text-center focus:outline-none focus:border-black font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-24 border border-[#c8c8c8] px-2 py-1 rounded text-[12px] text-center focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </td>
                       <td className="py-2 font-bold text-gray-900">{r.velocity} km/s</td>
@@ -647,7 +647,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                         {z ? z.zScore : '0.00'}
                       </td>
                       <td className="py-2 text-right">
-                        <span className={`px-1.5 py-0.5 text-[8px] font-black border rounded-sm uppercase tracking-wide ${r.statusClass}`}>
+                        <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${r.statusClass}`}>
                           {r.classification}
                         </span>
                       </td>
@@ -675,9 +675,9 @@ export default function UPVTestSection({ setSelectedElement }) {
               const isCrit = status === 'WARNING' || status === 'NON-UNIFORM' || status === 'CRITICAL' || status === 'HIGH RISK' || status === 'AUDIT';
               return (
                 <div key={label} className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
-                  <span className="text-[7.5px] text-gray-500 uppercase font-bold block">{label}</span>
-                  <div className="font-bold text-gray-800 text-[11px] mt-0.5">{val}</div>
-                  <span className={`inline-block text-[7px] font-black uppercase mt-1 px-1 py-0.2 border rounded-sm ${isCrit ? 'bg-black text-white border-black' : 'border-gray-300 text-gray-600'}`}>
+                  <span className="text-[12px] text-gray-500 uppercase font-bold block">{label}</span>
+                  <div className="font-bold text-gray-800 text-[12px] mt-0.5">{val}</div>
+                  <span className={`inline-block text-[12px] font-black uppercase mt-1 px-1 py-0.2 border rounded-sm ${isCrit ? 'bg-black text-white border-border-default' : 'border-gray-300 text-gray-600'}`}>
                     {status}
                   </span>
                 </div>
@@ -688,19 +688,19 @@ export default function UPVTestSection({ setSelectedElement }) {
           {/* Age Maturity Section */}
           <div className="border-t border-[#e0e0e0] pt-3">
             <div className="flex justify-between items-center mb-2">
-              <span className="font-bold text-gray-700 text-[9px] uppercase tracking-wide">Age Strength-Gain Maturity Curve</span>
-              <span className="text-[8px] text-gray-500 uppercase">deviation from maturity curve</span>
+              <span className="font-bold text-gray-700 text-[12px] uppercase tracking-wide">Age Strength-Gain Maturity Curve</span>
+              <span className="text-[12px] text-gray-500 uppercase">deviation from maturity curve</span>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
               
               {/* Deviation Gauge Block */}
               <div className="h-36 p-4 border border-[#d4d4d4] rounded-sm flex flex-col justify-center items-center bg-[#fafafa] text-center">
-                <div className="text-[8px] text-gray-500 uppercase font-bold">Velocity Deviation</div>
+                <div className="text-[12px] text-gray-500 uppercase font-bold">Velocity Deviation</div>
                 <div className={`text-lg font-black mt-2 ${velocityDeviation < -10 ? 'text-red-700 animate-pulse' : 'text-gray-800'}`}>
                   {velocityDeviation > 0 ? `+${velocityDeviation}` : velocityDeviation}%
                 </div>
-                <div className="text-[7.5px] text-gray-400 mt-2 uppercase font-bold">
+                <div className="text-[12px] text-gray-400 mt-2 uppercase font-bold">
                   {velocityDeviation < -10 ? 'INVESTIGATE AGE MISMATCH' : 'NOMINAL GAIN'}
                 </div>
               </div>
@@ -771,16 +771,16 @@ export default function UPVTestSection({ setSelectedElement }) {
           
           {/* 1. Top Section: 2D Spatial Heatmap & Coordinate Readings */}
           <div className="border-b border-dashed border-[#d4d4d4] pb-6">
-            <div className="text-[9px] font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center justify-between">
+            <div className="text-[12px] font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center justify-between">
               <span>I. Spatial 2D Interpolation Grid Heatmap</span>
-              <span className="text-[7.5px] text-gray-400 font-normal">Horizontal section view mapping</span>
+              <span className="text-[12px] text-gray-400 font-normal">Horizontal section view mapping</span>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
               
               {/* 2D Heatmap Canvas (lg:col-span-8) */}
               <div className="lg:col-span-8 border border-[#d4d4d4] bg-white rounded-sm relative overflow-hidden h-[380px] md:h-[450px] flex flex-col justify-between p-4 select-none">
-                <div className="flex justify-between w-full text-[8px] text-gray-500 font-bold z-20">
+                <div className="flex justify-between w-full text-[12px] text-gray-500 font-bold z-20">
                   <span>ELEMENT LAYOUT AREA MATRIX</span>
                   <span>SPATIAL INTERPOLATION GRAPH (IDW)</span>
                 </div>
@@ -867,10 +867,10 @@ export default function UPVTestSection({ setSelectedElement }) {
                 {/* Active Node Telemetry Details */}
                 <div className="p-3 border border-[#d4d4d4] rounded-sm bg-gray-50 space-y-2 flex-shrink-0">
                   <div className="flex justify-between items-center border-b border-gray-200 pb-1.5">
-                    <span className="text-[7.5px] text-gray-500 font-bold uppercase">Active Node Telemetry</span>
-                    <span className={`px-1.5 py-0.5 text-[7px] font-black border rounded-sm uppercase tracking-wide ${
+                    <span className="text-[12px] text-gray-500 font-bold uppercase">Active Node Telemetry</span>
+                    <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${
                       calculatedReadings.find(r => r.id === selectedPointId)?.velocity < 3.0
-                        ? 'bg-black text-white border-black animate-pulse'
+                        ? 'bg-black text-white border-border-default animate-pulse'
                         : 'border-gray-300 text-gray-600'
                     }`}>
                       {selectedPointId}
@@ -880,36 +880,36 @@ export default function UPVTestSection({ setSelectedElement }) {
                     const activePt = calculatedReadings.find(r => r.id === selectedPointId);
                     const activeZ = zScores.find(z => z.id === selectedPointId);
                     return (
-                      <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[9.5px]">
+                      <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[12px]">
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Velocity V</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Velocity V</span>
                           <span className="font-bold text-gray-800">{activePt?.velocity} km/s</span>
                         </div>
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Transit Time T</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Transit Time T</span>
                           <span className="font-bold text-gray-800">{activePt?.time} us</span>
                         </div>
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Path Distance L</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Path Distance L</span>
                           <span className="font-bold text-gray-800">{activePt?.distance} mm</span>
                         </div>
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Wavelength λ</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Wavelength λ</span>
                           <span className="font-bold text-gray-800">{activePt?.wavelength} mm</span>
                         </div>
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Z-Score Anomaly</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Z-Score Anomaly</span>
                           <span className={`font-bold ${activeZ?.isOutlier ? 'text-red-700 font-black' : 'text-gray-700'}`}>
                             {activeZ?.zScore}
                           </span>
                         </div>
                         <div>
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">Excitation Freq</span>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">Excitation Freq</span>
                           <span className="font-bold text-gray-800">54 kHz</span>
                         </div>
                         <div className="col-span-2">
-                          <span className="text-[7px] text-gray-400 block font-bold uppercase">QA Verdict Classification</span>
-                          <span className={`inline-block font-black uppercase text-[8px] mt-0.5 px-1 py-0.2 border rounded-sm ${activePt?.statusClass}`}>
+                          <span className="text-[12px] text-gray-400 block font-bold uppercase">QA Verdict Classification</span>
+                          <span className={`inline-block font-black uppercase text-[12px] mt-0.5 px-1 py-0.2 border rounded-sm ${activePt?.statusClass}`}>
                             {activePt?.classification}
                           </span>
                         </div>
@@ -920,8 +920,8 @@ export default function UPVTestSection({ setSelectedElement }) {
 
                 {/* Checklist */}
                 <div className="p-3 border border-[#d4d4d4] rounded-sm bg-white flex-1 flex flex-col justify-between overflow-y-auto">
-                  <span className="text-[7.5px] text-gray-500 font-bold block uppercase border-b border-gray-100 pb-1.5 mb-1.5">Point Status Checklist</span>
-                  <div className="text-[9px] space-y-1.5 font-semibold text-gray-700">
+                  <span className="text-[12px] text-gray-500 font-bold block uppercase border-b border-gray-100 pb-1.5 mb-1.5">Point Status Checklist</span>
+                  <div className="text-[12px] space-y-1.5 font-semibold text-gray-700">
                     {calculatedReadings.map(r => {
                       const isSelected = r.id === selectedPointId;
                       return (
@@ -942,11 +942,11 @@ export default function UPVTestSection({ setSelectedElement }) {
 
                 {/* Spatial Score Block */}
                 <div className="p-3 border border-[#d4d4d4] rounded-sm bg-gray-50 space-y-1 flex-shrink-0">
-                  <span className="text-[7.5px] text-gray-500 font-bold block uppercase">Spatial Anomaly Score</span>
+                  <span className="text-[12px] text-gray-500 font-bold block uppercase">Spatial Anomaly Score</span>
                   <div className="text-lg font-black text-gray-800">
                     {Math.round((failedLocationsCount / numPoints) * 100)}%
                   </div>
-                  <div className="text-[7px] text-gray-400 font-bold uppercase leading-relaxed">
+                  <div className="text-[12px] text-gray-400 font-bold uppercase leading-relaxed">
                     {failedLocationsCount > 0 ? 'Localized Anomaly Flagged' : 'Nominal / Non-anomalous'}
                   </div>
                 </div>
@@ -961,9 +961,9 @@ export default function UPVTestSection({ setSelectedElement }) {
 
           {/* 2. Bottom Section: 3D Isometric Digital Twin & Wave Telemetry */}
           <div>
-            <div className="text-[9px] font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center justify-between">
+            <div className="text-[12px] font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center justify-between">
               <span>II. 3D Isometric Column Digital Twin</span>
-              <span className="text-[7.5px] text-gray-400 font-normal">Volumetric structural representation</span>
+              <span className="text-[12px] text-gray-400 font-normal">Volumetric structural representation</span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
@@ -978,7 +978,7 @@ export default function UPVTestSection({ setSelectedElement }) {
               >
                 
                 {/* Title and HUD info */}
-                <div className="flex justify-between w-full text-[8px] text-gray-500 font-bold z-20">
+                <div className="flex justify-between w-full text-[12px] text-gray-500 font-bold z-20">
                   <span>3D ISOMETRIC COLUMN DIGITAL TWIN (DRAG TO ROTATE)</span>
                   <span>METHOD: {transmissionMethod.toUpperCase()}</span>
                 </div>
@@ -1277,7 +1277,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 </svg>
 
                 {/* Telemetry info HUD */}
-                <div className="flex justify-between w-full text-[8px] font-bold z-20 bg-gray-50/90 border border-gray-200 p-1 rounded-sm">
+                <div className="flex justify-between w-full text-[12px] font-bold z-20 bg-gray-50/90 border border-gray-200 p-1 rounded-sm">
                   {(() => {
                     const calculated = calculatedReadings.find(r => r.id === selectedPointId);
                     return (
@@ -1296,8 +1296,8 @@ export default function UPVTestSection({ setSelectedElement }) {
               <div className="lg:col-span-4 flex flex-col justify-between h-[380px] md:h-[450px] gap-3">
                 
                 {/* 3D Transducers Metadata */}
-                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm space-y-1.5 text-[9.5px]">
-                  <span className="text-[7.5px] text-gray-500 font-bold block uppercase border-b border-gray-200 pb-1 mb-1">Ultrasonic Calibration</span>
+                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm space-y-1.5 text-[12px]">
+                  <span className="text-[12px] text-gray-500 font-bold block uppercase border-b border-gray-200 pb-1 mb-1">Ultrasonic Calibration</span>
                   {(() => {
                     const activePt = calculatedReadings.find(r => r.id === selectedPointId);
                     return [
@@ -1323,7 +1323,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                 />
 
                 {/* HUD Action Status */}
-                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm text-[8px] leading-relaxed text-gray-500">
+                <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm text-[12px] leading-relaxed text-gray-500">
                   <span className="font-bold block text-gray-700 uppercase mb-0.5">Workstation Diagnostics</span>
                   Sensor parameters verified against IS 13311-1. Telemetry channels acquired at 1.2 megasamples/sec.
                 </div>
@@ -1347,35 +1347,35 @@ export default function UPVTestSection({ setSelectedElement }) {
             {/* Primary Diagnosis Output */}
             <div className="border border-[#c8c8c8] p-3 rounded-sm bg-black text-white flex flex-col justify-between">
               <div>
-                <span className="text-[7.5px] text-gray-400 font-bold uppercase tracking-wide block">Primary AI Diagnosis</span>
+                <span className="text-[12px] text-gray-400 font-bold uppercase tracking-wide block">Primary AI Diagnosis</span>
                 <div className="text-sm font-black uppercase mt-1">
                   {hasSubstantialDefect ? 'LOCALIZED ANOMALY DETECTED' : 'NOMINAL QUALITY SIGNATURE'}
                 </div>
-                <div className="text-[10px] text-gray-300 mt-2 font-sans font-semibold leading-relaxed">
+                <div className="text-[12px] text-gray-300 mt-2 font-sans font-semibold leading-relaxed">
                   {possibleCausesText}
                 </div>
               </div>
 
               <div className="border-t border-gray-800 pt-2.5 mt-3 flex items-center justify-between">
                 <div>
-                  <span className="text-[7.5px] text-gray-400 block font-bold">CONFIDENCE</span>
-                  <span className="text-[11px] font-black">{hasSubstantialDefect ? `${primaryDefect.prob}%` : '98.5%'}</span>
+                  <span className="text-[12px] text-gray-400 block font-bold">CONFIDENCE</span>
+                  <span className="text-[12px] font-black">{hasSubstantialDefect ? `${primaryDefect.prob}%` : '98.5%'}</span>
                 </div>
                 <div>
-                  <span className="text-[7.5px] text-gray-400 block font-bold">COMPOSITE CDI</span>
-                  <span className="text-[11px] font-black">{compositeDefectIndex} / 100</span>
+                  <span className="text-[12px] text-gray-400 block font-bold">COMPOSITE CDI</span>
+                  <span className="text-[12px] font-black">{compositeDefectIndex} / 100</span>
                 </div>
               </div>
             </div>
 
             {/* Defect List Bars */}
             <div className="space-y-1.5">
-              <span className="text-[8px] text-gray-500 font-bold uppercase block tracking-wider mb-1">Probability Index per Defect</span>
+              <span className="text-[12px] text-gray-500 font-bold uppercase block tracking-wider mb-1">Probability Index per Defect</span>
               {defects.map(d => {
                 const isHigh = d.prob >= 40;
                 return (
                   <div key={d.name} className="space-y-0.5">
-                    <div className="flex justify-between text-[8px] font-semibold text-gray-700">
+                    <div className="flex justify-between text-[12px] font-semibold text-gray-700">
                       <span>{d.name}</span>
                       <span className={isHigh ? 'font-bold text-red-600' : 'text-gray-500'}>{d.prob}%</span>
                     </div>
@@ -1393,8 +1393,8 @@ export default function UPVTestSection({ setSelectedElement }) {
           </div>
 
           {/* Action Recommendations */}
-          <div className="border-t border-[#e0e0e0] pt-2.5 space-y-1 text-[9.5px]">
-            <span className="font-bold text-gray-700 uppercase block text-[8px]">AI Recommended Next Actions:</span>
+          <div className="border-t border-[#e0e0e0] pt-2.5 space-y-1 text-[12px]">
+            <span className="font-bold text-gray-700 uppercase block text-[12px]">AI Recommended Next Actions:</span>
             {hasSubstantialDefect ? (
               <>
                 <div className="flex items-start gap-1 text-gray-700">
@@ -1419,7 +1419,7 @@ export default function UPVTestSection({ setSelectedElement }) {
         <SubCard icon={Info} title="NDT Interpretation & Capability Guide" footerText="Compliance matrix from IS 13311-1 and ACI standards">
           
           {/* Warning block */}
-          <div className="p-2.5 border border-yellow-500 bg-yellow-50 text-[10px] text-yellow-800 rounded-sm leading-relaxed flex items-start gap-2 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
+          <div className="p-2.5 border border-yellow-500 bg-yellow-50 text-[12px] text-yellow-800 rounded-sm leading-relaxed flex items-start gap-2 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
             <AlertTriangle className="h-4.5 w-4.5 text-yellow-700 flex-shrink-0 mt-0.5" />
             <div>
               <span className="font-bold">UPV Standalone Limitations:</span> UPV is a quality assessment and anomaly indication tool, not a standalone defect identifier. Low velocity readings (e.g. &lt; 3.0 km/s) indicate localized density loss but cannot definitively isolate the cause (honeycombing vs voids vs cracks) without complementary rebound hammer or core sample testing.
@@ -1428,9 +1428,9 @@ export default function UPVTestSection({ setSelectedElement }) {
 
           {/* Capability table */}
           <div className="overflow-x-auto pt-1">
-            <table className="w-full text-[10px]">
+            <table className="w-full text-[12px]">
               <thead>
-                <tr className="border-b border-[#e0e0e0] text-gray-500 text-[8.5px] uppercase">
+                <tr className="border-b border-[#e0e0e0] text-gray-500 text-[12px] uppercase">
                   <th className="text-left pb-1 font-bold">Concrete Condition</th>
                   <th className="text-right pb-1 font-bold">Detection Capability</th>
                 </tr>
@@ -1449,7 +1449,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                   <tr key={cond} className="border-b border-[#f0f0f0]">
                     <td className="py-1.5 font-semibold text-gray-800">{cond}</td>
                     <td className="py-1.5 text-right">
-                      <span className={`px-1.5 py-0.5 text-[8px] font-black border rounded-sm uppercase tracking-wide ${badgeClass}`}>
+                      <span className={`px-1.5 py-0.5 text-[12px] font-black border rounded-sm uppercase tracking-wide ${badgeClass}`}>
                         {cap}
                       </span>
                     </td>
@@ -1468,13 +1468,13 @@ export default function UPVTestSection({ setSelectedElement }) {
           
           {/* Notes input */}
           <div className="lg:col-span-2 space-y-2">
-            <label className="text-[8.5px] text-gray-600 font-bold uppercase tracking-wider block">Engineering Certification Notes & Remarks</label>
+            <label className="text-[12px] text-gray-600 font-bold uppercase tracking-wider block">Engineering Certification Notes & Remarks</label>
             <textarea
               value={engineerNotes}
               disabled={isSignedOff}
               onChange={(e) => setEngineerNotes(e.target.value)}
               placeholder="Enter compliance clearance remarks, rebound hammer cross-check recommendations, or sign-off overrides..."
-              className="w-full h-16 border border-[#c8c8c8] p-2 rounded text-[10.5px] focus:outline-none focus:border-black font-semibold disabled:bg-gray-100 disabled:text-gray-500"
+              className="w-full h-16 border border-[#c8c8c8] p-2 rounded text-[12px] focus:outline-none focus:border-border-default font-semibold disabled:bg-gray-100 disabled:text-gray-500"
             />
           </div>
 
@@ -1483,17 +1483,17 @@ export default function UPVTestSection({ setSelectedElement }) {
             {isSignedOff ? (
               <div className="border border-green-500 bg-green-50 p-2.5 rounded-sm flex items-center gap-2.5 shadow-[inset_1px_1px_0_rgba(255,255,255,0.95)]">
                 <CheckCircle className="h-7 w-7 text-green-600 flex-shrink-0" />
-                <div className="text-[8.5px]">
+                <div className="text-[12px]">
                   <div className="font-black text-green-800 uppercase tracking-wide">CLEARANCE CERTIFIED</div>
                   <div className="font-bold text-gray-600 mt-0.5">Code: {certificationCode}</div>
-                  <div className="text-[7.5px] text-gray-500 uppercase mt-0.5">Logged to SSOT Audit Log</div>
+                  <div className="text-[12px] text-gray-500 uppercase mt-0.5">Logged to SSOT Audit Log</div>
                 </div>
               </div>
             ) : (
               <button 
                 onClick={handleSignOff}
                 disabled={!calibrationOk}
-                className="w-full btn-skeuo-dark text-[9px] uppercase tracking-wider py-2.5 font-black flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full btn-skeuo-dark text-[12px] uppercase tracking-wider py-2.5 font-black flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Award className="h-4 w-4" />
                 <span>Certify & Sign-off UPV Audit</span>
@@ -1503,14 +1503,14 @@ export default function UPVTestSection({ setSelectedElement }) {
             <div className="flex gap-2">
               <button 
                 onClick={() => handleDownloadReport('pdf')}
-                className="flex-1 btn-skeuo text-[8px] uppercase tracking-wider py-1.5 font-bold flex items-center justify-center gap-1"
+                className="flex-1 btn-skeuo text-[12px] uppercase tracking-wider py-1.5 font-bold flex items-center justify-center gap-1"
               >
                 <Download className="h-3 w-3" />
                 <span>Dossier PDF</span>
               </button>
               <button 
                 onClick={() => handleDownloadReport('csv')}
-                className="flex-1 btn-skeuo text-[8px] uppercase tracking-wider py-1.5 font-bold flex items-center justify-center gap-1"
+                className="flex-1 btn-skeuo text-[12px] uppercase tracking-wider py-1.5 font-bold flex items-center justify-center gap-1"
               >
                 <FileText className="h-3 w-3" />
                 <span>Raw CSV Log</span>

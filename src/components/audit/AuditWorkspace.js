@@ -165,7 +165,7 @@ export default function AuditWorkspace() {
           
           {/* Audit Type Picker dropdown */}
           <div className="mb-4">
-            <label className="block text-metallic-gray font-mono text-[10px] uppercase mb-1">SELECT AUDIT PROTOCOL</label>
+            <label className="block text-metallic-gray font-mono text-[12px] uppercase mb-1">SELECT AUDIT PROTOCOL</label>
             <select
               value={selectedAuditType}
               onChange={(e) => setSelectedAuditType(e.target.value)}
@@ -227,10 +227,10 @@ export default function AuditWorkspace() {
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-electric-blue flex items-center gap-1.5">
               <PenTool className="h-4 w-4" /> Interactive NDT Concrete Defect Deflection Mapping Board
             </h3>
-            <span className="text-[10px] font-mono text-metallic-gray">{"// PIER ANOMALY ANNOTATOR"}</span>
+            <span className="text-[12px] font-mono text-metallic-gray">{"// PIER ANOMALY ANNOTATOR"}</span>
           </div>
 
-          <p className="text-[10px] text-metallic-gray font-mono mb-3">
+          <p className="text-[12px] text-metallic-gray font-mono mb-3">
             Auditors can interact directly with the concrete panel blueprint below. Drag/draw on the slab to annotate cracks, micro-deflection paths, or concrete spelling anomalies.
           </p>
 
@@ -254,7 +254,7 @@ export default function AuditWorkspace() {
           
           {/* Defect severity brush colors */}
           <div className="flex items-center gap-3">
-            <span className="text-metallic-gray text-[10px] uppercase">SEVERITY HIGHLIGHT:</span>
+            <span className="text-metallic-gray text-[12px] uppercase">SEVERITY HIGHLIGHT:</span>
             <div className="flex gap-2">
               <button 
                 onClick={() => setBrushColor('#ff4d6d')} // Critical defect color
@@ -275,7 +275,7 @@ export default function AuditWorkspace() {
           <div className="flex gap-2">
             <button 
               onClick={handleAutoLogCrackDefect}
-              className="px-3.5 py-2 bg-danger-red/15 hover:bg-danger-red/35 text-danger-red border border-danger-red/35 rounded font-bold text-[10px] uppercase flex items-center gap-1 transition-colors neon-glow-red"
+              className="px-3.5 py-2 bg-danger-red/15 hover:bg-danger-red/35 text-danger-red border border-danger-red/35 rounded font-bold text-[12px] uppercase flex items-center gap-1 transition-colors neon-glow-red"
             >
               <Camera className="h-3.5 w-3.5" /> Auto-log Anomaly
             </button>

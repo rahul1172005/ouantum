@@ -447,10 +447,10 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             <button
               key={layer}
               onClick={() => setActiveLayer(layer)}
-              className={`px-2.5 py-1 border text-[9px] uppercase font-bold transition-colors ${
+              className={`px-2.5 py-1 border text-[12px] uppercase font-bold transition-colors ${
                 activeLayer === layer 
-                  ? 'bg-black text-white border-black' 
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-black text-white border-border-default' 
+                  : 'bg-white text-black border-border-default hover:bg-gray-100'
               }`}
             >
               {layer}
@@ -460,13 +460,13 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Selected Sensor Floating Inspector panel */}
         {selectedNode && (
-          <div className="absolute top-3 right-3 z-20 w-60 p-3 border-2 border-black bg-white shadow-[3px_3px_0px_rgba(0,0,0,1)] animate-in slide-in-from-right-2">
-            <div className="flex items-center justify-between border-b border-black pb-1 mb-2 font-bold uppercase text-[9px]">
+          <div className="absolute top-3 right-3 z-20 w-60 p-3 border border-border-default bg-white shadow-sm animate-in slide-in-from-right-2">
+            <div className="flex items-center justify-between border-b border-border-default pb-1 mb-2 font-bold uppercase text-[12px]">
               <span className="flex items-center gap-1"><Cpu className="h-3 w-3" /> Telemetry</span>
               <button onClick={() => setSelectedNode(null)} className="font-bold text-xs">&times;</button>
             </div>
-            <p className="font-bold text-[10px] uppercase border border-black p-1 bg-gray-50 mb-2">{selectedNode.name}</p>
-            <div className="space-y-1 text-[9px]">
+            <p className="font-bold text-[12px] uppercase border border-border-default p-1 bg-gray-50 mb-2">{selectedNode.name}</p>
+            <div className="space-y-1 text-[12px]">
               <div className="flex justify-between">
                 <span>STRESS LOAD:</span>
                 <span className="font-bold">{selectedNode.stress}</span>
@@ -477,13 +477,13 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
               </div>
               <div className="flex justify-between">
                 <span>STATUS:</span>
-                <span className="font-bold border border-black px-1 text-[8px]">{selectedNode.status}</span>
+                <span className="font-bold border border-border-default px-1 text-[12px]">{selectedNode.status}</span>
               </div>
             </div>
             
             <button 
               onClick={triggerDiagnosticTicket}
-              className="w-full mt-3 py-1 bg-black text-white hover:bg-gray-800 text-[8px] uppercase font-bold text-center border border-black"
+              className="w-full mt-3 py-1 bg-black text-white hover:bg-gray-800 text-[12px] uppercase font-bold text-center border border-border-default"
             >
               Log Failure Ticket
             </button>
@@ -491,7 +491,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
         )}
 
         {/* HUD coordinates watermark */}
-        <div className="absolute bottom-3 left-3 z-20 text-[8px] text-gray-500 space-y-0.5 pointer-events-none">
+        <div className="absolute bottom-3 left-3 z-20 text-[12px] text-gray-500 space-y-0.5 pointer-events-none">
           <div>MODEL SYSTEM: BRIDGE-SUSPENSION-STRUCT-A101</div>
           <div>SIMULATION CLOCK: {new Date().toISOString().slice(11, 19)}</div>
           <div>TIME HORIZON: {timeStep}</div>
@@ -504,15 +504,15 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
         
         {/* Degradation Timeline travel */}
         <div className="space-y-2">
-          <p className="font-bold uppercase tracking-wider text-[9px] flex items-center gap-1.5">
+          <p className="font-bold uppercase tracking-wider text-[12px] flex items-center gap-1.5">
             <Clock className="h-4 w-4" /> AI Timeline Travel (Degradation)
           </p>
-          <div className="flex border border-black bg-white rounded overflow-hidden">
+          <div className="flex border border-border-default bg-white rounded overflow-hidden">
             {['Present', '+6 Months', '+1 Year', '+5 Years', '+20 Years'].map((step) => (
               <button
                 key={step}
                 onClick={() => setTimeStep(step)}
-                className={`flex-1 py-1 text-[8px] font-bold border-r last:border-r-0 border-black transition-colors ${
+                className={`flex-1 py-1 text-[12px] font-bold border-r last:border-r-0 border-border-default transition-colors ${
                   timeStep === step 
                     ? 'bg-black text-white' 
                     : 'bg-white text-black hover:bg-gray-100'
@@ -522,7 +522,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
               </button>
             ))}
           </div>
-          <p className="text-[8px] text-gray-500 font-mono italic">
+          <p className="text-[12px] text-gray-500 font-mono italic">
             {timeStep === 'Present' && '// Geometry fully aligned with blueprint spec.'}
             {timeStep === '+6 Months' && '// Tension loss predicted. Sag: -0.3m.'}
             {timeStep === '+1 Year' && '// Localized microscopic cracking modeled near Anchor 103.'}
@@ -533,7 +533,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Dynamic Forces */}
         <div className="space-y-2">
-          <div className="flex justify-between font-bold text-[9px] uppercase">
+          <div className="flex justify-between font-bold text-[12px] uppercase">
             <span className="flex items-center gap-1"><Wind className="h-3.5 w-3.5" /> Wind Load Simulation</span>
             <span>{windSpeed} km/h</span>
           </div>
@@ -545,7 +545,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             onChange={(e) => setWindSpeed(Number(e.target.value))}
             className="w-full accent-black cursor-ew-resize"
           />
-          <div className="flex justify-between text-[8px] text-gray-500">
+          <div className="flex justify-between text-[12px] text-gray-500">
             <span>0 km/h</span>
             <span>150 km/h</span>
           </div>
@@ -553,7 +553,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Seismic Magnitude */}
         <div className="space-y-2">
-          <div className="flex justify-between font-bold text-[9px] uppercase">
+          <div className="flex justify-between font-bold text-[12px] uppercase">
             <span className="flex items-center gap-1"><Activity className="h-3.5 w-3.5" /> Seismic Coefficient</span>
             <span>{seismicActivity.toFixed(1)} Richter</span>
           </div>
@@ -566,7 +566,7 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             onChange={(e) => setSeismicActivity(Number(e.target.value))}
             className="w-full accent-black cursor-ew-resize"
           />
-          <div className="flex justify-between text-[8px] text-gray-500">
+          <div className="flex justify-between text-[12px] text-gray-500">
             <span>0.0 Magnitude</span>
             <span>7.0 Richter Scale</span>
           </div>

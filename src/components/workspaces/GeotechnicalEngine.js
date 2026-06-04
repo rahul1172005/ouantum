@@ -182,7 +182,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
       
       {/* Top Banner Tab Controls */}
-      <div className="col-span-1 xl:col-span-4 flex flex-wrap border-2 border-black bg-gray-50 p-1 gap-1">
+      <div className="col-span-1 xl:col-span-4 flex flex-wrap border border-border-default bg-gray-50 p-1 gap-1">
         {[
           { id: 'soil', label: 'Soil Properties (IS 6403)' },
           { id: 'rock', label: 'Rock Mass (RMR/Q)' },
@@ -195,10 +195,10 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-3 py-1.5 border font-bold uppercase text-[9px] tracking-wide transition-all ${
+            className={`px-3 py-1.5 border font-bold uppercase text-[12px] tracking-wide transition-all ${
               activeTab === tab.id
-                ? 'bg-black text-white border-black shadow-[1px_1px_0px_rgba(0,0,0,0.15)]'
-                : 'bg-white border-gray-300 hover:border-black text-gray-700 hover:text-black'
+                ? 'bg-black text-white border-border-default shadow-sm'
+                : 'bg-white border-gray-300 hover:border-border-default text-gray-700 hover:text-black'
             }`}
           >
             {tab.label}
@@ -210,9 +210,9 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
       <div className="xl:col-span-2 space-y-6">
         
         {/* Dynamic Parameter Sliders */}
-        <div className="border-2 border-black p-4 bg-white space-y-4">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">
+        <div className="border border-border-default p-4 bg-white space-y-4">
+          <div className="border-b border-border-default pb-1.5 flex justify-between items-center">
+            <span className="font-bold uppercase tracking-wider text-[12px]">
               {activeTab === 'soil' && 'SOIL STRENGTH PARAMETERS'}
               {activeTab === 'rock' && 'ROCK INDEX & JOINT GEOMETRIES'}
               {activeTab === 'groundwater' && 'GROUNDWATER CONSTRAINTS'}
@@ -221,7 +221,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
               {activeTab === 'deep' && 'PILE PIER DIMENSION VECTORS'}
               {activeTab === 'liquefaction' && 'SEISMIC OVERBURDEN INDEX'}
             </span>
-            <span className="text-[8px] bg-black text-white px-1 py-0.5">INPUTS</span>
+            <span className="text-[12px] bg-black text-white px-1 py-0.5">INPUTS</span>
           </div>
 
           {activeTab === 'soil' && (
@@ -268,7 +268,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="0.1" min="0.5" max="10" value={footingWidth}
                     onChange={(e) => setFootingWidth(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
                 <div>
@@ -276,12 +276,12 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="0.1" min="0.5" max="10" value={footingDepth}
                     onChange={(e) => setFootingDepth(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
               </div>
 
-              <div className="border-t border-black pt-3">
+              <div className="border-t border-border-default pt-3">
                 <div className="flex justify-between font-bold mb-1">
                   <span>Hydraulic Gradient ($i$):</span>
                   <span>{hydraulicGradient}</span>
@@ -338,7 +338,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <select 
                   value={jointCondition} 
                   onChange={(e) => setJointCondition(e.target.value)} 
-                  className="w-full border border-black p-1 bg-white"
+                  className="w-full border border-border-default p-1 bg-white"
                 >
                   <option value="rough">Rough, highly undulating, unweathered (Rating: 25)</option>
                   <option value="moderately_rough">Moderately rough, slightly weathered (Rating: 20)</option>
@@ -352,7 +352,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <select 
                   value={groundwaterRock} 
                   onChange={(e) => setGroundwaterRock(e.target.value)} 
-                  className="w-full border border-black p-1 bg-white"
+                  className="w-full border border-border-default p-1 bg-white"
                 >
                   <option value="dry">Dry (Rating: 15)</option>
                   <option value="damp">Damp, minor seepage (Rating: 10)</option>
@@ -448,7 +448,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="0.001" min="0.009" max="0.04" value={manningsN}
                     onChange={(e) => setManningsN(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
                 <div>
@@ -456,7 +456,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="0.001" min="0.001" max="0.1" value={channelSlope}
                     onChange={(e) => setChannelSlope(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
               </div>
@@ -507,7 +507,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="0.05" min="0.3" max="2.0" value={voidRatio}
                     onChange={(e) => setVoidRatio(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
                 <div>
@@ -515,7 +515,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   <input 
                     type="number" step="5" min="10" max="300" value={initialEffectiveStress}
                     onChange={(e) => setInitialEffectiveStress(Number(e.target.value))}
-                    className="w-full border border-black p-1 font-mono text-[10px]"
+                    className="w-full border border-border-default p-1 font-mono text-[12px]"
                   />
                 </div>
               </div>
@@ -631,7 +631,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
         {/* Diagnostic Core Stratum Node trigger */}
         <button
           onClick={handleSelectSoilNode}
-          className="w-full py-2 bg-white text-black border-2 border-black hover:bg-black hover:text-white font-bold uppercase text-[9px] transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5"
+          className="w-full py-2 bg-white text-black border border-border-default hover:bg-black hover:text-white font-bold uppercase text-[12px] transition-colors shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5"
         >
           INSPECT GT-SOIL-CORE STRATA
         </button>
@@ -642,10 +642,10 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
       <div className="xl:col-span-2 space-y-6">
         
         {/* Real-time Math Output Card */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <div className="border-b border-black pb-1.5 flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">DERIVED MATH VECTORS</span>
-            <span className="text-[8px] bg-black text-white px-1">OUTPUTS</span>
+        <div className="border border-border-default p-4 bg-white space-y-3">
+          <div className="border-b border-border-default pb-1.5 flex justify-between items-center">
+            <span className="font-bold uppercase tracking-wider text-[12px]">DERIVED MATH VECTORS</span>
+            <span className="text-[12px] bg-black text-white px-1">OUTPUTS</span>
           </div>
 
           {activeTab === 'soil' && (
@@ -666,7 +666,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>Ultimate Bearing Capacity ({"$q_{ult}$"}):</span>
                 <span className="font-mono">{ultimateBearingCapacity.toFixed(1)} kPa</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Safe Bearing Capacity (FOS=3):</span>
                 <span className="font-mono">{safeBearingCapacity.toFixed(1)} kPa</span>
               </div>
@@ -699,7 +699,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>Groundwater Seepage Rating:</span>
                 <span className="font-bold">{gwVal} / 15</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Final Rock Mass Rating (RMR):</span>
                 <span className="font-mono">{rmrScore} / 100</span>
               </div>
@@ -720,11 +720,11 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>Seepage Force Volumetric ($i \cdot \gamma_w$):</span>
                 <span className="font-mono font-bold">{seepageForcePerUnitVol.toFixed(2)} kN/m³</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Foundation Uplift Buoyancy:</span>
                 <span className="font-mono">{upliftForce.toFixed(0)} kN</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Buoyancy check: Ensure dead load of foundation concrete exceeds the {upliftForce.toFixed(0)} kN force vector by a safety factor of 1.25.
               </p>
             </div>
@@ -740,11 +740,11 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>Hydraulic Channel Gradient ($S$):</span>
                 <span className="font-mono font-bold">{channelSlope} m/m</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Manning&apos;s Outflow Velocity ($V$):</span>
                 <span className="font-mono">{flowVelocityManning.toFixed(2)} m/s</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Capacity design: Channel cross-section must exceed {(peakRunoff / flowVelocityManning).toFixed(3)} m² area to prevent localized urban flooding.
               </p>
             </div>
@@ -764,13 +764,13 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>Log Consolidation Ratio:</span>
                 <span className="font-mono font-bold">{Math.log10((initialEffectiveStress + deltaStress) / initialEffectiveStress).toFixed(3)}</span>
               </div>
-              <div className="flex justify-between border-t-2 border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t-2 border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Primary Settlement ($S_c$):</span>
                 <span className="font-mono">{settlement.toFixed(1)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {settlement > 50 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Settlement exceeds standard 50mm allowance limit for clay layers!
                   </span>
                 ) : (
@@ -794,7 +794,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                 <span>End Bearing Resistance Force ($Q_b$):</span>
                 <span className="font-mono font-bold">{(endBearingForce / 10).toFixed(1)} tons</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Safe Pile Load Capacity (FOS=2.5):</span>
                 <span className="font-mono">{(safePileCapacity / 10).toFixed(1)} Metric Tons</span>
               </div>
@@ -817,7 +817,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   {factorOfSafetyLiquefaction.toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Liquefaction Susceptibility:</span>
                 <span className="font-mono">{liquefactionRisk}</span>
               </div>
@@ -827,10 +827,10 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
         </div>
 
         {/* CAD Cross Section Map Representation */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">STRATIGRAPHY CROSS-SECTION PLOT</p>
+        <div className="border border-border-default p-4 bg-white space-y-3">
+          <p className="font-bold border-b border-border-default pb-1.5 uppercase text-[12px]">STRATIGRAPHY CROSS-SECTION PLOT</p>
           
-          <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
+          <div className="h-[180px] w-full border border-border-default bg-white relative overflow-hidden select-none">
             <svg viewBox="0 0 600 180" className="w-full h-full absolute inset-0">
               {/* Grid Background */}
               <defs>
@@ -910,12 +910,12 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
         </div>
 
         {/* CRM Compliance Lock In system */}
-        <div className="border-2 border-black p-4 bg-white space-y-3">
-          <p className="font-bold border-b border-black pb-1.5 uppercase text-[10px]">CRM INTEGRITY LOCK-IN</p>
+        <div className="border border-border-default p-4 bg-white space-y-3">
+          <p className="font-bold border-b border-border-default pb-1.5 uppercase text-[12px]">CRM INTEGRITY LOCK-IN</p>
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
-              <p className="text-[10px] uppercase font-black flex items-center gap-1.5 text-black">
+              <p className="text-[12px] uppercase font-black flex items-center gap-1.5 text-black">
                 {systemAlertTriggered ? (
                   <>
                     <ShieldAlert className="h-4.5 w-4.5 text-black" />
@@ -928,17 +928,17 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
                   </>
                 )}
               </p>
-              <p className="text-[8px] text-gray-500 font-mono mt-0.5 leading-relaxed">
+              <p className="text-[12px] text-gray-500 font-mono mt-0.5 leading-relaxed">
                 Matches current values to safety limits under IS 6403 and IS 2911 engineering codes.
               </p>
             </div>
             
             <button
               onClick={handleLogTicket}
-              className={`px-4 py-2 border-2 font-bold uppercase text-[9.5px] transition-all cursor-pointer shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
+              className={`px-4 py-2 border-2 font-bold uppercase text-[12px] transition-all cursor-pointer shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
                 systemAlertTriggered 
-                  ? 'bg-black text-white border-black' 
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-black text-white border-border-default' 
+                  : 'bg-white text-black border-border-default hover:bg-gray-100'
               }`}
             >
               LOG COMPLIANCE TICKET
@@ -946,7 +946,7 @@ export default function GeotechnicalEngine({ selectedElement, setSelectedElement
           </div>
 
           {crmSuccess && (
-            <div className="p-2 border border-black bg-gray-50 text-black font-black uppercase text-[8px] text-center">
+            <div className="p-2 border border-border-default bg-gray-50 text-black font-black uppercase text-[12px] text-center">
               {crmSuccess}
             </div>
           )}

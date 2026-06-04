@@ -151,12 +151,12 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
                 onClick={() => handleSensorSelect(sensor)}
                 className={`w-full text-left p-2 border font-bold transition-all flex items-center justify-between ${
                   activeSensor === sensor 
-                    ? 'bg-black text-white border-black' 
-                    : 'bg-white text-black border-black hover:bg-gray-100'
+                    ? 'bg-black text-white border-border-default' 
+                    : 'bg-white text-black border-border-default hover:bg-gray-100'
                 }`}
               >
                 <span>{sensor}</span>
-                <span className={`h-2.5 w-2.5 rounded-full border ${activeSensor === sensor ? 'bg-white border-white' : 'bg-black border-black'}`}></span>
+                <span className={`h-2.5 w-2.5 rounded-full border ${activeSensor === sensor ? 'bg-white border-white' : 'bg-black border-border-default'}`}></span>
               </button>
             ))}
           </div>
@@ -168,7 +168,7 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
             <Cpu className="h-3.5 w-3.5" />
             CHANNEL SPECIFICATIONS
           </div>
-          <div className="zoho-card-body space-y-1.5 text-[10px]">
+          <div className="zoho-card-body space-y-1.5 text-[12px]">
             <div className="flex justify-between border-b border-gray-200 pb-1">
               <span>STRAIN TELEMETRY:</span>
               <span className="font-bold">{sensorValues.strain}</span>
@@ -183,7 +183,7 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
             </div>
             <button 
               onClick={triggerManualAlert}
-              className="w-full mt-2 py-1.5 bg-black text-white hover:bg-gray-800 border border-black font-bold uppercase text-[9px] flex items-center justify-center gap-1"
+              className="w-full mt-2 py-1.5 bg-black text-white hover:bg-gray-800 border border-border-default font-bold uppercase text-[12px] flex items-center justify-center gap-1"
             >
               <Bell className="h-3 w-3" /> Simulate Resonance Spike
             </button>
@@ -199,14 +199,14 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <Activity className="h-3.5 w-3.5" />
             <span>SYNCHRONIZED ACCELEROMETER STREAM (NODE: {activeSensor})</span>
-            <div className="ml-auto flex items-center gap-3 text-[9px] text-gray-500 font-normal">
+            <div className="ml-auto flex items-center gap-3 text-[12px] text-gray-500 font-normal">
               <span className="flex items-center gap-1"><span className="w-2.5 h-1 bg-black inline-block"></span> X-AXIS</span>
               <span className="flex items-center gap-1"><span className="w-2.5 h-1 border-b border-dashed border-gray-500 inline-block"></span> Y-AXIS</span>
               <span>RATE: 200 Hz</span>
             </div>
           </div>
           <div className="zoho-card-body">
-            <div className="w-full h-[180px] border border-black bg-white">
+            <div className="w-full h-[180px] border border-border-default bg-white">
               <canvas ref={canvasRef} width={650} height={180} className="w-full h-full block" />
             </div>
           </div>
@@ -222,10 +222,10 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
               FFT ACOUSTIC FREQUENCY DISTRIBUTION
             </div>
             <div className="zoho-card-body">
-              <div className="w-full h-[120px] border border-black bg-white">
+              <div className="w-full h-[120px] border border-border-default bg-white">
                 <canvas ref={fftRef} width={300} height={120} className="w-full h-full block" />
               </div>
-              <div className="flex justify-between text-[8px] text-gray-500 mt-1">
+              <div className="flex justify-between text-[12px] text-gray-500 mt-1">
                 <span>0 Hz (DC)</span>
                 <span>100 Hz (Nyquist)</span>
               </div>
@@ -239,17 +239,17 @@ export default function SHMMonitoring({ selectedElement, setSelectedElement }) {
               SHM SYSTEM EVENT LOGS
             </div>
             <div className="zoho-card-body">
-              <div className="max-h-[150px] overflow-y-auto space-y-1.5 pr-1 font-mono text-[9px]">
+              <div className="max-h-[150px] overflow-y-auto space-y-1.5 pr-1 font-mono text-[12px]">
                 {logs.map((log, index) => (
                   <div 
                     key={index} 
-                    className={`p-1.5 border text-[9px] ${
+                    className={`p-1.5 border text-[12px] ${
                       log.severity === 'CRITICAL' 
-                        ? 'bg-black text-white border-black font-bold' 
+                        ? 'bg-black text-white border-border-default font-bold' 
                         : 'bg-gray-50 text-gray-700 border-gray-200'
                     }`}
                   >
-                    <div className="flex justify-between font-bold text-[8px]">
+                    <div className="flex justify-between font-bold text-[12px]">
                       <span>{log.time} | {log.severity}</span>
                     </div>
                     <p className="mt-0.5 leading-relaxed">{log.msg}</p>

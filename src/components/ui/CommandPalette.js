@@ -111,7 +111,7 @@ export default function CommandPalette() {
           
           {/* Engineering Core Commands */}
           <div>
-            <p className="text-[11px] text-[#545b64] uppercase tracking-wider mb-2.5 font-bold border-b border-[#eaeded] pb-1.5">Core Command Directives</p>
+            <p className="text-[12px] text-[#545b64] uppercase tracking-wider mb-2.5 font-bold border-b border-[#eaeded] pb-1.5">Core Command Directives</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {filteredCommands.map((cmd, index) => {
                 const Icon = cmd.icon;
@@ -125,7 +125,7 @@ export default function CommandPalette() {
                       <Icon className="h-3.5 w-3.5 text-[#545b64] flex-shrink-0" /> 
                       <span className="truncate">{cmd.label}</span>
                     </span>
-                    <span className="text-[10px] border border-[#aab7b8] bg-[#f2f3f3] text-[#545b64] px-1.5 py-0.5 rounded-[4px] flex-shrink-0 ml-2 group-hover:border-[#545b64] transition-colors font-bold">
+                    <span className="text-[12px] border border-[#aab7b8] bg-[#f2f3f3] text-[#545b64] px-1.5 py-0.5 rounded-[4px] flex-shrink-0 ml-2 group-hover:border-[#545b64] transition-colors font-bold">
                       EXEC
                     </span>
                   </button>
@@ -137,7 +137,7 @@ export default function CommandPalette() {
           {/* CRM Account Entities */}
           {filteredAccounts.length > 0 && (
             <div>
-              <p className="text-[11px] text-[#545b64] uppercase tracking-wider mb-2.5 font-bold border-b border-[#eaeded] pb-1.5">CRM Unified Asset Portfolios</p>
+              <p className="text-[12px] text-[#545b64] uppercase tracking-wider mb-2.5 font-bold border-b border-[#eaeded] pb-1.5">CRM Unified Asset Portfolios</p>
               <div className="space-y-1">
                 {filteredAccounts.map((a) => (
                   <div 
@@ -146,7 +146,7 @@ export default function CommandPalette() {
                     className="flex items-center justify-between p-2.5 border border-transparent hover:border-[#aab7b8] bg-[#f2f3f3] hover:bg-[#ffffff] rounded-[4px] cursor-pointer transition-all text-xs text-[#16191f]"
                   >
                     <span className="flex items-center gap-2 font-semibold text-[#16191f]"><Folder className="h-3.5 w-3.5 text-[#545b64] flex-shrink-0" /> <span className="truncate">{a.name}</span></span>
-                    <span className="text-[11px] text-[#545b64] flex-shrink-0 ml-2">{a.location}</span>
+                    <span className="text-[12px] text-[#545b64] flex-shrink-0 ml-2">{a.location}</span>
                   </div>
                 ))}
               </div>
@@ -156,7 +156,7 @@ export default function CommandPalette() {
         </div>
 
         {/* Footer shortcuts helper */}
-        <div className="flex items-center justify-between px-4 h-10 border-t border-[#eaeded] bg-[#f2f3f3] font-sans text-[11px] text-[#545b64]">
+        <div className="flex items-center justify-between px-4 h-10 border-t border-[#eaeded] bg-[#f2f3f3] font-sans text-[12px] text-[#545b64]">
           <div className="flex gap-4">
             <span className="flex items-center gap-1"><CornerDownLeft className="h-3.5 w-3.5 text-[#545b64]" /> Select Command</span>
             <span>Esc to cancel</span>

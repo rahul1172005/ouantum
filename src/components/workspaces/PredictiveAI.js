@@ -60,11 +60,11 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <BrainCircuit className="h-3.5 w-3.5" />
             <span>PARIS&apos; LAW FRACTURE MODEL</span>
-            <span className="ml-auto text-[9px] px-1 py-0.5 border border-white bg-black text-white">ACTIVE</span>
+            <span className="ml-auto text-[12px] px-1 py-0.5 border border-white bg-black text-white">ACTIVE</span>
           </div>
           <div className="zoho-card-body space-y-3">
             <div>
-              <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Cycles (N): {crackCycles}k cycles</label>
+              <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Cycles (N): {crackCycles}k cycles</label>
               <input 
                 type="range" min="10" max="500" value={crackCycles} 
                 onChange={(e) => setCrackCycles(Number(e.target.value))}
@@ -72,14 +72,14 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
               />
             </div>
             <div>
-              <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Stress Intensity (ΔK): {deltaK} MPa·m⁰·⁵</label>
+              <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Stress Intensity (ΔK): {deltaK} MPa·m⁰·⁵</label>
               <input 
                 type="range" min="5" max="50" value={deltaK}
                 onChange={(e) => setDeltaK(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
             </div>
-            <div className="p-3 border border-black bg-gray-50 space-y-2 text-[10px]">
+            <div className="p-3 border border-border-default bg-gray-50 space-y-2 text-[12px]">
               <div className="flex justify-between border-b border-gray-200 pb-1">
                 <span>CRACK LENGTH RATE:</span>
                 <span className="font-bold">{crackData.growthPerCycle} nm/cycle</span>
@@ -103,12 +103,12 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
             PROGNOSTIC STRUCTURAL COLLAPSE ODDS
           </div>
           <div className="zoho-card-body">
-            <div className="p-3 border-2 border-dashed border-black text-center bg-gray-50 space-y-2">
-              <span className="text-gray-500 text-[9px] uppercase block">AI 20-Year Failure Probability</span>
+            <div className="p-3 border-2 border-dashed border-border-default text-center bg-gray-50 space-y-2">
+              <span className="text-gray-500 text-[12px] uppercase block">AI 20-Year Failure Probability</span>
               <span className="text-3xl font-black font-mono block">
                 {(0.05 + (crackCycles * deltaK * 0.0003) + (corrosionYears * 0.4)).toFixed(2)}%
               </span>
-              <span className="text-[8px] px-1 border border-black inline-block uppercase bg-white">NOMINAL DESIGN INDEX</span>
+              <span className="text-[12px] px-1 border border-border-default inline-block uppercase bg-white">NOMINAL DESIGN INDEX</span>
             </div>
           </div>
         </div>
@@ -122,32 +122,32 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <Percent className="h-3.5 w-3.5" />
             <span>CORROSION INTELLIGENCE</span>
-            <span className="ml-auto text-[9px] px-1.5 py-0.5 border border-gray-400">MODEL</span>
+            <span className="ml-auto text-[12px] px-1.5 py-0.5 border border-gray-400">MODEL</span>
           </div>
           <div className="zoho-card-body space-y-3">
             <div>
-              <label className="block font-bold mb-1.5 uppercase tracking-wide text-[9px]">Corrosion exposure timeframe: {corrosionYears} Years</label>
+              <label className="block font-bold mb-1.5 uppercase tracking-wide text-[12px]">Corrosion exposure timeframe: {corrosionYears} Years</label>
               <input 
                 type="range" min="0" max="30" value={corrosionYears}
                 onChange={(e) => setCorrosionYears(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
-              <div className="flex justify-between text-[8px] text-gray-500 mt-1">
+              <div className="flex justify-between text-[12px] text-gray-500 mt-1">
                 <span>0 YEARS</span>
                 <span>30 YEARS</span>
               </div>
             </div>
-            <div className="space-y-2 text-[10px]">
-              <div className="p-2 border border-black bg-gray-50">
-                <span className="text-gray-500 text-[8px] uppercase">Thickness loss</span>
+            <div className="space-y-2 text-[12px]">
+              <div className="p-2 border border-border-default bg-gray-50">
+                <span className="text-gray-500 text-[12px] uppercase">Thickness loss</span>
                 <p className="font-bold text-sm mt-0.5">{corrosionData.thicknessLoss} mm</p>
               </div>
-              <div className="p-2 border border-black bg-gray-50">
-                <span className="text-gray-500 text-[8px] uppercase">Remaining metal rebar thickness</span>
+              <div className="p-2 border border-border-default bg-gray-50">
+                <span className="text-gray-500 text-[12px] uppercase">Remaining metal rebar thickness</span>
                 <p className="font-bold text-sm mt-0.5">{corrosionData.remainingThickness} mm</p>
               </div>
-              <div className="p-2 border border-black bg-gray-50">
-                <span className="text-gray-500 text-[8px] uppercase">Calculated Yield strength remaining</span>
+              <div className="p-2 border border-border-default bg-gray-50">
+                <span className="text-gray-500 text-[12px] uppercase">Calculated Yield strength remaining</span>
                 <p className="font-bold text-sm mt-0.5">{corrosionData.strengthPercentage}%</p>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <DollarSign className="h-3.5 w-3.5" />
             <span>PROCUREMENT LEAKAGE AI</span>
-            <span className="ml-auto text-[8px] text-gray-400 font-normal">3 ISSUES FOUND</span>
+            <span className="ml-auto text-[12px] text-gray-400 font-normal">3 ISSUES FOUND</span>
           </div>
           <div className="zoho-card-body space-y-2">
             <div className="space-y-2 max-h-[290px] overflow-y-auto pr-1">
@@ -171,21 +171,21 @@ export default function PredictiveAI({ selectedElement, setSelectedElement }) {
                 <div 
                   key={anom.id} 
                   onClick={() => handleRowClick(anom)}
-                  className="p-2.5 border border-black bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors space-y-1.5"
+                  className="p-2.5 border border-border-default bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors space-y-1.5"
                 >
                   <div className="flex justify-between items-center font-bold">
                     <span>{anom.id} | {anom.vendor}</span>
-                    <span className="border border-black px-1 text-[8px] bg-white">{anom.risk}</span>
+                    <span className="border border-border-default px-1 text-[12px] bg-white">{anom.risk}</span>
                   </div>
-                  <p className="text-[10px] text-gray-700">{anom.issue}</p>
-                  <div className="flex justify-between text-[8px] text-gray-500 font-mono">
+                  <p className="text-[12px] text-gray-700">{anom.issue}</p>
+                  <div className="flex justify-between text-[12px] text-gray-500 font-mono">
                     <span>EST. LEAKAGE: {anom.overcharge}</span>
                     <span>CONFIDENCE: {anom.conf}</span>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="p-2.5 border border-dashed border-gray-400 bg-gray-100 text-[9px] leading-relaxed">
+            <div className="p-2.5 border border-dashed border-gray-400 bg-gray-100 text-[12px] leading-relaxed">
               Click anomaly cards to load deep-contract audit ledgers into the Right Control panel.
             </div>
           </div>

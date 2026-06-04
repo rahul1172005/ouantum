@@ -161,7 +161,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
       
       {/* Top Banner Tab Controls */}
-      <div className="col-span-1 xl:col-span-4 flex flex-wrap border-2 border-black bg-gray-50 p-1 gap-1">
+      <div className="col-span-1 xl:col-span-4 flex flex-wrap border border-border-default bg-gray-50 p-1 gap-1">
         {[
           { id: 'aggregate', label: 'Sand & Aggregates' },
           { id: 'cement', label: 'Cement Quality' },
@@ -175,10 +175,10 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-3 py-1.5 border font-bold uppercase text-[9px] tracking-wide transition-all ${
+            className={`px-3 py-1.5 border font-bold uppercase text-[12px] tracking-wide transition-all ${
               activeTab === tab.id
-                ? 'bg-black text-white border-black shadow-[1px_1px_0px_rgba(0,0,0,0.15)]'
-                : 'bg-white border-gray-300 hover:border-black text-gray-700 hover:text-black'
+                ? 'bg-black text-white border-border-default shadow-sm'
+                : 'bg-white border-gray-300 hover:border-border-default text-gray-700 hover:text-black'
             }`}
           >
             {tab.label}
@@ -203,28 +203,28 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
               {activeTab === 'durability' && 'CONCRETE INGRESS DEPTHS'}
               {activeTab === 'test_matrix' && 'STANDARD REFERENCE METRIC TABLES'}
             </span>
-            <span className="ml-auto text-[8px] bg-black text-white px-1 py-0.5">LAB INPUTS</span>
+            <span className="ml-auto text-[12px] bg-black text-white px-1 py-0.5">LAB INPUTS</span>
           </div>
           <div className="zoho-card-body">
 
           {activeTab === 'aggregate' && (
             <div className="space-y-3">
-              <p className="font-bold text-[9px] border-b border-black pb-1 uppercase">Cumulative % Retained on Sieves:</p>
-              <div className="grid grid-cols-2 gap-2 text-[9px]">
+              <p className="font-bold text-[12px] border-b border-border-default pb-1 uppercase">Cumulative % Retained on Sieves:</p>
+              <div className="grid grid-cols-2 gap-2 text-[12px]">
                 {sieveSizes.map((size, idx) => (
-                  <div key={idx} className="flex justify-between items-center border border-black p-1">
+                  <div key={idx} className="flex justify-between items-center border border-border-default p-1">
                     <span>{size}:</span>
                     <input 
                       type="number" max="100" min="0" value={cumulativeRetained[idx]} 
                       onChange={(e) => handleSieveChange(idx, e.target.value)}
-                      className="w-12 text-right border-l border-black p-0.5 font-mono"
+                      className="w-12 text-right border-l border-border-default p-0.5 font-mono"
                     />
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-black pt-3 space-y-3">
-                <p className="font-bold text-[9px] uppercase">Aggregate Crushing Value:</p>
+              <div className="border-t border-border-default pt-3 space-y-3">
+                <p className="font-bold text-[12px] uppercase">Aggregate Crushing Value:</p>
                 <div>
                   <div className="flex justify-between font-bold mb-1">
                     <span>Total Sample Weight ($W_1$):</span>
@@ -541,41 +541,41 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           )}
 
           {activeTab === 'test_matrix' && (
-            <div className="space-y-2 text-[9.5px]">
-              <p className="font-bold border-b border-black pb-1">KEY CIVIL TEST STANDARD CODES</p>
-              <div className="border border-black overflow-hidden shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+            <div className="space-y-2 text-[12px]">
+              <p className="font-bold border-b border-border-default pb-1">KEY CIVIL TEST STANDARD CODES</p>
+              <div className="border border-border-default overflow-hidden shadow-sm">
                 <table className="w-full text-left">
                   <thead>
-                    <tr className="bg-gray-100 border-b border-black font-black uppercase text-[8px]">
-                      <th className="p-1 border-r border-black">Test Description</th>
-                      <th className="p-1 border-r border-black">IS Code</th>
+                    <tr className="bg-gray-100 border-b border-border-default font-black uppercase text-[12px]">
+                      <th className="p-1 border-r border-border-default">Test Description</th>
+                      <th className="p-1 border-r border-border-default">IS Code</th>
                       <th className="p-1">ASTM / BS Code</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b border-black">
-                      <td className="p-1 border-r border-black font-bold">Compressive Strength</td>
-                      <td className="p-1 border-r border-black">IS 516 (15cm cubes)</td>
+                    <tr className="border-b border-border-default">
+                      <td className="p-1 border-r border-border-default font-bold">Compressive Strength</td>
+                      <td className="p-1 border-r border-border-default">IS 516 (15cm cubes)</td>
                       <td className="p-1">ASTM C39 (cylinders)</td>
                     </tr>
-                    <tr className="border-b border-black">
-                      <td className="p-1 border-r border-black font-bold">Ultrasonic Pulse Velocity</td>
-                      <td className="p-1 border-r border-black">IS 13311 (Part 1)</td>
+                    <tr className="border-b border-border-default">
+                      <td className="p-1 border-r border-border-default font-bold">Ultrasonic Pulse Velocity</td>
+                      <td className="p-1 border-r border-border-default">IS 13311 (Part 1)</td>
                       <td className="p-1">ASTM C597</td>
                     </tr>
-                    <tr className="border-b border-black">
-                      <td className="p-1 border-r border-black font-bold">Rebound Hammer</td>
-                      <td className="p-1 border-r border-black">IS 13311 (Part 2)</td>
+                    <tr className="border-b border-border-default">
+                      <td className="p-1 border-r border-border-default font-bold">Rebound Hammer</td>
+                      <td className="p-1 border-r border-border-default">IS 13311 (Part 2)</td>
                       <td className="p-1">ASTM C805</td>
                     </tr>
-                    <tr className="border-b border-black">
-                      <td className="p-1 border-r border-black font-bold">California Bearing Ratio</td>
-                      <td className="p-1 border-r border-black">IS 2720 (Part 16)</td>
+                    <tr className="border-b border-border-default">
+                      <td className="p-1 border-r border-border-default font-bold">California Bearing Ratio</td>
+                      <td className="p-1 border-r border-border-default">IS 2720 (Part 16)</td>
                       <td className="p-1">ASTM D1883</td>
                     </tr>
                     <tr>
-                      <td className="p-1 border-r border-black font-bold">Standard Penetration Test</td>
-                      <td className="p-1 border-r border-black">IS 2131</td>
+                      <td className="p-1 border-r border-border-default font-bold">Standard Penetration Test</td>
+                      <td className="p-1 border-r border-border-default">IS 2131</td>
                       <td className="p-1">ASTM D1586</td>
                     </tr>
                   </tbody>
@@ -589,7 +589,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
         {/* Diagnostic Specimen Node trigger */}
         <button
           onClick={handleSelectMaterialNode}
-          className="w-full py-2 bg-white text-black border-2 border-black hover:bg-black hover:text-white font-bold uppercase text-[9px] transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5"
+          className="w-full py-2 bg-white text-black border border-border-default hover:bg-black hover:text-white font-bold uppercase text-[12px] transition-colors shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5"
         >
           INSPECT CONCRETE TEST CUBES
         </button>
@@ -604,7 +604,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <Sliders className="h-3.5 w-3.5" />
             <span>DERIVED MATH VECTORS</span>
-            <span className="ml-auto text-[8px] bg-black text-white px-1">OUTPUTS</span>
+            <span className="ml-auto text-[12px] bg-black text-white px-1">OUTPUTS</span>
           </div>
           <div className="zoho-card-body">
 
@@ -614,17 +614,17 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Fineness Modulus (FM) of Sand:</span>
                 <span className="font-mono">{finenessModulus.toFixed(2)}</span>
               </div>
-              <p className="text-[8.5px] font-bold text-gray-500 mt-1 uppercase">
+              <p className="text-[12px] font-bold text-gray-500 mt-1 uppercase">
                 * Soil Classification: {finenessModulus > 3.2 ? 'Coarse Aggregate' : finenessModulus > 2.9 ? 'Coarse Sand' : finenessModulus > 2.6 ? 'Medium Sand' : finenessModulus > 2.2 ? 'Fine Sand' : 'Very Fine Clay/Silt'}
               </p>
               
-              <div className="flex justify-between border-b border-gray-100 py-1 pt-2 font-bold bg-gray-50 px-1 border-t border-black">
+              <div className="flex justify-between border-b border-gray-100 py-1 pt-2 font-bold bg-gray-50 px-1 border-t border-border-default">
                 <span>Aggregate Crushing Value (ACV):</span>
                 <span className={`font-mono ${isAggregateCritical ? 'underline font-black' : ''}`}>{aggregateCrushingValue.toFixed(2)}%</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {isAggregateCritical ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Crushing strength &gt; 30% is unsuitable for heavy wearing pavement!
                   </span>
                 ) : (
@@ -644,13 +644,13 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Water Consistency Standard Volume:</span>
                 <span className="font-mono font-bold">{(vicatConsistency * 0.78).toFixed(1)} ml / 300g sample</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Setting Times (Initial / Final):</span>
                 <span className="font-mono">{initialSettingTime} min / {finalSettingTime} min</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {initialSettingTime < 30 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Cement sets too rapidly! Initial limit is minimum 30 minutes under IS 4031.
                   </span>
                 ) : (
@@ -674,7 +674,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Flexural Strength ({"$f_{cr}$"}):</span>
                 <span className="font-mono font-bold">{estimatedFlexuralStrength.toFixed(2)} MPa</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Workability State (Slump):</span>
                 <span className="font-mono uppercase">
                   {slumpMetric > 150 ? 'High (Flowing)' : slumpMetric > 100 ? 'Medium-High' : slumpMetric > 50 ? 'Medium (Pumping)' : 'Low (Pavement)'} ({slumpMetric}mm)
@@ -693,13 +693,13 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Paris Law Propagation Rate ($da/dN$):</span>
                 <span className="font-mono font-bold">{crackGrowthRate.toExponential(4)} m/cycle</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Projected Crack Length ($a_f$):</span>
                 <span className="font-mono">{finalCrackSize.toFixed(3)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {finalCrackSize > rebarCoverDepth ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     HAZARD: Steel fatigue crack growth exceeds concrete protection cover depth!
                   </span>
                 ) : (
@@ -723,7 +723,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Sulfates (Max Limit 400 mg/L):</span>
                 <span className="font-mono font-bold">{sulfatesPPM} mg/L</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Aggregate Suitability Verdict:</span>
                 <span className="font-mono uppercase font-black">{isWaterCritical ? 'UNFIT FOR MIXING' : 'APPROVED'}</span>
               </div>
@@ -736,13 +736,13 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Estimated Bitumen Viscosity Grade:</span>
                 <span className="font-mono font-bold">VG-{bitumenPenetration < 45 ? '40' : bitumenPenetration < 60 ? '30' : '10'}</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Marshall Structural Stability:</span>
                 <span className="font-mono">{marshallStability.toFixed(1)} kN</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {marshallStability < 8.2 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Bitumen stability is below minimum 8.2 kN highway paving requirement!
                   </span>
                 ) : (
@@ -758,13 +758,13 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                 <span>Nominal Rebar Cover Depth:</span>
                 <span className="font-mono font-bold">{rebarCoverDepth} mm</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>{"Carbonation Ingress Depth ($d = k \\sqrt{t}$):"}</span>
                 <span className="font-mono">{carbonationDepth.toFixed(1)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {carbonationDepth >= rebarCoverDepth ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     WARNING: Structural rebar carbonation depassivation & corrosion risk!
                   </span>
                 ) : (
@@ -775,7 +775,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           )}
 
           {activeTab === 'test_matrix' && (
-            <div className="space-y-1 text-[8px] text-gray-500 font-bold leading-normal">
+            <div className="space-y-1 text-[12px] text-gray-500 font-bold leading-normal">
               <p>* ISO & ASTM Testing standards require cast cylinder/cube verification every 50 m³ of poured structural volume.</p>
               <p>* Calibration interval of loading compression machines is standard 6 months.</p>
             </div>
@@ -791,7 +791,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           </div>
           <div className="zoho-card-body">
           
-          <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
+          <div className="h-[180px] w-full border border-border-default bg-white relative overflow-hidden select-none">
             <svg viewBox="0 0 320 180" className="w-full h-full absolute inset-0">
               <rect width="100%" height="100%" fill="url(#grid)" />
 
@@ -859,7 +859,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
-              <p className="text-[10px] uppercase font-black flex items-center gap-1.5 text-black">
+              <p className="text-[12px] uppercase font-black flex items-center gap-1.5 text-black">
                 {systemAlertTriggered ? (
                   <>
                     <ShieldAlert className="h-4.5 w-4.5 text-black" />
@@ -872,17 +872,17 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
                   </>
                 )}
               </p>
-              <p className="text-[8px] text-gray-500 font-mono mt-0.5 leading-relaxed">
+              <p className="text-[12px] text-gray-500 font-mono mt-0.5 leading-relaxed">
                 Syncs batch laboratory testing metrics directly with the active CRM SSOT records.
               </p>
             </div>
             
             <button
               onClick={handleLogTicket}
-              className={`px-4 py-2 border-2 font-bold uppercase text-[9.5px] transition-all cursor-pointer shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
+              className={`px-4 py-2 border-2 font-bold uppercase text-[12px] transition-all cursor-pointer shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
                 systemAlertTriggered 
-                  ? 'bg-black text-white border-black' 
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-black text-white border-border-default' 
+                  : 'bg-white text-black border-border-default hover:bg-gray-100'
               }`}
             >
               LOG LABORATORY TICKET
@@ -890,7 +890,7 @@ export default function MaterialsLab({ selectedElement, setSelectedElement }) {
           </div>
 
           {crmSuccess && (
-            <div className="p-2 border border-black bg-gray-50 text-black font-black uppercase text-[8px] text-center">
+            <div className="p-2 border border-border-default bg-gray-50 text-black font-black uppercase text-[12px] text-center">
               {crmSuccess}
             </div>
           )}

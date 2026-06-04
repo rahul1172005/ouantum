@@ -7,13 +7,13 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
         {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">{children}</div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase">{footerText}</span>
         </div>
       )}
     </div>
@@ -120,7 +120,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
             <div className="space-y-1.5">
               {SOURCE_TYPES.map(s => (
                 <button key={s} onClick={() => setActiveSource(s)}
-                  className={`w-full text-left p-2 border text-[9.5px] font-bold uppercase rounded-sm transition-colors ${activeSource === s ? 'bg-black text-white border-black' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
+                  className={`w-full text-left p-2 border text-[12px] font-bold uppercase rounded-sm transition-colors ${activeSource === s ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
                   {s}
                 </button>
               ))}
@@ -129,12 +129,12 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
 
           <LevelCard icon={Eye} title="Defect Class Filter" footerText="Filter by defect category">
             <div className="space-y-1">
-              <button onClick={() => setActiveFilter('all')} className={`w-full text-left p-1.5 border text-[9px] font-bold uppercase rounded-sm ${activeFilter === 'all' ? 'bg-black text-white border-black' : 'bg-white border-[#d4d4d4]'}`}>
+              <button onClick={() => setActiveFilter('all')} className={`w-full text-left p-1.5 border text-[12px] font-bold uppercase rounded-sm ${activeFilter === 'all' ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
                 All Classes ({SIMULATED_DETECTIONS.length})
               </button>
               {DEFECT_TYPES.map(d => (
                 <button key={d.id} onClick={() => setActiveFilter(d.id)}
-                  className={`w-full text-left p-1.5 border text-[9px] font-bold rounded-sm flex items-center gap-1.5 ${activeFilter === d.id ? 'bg-black text-white border-black' : 'bg-white border-[#d4d4d4]'}`}>
+                  className={`w-full text-left p-1.5 border text-[12px] font-bold rounded-sm flex items-center gap-1.5 ${activeFilter === d.id ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
                   <span style={{ width: 8, height: 8, background: d.color, display: 'inline-block', flexShrink: 0, borderRadius: 1 }} />
                   {d.label} ({SIMULATED_DETECTIONS.filter(x => x.type === d.id).length})
                 </button>
@@ -148,7 +148,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
           <LevelCard icon={Cpu} title="AI Vision Scan Viewport" footerText={`Source: ${activeSource} — Computer Vision Defect Detection`}
             headerAction={
               <button onClick={runAnalysis} disabled={isAnalyzing}
-                className="btn-skeuo-dark text-[8px] uppercase tracking-wider px-3 py-1">
+                className="btn-skeuo-dark text-[12px] uppercase tracking-wider px-3 py-1">
                 {isAnalyzing ? `Analyzing ${progress}%` : 'Run AI Analysis'}
               </button>
             }>
@@ -158,7 +158,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
               </div>
             )}
             <canvas ref={canvasRef} width={580} height={260} className="w-full border border-[#d4d4d4] rounded-sm block" />
-            {!analyzed && !isAnalyzing && <p className="text-[9px] text-gray-400 text-center">{'Click "Run AI Analysis" to detect defects'}</p>}
+            {!analyzed && !isAnalyzing && <p className="text-[12px] text-gray-400 text-center">{'Click "Run AI Analysis" to detect defects'}</p>}
           </LevelCard>
 
           <LevelCard icon={AlertTriangle} title="Detection Log" footerText="All defects logged to SSOT — NCR auto-generated on Critical">
@@ -171,15 +171,15 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
                     <div className="flex justify-between items-center mb-1">
                       <div className="flex items-center gap-1.5">
                         <span style={{ width: 8, height: 8, background: defType?.color, display: 'inline-block', borderRadius: 1 }} />
-                        <span className="font-black text-[9.5px] uppercase">{d.id} — {defType?.label}</span>
+                        <span className="font-black text-[12px] uppercase">{d.id} — {defType?.label}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="text-[7.5px] text-gray-500">{d.confidence}% conf.</span>
-                        <span className={`text-[7px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${d.severity === 'CRITICAL' ? 'bg-black text-white border-black animate-pulse' : d.severity === 'HIGH' ? 'bg-gray-700 text-white border-gray-700' : 'border-[#d4d4d4] text-gray-700'}`}>{d.severity}</span>
+                        <span className="text-[12px] text-gray-500">{d.confidence}% conf.</span>
+                        <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${d.severity === 'CRITICAL' ? 'bg-black text-white border-border-default animate-pulse' : d.severity === 'HIGH' ? 'bg-gray-700 text-white border-gray-700' : 'border-[#d4d4d4] text-gray-700'}`}>{d.severity}</span>
                       </div>
                     </div>
-                    <p className="text-[9px] text-gray-600 uppercase">{d.location}</p>
-                    <p className="text-[8px] text-gray-400 mt-0.5 uppercase">{d.action}</p>
+                    <p className="text-[12px] text-gray-600 uppercase">{d.location}</p>
+                    <p className="text-[12px] text-gray-400 mt-0.5 uppercase">{d.action}</p>
                   </div>
                 );
               })}

@@ -214,14 +214,14 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
           <div className="zoho-card-footer" style={{ height: 42, overflow: 'hidden' }}>
             {selectedAsset ? (
               <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ fontWeight: 700, color: '#1a1a1a', fontSize: '9.5px', lineHeight: 1.1 }}>{selectedAsset.name}</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', color: '#555', marginTop: 1 }}>
+                <div style={{ fontWeight: 700, color: '#1a1a1a', fontSize: '12px', lineHeight: 1.1 }}>{selectedAsset.name}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#555', marginTop: 1 }}>
                   <span>{selectedAsset.loc}</span>
                   <span style={{ fontWeight: 700, color: '#333' }}>Index: {selectedAsset.score}%</span>
                 </div>
               </div>
             ) : (
-              <span style={{ color: '#777', fontSize: '11px' }}>Click highlighted hotspots to view details</span>
+              <span style={{ color: '#777', fontSize: '12px' }}>Click highlighted hotspots to view details</span>
             )}
           </div>
         </div>
@@ -230,7 +230,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
         <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
           <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#444" />
           <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 84px)', gap: 10, overflow: 'hidden' }}>
-            <div style={{ fontSize: 11, color: '#888', marginBottom: 4 }}>
+            <div style={{ fontSize: 12, color: '#888', marginBottom: 4 }}>
               Channel Feed: Pillar-B12 Strain Transducers
             </div>
             <div style={{ flex: 1, minHeight: 200 }}>
@@ -243,14 +243,14 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e8e8e8" />
-                  <XAxis dataKey="time" tick={{ fontSize: 9, fill: '#888' }} tickLine={false} axisLine={{ stroke: '#ccc' }} />
-                  <YAxis tick={{ fontSize: 9, fill: '#888' }} tickLine={false} axisLine={false} />
+                  <XAxis dataKey="time" tick={{ fontSize: 12, fill: '#888' }} tickLine={false} axisLine={{ stroke: '#ccc' }} />
+                  <YAxis tick={{ fontSize: 12, fill: '#888' }} tickLine={false} axisLine={false} />
                   <Tooltip
                     contentStyle={{
                       background: '#fff',
                       border: '1px solid #b0b0b0',
                       borderRadius: 2,
-                      fontSize: 11,
+                      fontSize: 12,
                       boxShadow: '1px 2px 5px rgba(0,0,0,0.15)',
                     }}
                     itemStyle={{ color: '#333' }}
@@ -270,7 +270,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
               border: '1px solid #b0b0b0',
               borderRadius: 2,
               padding: '2px 7px',
-              fontSize: 10,
+              fontSize: 12,
               fontWeight: 700,
               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7)',
             }}>SECURE</span>
@@ -298,17 +298,17 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                     <span style={{
-                      fontSize: 9.5,
+                      fontSize: 12,
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
                       color: act.critical ? '#ffd580' : '#555555',
                     }}>{act.type}</span>
-                    <span style={{ fontSize: 9.5, color: act.critical ? '#ccc' : '#999' }}>
+                    <span style={{ fontSize: 12, color: act.critical ? '#ccc' : '#999' }}>
                       {new Date(act.timestamp).toLocaleTimeString()}
                     </span>
                   </div>
-                  <p style={{ fontSize: 11.5, lineHeight: 1.5, margin: 0 }}>{act.description}</p>
+                  <p style={{ fontSize: 12, lineHeight: 1.5, margin: 0 }}>{act.description}</p>
                 </div>
               ))}
             </div>
@@ -334,7 +334,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                         background: '#f4f4f5',
                         borderBottom: '1px solid #e0e0e0',
                         fontWeight: 600,
-                        fontSize: 11,
+                        fontSize: 12,
                         color: '#555',
                         textAlign: 'left',
                         whiteSpace: 'nowrap',
@@ -359,7 +359,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                             display: 'inline-block',
                             padding: '2px 7px',
                             borderRadius: 2,
-                            fontSize: 10.5,
+                            fontSize: 12,
                             fontWeight: 700,
                             background: 'linear-gradient(to bottom, #f5f5f5, #e5e5e5)',
                             color: '#333',
@@ -388,7 +388,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
             <form onSubmit={handleCreateDeal} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
 
               <div>
-                <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
                   Contract Title
                 </label>
                 <input
@@ -403,7 +403,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
                     Amount (₹)
                   </label>
                   <input
@@ -416,7 +416,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
                     Asset Owner
                   </label>
                   <select
@@ -456,7 +456,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
             </form>
 
-            <p style={{ marginTop: 14, paddingTop: 10, borderTop: '1px dashed #e0e0e0', fontSize: 10, color: '#aaa', lineHeight: 1.5 }}>
+            <p style={{ marginTop: 14, paddingTop: 10, borderTop: '1px dashed #e0e0e0', fontSize: 12, color: '#aaa', lineHeight: 1.5 }}>
               Notice: Strict CRM governance constraints enforced (SSOT). All creations are cascading and immutable.
             </p>
           </div>

@@ -48,14 +48,14 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
                 key={layer.id}
                 onClick={() => setActiveLayer(layer.id)}
                 className={`w-full text-left p-2.5 border-2 transition-colors ${
-                  activeLayer === layer.id ? 'bg-black text-white border-black font-bold' : 'bg-white border-gray-300 hover:bg-gray-50'
+                  activeLayer === layer.id ? 'bg-black text-white border-border-default font-bold' : 'bg-white border-gray-300 hover:bg-gray-50'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span>{layer.label}</span>
                   {layer.icon}
                 </div>
-                <p className={`text-[8px] mt-1 ${activeLayer === layer.id ? 'text-gray-300' : 'text-gray-500'}`}>
+                <p className={`text-[12px] mt-1 ${activeLayer === layer.id ? 'text-gray-300' : 'text-gray-500'}`}>
                   {layer.desc}
                 </p>
               </button>
@@ -70,8 +70,8 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
               <Target className="h-3.5 w-3.5" />
               ASSET GEO-TELEMETRY
             </div>
-            <div className="zoho-card-body space-y-1.5 text-[9px]">
-              <div className="font-bold border border-black p-1 bg-gray-50 uppercase text-[10px] truncate">{selectedAsset.name}</div>
+            <div className="zoho-card-body space-y-1.5 text-[12px]">
+              <div className="font-bold border border-border-default p-1 bg-gray-50 uppercase text-[12px] truncate">{selectedAsset.name}</div>
               <div className="flex justify-between border-b border-gray-200 pb-1">
                 <span>COORDINATES:</span>
                 <span>19.033° N, 72.818° E</span>
@@ -98,10 +98,10 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <Map className="h-3.5 w-3.5" />
             <span>REGIONAL INFRASTRUCTURE TOPOGRAPHIC MAP</span>
-            <span className="ml-auto text-[8px] text-gray-500 font-normal">Select asset coordinates to target drone inspect</span>
+            <span className="ml-auto text-[12px] text-gray-500 font-normal">Select asset coordinates to target drone inspect</span>
           </div>
           <div className="zoho-card-body">
-            <div className="w-full h-[280px] border border-black bg-white cad-grid relative overflow-hidden">
+            <div className="w-full h-[280px] border border-border-default bg-white cad-grid relative overflow-hidden">
               <svg viewBox="0 0 550 280" className="w-full h-full absolute inset-0">
                 <path d="M 0 100 Q 150 140 250 80 T 550 180 L 550 280 L 0 280 Z" fill="none" stroke="#000000" strokeWidth="1.5" strokeDasharray="3,3" />
                 <path d="M 120 0 Q 220 80 300 40 T 480 90 L 550 50 L 550 0 Z" fill="none" stroke="#000000" strokeWidth="1.5" strokeDasharray="3,3" />
@@ -134,7 +134,7 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
                   );
                 })}
               </svg>
-              <div className="absolute bottom-2 left-2 p-1 border border-black bg-white text-[8px] font-mono space-y-0.5">
+              <div className="absolute bottom-2 left-2 p-1 border border-border-default bg-white text-[12px] font-mono space-y-0.5">
                 <div>GEO-GRID: WGS-84 METERS</div>
                 <div>COMPASS BEARING: 12.4° NNE</div>
                 <div>ACTIVE LAYER: {activeLayer.toUpperCase()}</div>
@@ -148,7 +148,7 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-header">
             <Video className="h-3.5 w-3.5" />
             <span>LIVE DRONE INSPECTION VIEWFINDER (SIMULATED)</span>
-            <div className="ml-auto flex items-center gap-2 text-[9px] font-normal">
+            <div className="ml-auto flex items-center gap-2 text-[12px] font-normal">
               <span>ZOOM MAGNIFY:</span>
               <input 
                 type="range" min="1.0" max="8.0" step="0.5" value={droneZoom}
@@ -159,7 +159,7 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
             </div>
           </div>
           <div className="zoho-card-body">
-            <div className="w-full h-[180px] border border-black bg-white relative flex flex-col justify-between p-3 overflow-hidden">
+            <div className="w-full h-[180px] border border-border-default bg-white relative flex flex-col justify-between p-3 overflow-hidden">
               <div className="absolute inset-0 w-full h-full pointer-events-none">
                 <svg className="w-full h-full">
                   <line x1="50%" y1="20%" x2="50%" y2="80%" stroke="#000000" strokeWidth="1" strokeDasharray="6,4" />
@@ -168,7 +168,7 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
                   <line x1="0" y1="35%" x2="100%" y2="35%" stroke="#000000" strokeWidth="1.5" className="animate-pulse" />
                 </svg>
               </div>
-              <div className="flex justify-between w-full font-mono text-[8px] text-black font-bold z-10">
+              <div className="flex justify-between w-full font-mono text-[12px] text-black font-bold z-10">
                 <div className="space-y-0.5">
                   <div>ALTITUDE: 42.8m</div>
                   <div>YAW: 104.2° Pitch: -24.8°</div>
@@ -178,7 +178,7 @@ export default function GISEngine({ selectedElement, setSelectedElement }) {
                   <div>AUTOPILOT PATROL TRACK 3B</div>
                 </div>
               </div>
-              <div className="z-10 p-1 border border-black bg-white font-mono text-[8px] w-fit">
+              <div className="z-10 p-1 border border-border-default bg-white font-mono text-[12px] w-fit">
                 TARGET LOCK: {selectedAsset ? selectedAsset.id : 'SEARCHING FOR SURFACE ANOMALIES...'}
               </div>
             </div>

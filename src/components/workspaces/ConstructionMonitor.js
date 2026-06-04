@@ -7,13 +7,13 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
         {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">{children}</div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase">{footerText}</span>
         </div>
       )}
     </div>
@@ -38,7 +38,7 @@ const CONCRETE_POURS = [
   { id: 'PO-004', element: 'Staircase Beam & Slab', volume: '14 m³', grade: 'M30', date: '2026-05-29', slump: '100mm', temp: '29°C', cubesSent: 3, status: 'FRESH' },
 ];
 
-const STATUS_COLORS = { COMPLETE: 'bg-gray-800 text-white', IN_PROGRESS: 'border border-black text-black bg-white', PENDING: 'border border-[#d4d4d4] text-gray-500', NOT_STARTED: 'border border-[#d4d4d4] text-gray-300', CURED: 'bg-gray-800 text-white', CURING: 'border border-black text-black animate-pulse', FRESH: 'border border-[#d4d4d4] text-gray-600' };
+const STATUS_COLORS = { COMPLETE: 'bg-gray-800 text-white', IN_PROGRESS: 'border border-border-default text-black bg-white', PENDING: 'border border-[#d4d4d4] text-gray-500', NOT_STARTED: 'border border-[#d4d4d4] text-gray-300', CURED: 'bg-gray-800 text-white', CURING: 'border border-border-default text-black animate-pulse', FRESH: 'border border-[#d4d4d4] text-gray-600' };
 
 export default function ConstructionMonitor({ selectedElement, setSelectedElement }) {
   const [activeTab, setActiveTab] = useState('Progress');
@@ -73,17 +73,17 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
 
           {activeTab === 'Progress' && (
             <div className="space-y-3">
-              <div className="flex items-center gap-4 text-[9px] mb-2">
+              <div className="flex items-center gap-4 text-[12px] mb-2">
                 <div className="flex items-center gap-1.5"><span className="inline-block w-8 h-2 bg-gray-300 border border-gray-400"/><span>Planned</span></div>
                 <div className="flex items-center gap-1.5"><span className="inline-block w-8 h-2 bg-black"/><span>Actual</span></div>
               </div>
               {PROGRESS_ITEMS.map(p => (
                 <div key={p.id} className="space-y-1 cursor-pointer" onClick={() => setSelectedElement({ type: 'Construction Activity', id: p.id, metrics: { Activity: p.activity, PlannedProgress: `${p.planned}%`, ActualProgress: `${p.actual}%`, Status: p.status, TargetDate: p.date, Variance: `${p.planned - p.actual}%` } })}>
-                  <div className="flex justify-between text-[9px]">
+                  <div className="flex justify-between text-[12px]">
                     <span className="font-bold text-gray-800 uppercase">{p.activity}</span>
                     <div className="flex items-center gap-2">
                       <span className="text-gray-500">{p.actual}% / {p.planned}%</span>
-                      <span className={`text-[7px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status.replace('_',' ')}</span>
+                      <span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status.replace('_',' ')}</span>
                     </div>
                   </div>
                   <div className="w-full h-3 bg-gray-100 border border-[#d4d4d4] rounded-sm overflow-hidden relative">
@@ -96,14 +96,14 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
           )}
 
           {activeTab === 'Concrete Register' && (
-            <table className="w-full text-[10px]">
+            <table className="w-full text-[12px]">
               <thead><tr><th>Pour ID</th><th>Element</th><th>Volume</th><th>Grade</th><th>Date</th><th>Slump</th><th>Temp</th><th>Cubes</th><th>Status</th></tr></thead>
               <tbody>
                 {CONCRETE_POURS.map(p => (
                   <tr key={p.id} className="cursor-pointer" onClick={() => setSelectedElement({ type: 'Concrete Pour Record', id: p.id, metrics: { Element: p.element, Volume: p.volume, Grade: p.grade, PourDate: p.date, SlumpValue: p.slump, Temperature: p.temp, CubesSent: p.cubesSent, Status: p.status } })}>
                     <td className="font-bold">{p.id}</td><td>{p.element}</td><td>{p.volume}</td><td className="font-bold">{p.grade}</td>
                     <td>{p.date}</td><td>{p.slump}</td><td>{p.temp}</td><td>{p.cubesSent}</td>
-                    <td><span className={`text-[7.5px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span></td>
+                    <td><span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span></td>
                   </tr>
                 ))}
               </tbody>
@@ -119,17 +119,17 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                   <div key={p.id} className="p-3 border border-[#d4d4d4] bg-white rounded-sm space-y-2">
                     <div className="flex justify-between items-start">
                       <div>
-                        <p className="font-black text-[9.5px] uppercase">{p.element}</p>
-                        <p className="text-[8.5px] text-gray-500">Grade {p.grade} — Poured {p.date}</p>
+                        <p className="font-black text-[12px] uppercase">{p.element}</p>
+                        <p className="text-[12px] text-gray-500">Grade {p.grade} — Poured {p.date}</p>
                       </div>
-                      <span className={`text-[7.5px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span>
+                      <span className={`text-[12px] px-1.5 py-0.5 rounded-sm font-black uppercase ${STATUS_COLORS[p.status]}`}>{p.status}</span>
                     </div>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-[9px]"><span className="text-gray-500">Curing Progress (28-day)</span><span className="font-bold">{curingPct}%</span></div>
+                      <div className="flex justify-between text-[12px]"><span className="text-gray-500">Curing Progress (28-day)</span><span className="font-bold">{curingPct}%</span></div>
                       <div className="w-full h-2 bg-gray-100 border border-[#d4d4d4] rounded-sm overflow-hidden">
                         <div style={{ width: `${curingPct}%` }} className="h-full bg-black transition-all" />
                       </div>
-                      <p className="text-[8px] text-gray-400">Day {daysSince} of 28 minimum curing period</p>
+                      <p className="text-[12px] text-gray-400">Day {daysSince} of 28 minimum curing period</p>
                     </div>
                   </div>
                 );
@@ -140,7 +140,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
           {activeTab === 'AI vs Actual' && (
             <div className="space-y-4">
               <div className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm">
-                <p className="text-[9px] font-bold uppercase text-gray-500 mb-2">AI Schedule Prediction vs Actual Progress</p>
+                <p className="text-[12px] font-bold uppercase text-gray-500 mb-2">AI Schedule Prediction vs Actual Progress</p>
                 <div className="space-y-2">
                   {PROGRESS_ITEMS.map(p => {
                     // Deterministic shift based on item ID to keep component rendering pure
@@ -149,7 +149,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                     const aiPredicted = Math.min(100, Math.max(0, p.planned + pseudoRandomShift));
                     const variance = p.actual - aiPredicted;
                     return (
-                      <div key={p.id} className="flex justify-between text-[9px] border-b border-gray-200 pb-1">
+                      <div key={p.id} className="flex justify-between text-[12px] border-b border-gray-200 pb-1">
                         <span className="text-gray-700 uppercase truncate w-2/3">{p.activity}</span>
                         <div className="flex items-center gap-3">
                           <span className="text-gray-500">AI: {aiPredicted}%</span>
@@ -161,7 +161,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
                   })}
                 </div>
               </div>
-              <div className="p-3 border border-[#d4d4d4] bg-white rounded-sm text-[9px] space-y-1.5">
+              <div className="p-3 border border-[#d4d4d4] bg-white rounded-sm text-[12px] space-y-1.5">
                 <p className="font-black uppercase">AI Forecast Summary</p>
                 <p className="text-gray-700">Overall project is <span className="font-black">4 days behind</span> the AI-predicted baseline schedule.</p>
                 <p className="text-gray-700">Critical path delay: Level 1 Formwork Erection ({PROGRESS_ITEMS[3].actual}% vs {PROGRESS_ITEMS[3].planned}% planned).</p>
@@ -171,7 +171,7 @@ export default function ConstructionMonitor({ selectedElement, setSelectedElemen
           )}
         </div>
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase">Construction Monitoring — AI tracks planned vs actual progress in real-time</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase">Construction Monitoring — AI tracks planned vs actual progress in real-time</span>
         </div>
       </div>
     </div>

@@ -93,35 +93,35 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
           <div className="zoho-card-header">
             <Sigma className="h-3.5 w-3.5" />
             <span>CALCULATIONS CONSOLE</span>
-            <span className="ml-auto text-[9px] px-1 py-0.5 border border-white bg-black text-white">READY</span>
+            <span className="ml-auto text-[12px] px-1 py-0.5 border border-white bg-black text-white">READY</span>
           </div>
           <div className="zoho-card-body space-y-3">
             <div>
-              <label className="block font-bold mb-1 uppercase tracking-wide text-[10px]">Applied Force (P): {load} kN</label>
+              <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Applied Force (P): {load} kN</label>
               <input 
                 type="range" min="10" max="500" value={load} 
                 onChange={(e) => setLoad(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
-              <div className="flex justify-between text-[9px] text-gray-500">
+              <div className="flex justify-between text-[12px] text-gray-500">
                 <span>10 kN</span><span>500 kN</span>
               </div>
             </div>
             <div>
-              <label className="block font-bold mb-1 uppercase tracking-wide text-[10px]">Span Length (L): {length} m</label>
+              <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Span Length (L): {length} m</label>
               <input 
                 type="range" min="2.0" max="15.0" step="0.5" value={length} 
                 onChange={(e) => setLength(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
-              <div className="flex justify-between text-[9px] text-gray-500">
+              <div className="flex justify-between text-[12px] text-gray-500">
                 <span>2.0 m</span><span>15.0 m</span>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Elastic Modulus (E)</label>
-                <select value={modulus} onChange={(e) => setModulus(Number(e.target.value))} className="w-full p-1.5 border border-black bg-white focus:outline-none">
+                <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Elastic Modulus (E)</label>
+                <select value={modulus} onChange={(e) => setModulus(Number(e.target.value))} className="w-full p-1.5 border border-border-default bg-white focus:outline-none">
                   <option value="200">200 GPa (Steel)</option>
                   <option value="30">30 GPa (Concrete)</option>
                   <option value="70">70 GPa (Aluminum)</option>
@@ -129,11 +129,11 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
                 </select>
               </div>
               <div>
-                <label className="block font-bold mb-1 uppercase tracking-wide text-[9px]">Inertia (I) [cm⁴]</label>
+                <label className="block font-bold mb-1 uppercase tracking-wide text-[12px]">Inertia (I) [cm⁴]</label>
                 <input 
                   type="number" value={inertia}
                   onChange={(e) => setInertia(Math.max(100, Number(e.target.value)))}
-                  className="w-full p-1 border border-black bg-white focus:outline-none text-[10px]"
+                  className="w-full p-1 border border-border-default bg-white focus:outline-none text-[12px]"
                 />
               </div>
             </div>
@@ -149,14 +149,14 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
           <div className="zoho-card-body">
             <div className="p-2 border border-dashed border-gray-400 bg-gray-50 font-sans text-center space-y-2">
               <div className="border-b border-gray-200 pb-2">
-                <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Shear Stress Equation"}</p>
+                <p className="text-[12px] font-mono text-left font-bold text-gray-600">{"// Shear Stress Equation"}</p>
                 <span className="text-sm font-serif block my-1">σ = F / A</span>
-                <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.stressKpa} kPa</span>
+                <span className="text-[12px] font-mono text-gray-500">Calculated: {metrics.stressKpa} kPa</span>
               </div>
               <div>
-                <p className="text-[11px] font-mono text-left font-bold text-gray-600">{"// Beam Max Deflection"}</p>
+                <p className="text-[12px] font-mono text-left font-bold text-gray-600">{"// Beam Max Deflection"}</p>
                 <span className="text-sm font-serif block my-1">δ_max = (P·L³) / (48·E·I)</span>
-                <span className="text-[10px] font-mono text-gray-500">Calculated: {metrics.deflectionMm} mm</span>
+                <span className="text-[12px] font-mono text-gray-500">Calculated: {metrics.deflectionMm} mm</span>
               </div>
             </div>
           </div>
@@ -171,13 +171,13 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
         <div className="zoho-card-header" style={{ border: '1px solid #a6a6a6' }}>
           <Sigma className="h-3.5 w-3.5" />
           <span>CAD GRID WORKSPACE [VECTOR SCHEMATIC]</span>
-          <span className="ml-auto text-[9px] text-gray-500 font-normal">{"// Click canvas empty space to plot structural nodes"}</span>
+          <span className="ml-auto text-[12px] text-gray-500 font-normal">{"// Click canvas empty space to plot structural nodes"}</span>
         </div>
 
         {/* Vector SVG Board */}
         <div 
           onClick={handleAddNode}
-          className="w-full h-[360px] border border-black relative bg-white cad-grid cursor-crosshair overflow-hidden"
+          className="w-full h-[360px] border border-border-default relative bg-white cad-grid cursor-crosshair overflow-hidden"
           style={{ marginTop: 0 }}
         >
           <svg viewBox="0 0 520 360" className="w-full h-full absolute inset-0 pointer-events-none">
@@ -232,12 +232,12 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
           </svg>
 
           {nodes.map((node) => (
-            <span key={`lbl-${node.id}`} style={{ left: node.x + 8, top: node.y - 18 }} className="absolute font-bold text-[9px] bg-white border border-black px-1 pointer-events-none select-none font-mono">
+            <span key={`lbl-${node.id}`} style={{ left: node.x + 8, top: node.y - 18 }} className="absolute font-bold text-[12px] bg-white border border-border-default px-1 pointer-events-none select-none font-mono">
               {node.id}
             </span>
           ))}
 
-          <div className="absolute bottom-2 left-2 p-1.5 border border-black bg-white font-mono text-[9px] space-y-0.5">
+          <div className="absolute bottom-2 left-2 p-1.5 border border-border-default bg-white font-mono text-[12px] space-y-0.5">
             <div>SCALE: 1:50</div>
             <div>MESH TYPE: Linear Timoshenko Beam Elements</div>
             <div>NODES PLOTTED: {nodes.length}</div>
@@ -252,27 +252,27 @@ export default function StructuralStudio({ selectedElement, setSelectedElement }
           </div>
           <div className="zoho-card-body">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-2 border border-black">
-                <p className="text-gray-500 text-[9px] uppercase">Max Displacement</p>
+              <div className="p-2 border border-border-default">
+                <p className="text-gray-500 text-[12px] uppercase">Max Displacement</p>
                 <p className="text-lg font-bold font-mono mt-1">{metrics.deflectionMm} mm</p>
-                <span className={`text-[8px] px-1 border inline-block mt-1 ${Number(metrics.deflectionMm) > 8 ? 'bg-black text-white' : 'border-black'}`}>
+                <span className={`text-[12px] px-1 border inline-block mt-1 ${Number(metrics.deflectionMm) > 8 ? 'bg-black text-white' : 'border-border-default'}`}>
                   {Number(metrics.deflectionMm) > 8 ? 'EXCEEDS LIMIT' : 'WITHIN BOUNDS'}
                 </span>
               </div>
-              <div className="p-2 border border-black">
-                <p className="text-gray-500 text-[9px] uppercase">Safety Factor</p>
+              <div className="p-2 border border-border-default">
+                <p className="text-gray-500 text-[12px] uppercase">Safety Factor</p>
                 <p className="text-lg font-bold font-mono mt-1">{metrics.safetyFactor}</p>
-                <span className="text-[8px] px-1 border border-black inline-block mt-1">LIMIT: &gt; 1.5</span>
+                <span className="text-[12px] px-1 border border-border-default inline-block mt-1">LIMIT: &gt; 1.5</span>
               </div>
-              <div className="p-2 border border-black">
-                <p className="text-gray-500 text-[9px] uppercase">Applied Moment</p>
+              <div className="p-2 border border-border-default">
+                <p className="text-gray-500 text-[12px] uppercase">Applied Moment</p>
                 <p className="text-lg font-bold font-mono mt-1">{metrics.moment} kN·m</p>
-                <span className="text-[8px] text-gray-500 font-mono inline-block mt-1">M_max = PL/4</span>
+                <span className="text-[12px] text-gray-500 font-mono inline-block mt-1">M_max = PL/4</span>
               </div>
-              <div className="p-2 border border-black">
-                <p className="text-gray-500 text-[9px] uppercase">Stress Status</p>
+              <div className="p-2 border border-border-default">
+                <p className="text-gray-500 text-[12px] uppercase">Stress Status</p>
                 <p className="text-lg font-bold font-mono mt-1">NORMAL</p>
-                <span className="text-[8px] px-1 border border-black inline-block mt-1">NO BUCKLING</span>
+                <span className="text-[12px] px-1 border border-border-default inline-block mt-1">NO BUCKLING</span>
               </div>
             </div>
           </div>

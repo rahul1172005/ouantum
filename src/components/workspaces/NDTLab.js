@@ -8,7 +8,7 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
         {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">
@@ -16,7 +16,7 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
       </div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase tracking-normal">{footerText}</span>
         </div>
       )}
     </div>
@@ -64,8 +64,8 @@ const NDT_RESULTS = {
 
 const VERDICT_STYLE = {
   GOOD:     'border-gray-300 bg-white text-gray-800',
-  WARNING:  'border-black bg-white text-black',
-  CRITICAL: 'border-black bg-black text-white animate-pulse',
+  WARNING:  'border-border-default bg-white text-black',
+  CRITICAL: 'border-border-default bg-black text-white animate-pulse',
 };
 
 export default function NDTLab({ selectedElement, setSelectedElement }) {
@@ -151,20 +151,20 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
         {/* Left — Controls & Meta */}
         <div className="xl:col-span-1 space-y-4">
           <LevelCard icon={Cpu} title="Test Configuration" footerText={`Standard: ${mode.standard}`}>
-            <div className="space-y-2 text-[10px]">
+            <div className="space-y-2 text-[12px]">
               <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
-                <p className="text-[8px] text-gray-500 uppercase font-bold">Full Test Name</p>
+                <p className="text-[12px] text-gray-500 uppercase font-bold">Full Test Name</p>
                 <p className="font-bold text-gray-800 mt-0.5">{mode.fullLabel}</p>
               </div>
               <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
-                <p className="text-[8px] text-gray-500 uppercase font-bold">Compliance Standard</p>
+                <p className="text-[12px] text-gray-500 uppercase font-bold">Compliance Standard</p>
                 <p className="font-bold text-gray-800 mt-0.5">{mode.standard}</p>
               </div>
               <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-sm">
-                <p className="text-[8px] text-gray-500 uppercase font-bold">Scan Status</p>
+                <p className="text-[12px] text-gray-500 uppercase font-bold">Scan Status</p>
                 {isScanning ? (
                   <div className="mt-1 space-y-1">
-                    <div className="flex justify-between text-[9px] font-bold"><span className="animate-pulse">SCANNING...</span><span>{scanProgress}%</span></div>
+                    <div className="flex justify-between text-[12px] font-bold"><span className="animate-pulse">SCANNING...</span><span>{scanProgress}%</span></div>
                     <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded overflow-hidden">
                       <div style={{ width: `${scanProgress}%` }} className="h-full bg-black transition-all" />
                     </div>
@@ -173,14 +173,14 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                   <p className="font-bold text-gray-700 mt-0.5">STANDBY — {scanProgress === 100 ? 'SCAN COMPLETE' : 'READY'}</p>
                 )}
               </div>
-              <button onClick={triggerScan} disabled={isScanning} className="w-full btn-skeuo-dark text-[8.5px] uppercase tracking-wider mt-1">
+              <button onClick={triggerScan} disabled={isScanning} className="w-full btn-skeuo-dark text-[12px] uppercase tracking-wider mt-1">
                 {isScanning ? 'Scanning...' : `Run ${mode.label} Scan`}
               </button>
             </div>
           </LevelCard>
 
           <LevelCard icon={ShieldAlert} title="Probe Telemetry" footerText="Live sensor acquisition parameters">
-            <div className="space-y-1 text-[10px]">
+            <div className="space-y-1 text-[12px]">
               {[
                 ['Probe Position', `X:${mousePos.x} Y:${mousePos.y}`],
                 ['Frequency', activeMode === 'upv' ? '54 kHz' : activeMode === 'acoustic' ? '150 kHz' : activeMode === 'eddycurrent' ? '100 kHz' : '4.2 MHz'],
@@ -204,7 +204,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             title={`${mode.fullLabel} — Scan Viewport`}
             footerText="Hover over viewport to position scan probe"
             headerAction={
-              <span className={`text-[7.5px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${VERDICT_STYLE[result.verdict]}`}>
+              <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${VERDICT_STYLE[result.verdict]}`}>
                 {result.verdict}
               </span>
             }
@@ -215,7 +215,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
               {waveformModes.includes(activeMode) && (
                 <div className="h-[240px] relative">
                   <canvas ref={canvasRef} width={600} height={240} className="w-full h-full block" />
-                  <div className="absolute pointer-events-none border border-black px-1.5 py-0.5 bg-white font-bold text-[8px]" style={{ left: mousePos.x + 8, top: Math.min(mousePos.y - 12, 200) }}>
+                  <div className="absolute pointer-events-none border border-border-default px-1.5 py-0.5 bg-white font-bold text-[12px]" style={{ left: mousePos.x + 8, top: Math.min(mousePos.y - 12, 200) }}>
                     {mode.label.toUpperCase()}-PROBE
                   </div>
                 </div>
@@ -232,12 +232,12 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       {activeMode === 'irt' ? `${Math.max(12, (38 - Math.abs(mousePos.x - 300) / 10).toFixed(1))}°C` : `${(0.89 - Math.abs(mousePos.x - 300) / 1000).toFixed(2)} μA/cm²`}
                     </text>
                   </svg>
-                  <div className="flex justify-between w-full text-[8px] text-gray-600 z-10">
+                  <div className="flex justify-between w-full text-[12px] text-gray-600 z-10">
                     <span>{activeMode === 'irt' ? 'SCALE: CELSIUS DELTA' : 'SCALE: CORROSION CURRENT'}</span>
                     <span>CALIBRATION: ACTIVE</span>
                   </div>
                   <div className="absolute pointer-events-none" style={{ left: mousePos.x + 12, top: mousePos.y + 12 }}>
-                    <div className="border border-black bg-white p-1 text-[8px] space-y-0.5">
+                    <div className="border border-border-default bg-white p-1 text-[12px] space-y-0.5">
                       <div>VAL: {activeMode === 'irt' ? `${Math.max(18, (35 - Math.abs(mousePos.x - 300) / 8).toFixed(1))}°C` : `${Math.max(0.08, (0.89 - Math.abs(mousePos.x - 300) / 800).toFixed(2))} μA/cm²`}</div>
                       <div>COORDS: {mousePos.x}, {mousePos.y}</div>
                     </div>
@@ -270,7 +270,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       );
                     })}
                   </svg>
-                  <div className="z-10 text-right text-[8px] text-gray-500 font-mono">
+                  <div className="z-10 text-right text-[12px] text-gray-500 font-mono">
                     <div>METHOD: {mode.fullLabel.toUpperCase()}</div>
                     <div>STD: {mode.standard}</div>
                   </div>
@@ -280,7 +280,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
               {/* Bar Chart / Meter (Rebound, Half Cell, Cover Meter, Impact Echo, Resistivity, Carbonation) */}
               {meterModes.includes(activeMode) && (
                 <div className="h-[240px] relative bg-white p-4">
-                  <div className="text-[9px] font-bold uppercase text-gray-500 mb-3">{mode.fullLabel} — 5 Point Scan Grid</div>
+                  <div className="text-[12px] font-bold uppercase text-gray-500 mb-3">{mode.fullLabel} — 5 Point Scan Grid</div>
                   <div className="flex items-end justify-around h-[160px] border-b border-l border-[#d4d4d4]">
                     {result.readings.map((r, i) => {
                       const numVal = parseFloat(r.replace(/[^0-9.-]/g, ''));
@@ -289,9 +289,9 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       const isCrit = i === 2 || i === 4;
                       return (
                         <div key={i} className="flex flex-col items-center gap-1 cursor-pointer" onClick={() => setSelectedElement({ type: `NDT ${mode.fullLabel}`, id: `Point P${i+1}`, metrics: { TestMethod: mode.fullLabel, Standard: mode.standard, Reading: r, ScanPoint: `P${i+1}`, Verdict: isCrit ? result.verdict : 'NOMINAL' } })}>
-                          <span className="text-[7.5px] font-bold text-gray-600">{r}</span>
+                          <span className="text-[12px] font-bold text-gray-600">{r}</span>
                           <div style={{ height: `${h}px`, width: '28px' }} className={`${isCrit ? 'bg-black' : 'bg-gray-400'} border border-gray-500`} />
-                          <span className="text-[8px] font-bold text-gray-700">P{i+1}</span>
+                          <span className="text-[12px] font-bold text-gray-700">P{i+1}</span>
                         </div>
                       );
                     })}
@@ -301,7 +301,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             </div>
 
             {/* Verdict banner */}
-            <div className={`p-2 border rounded-sm text-[9px] font-bold uppercase leading-relaxed ${VERDICT_STYLE[result.verdict]}`}>
+            <div className={`p-2 border rounded-sm text-[12px] font-bold uppercase leading-relaxed ${VERDICT_STYLE[result.verdict]}`}>
               <AlertTriangle className="h-3 w-3 inline mr-1" />
               {result.note}
             </div>
@@ -309,7 +309,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
 
           {/* Results Table */}
           <LevelCard icon={BarChart2} title="Scan Point Readings" footerText={`${mode.standard} — all values logged to SSOT audit trail`}>
-            <table className="w-full text-[10px]">
+            <table className="w-full text-[12px]">
               <thead>
                 <tr>
                   <th>Point</th><th>Reading</th><th>Threshold</th><th>Status</th>
@@ -324,7 +324,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       <td className="font-bold">{r}</td>
                       <td className="text-gray-500">{mode.standard}</td>
                       <td>
-                        <span className={`px-1 py-0.5 text-[7.5px] font-black border rounded-sm uppercase ${isCrit ? 'bg-black text-white border-black' : 'border-[#d4d4d4] text-gray-600'}`}>
+                        <span className={`px-1 py-0.5 text-[12px] font-black border rounded-sm uppercase ${isCrit ? 'bg-black text-white border-border-default' : 'border-[#d4d4d4] text-gray-600'}`}>
                           {isCrit ? result.verdict : 'PASS'}
                         </span>
                       </td>

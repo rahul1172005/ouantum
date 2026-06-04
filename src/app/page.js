@@ -11,8 +11,7 @@ import {
   Layers
 } from 'lucide-react';
 import { useCRMStore, WORKSPACES } from '@/store/crmStore';
-import Sidebar from '@/components/ui/Sidebar';
-import Topbar from '@/components/ui/Topbar';
+import { AppShell } from '@/components/layout/AppShell';
 import CommandPalette from '@/components/ui/CommandPalette';
 import ExecutiveDashboard from '@/components/dashboards/ExecutiveDashboard';
 import HelpGuide from '@/components/ui/HelpGuide';
@@ -281,29 +280,17 @@ export default function Home() {
 
   /* ------------------- 2. ENTERPRISE CRM DASHBOARD ------------------- */
   return (
-    <div className="h-screen overflow-hidden bg-[#f2f3f3] relative text-[#16191f] flex flex-col">
-      {/* Search overlay & Command palette */}
+    <>
       <CommandPalette />
-
-      {/* Help Guide Overlay */}
       <HelpGuide isOpen={helpOpen} onClose={() => setHelpOpen(false)} />
-
-      {/* Top Header Navigation bar */}
-      <Topbar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} setHelpOpen={setHelpOpen} />
-
-      {/* Main Content Area */}
-      <div className="flex flex-1 pt-16 min-h-0 overflow-hidden">
-
-        {/* Collapsible Left Navigation Sidebar */}
-        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-
-        {/* Middle workspace content + Right contextual inspector panel */}
-        <div
-          className={`flex-1 flex flex-col lg:flex-row transition-all duration-200 min-h-0 overflow-hidden ${sidebarOpen ? 'ml-14 md:ml-60' : 'ml-14'
-            }`}
-        >
-          {/* Main workspace display area */}
-          <main className="flex-1 overflow-hidden flex flex-col min-w-0 bg-white border border-[#eaeded] rounded-none m-4 shadow-[0_1px_1px_rgba(0,28,36,0.15)]">
+      
+      <AppShell
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        setHelpOpen={setHelpOpen}
+      >
+        {/* Main workspace display area */}
+        <main className="flex-1 overflow-hidden flex flex-col min-w-0 bg-white border border-border-default rounded-none m-4 shadow-card">
 
             {/* 1. Zoho Reports Tab Bar */}
             <div className="workspace-tabs flex-shrink-0 select-none">
@@ -340,7 +327,7 @@ export default function Home() {
                     <line x1="10.5" y1="5.5" x2="10.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8" />
                   </svg>
                 )}
-                <span className="font-bold text-gray-800 text-[11.5px] uppercase">
+                <span className="font-bold text-gray-800 text-[12px] uppercase">
                   {currentWorkspace.replace(/_/g, ' ')}
                 </span>
               </div>
@@ -363,7 +350,7 @@ export default function Home() {
                     <line x1="10.5" y1="10" x2="13.5" y2="10" stroke="#ffffff" strokeWidth="0.8" />
                   </svg>
                   <span>New</span>
-                  <span className="text-[7px] text-gray-500">▼</span>
+                  <span className="text-[12px] text-gray-500">▼</span>
                 </button>
 
                 {showNewDropdown && (
@@ -624,19 +611,19 @@ export default function Home() {
                         borderRadius: 4,
                         boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
                       }}>
-                        <div style={{ fontSize: 9.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#555555', marginBottom: 4 }}>Selected Element</div>
+                        <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#555555', marginBottom: 4 }}>Selected Element</div>
                         <div style={{ fontWeight: 700, fontSize: 12, color: '#1a1a1a', wordBreak: 'break-all' }}>{selectedElement.type}</div>
-                        <div style={{ fontSize: 10, color: '#888', marginTop: 2, wordBreak: 'break-all' }}>{selectedElement.id}</div>
+                        <div style={{ fontSize: 12, color: '#888', marginTop: 2, wordBreak: 'break-all' }}>{selectedElement.id}</div>
                       </div>
 
                       {/* Metrics table */}
                       <div>
-                        <div style={{ fontSize: 11, fontWeight: 600, color: '#545b64', marginBottom: 7, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Diagnostics Metrics</div>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 11 }}>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: '#545b64', marginBottom: 7, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Diagnostics Metrics</div>
+                        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
                           <tbody>
                             {Object.entries(selectedElement.metrics || {}).map(([key, value]) => (
                               <tr key={key} style={{ borderBottom: '1px solid #f0f0f0' }}>
-                                <td style={{ padding: '6px 8px', fontWeight: 600, fontSize: 10.5, color: '#666', background: '#fafafa', width: '48%', borderRight: '1px solid #ebebeb' }}>
+                                <td style={{ padding: '6px 8px', fontWeight: 600, fontSize: 12, color: '#666', background: '#fafafa', width: '48%', borderRight: '1px solid #ebebeb' }}>
                                   {key.replace(/([A-Z])/g, ' $1').trim()}
                                 </td>
                                 <td style={{ padding: '6px 8px', color: '#1a1a1a', fontWeight: 600 }}>{value}</td>
@@ -654,8 +641,8 @@ export default function Home() {
                         borderRadius: 4,
                         boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
                       }}>
-                        <div style={{ fontSize: 9.5, fontWeight: 700, textTransform: 'uppercase', color: '#555555', marginBottom: 6 }}>AI Diagnostic Analysis</div>
-                        <p style={{ fontSize: 11.5, lineHeight: 1.55, color: '#3d3d3d', margin: 0 }}>
+                        <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#555555', marginBottom: 6 }}>AI Diagnostic Analysis</div>
+                        <p style={{ fontSize: 12, lineHeight: 1.55, color: '#3d3d3d', margin: 0 }}>
                           {selectedElement.type.includes('Node') && 'Stress concentrations detected under cyclic load triggers. Monitor displacement velocity channels continuously.'}
                           {selectedElement.type.includes('Member') && 'Corrosion profile suggests fatigue threshold margin at 78.4%. Standard validation lifecycle recommended.'}
                           {selectedElement.type.includes('Twin') && 'Anchor wireframe degradation factor simulated. Maintain continuous sensor feeds to optimize forecasting models.'}
@@ -703,7 +690,7 @@ export default function Home() {
 
                       {/* Mini Activity Feed */}
                       <div>
-                        <div style={{ fontSize: 11, fontWeight: 600, color: '#545b64', marginBottom: 8, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Active Project Events</div>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: '#545b64', marginBottom: 8, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Active Project Events</div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                           {activities.slice(0, 4).map((act) => (
                             <div key={act.id} style={{
@@ -714,10 +701,10 @@ export default function Home() {
                               boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
                             }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                                <span style={{ fontSize: 9.5, fontWeight: 700, color: '#555555', textTransform: 'uppercase' }}>{act.type}</span>
-                                <span style={{ fontSize: 9.5, color: '#aaa' }}>{new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                <span style={{ fontSize: 12, fontWeight: 700, color: '#555555', textTransform: 'uppercase' }}>{act.type}</span>
+                                <span style={{ fontSize: 12, color: '#aaa' }}>{new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                               </div>
-                              <p style={{ fontSize: 11.5, color: '#3d3d3d', margin: 0, lineHeight: 1.4 }}>{act.description}</p>
+                              <p style={{ fontSize: 12, color: '#3d3d3d', margin: 0, lineHeight: 1.4 }}>{act.description}</p>
                             </div>
                           ))}
                         </div>
@@ -734,7 +721,7 @@ export default function Home() {
                         color: '#545b64',
                         lineHeight: 1.8,
                       }}>
-                        <div style={{ fontWeight: 700, color: '#333', marginBottom: 5, fontSize: 10.5 }}>Sys Shortcuts</div>
+                        <div style={{ fontWeight: 700, color: '#333', marginBottom: 5, fontSize: 12 }}>Sys Shortcuts</div>
                         <div>Ctrl + K — AI Command Palette</div>
                         <div>Esc — Clear inspection</div>
                         <div>Sidebar — Workspace switch</div>
@@ -763,14 +750,14 @@ export default function Home() {
                 onMouseLeave={e => e.currentTarget.style.background = '#f8f9fa'}
                 title="Expand Inspector"
               >
-                <div style={{ fontSize: 11, fontWeight: 'bold', color: '#666', marginBottom: 20 }}>
+                <div style={{ fontSize: 12, fontWeight: 'bold', color: '#666', marginBottom: 20 }}>
                   ◀
                 </div>
                 <div style={{
                   writingMode: 'vertical-rl',
                   transform: 'rotate(180deg)',
                   fontWeight: 700,
-                  fontSize: 10.5,
+                  fontSize: 12,
                   color: '#555',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
@@ -781,8 +768,7 @@ export default function Home() {
               </div>
             )}
           </aside>
-        </div>
-      </div>
-    </div>
-  );
-}
+        </AppShell>
+      </>
+    );
+  }

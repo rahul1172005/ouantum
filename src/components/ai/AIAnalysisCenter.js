@@ -114,7 +114,7 @@ export default function AIAnalysisCenter() {
           <span className="flex items-center gap-2 font-bold text-electric-blue">
             <Bot className="h-5 w-5 animate-pulse text-ai-purple" /> Ouantum AI Operating Assistant
           </span>
-          <span className="text-[10px] text-metallic-gray">CORE INTEGRATION V3.5</span>
+          <span className="text-[12px] text-metallic-gray">CORE INTEGRATION V3.5</span>
         </div>
 
         {/* Text Feed messages */}
@@ -154,10 +154,10 @@ export default function AIAnalysisCenter() {
 
         {/* Dynamic Preset Questions triggers */}
         <div className="mb-4">
-          <p className="text-[9px] font-mono text-metallic-gray uppercase tracking-wider mb-2 font-bold flex items-center gap-1">
+          <p className="text-[12px] font-mono text-metallic-gray uppercase tracking-wider mb-2 font-bold flex items-center gap-1">
             <HelpCircle className="h-3.5 w-3.5" /> Preset Diagnostic Enquiries
           </p>
-          <div className="flex flex-wrap gap-2 text-[10px] font-mono">
+          <div className="flex flex-wrap gap-2 text-[12px] font-mono">
             <button 
               onClick={() => handleSendMessage("Inspect structural health anomalies in Pillar B-12")}
               className="px-2.5 py-1.5 rounded bg-black/40 hover:bg-ai-purple/15 border border-white/5 hover:border-ai-purple/40 text-metallic-gray hover:text-white-text transition-all"
@@ -203,7 +203,7 @@ export default function AIAnalysisCenter() {
           <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-electric-blue flex items-center gap-1.5 border-b border-white/5 pb-2 mb-4">
             <LineChart className="h-4 w-4" /> 180-Day Structural Wear Forecasting
           </h3>
-          <p className="text-[10px] text-metallic-gray font-mono mb-4">{"// TELEMETRY MODELLING: LOCAL EXPONENTIAL Concrete Wear Curves"}</p>
+          <p className="text-[12px] text-metallic-gray font-mono mb-4">{"// TELEMETRY MODELLING: LOCAL EXPONENTIAL Concrete Wear Curves"}</p>
 
           <div className="w-full h-56">
             <ResponsiveContainer width="100%" height="100%">
@@ -217,7 +217,7 @@ export default function AIAnalysisCenter() {
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
                 <XAxis dataKey="day" stroke="rgba(255,255,255,0.3)" fontSize={8} />
                 <YAxis stroke="rgba(255,255,255,0.3)" fontSize={8} />
-                <Tooltip contentStyle={{ background: '#0b1224', border: '1px solid rgba(123, 97, 255, 0.2)', fontSize: '10px', fontFamily: 'monospace' }} />
+                <Tooltip contentStyle={{ background: '#0b1224', border: '1px solid rgba(123, 97, 255, 0.2)', fontSize: '12px', fontFamily: 'monospace' }} />
                 <Area type="monotone" dataKey="fatigue" stroke="#7b61ff" strokeWidth={2} fillOpacity={1} fill="url(#colorFatigue)" />
               </AreaChart>
             </ResponsiveContainer>
@@ -225,7 +225,7 @@ export default function AIAnalysisCenter() {
         </div>
 
         {/* Fatigue alerts diagnostics list */}
-        <div className="mt-4 space-y-2 font-mono text-[10px]">
+        <div className="mt-4 space-y-2 font-mono text-[12px]">
           <div className="p-2.5 bg-black/40 rounded border border-white/5 flex items-center justify-between text-metallic-gray">
             <span className="flex items-center gap-1"><Cpu className="h-3.5 w-3.5 text-ai-purple" /> MODEL ACCURACY CRITERION</span>
             <span className="text-white-text font-bold">R² = 0.985</span>

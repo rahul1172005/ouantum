@@ -1,21 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-bg: #f2f3f3; /* AWS Page BG */
-  --color-secondary-bg: #ffffff; /* AWS Container BG */
-  --color-electric-blue: #0073bb; /* AWS Blue */
-  --color-ai-purple: #8c43fc; /* AWS AI purple */
-  --color-success-green: #1d8102; /* AWS Success green */
-  --color-alert-orange: #ec7211; /* AWS Orange accent */
-  --color-danger-red: #d13212; /* AWS Danger red */
-  --color-metallic-gray: #545b64; /* AWS secondary gray */
-  --color-white-text: #ffffff;
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 4px;
-  --radius-lg: 4px;
-  --radius-xl: 4px;
-  --radius-2xl: 4px;
+  /* --- Surface tokens --- */
+  --color-surface-page: #f0f1f3;   /* App background */
+  --color-surface-body: #ffffff;   /* Card body */
+  --color-surface-header: #f5f5f5; /* Card header bevel */
+  --color-surface-footer: #f4f5f6; /* Card footer / status bar */
+  --color-surface-hover: #f0f6ff;  /* Row hover, active selections */
+  --color-surface-input: #ffffff;  /* Form inputs */
+
+  /* --- Border tokens --- */
+  --color-border-default: #d4d4d4;  /* Standard card border */
+  --color-border-header: #c8c8c8;   /* Card header divider */
+  --color-border-input: #c8c8c8;    /* Form inputs border */
+  --color-border-focus: #000000;    /* Input focus ring */
+  --color-border-hover: #b0b0b0;    /* Elevated hover state */
+  --color-border-error: #d93025;    /* Error state border */
+  --color-border-success: #1e7e34;  /* Success state border */
+
+  /* --- Text tokens --- */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+  --color-text-link: #0073e6;
+  --color-text-danger: #c62828;
+  --color-text-success: #2e7d32;
+  --color-text-warning: #e65100;
+
+  /* --- Semantic state tokens --- */
+  --color-state-error: #fdecea;
+  --color-state-warning: #fff8e1;
+  --color-state-success: #e8f5e9;
+  --color-state-info: #e3f2fd;
+
+  /* --- Button tokens --- */
+  --color-btn-primary: #0073e6;
+  --color-btn-primary-hv: #005bb5;
+  --color-btn-danger: #d32f2f;
+  --color-btn-danger-hv: #b71c1c;
+
+  /* --- Font sizes & weights --- */
+  --font-sans: 'Inter', 'Segoe UI', 'Tahoma', sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  /* --- Borders and radius --- */
+  --radius-card: 6px;
+  --radius-input: 4px;
+  --radius-btn: 4px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-dropdown: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 /* ======================================================
@@ -877,4 +912,108 @@ header input[placeholder*="Search"]:focus {
   color: #16191f !important;
   box-shadow: 0 0 0 1px #0073bb !important;
 }
+
+/* ======================================================
+   BUTTON SYSTEM (ZOHO/AWS STANDARD)
+   ====================================================== */
+.btn-primary {
+  height: 34px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  background: #0073e6;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-primary:hover { background: #005bb5; }
+.btn-primary:active { background: #004fa3; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  height: 34px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 4px;
+  border: 1px solid #b5b5b5;
+  background: linear-gradient(to bottom, #fdfdfd, #eaeaea);
+  color: #333333;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-secondary:hover { background: linear-gradient(to bottom, #f5f5f5, #e0e0e0); }
+.btn-secondary:active { background: #e0e0e0; }
+
+.btn-tertiary {
+  height: 34px;
+  padding: 0 10px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  color: #0073e6;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-tertiary:hover { background: #f0f6ff; }
+
+.btn-danger {
+  height: 34px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  background: #d32f2f;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-danger:hover { background: #b71c1c; }
+
+.btn-sm { height: 28px; padding: 0 10px; font-size: 12px; }
+
+/* ======================================================
+   STRICT SUB-12PX TYPOGRAPHY PURGE
+   ====================================================== */
+/* Override all Tailwind classes for sub-12px font sizes */
+.text-\[9px\],
+.text-\[9\.5px\],
+.text-\[10px\],
+.text-\[10\.5px\],
+.text-\[11px\],
+.text-\[11\.5px\] {
+  font-size: 12px !important;
+}
+
+/* Force inline styles with sub-12px values inside workspaces to scale up to 12px */
+.workspace-viewport [style*="font-size:9"],
+.workspace-viewport [style*="font-size: 9"],
+.workspace-viewport [style*="font-size:10"],
+.workspace-viewport [style*="font-size: 10"],
+.workspace-viewport [style*="font-size:11"],
+.workspace-viewport [style*="font-size: 11"],
+.workspace-viewport [style*="fontSize:9"],
+.workspace-viewport [style*="fontSize: 9"],
+.workspace-viewport [style*="fontSize:10"],
+.workspace-viewport [style*="fontSize: 10"],
+.workspace-viewport [style*="fontSize:11"],
+.workspace-viewport [style*="fontSize: 11"] {
+  font-size: 12px !important;
+}
+
 

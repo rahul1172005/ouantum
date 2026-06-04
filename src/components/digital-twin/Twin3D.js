@@ -294,7 +294,7 @@ export default function Twin3D() {
       <div className="flex-1 min-h-[350px] relative" ref={mountRef}>
         
         {/* Layer Toggles Floating Overlay */}
-        <div className="absolute top-4 left-4 z-20 flex gap-2 font-mono text-[10px]">
+        <div className="absolute top-4 left-4 z-20 flex gap-2 font-mono text-[12px]">
           {['Stress Heatmap', 'Corrosion Overlay', 'Sensor Array'].map((layer) => (
             <button
               key={layer}
@@ -318,7 +318,7 @@ export default function Twin3D() {
               <button onClick={() => setSelectedNode(null)} className="text-metallic-gray hover:text-white">&times;</button>
             </div>
             <p className="text-white-text font-bold mb-1">{selectedNode.name}</p>
-            <div className="space-y-1 text-metallic-gray text-[11px]">
+            <div className="space-y-1 text-metallic-gray text-[12px]">
               <div className="flex justify-between">
                 <span>STRESS LEVEL:</span>
                 <span className={selectedNode.status === 'CRITICAL STRESS' ? 'text-danger-red font-bold' : 'text-success-green'}>
@@ -339,7 +339,7 @@ export default function Twin3D() {
             {selectedNode.status === 'CRITICAL STRESS' && (
               <button 
                 onClick={triggerCollapseAnomaly}
-                className="w-full mt-3 py-1 bg-danger-red/20 text-danger-red border border-danger-red/40 hover:bg-danger-red/35 rounded text-[10px] uppercase font-bold flex items-center justify-center gap-1 transition-colors"
+                className="w-full mt-3 py-1 bg-danger-red/20 text-danger-red border border-danger-red/40 hover:bg-danger-red/35 rounded text-[12px] uppercase font-bold flex items-center justify-center gap-1 transition-colors"
               >
                 <ShieldAlert className="h-3 w-3" /> Log Critical Ticket
               </button>
@@ -348,7 +348,7 @@ export default function Twin3D() {
         )}
 
         {/* Dynamic Watermark HUD */}
-        <div className="absolute bottom-4 left-4 z-20 font-mono text-[9px] text-metallic-gray/70 space-y-0.5">
+        <div className="absolute bottom-4 left-4 z-20 font-mono text-[12px] text-metallic-gray/70 space-y-0.5">
           <p>OBJECT TYPE: PROTOTYPICAL SUSPENSION CABLE BRIDGE</p>
           <p>COORDINATE SYST: WGS-84 | CHENNAI PORT HUDS</p>
           <p>ENGINE: WEBGL | THREE.JS 3D TWIN RENDERER</p>
@@ -372,7 +372,7 @@ export default function Twin3D() {
             onChange={(e) => setWindSpeed(Number(e.target.value))}
             className="w-full h-1 bg-black/60 rounded-lg appearance-none cursor-pointer accent-electric-blue"
           />
-          <div className="flex justify-between text-[8px] text-metallic-gray/50 mt-1">
+          <div className="flex justify-between text-[12px] text-metallic-gray/50 mt-1">
             <span>0 km/h (CALM)</span>
             <span>180 km/h (GALE)</span>
           </div>
@@ -393,7 +393,7 @@ export default function Twin3D() {
             onChange={(e) => setSeismicActivity(Number(e.target.value))}
             className="w-full h-1 bg-black/60 rounded-lg appearance-none cursor-pointer accent-alert-orange"
           />
-          <div className="flex justify-between text-[8px] text-metallic-gray/50 mt-1">
+          <div className="flex justify-between text-[12px] text-metallic-gray/50 mt-1">
             <span>0.0 (STEADY)</span>
             <span>8.0 (DEVASTATING)</span>
           </div>
@@ -401,19 +401,19 @@ export default function Twin3D() {
 
         {/* Diagnostics options */}
         <div className="flex flex-col justify-center">
-          <p className="text-[10px] text-metallic-gray uppercase tracking-wider mb-2 font-bold flex items-center gap-1">
+          <p className="text-[12px] text-metallic-gray uppercase tracking-wider mb-2 font-bold flex items-center gap-1">
             <AlertTriangle className="h-3.5 w-3.5 text-danger-red animate-pulse" /> SIMULATION DEGRADATION
           </p>
           <div className="flex gap-2">
             <button 
               onClick={() => { setWindSpeed(150); setSeismicActivity(0); }}
-              className="flex-1 py-1.5 bg-electric-blue/10 hover:bg-electric-blue/20 border border-electric-blue/30 rounded text-[9px] font-bold text-white transition-colors"
+              className="flex-1 py-1.5 bg-electric-blue/10 hover:bg-electric-blue/20 border border-electric-blue/30 rounded text-[12px] font-bold text-white transition-colors"
             >
               TYPHOON SWAY
             </button>
             <button 
               onClick={() => { setSeismicActivity(6.5); setWindSpeed(10); }}
-              className="flex-1 py-1.5 bg-danger-red/10 hover:bg-danger-red/20 border border-danger-red/30 rounded text-[9px] font-bold text-white transition-colors"
+              className="flex-1 py-1.5 bg-danger-red/10 hover:bg-danger-red/20 border border-danger-red/30 rounded text-[12px] font-bold text-white transition-colors"
             >
               SEISMIC SHAKE
             </button>

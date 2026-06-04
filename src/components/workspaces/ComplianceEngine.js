@@ -7,13 +7,13 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
         {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">{children}</div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase">{footerText}</span>
         </div>
       )}
     </div>
@@ -66,7 +66,7 @@ const STANDARDS = [
 
 const STATUS_STYLE = {
   COMPLIANT:     'bg-white text-gray-700 border-[#d4d4d4]',
-  NON_COMPLIANT: 'bg-black text-white border-black animate-pulse',
+  NON_COMPLIANT: 'bg-black text-white border-border-default animate-pulse',
 };
 
 export default function ComplianceEngine({ selectedElement, setSelectedElement }) {
@@ -105,13 +105,13 @@ export default function ComplianceEngine({ selectedElement, setSelectedElement }
                 const nc = s.clauses.filter(c => c.status === 'NON_COMPLIANT').length;
                 return (
                   <button key={s.id} onClick={() => setActiveStd(s.id)}
-                    className={`w-full text-left p-2 border rounded-sm transition-colors ${activeStd === s.id ? 'bg-black text-white border-black' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
+                    className={`w-full text-left p-2 border rounded-sm transition-colors ${activeStd === s.id ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4] hover:bg-gray-50'}`}>
                     <div className="flex justify-between items-center">
-                      <span className={`text-[9.5px] font-black uppercase ${activeStd === s.id ? 'text-white' : 'text-gray-800'}`}>{s.code}</span>
-                      {nc > 0 && <span className={`text-[7px] px-1 border rounded-sm font-black ${activeStd === s.id ? 'border-white text-white' : 'border-black text-black animate-pulse'}`}>{nc} NC</span>}
+                      <span className={`text-[12px] font-black uppercase ${activeStd === s.id ? 'text-white' : 'text-gray-800'}`}>{s.code}</span>
+                      {nc > 0 && <span className={`text-[12px] px-1 border rounded-sm font-black ${activeStd === s.id ? 'border-white text-white' : 'border-border-default text-black animate-pulse'}`}>{nc} NC</span>}
                     </div>
-                    <p className={`text-[8px] mt-0.5 ${activeStd === s.id ? 'text-gray-300' : 'text-gray-500'}`}>{s.name}</p>
-                    <p className={`text-[7.5px] mt-0.5 font-bold ${activeStd === s.id ? 'text-gray-400' : 'text-gray-400'}`}>{s.org}</p>
+                    <p className={`text-[12px] mt-0.5 ${activeStd === s.id ? 'text-gray-300' : 'text-gray-500'}`}>{s.name}</p>
+                    <p className={`text-[12px] mt-0.5 font-bold ${activeStd === s.id ? 'text-gray-400' : 'text-gray-400'}`}>{s.org}</p>
                   </button>
                 );
               })}
@@ -132,19 +132,19 @@ export default function ComplianceEngine({ selectedElement, setSelectedElement }
               {activeTab === 'Clause Check' && (
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="font-black text-[10px] uppercase">{std.code}</span>
-                    <span className="text-[9px] text-gray-500">— {std.name}</span>
-                    <span className="text-[8px] text-gray-400 ml-auto">{std.org}</span>
+                    <span className="font-black text-[12px] uppercase">{std.code}</span>
+                    <span className="text-[12px] text-gray-500">— {std.name}</span>
+                    <span className="text-[12px] text-gray-400 ml-auto">{std.org}</span>
                   </div>
-                  <table className="w-full text-[10px]">
+                  <table className="w-full text-[12px]">
                     <thead><tr><th>Clause</th><th>Title</th><th>AI Finding</th><th>Status</th></tr></thead>
                     <tbody>
                       {std.clauses.map(c => (
                         <tr key={c.cl} className="cursor-pointer" onClick={() => setSelectedElement({ type: 'Compliance Clause', id: `${std.code} §${c.cl}`, metrics: { Standard: std.code, Clause: c.cl, Title: c.title, Finding: c.finding, Status: c.status } })}>
                           <td className="font-black">{c.cl}</td>
                           <td className="font-semibold">{c.title}</td>
-                          <td className="text-gray-600 text-[9px]">{c.finding}</td>
-                          <td><span className={`text-[7.5px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${STATUS_STYLE[c.status]}`}>{c.status.replace('_',' ')}</span></td>
+                          <td className="text-gray-600 text-[12px]">{c.finding}</td>
+                          <td><span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black uppercase ${STATUS_STYLE[c.status]}`}>{c.status.replace('_',' ')}</span></td>
                         </tr>
                       ))}
                     </tbody>
@@ -154,15 +154,15 @@ export default function ComplianceEngine({ selectedElement, setSelectedElement }
 
               {activeTab === 'Non-Conformances' && (
                 <div className="space-y-2">
-                  <p className="text-[9px] text-gray-500 uppercase font-bold">{nonCompliant.length} non-conformances across all standards</p>
+                  <p className="text-[12px] text-gray-500 uppercase font-bold">{nonCompliant.length} non-conformances across all standards</p>
                   {nonCompliant.map((c, i) => (
-                    <div key={i} className="p-2.5 border border-black bg-white rounded-sm space-y-1">
+                    <div key={i} className="p-2.5 border border-border-default bg-white rounded-sm space-y-1">
                       <div className="flex justify-between">
-                        <span className="font-black text-[9.5px] uppercase">{c.code} — Cl. {c.cl}</span>
-                        <span className="text-[7px] px-1.5 py-0.5 bg-black text-white border-black border rounded-sm font-black uppercase animate-pulse">NON-COMPLIANT</span>
+                        <span className="font-black text-[12px] uppercase">{c.code} — Cl. {c.cl}</span>
+                        <span className="text-[12px] px-1.5 py-0.5 bg-black text-white border-border-default border rounded-sm font-black uppercase animate-pulse">NON-COMPLIANT</span>
                       </div>
-                      <p className="text-[9px] font-bold text-gray-800">{c.title}</p>
-                      <p className="text-[8.5px] text-gray-600">{c.finding}</p>
+                      <p className="text-[12px] font-bold text-gray-800">{c.title}</p>
+                      <p className="text-[12px] text-gray-600">{c.finding}</p>
                     </div>
                   ))}
                 </div>
@@ -178,18 +178,18 @@ export default function ComplianceEngine({ selectedElement, setSelectedElement }
                       return (
                         <div key={s.id} className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-sm space-y-2">
                           <div className="flex justify-between">
-                            <span className="font-black text-[9.5px] uppercase">{s.code}</span>
-                            <span className={`text-[7.5px] px-1.5 py-0.5 border rounded-sm font-black ${nc > 0 ? 'bg-black text-white border-black' : 'bg-white text-gray-700 border-[#d4d4d4]'}`}>{pct}%</span>
+                            <span className="font-black text-[12px] uppercase">{s.code}</span>
+                            <span className={`text-[12px] px-1.5 py-0.5 border rounded-sm font-black ${nc > 0 ? 'bg-black text-white border-border-default' : 'bg-white text-gray-700 border-[#d4d4d4]'}`}>{pct}%</span>
                           </div>
                           <div className="w-full h-1.5 bg-gray-200 rounded-sm overflow-hidden">
                             <div style={{ width: `${pct}%` }} className="h-full bg-black" />
                           </div>
-                          <p className="text-[8px] text-gray-500">{total - nc} compliant / {nc} non-conformance{nc !== 1 ? 's' : ''}</p>
+                          <p className="text-[12px] text-gray-500">{total - nc} compliant / {nc} non-conformance{nc !== 1 ? 's' : ''}</p>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="p-3 border border-[#d4d4d4] bg-white rounded-sm text-[9px] space-y-1.5">
+                  <div className="p-3 border border-[#d4d4d4] bg-white rounded-sm text-[12px] space-y-1.5">
                     <p className="font-black uppercase">AI Compliance Assessment</p>
                     <p className="text-gray-700">Overall compliance score: <span className="font-black">{complianceScore}%</span> across {STANDARDS.length} active standards.</p>
                     <p className="text-gray-700"><span className="font-black">{nonCompliant.length} non-conformances</span> require corrective action before structural sign-off.</p>
@@ -199,7 +199,7 @@ export default function ComplianceEngine({ selectedElement, setSelectedElement }
               )}
             </div>
             <div className="zoho-card-footer">
-              <span className="text-gray-500 font-semibold text-[9px] uppercase">Standards & Compliance Engine — ASTM | BIS | ACI | ISO | IRC — AI auto-checks</span>
+              <span className="text-gray-500 font-semibold text-[12px] uppercase">Standards & Compliance Engine — ASTM | BIS | ACI | ISO | IRC — AI auto-checks</span>
             </div>
           </div>
         </div>

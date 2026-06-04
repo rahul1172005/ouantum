@@ -147,7 +147,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
       
       {/* Top Banner Tab Controls */}
-      <div className="col-span-1 xl:col-span-4 flex flex-wrap border-2 border-black bg-gray-50 p-1 gap-1">
+      <div className="col-span-1 xl:col-span-4 flex flex-wrap border border-border-default bg-gray-50 p-1 gap-1">
         {[
           { id: 'planning', label: 'Project Planning & Risk' },
           { id: 'execution', label: 'Construction Execution & Crane' },
@@ -161,10 +161,10 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-3 py-1.5 border font-bold uppercase text-[9px] tracking-wide transition-all ${
+            className={`px-3 py-1.5 border font-bold uppercase text-[12px] tracking-wide transition-all ${
               activeTab === tab.id
-                ? 'bg-black text-white border-black shadow-[1px_1px_0px_rgba(0,0,0,0.15)]'
-                : 'bg-white border-gray-300 hover:border-black text-gray-700 hover:text-black'
+                ? 'bg-black text-white border-border-default shadow-sm'
+                : 'bg-white border-gray-300 hover:border-border-default text-gray-700 hover:text-black'
             }`}
           >
             {tab.label}
@@ -178,7 +178,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         {/* Dynamic Parameter Sliders */}
         <div className="zoho-card">
           <div className="zoho-card-header flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">
+            <span className="font-bold uppercase tracking-wider text-[12px]">
               {activeTab === 'planning' && 'PROJECT COST RISK SCENARIOS'}
               {activeTab === 'execution' && 'HEAVY EQUIPMENT & PRODUCTIVITY'}
               {activeTab === 'climate' && 'ENVIRONMENTAL CURING MATRIX'}
@@ -188,7 +188,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
               {activeTab === 'lifecycle' && 'DISCOUNT RATE CAPITAL VALUE'}
               {activeTab === 'ai_intel' && 'PREDICTIVE AI SIGNAL DRIFT'}
             </span>
-            <span className="text-[8px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OPS INPUTS</span>
+            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OPS INPUTS</span>
           </div>
           <div className="zoho-card-body space-y-4">
 
@@ -505,7 +505,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         {/* Diagnostic Project Node trigger */}
         <button
           onClick={handleSelectProjectNode}
-          className="w-full py-2 bg-white text-black border-2 border-black hover:bg-black hover:text-white font-bold uppercase text-[9px] transition-colors shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5"
+          className="w-full py-2 bg-white text-black border border-border-default hover:bg-black hover:text-white font-bold uppercase text-[12px] transition-colors shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5"
         >
           INSPECT CORE LIFECYCLE NODE
         </button>
@@ -518,8 +518,8 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         {/* Real-time Math Output Card */}
         <div className="zoho-card">
           <div className="zoho-card-header flex justify-between items-center">
-            <span className="font-bold uppercase tracking-wider text-[10px]">DERIVED MATH VECTORS</span>
-            <span className="text-[8px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OUTPUTS</span>
+            <span className="font-bold uppercase tracking-wider text-[12px]">DERIVED MATH VECTORS</span>
+            <span className="text-[12px] bg-black text-white px-1.5 py-0.5 rounded-[1px]">OUTPUTS</span>
           </div>
           <div className="zoho-card-body space-y-3">
 
@@ -533,7 +533,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Cost Risk Exposure sum:</span>
                 <span className="font-mono font-bold">₹ {(projectBudget * riskFactorPlanning).toFixed(1)} M</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Schedule Critical-Path Alert:</span>
                 <span className="font-mono uppercase">{scheduleDelayDays > 30 ? 'CRITICAL SLIPPAGE' : 'STABLE'} ({scheduleDelayDays} days)</span>
               </div>
@@ -550,13 +550,13 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Crane Operational Load Moment:</span>
                 <span className="font-mono font-bold">{(loadWeight * craneRadius).toFixed(1)} T·m</span>
               </div>
-              <div className="flex justify-between border-t-2 border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t-2 border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Crane Capacity Utilization Index:</span>
                 <span className="font-mono">{craneUtilization.toFixed(1)}%</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {craneUtilization > 95 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Lift operation exceeds safe crane load radius limits! Tipping danger!
                   </span>
                 ) : (
@@ -572,11 +572,11 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Concrete Evaporation rate:</span>
                 <span className="font-mono font-bold">{concreteEvaporationIndex.toFixed(2)} kg/m²/hr</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Curing Cracking Risk level:</span>
                 <span className="font-mono uppercase">{concreteEvaporationIndex > 1.0 ? 'CRITICAL (BREACH)' : 'LOW'}</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * Environmental action: Ambient evaporation &gt; 1.0 kg/m²/hr requires immediate fogging curing or aliphatic compound misting to prevent micro-cracks.
               </p>
             </div>
@@ -592,13 +592,13 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>QA compliance Audit:</span>
                 <span className="font-mono font-bold">{qaAuditScore}% conformance</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Maximum Concrete Tolerance Deviation:</span>
                 <span className="font-mono">{toleranceBreachVal.toFixed(1)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {toleranceBreachVal > 5.0 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: Tolerance deviation exceeds structural design code limit (5mm)!
                   </span>
                 ) : (
@@ -618,13 +618,13 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Sensor noise spectral margin:</span>
                 <span className="font-mono font-bold">{sensorNoiseFloor.toFixed(3)} mV</span>
               </div>
-              <div className="flex justify-between border-t-2 border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t-2 border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Deck displacement translation:</span>
                 <span className="font-mono">{liveDisplacement.toFixed(1)} mm</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {liveDisplacement > 25.0 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     DANGER: Live deck displacement exceeds maximum structural limits (25mm)!
                   </span>
                 ) : (
@@ -640,11 +640,11 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Active BIM clash index:</span>
                 <span className="font-mono font-bold">{bimClashesCount} structural clashes</span>
               </div>
-              <div className="flex justify-between border-b border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-b border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>FEM Mesh Solver Nodes count:</span>
                 <span className="font-mono">{femMeshNodes.toLocaleString()} DOF</span>
               </div>
-              <p className="text-[8.5px] text-gray-500 font-bold leading-normal pt-1">
+              <p className="text-[12px] text-gray-500 font-bold leading-normal pt-1">
                 * BIM coordination note: Complete clash resolution prior to issuing final construction blueprint files to prevent field coordination failures.
               </p>
             </div>
@@ -660,7 +660,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>NPV Maintenance Cost ($C_m$):</span>
                 <span className="font-mono font-bold">₹ {npvMaintenance.toFixed(1)} Million</span>
               </div>
-              <div className="flex justify-between border-t-2 border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t-2 border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>Final Life Cycle Cost (LCC):</span>
                 <span className="font-mono">₹ {lifeCycleCostTotal.toFixed(1)} Million</span>
               </div>
@@ -677,13 +677,13 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                 <span>Sensor drift drift:</span>
                 <span className="font-mono font-bold">{(sensorTelemetryDrift * 100).toFixed(1)}% / month</span>
               </div>
-              <div className="flex justify-between border-t border-black py-1 bg-black text-white px-1 font-black">
+              <div className="flex justify-between border-t border-border-default py-1 bg-black text-white px-1 font-black">
                 <span>AI Accuracy Degradation Index:</span>
                 <span className="font-mono">{modelAccuracyDegradation.toFixed(2)} %</span>
               </div>
-              <div className="pt-1 text-[8.5px] text-gray-500 font-bold">
+              <div className="pt-1 text-[12px] text-gray-500 font-bold">
                 {modelAccuracyDegradation > 15.0 ? (
-                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-black block text-center">
+                  <span className="text-black font-black uppercase bg-gray-100 px-1 border border-border-default block text-center">
                     BREACH: High AI model drift! retrain recommended to sync weights.
                   </span>
                 ) : (
@@ -698,10 +698,10 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         {/* Dynamic plotting chart CAD layout */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <span className="font-bold uppercase tracking-wider text-[10px]">PROJECT LOGISTICS PLOT</span>
+            <span className="font-bold uppercase tracking-wider text-[12px]">PROJECT LOGISTICS PLOT</span>
           </div>
           <div className="zoho-card-body space-y-3">
-            <div className="h-[180px] w-full border border-black bg-white relative overflow-hidden select-none">
+            <div className="h-[180px] w-full border border-border-default bg-white relative overflow-hidden select-none">
             <svg viewBox="0 0 520 180" className="w-full h-full absolute inset-0">
               <rect width="100%" height="100%" fill="url(#grid)" />
 
@@ -761,12 +761,12 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
         {/* CRM Compliance Lock In system */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <span className="font-bold uppercase tracking-wider text-[10px]">CRM INTEGRITY LOCK-IN</span>
+            <span className="font-bold uppercase tracking-wider text-[12px]">CRM INTEGRITY LOCK-IN</span>
           </div>
           <div className="zoho-card-body space-y-3">
             <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div>
-              <p className="text-[10px] uppercase font-black flex items-center gap-1.5 text-black">
+              <p className="text-[12px] uppercase font-black flex items-center gap-1.5 text-black">
                 {systemAlertTriggered ? (
                   <>
                     <ShieldAlert className="h-4.5 w-4.5 text-black" />
@@ -779,17 +779,17 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
                   </>
                 )}
               </p>
-              <p className="text-[8px] text-gray-500 font-mono mt-0.5 leading-relaxed">
+              <p className="text-[12px] text-gray-500 font-mono mt-0.5 leading-relaxed">
                 Aggregates execution logistics. Escalates extreme environmental and safety parameters to CRM.
               </p>
             </div>
             
             <button
               onClick={handleLogTicket}
-              className={`px-4 py-2 border-2 font-bold uppercase text-[9.5px] transition-all cursor-pointer shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
+              className={`px-4 py-2 border-2 font-bold uppercase text-[12px] transition-all cursor-pointer shadow-sm hover:shadow-none translate-y-0 hover:translate-y-0.5 ${
                 systemAlertTriggered 
-                  ? 'bg-black text-white border-black' 
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-black text-white border-border-default' 
+                  : 'bg-white text-black border-border-default hover:bg-gray-100'
               }`}
             >
               LOG OPERATIONS TICKET
@@ -797,7 +797,7 @@ export default function ProjectIntelligence({ selectedElement, setSelectedElemen
           </div>
 
           {crmSuccess && (
-            <div className="p-2 border border-black bg-gray-50 text-black font-black uppercase text-[8px] text-center">
+            <div className="p-2 border border-border-default bg-gray-50 text-black font-black uppercase text-[12px] text-center">
               {crmSuccess}
             </div>
           )}

@@ -68,7 +68,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
             onFocus={() => toggleCommandPalette(true)}
             className="w-full h-9 pl-3 pr-16 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-400 text-xs focus:outline-none focus:border-neutral-500 focus:bg-white focus:text-neutral-900 rounded"
           />
-          <span className="absolute right-2 px-1.5 py-0.5 rounded border border-neutral-700 text-[9px] bg-neutral-950 text-neutral-400 select-none">Ctrl + K</span>
+          <span className="absolute right-2 px-1.5 py-0.5 rounded border border-neutral-700 text-[12px] bg-neutral-950 text-neutral-400 select-none">Ctrl + K</span>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
 
           {showRoleDropdown && (
             <div className="absolute right-0 mt-1 w-48 rounded border border-neutral-800 bg-neutral-900 shadow-xl p-1 z-50 text-white">
-              <p className="text-[10px] font-medium text-gray-400 px-2 py-1 border-b border-neutral-800 mb-1">Select Access Scope</p>
+              <p className="text-[12px] font-medium text-gray-400 px-2 py-1 border-b border-neutral-800 mb-1">Select Access Scope</p>
               {Object.values(ROLES).map((role) => (
                 <button
                   key={role}
@@ -142,8 +142,8 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
           {showNotifications && (
             <div className="absolute right-0 mt-2 w-80 rounded border border-neutral-800 bg-neutral-900 shadow-xl p-3 z-50 text-white">
               <div className="flex items-center justify-between border-b border-neutral-800 pb-1.5 mb-2">
-                <span className="text-[11px] text-gray-400 font-bold">ACTIVE ANOMALY ALARMS ({openTickets.length})</span>
-                <span className="text-[9px] border border-[#d13212] px-1 py-0.25 rounded font-bold bg-[#38110b] text-[#ffd5cc] animate-pulse">LIVE</span>
+                <span className="text-[12px] text-gray-400 font-bold">ACTIVE ANOMALY ALARMS ({openTickets.length})</span>
+                <span className="text-[12px] border border-[#d13212] px-1 py-0.25 rounded font-bold bg-[#38110b] text-[#ffd5cc] animate-pulse">LIVE</span>
               </div>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {openTickets.length === 0 ? (
@@ -152,11 +152,11 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
                   openTickets.map((t) => (
                     <div key={t.id} className="p-2 border border-neutral-800 rounded bg-neutral-950/50 text-xs">
                       <div className="flex items-center justify-between font-bold">
-                        <span className="text-[#ffd5cc] text-[9.5px] uppercase">{t.severity}</span>
-                        <span className="text-gray-400 text-[9.5px]">{t.assetName}</span>
+                        <span className="text-[#ffd5cc] text-[12px] uppercase">{t.severity}</span>
+                        <span className="text-gray-400 text-[12px]">{t.assetName}</span>
                       </div>
                       <p className="font-semibold mt-1 text-gray-200">{t.title}</p>
-                      <p className="text-[9px] text-gray-500 mt-0.5">Confidence: {t.confidence}%</p>
+                      <p className="text-[12px] text-gray-500 mt-0.5">Confidence: {t.confidence}%</p>
                     </div>
                   ))
                 )}
@@ -169,7 +169,7 @@ export default function Topbar({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
         <div
           className="relative flex h-8 w-8 items-center justify-center border border-neutral-700 rounded bg-neutral-800 text-white shadow-none overflow-hidden"
         >
-          <span className="text-[11px] text-white font-bold z-10">AI</span>
+          <span className="text-[12px] text-white font-bold z-10">AI</span>
           <span className="absolute bottom-0.5 right-0.5 h-2 w-2 rounded-full bg-[#1d8102] border border-neutral-900"></span>
         </div>
       </div>

@@ -24,7 +24,7 @@ function LevelCard({ icon: Icon, title, children, className = '', headerAction =
     <div className={`zoho-card flex flex-col ${className}`}>
       <div className="zoho-card-header">
         {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[10.5px] uppercase tracking-wide">{title}</span>
+        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-4 flex-1 flex flex-col justify-between">
@@ -32,7 +32,7 @@ function LevelCard({ icon: Icon, title, children, className = '', headerAction =
       </div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[9px] uppercase tracking-normal">{footerText}</span>
+          <span className="text-gray-500 font-semibold text-[12px] uppercase tracking-normal">{footerText}</span>
         </div>
       )}
     </div>
@@ -1182,16 +1182,16 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         <LevelCard
           icon={Wrench}
           title="Parameters Console"
-          headerAction={<span className="text-[8px] px-1.5 py-0.5 border border-black bg-black text-white font-bold rounded-sm uppercase">MANUAL</span>}
+          headerAction={<span className="text-[12px] px-1.5 py-0.5 border border-border-default bg-black text-white font-bold rounded-sm uppercase">MANUAL</span>}
           footerText="Adjust variables to run multi-physics structural twin simulations"
         >
           <div className="space-y-3">
             <div>
-              <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Building Type</label>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Building Type</label>
               <select 
                 value={buildingType} 
                 onChange={(e) => setBuildingType(e.target.value)}
-                className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[10px]"
+                className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[12px]"
               >
                 <option value="Commercial">Commercial Structural</option>
                 <option value="Residential">Residential Block</option>
@@ -1201,7 +1201,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Floors: {floors}</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Floors: {floors}</label>
                 <input 
                   type="range" min="1" max="15" value={floors}
                   onChange={(e) => setFloors(Number(e.target.value))}
@@ -1209,7 +1209,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Height: {floorHeight}m</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Height: {floorHeight}m</label>
                 <input 
                   type="range" min="3.0" max="4.5" step="0.1" value={floorHeight}
                   onChange={(e) => setFloorHeight(Number(e.target.value))}
@@ -1220,11 +1220,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Concrete Spec</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Concrete Spec</label>
                 <select 
                   value={concreteGrade} 
                   onChange={(e) => setConcreteGrade(e.target.value)}
-                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[12px]"
                 >
                   <option value="M20">M20 Concrete</option>
                   <option value="M25">M25 Grade</option>
@@ -1233,11 +1233,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 </select>
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Soil Profile</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Soil Profile</label>
                 <select 
                   value={soilType} 
                   onChange={(e) => setSoilType(e.target.value)}
-                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[12px]"
                 >
                   <option value="Hard Rock">Hard Rock (600 kPa)</option>
                   <option value="Sandy Soil">Sandy Soil (250 kPa)</option>
@@ -1249,7 +1249,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Col Width: {columnWidth}mm</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Col Width: {columnWidth}mm</label>
                 <input 
                   type="range" min="300" max="800" step="50" value={columnWidth}
                   onChange={(e) => setColumnWidth(Number(e.target.value))}
@@ -1257,7 +1257,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Beam Depth: {beamDepth}mm</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Beam Depth: {beamDepth}mm</label>
                 <input 
                   type="range" min="300" max="800" step="50" value={beamDepth}
                   onChange={(e) => setBeamDepth(Number(e.target.value))}
@@ -1268,11 +1268,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Seismic Zone</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Seismic Zone</label>
                 <select 
                   value={seismicZone} 
                   onChange={(e) => setSeismicZone(e.target.value)}
-                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[9px]"
+                  className="w-full p-1 border border-[#c8c8c8] rounded-[3px] bg-white focus:outline-none text-[12px]"
                 >
                   <option value="Zone II">Zone II (Low)</option>
                   <option value="Zone III">Zone III (Mod)</option>
@@ -1281,7 +1281,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 </select>
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Live load: {liveLoad} kN</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Live load: {liveLoad} kN</label>
                 <input 
                   type="range" min="1.5" max="10.0" step="0.5" value={liveLoad}
                   onChange={(e) => setLiveLoad(Number(e.target.value))}
@@ -1292,7 +1292,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Flood Depth: {floodHeight}m</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Flood Depth: {floodHeight}m</label>
                 <input 
                   type="range" min="0.0" max="8.0" step="0.5" value={floodHeight}
                   onChange={(e) => setFloodHeight(Number(e.target.value))}
@@ -1300,7 +1300,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 />
               </div>
               <div>
-                <label className="block font-bold text-[9px] uppercase text-gray-500 mb-0.5">Fire Temp: {fireTemp}°C</label>
+                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Fire Temp: {fireTemp}°C</label>
                 <input 
                   type="range" min="25" max="1000" step="25" value={fireTemp}
                   onChange={(e) => setFireTemp(Number(e.target.value))}
@@ -1326,13 +1326,13 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 disabled={isScanningFile}
               />
               <FileText className="h-5 w-5 mx-auto text-gray-500 mb-1 group-hover:scale-105 transition-transform" />
-              <span className="text-[9px] font-bold uppercase block text-black">Upload .dwg / .ifc / drawings</span>
-              <span className="text-[7.5px] text-gray-400 block mt-0.5">AI automatically extracts coordinates</span>
+              <span className="text-[12px] font-bold uppercase block text-black">Upload .dwg / .ifc / drawings</span>
+              <span className="text-[12px] text-gray-400 block mt-0.5">AI automatically extracts coordinates</span>
             </div>
 
             {/* Upload progress & queue */}
             {isScanningFile && (
-              <div className="p-2 border border-[#d4d4d4] rounded bg-white space-y-1.5 text-[8.5px]">
+              <div className="p-2 border border-[#d4d4d4] rounded bg-white space-y-1.5 text-[12px]">
                 <div className="flex justify-between font-bold">
                   <span className="animate-pulse">PARSING VECTORS...</span>
                   <span>{scanProgress}%</span>
@@ -1346,10 +1346,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             {uploadedFiles.length > 0 && (
               <div className="space-y-1.5 max-h-24 overflow-y-auto pr-1">
                 {uploadedFiles.map((file, idx) => (
-                  <div key={idx} className="flex justify-between items-center p-1.5 border border-[#d4d4d4] rounded bg-gray-50 text-[8px] font-bold">
+                  <div key={idx} className="flex justify-between items-center p-1.5 border border-[#d4d4d4] rounded bg-gray-50 text-[12px] font-bold">
                     <span className="truncate w-3/5 text-gray-700">{file.name}</span>
-                    <span className="text-[7px] text-gray-400">{file.size}</span>
-                    <span className={`px-1 border rounded-sm text-[7px] ${file.status === 'PARSED' ? 'bg-black text-white border-black' : 'border-[#d4d4d4] bg-white text-gray-500 animate-pulse'}`}>
+                    <span className="text-[12px] text-gray-400">{file.size}</span>
+                    <span className={`px-1 border rounded-sm text-[12px] ${file.status === 'PARSED' ? 'bg-black text-white border-border-default' : 'border-[#d4d4d4] bg-white text-gray-500 animate-pulse'}`}>
                       {file.status}
                     </span>
                   </div>
@@ -1390,11 +1390,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             style={{ padding: '0px', minHeight: '340px' }}
           >
             <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1.5">
-              <div className="p-1.5 border border-[#d4d4d4] bg-white/95 text-[8.5px] font-bold uppercase shadow-sm rounded-sm text-gray-800">
+              <div className="p-1.5 border border-[#d4d4d4] bg-white/95 text-[12px] font-bold uppercase shadow-sm rounded-sm text-gray-800">
                 Concrete strength: <span className="underline">{concreteGrade}</span> (E: {getModulusOfElasticity()} GPa)
               </div>
               {metrics.healthScore < 80 && (
-                <div className="p-1.5 border border-black bg-black text-white text-[7.5px] font-bold uppercase animate-pulse flex items-center gap-1 shadow-sm rounded-sm">
+                <div className="p-1.5 border border-border-default bg-black text-white text-[12px] font-bold uppercase animate-pulse flex items-center gap-1 shadow-sm rounded-sm">
                   <AlertTriangle className="h-3.5 w-3.5 text-white" /> CRITICAL SETTLEMENT LIMIT SPIKE
                 </div>
               )}
@@ -1402,11 +1402,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           </div>
 
           {/* Physics HUD — skeuomorphic card footer */}
-          <div className="zoho-card-footer flex flex-wrap items-center justify-between gap-3 text-gray-500 select-none font-mono text-[8px] font-semibold">
+          <div className="zoho-card-footer flex flex-wrap items-center justify-between gap-3 text-gray-500 select-none font-mono text-[12px] font-semibold">
             <div className="flex items-center gap-1.5">
-              <span className="px-1.5 py-0.5 bg-gray-600 text-white rounded-[1px] uppercase tracking-wider text-[7px] font-bold">PHYSICS HUD</span>
+              <span className="px-1.5 py-0.5 bg-gray-600 text-white rounded-[1px] uppercase tracking-wider text-[12px] font-bold">PHYSICS HUD</span>
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[7.5px]">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px]">
               <div>MESH: <span className="text-gray-700 font-bold uppercase">3D Timoshenko Beams</span></div>
               <div>STORY: <span className="text-gray-700 font-bold uppercase">{floors} Floors ({floorHeight}m)</span></div>
               <div>MODE: <span className="text-gray-700 font-bold uppercase underline">{viewMode}</span></div>
@@ -1422,10 +1422,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           title="Environmental Disaster Controllers"
           footerText="Simulating cyclic earthquake load waves and dynamic hurricane drift forces"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-[9px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-[12px]">
             {/* Timeline Degradation */}
             <div className="space-y-2">
-              <p className="font-bold uppercase tracking-wider text-[9px] text-gray-700 flex items-center gap-1">
+              <p className="font-bold uppercase tracking-wider text-[12px] text-gray-700 flex items-center gap-1">
                 <Clock className="h-4 w-4 text-gray-500" /> Lifetime Progression
               </p>
               <div className="flex border border-[#c8c8c8] bg-white rounded overflow-hidden">
@@ -1433,9 +1433,9 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                   <button
                     key={step}
                     onClick={() => setTimeProgression(step)}
-                    className={`flex-1 py-1 text-[7.5px] font-bold border-r last:border-r-0 border-[#c8c8c8] transition-colors cursor-pointer ${
+                    className={`flex-1 py-1 text-[12px] font-bold border-r last:border-r-0 border-[#c8c8c8] transition-colors cursor-pointer ${
                       timeProgression === step 
-                        ? 'bg-black text-white border-black' 
+                        ? 'bg-black text-white border-border-default' 
                         : 'bg-white text-black hover:bg-gray-100'
                     }`}
                   >
@@ -1443,7 +1443,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                   </button>
                 ))}
               </div>
-              <p className="text-[7.5px] text-gray-400 font-mono italic">
+              <p className="text-[12px] text-gray-400 font-mono italic">
                 {timeProgression === 'Present' && '// Geometry fully aligned with blueprint spec.'}
                 {timeProgression === '+1 Year' && '// Minor concrete shrinkage cracking simulated.'}
                 {timeProgression === '+5 Years' && '// Steel rebar corrosion begins. Modulus reduction modeled.'}
@@ -1454,7 +1454,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             {/* Dynamic Earthquake Richter */}
             <div className="space-y-2">
-              <div className="flex justify-between font-bold text-[9px] uppercase text-gray-700">
+              <div className="flex justify-between font-bold text-[12px] uppercase text-gray-700">
                 <span className="flex items-center gap-1"><ShieldAlert className="h-4 w-4 text-gray-500" /> Seismic Richter</span>
                 <span>{earthquakeMagnitude.toFixed(1)} M_w</span>
               </div>
@@ -1463,7 +1463,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 onChange={(e) => setEarthquakeMagnitude(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
-              <div className="flex justify-between text-[7.5px] text-gray-400">
+              <div className="flex justify-between text-[12px] text-gray-400">
                 <span>0.0 Magnitude</span>
                 <span>9.0 Richter Scale</span>
               </div>
@@ -1471,7 +1471,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
             {/* Wind speed */}
             <div className="space-y-2">
-              <div className="flex justify-between font-bold text-[9px] uppercase text-gray-700">
+              <div className="flex justify-between font-bold text-[12px] uppercase text-gray-700">
                 <span className="flex items-center gap-1"><Sliders className="h-4 w-4 text-gray-500" /> Wind Gust Speed</span>
                 <span>{windSpeed} km/h</span>
               </div>
@@ -1480,7 +1480,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                 onChange={(e) => setWindSpeed(Number(e.target.value))}
                 className="w-full accent-black cursor-ew-resize"
               />
-              <div className="flex justify-between text-[7.5px] text-gray-400">
+              <div className="flex justify-between text-[12px] text-gray-400">
                 <span>0 km/h</span>
                 <span>150 km/h (Cat 5 Hurricane)</span>
               </div>
@@ -1502,15 +1502,15 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           <div className="space-y-4 flex-1 flex flex-col justify-between">
             {/* Health index card */}
             <div className="p-3 border border-[#d4d4d4] rounded bg-gray-50 text-center relative">
-              <p className="text-[8px] text-gray-500 uppercase tracking-widest font-bold">Overall Building Health</p>
+              <p className="text-[12px] text-gray-500 uppercase tracking-widest font-bold">Overall Building Health</p>
               <p className="text-3xl font-black font-mono mt-1 text-black">{metrics.healthScore} / 100</p>
-              <span className={`text-[8px] px-1.5 py-0.5 border inline-block mt-2 font-bold rounded-sm ${metrics.healthScore < 80 ? 'bg-black text-white border-black animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
+              <span className={`text-[12px] px-1.5 py-0.5 border inline-block mt-2 font-bold rounded-sm ${metrics.healthScore < 80 ? 'bg-black text-white border-border-default animate-pulse' : 'border-[#d4d4d4] bg-white text-gray-700'}`}>
                 {metrics.healthScore >= 90 ? 'STRUCTURALLY SECURE' : metrics.healthScore >= 80 ? 'STABILIZED WARNING' : 'CRITICAL DEFICIT'}
               </span>
             </div>
 
             {/* Risk Factors grids */}
-            <div className="space-y-2 text-[9px] font-bold">
+            <div className="space-y-2 text-[12px] font-bold">
               <div className="flex justify-between border-b border-gray-200 pb-1">
                 <span className="text-gray-500 uppercase">Seismic Risk Rating</span>
                 <span className={seismicZone === 'Zone V' ? 'underline font-black text-black' : 'text-gray-700'}>
@@ -1539,72 +1539,72 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         >
           <div className="space-y-2 max-h-[160px] overflow-y-auto pr-1">
             {seismicComplianceWarning && (
-              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §18.7</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">NON-COMPLIANT</span>
+                  <span className="text-[6.5px] font-black border border-border-default bg-black text-white px-0.5 rounded-[1px]">NON-COMPLIANT</span>
                 </div>
                 <p className="font-bold text-gray-800 uppercase">Seismic Confinement Warning</p>
-                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
+                <p className="text-[12px] text-gray-500 font-semibold uppercase leading-normal">
                   Seismic zone ({seismicZone}) and structural grade ({concreteGrade}) are non-compliant under high hazard conditions. Confinement failure risk.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Upgrade concrete spec to M30/M40.</p>
+                <p className="text-[12px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Upgrade concrete spec to M30/M40.</p>
               </div>
             )}
             {slendernessWarning && (
-              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">IS 456 CL. 26.5</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">WARNING LIMIT</span>
+                  <span className="text-[6.5px] font-black border border-border-default bg-black text-white px-0.5 rounded-[1px]">WARNING LIMIT</span>
                 </div>
                 <p className="font-bold text-gray-800 uppercase">Column Slenderness Spike</p>
-                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
+                <p className="text-[12px] text-gray-500 font-semibold uppercase leading-normal">
                   Column width ({columnWidth}mm) fails safety limit for a {floors}-story system. Buckling force limit critical ({metrics.bucklingK_N} kN).
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Expand column size to 500mm+.</p>
+                <p className="text-[12px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Expand column size to 500mm+.</p>
               </div>
             )}
             {beamDeflectionWarning && (
-              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §10.7</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">STRESS THRESHOLD</span>
+                  <span className="text-[6.5px] font-black border border-border-default bg-black text-white px-0.5 rounded-[1px]">STRESS THRESHOLD</span>
                 </div>
                 <p className="font-bold text-gray-800 uppercase">Flexural Deflection Span</p>
-                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
+                <p className="text-[12px] text-gray-500 font-semibold uppercase leading-normal">
                   Deep beam section depth ({beamDepth}mm) is non-compliant under high live loading ({liveLoad} kN). Shear limit risk.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Increase beam depth to 600mm+.</p>
+                <p className="text-[12px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Increase beam depth to 600mm+.</p>
               </div>
             )}
             {floodSaturationWarning && (
-              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">IS 456 TAB. 19</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">CRITICAL EXPOSURE</span>
+                  <span className="text-[6.5px] font-black border border-border-default bg-black text-white px-0.5 rounded-[1px]">CRITICAL EXPOSURE</span>
                 </div>
                 <p className="font-bold text-gray-800 uppercase">Sub-grade Moisture Saturation</p>
-                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
+                <p className="text-[12px] text-gray-500 font-semibold uppercase leading-normal">
                   Soil type ({soilType}) saturated under {floodHeight}m flooding. Bearing index is critical ({metrics.soilSafety}). Piping danger.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Deploy deep foundation piles, waterproof.</p>
+                <p className="text-[12px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Deploy deep foundation piles, waterproof.</p>
               </div>
             )}
             {thermalModulusWarning && (
-              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[8px] space-y-1 shadow-sm">
+              <div className="p-2 border border-[#d4d4d4] rounded-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
                   <span className="font-black text-black">ACI 318 §21.2.2</span>
-                  <span className="text-[6.5px] font-black border border-black bg-black text-white px-0.5 rounded-[1px]">THERMAL FAILURE</span>
+                  <span className="text-[6.5px] font-black border border-border-default bg-black text-white px-0.5 rounded-[1px]">THERMAL FAILURE</span>
                 </div>
                 <p className="font-bold text-gray-800 uppercase">Thermal Modulus Sagging</p>
-                <p className="text-[7.5px] text-gray-500 font-semibold uppercase leading-normal">
+                <p className="text-[12px] text-gray-500 font-semibold uppercase leading-normal">
                   Concrete strength modulus deteriorated under fire temp ({fireTemp}°C). Elastic safety factor compromised.
                 </p>
-                <p className="text-[7px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Apply sacrificial fireproofing, activate sprinklers.</p>
+                <p className="text-[12px] text-black font-black uppercase border-t border-dashed border-gray-200 pt-0.5 mt-0.5">RECOM: Apply sacrificial fireproofing, activate sprinklers.</p>
               </div>
             )}
             {!seismicComplianceWarning && !slendernessWarning && !beamDeflectionWarning && !floodSaturationWarning && !thermalModulusWarning && (
-              <div className="p-3 border border-dashed border-gray-300 rounded text-center text-gray-400 text-[8px] font-bold uppercase select-none">
+              <div className="p-3 border border-dashed border-gray-300 rounded text-center text-gray-400 text-[12px] font-bold uppercase select-none">
                 &radic; ALL CODES FULLY COMPLIANT (ACI 318 & IS 456)
               </div>
             )}
@@ -1617,10 +1617,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           title="Engineering Calculations Log"
           footerText="Real-time mathematical telemetry logged to core SSOT"
         >
-          <div className="flex-grow bg-gray-50 border border-[#d4d4d4] rounded-[3px] p-2 font-mono text-[7.5px] leading-normal overflow-y-auto max-h-[130px] space-y-1.5 select-all pr-1">
+          <div className="flex-grow bg-gray-50 border border-[#d4d4d4] rounded-[3px] p-2 font-mono text-[12px] leading-normal overflow-y-auto max-h-[130px] space-y-1.5 select-all pr-1">
             {calculationFeed.map((feed) => (
               <div key={feed.id} className="border-b border-gray-200 last:border-b-0 pb-1 text-gray-700">
-                <span className="text-[6.5px] border border-black bg-black text-white px-0.5 rounded font-black mr-1 uppercase">
+                <span className="text-[6.5px] border border-border-default bg-black text-white px-0.5 rounded font-black mr-1 uppercase">
                   {feed.type}
                 </span>
                 {feed.text}
@@ -1638,7 +1638,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           <div className="space-y-3">
             <button
               onClick={triggerAIRecommendationLog}
-              className="w-full btn-skeuo-dark text-[8.5px] uppercase tracking-wider text-center"
+              className="w-full btn-skeuo-dark text-[12px] uppercase tracking-wider text-center"
             >
               Log Safety Upgrades Ticket
             </button>

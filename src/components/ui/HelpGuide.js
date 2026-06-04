@@ -72,7 +72,7 @@ export default function HelpGuide({ isOpen, onClose }) {
           
           {/* Left Sidebar Sections Navigation */}
           <aside className="w-64 bg-white border-r border-[#eaeded] p-3 overflow-y-auto flex flex-shrink-0 flex-col gap-0.5">
-            <p className="text-[11px] font-bold uppercase text-[#545b64] px-2.5 py-1.5 tracking-wider">
+            <p className="text-[12px] font-bold uppercase text-[#545b64] px-2.5 py-1.5 tracking-wider">
               Reference Manual Chapters
             </p>
             
@@ -172,7 +172,7 @@ export default function HelpGuide({ isOpen, onClose }) {
               <span>AI Command Console</span>
             </button>
 
-            <div className="mt-auto p-3 border border-[#eaeded] bg-[#f2f3f3] rounded-[4px] text-[11px] text-[#545b64] font-sans leading-relaxed">
+            <div className="mt-auto p-3 border border-[#eaeded] bg-[#f2f3f3] rounded-[4px] text-[12px] text-[#545b64] font-sans leading-relaxed">
               <span className="font-bold text-[#16191f] block mb-0.5">Quick Directives</span>
               Type Ctrl + K to launch Command directives anytime.
             </div>
@@ -266,18 +266,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Executive Overview</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">High-level executive metrics including: Total assets inspected, critical alerts flagged, mean structural safety factor, and concrete void logs.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Gives decision-makers an instant overview of overall bridge network health, ensuring visual clarity on urgent defect anomalies.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Review core KPI widgets. Click on concrete crack rows in the anomalies table to immediately populate the right Inspector panel.</span>
                     </div>
                   </div>
@@ -286,18 +286,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Civil & Infrastructure OS</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Concrete loading deflection values, Pier Columns, aggregate moisture levels, and steel reinforcement stress thresholds.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Enforces structural engineering compliance, helping civil teams verify that actual site loading stresses do not breach baseline safety values.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click the &quot;Record Stress Check&quot; button to input live inspection metrics (must be signed by logged inspector) or filter records by specific bridge segments.</span>
                     </div>
                   </div>
@@ -306,18 +306,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Project Lifecycle Intel</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Timeline tracking schedules, site inspection checklists, active budgets, and engineer team profiles.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Maintains project execution transparency, monitoring bridge reinforcement milestones against designated budgets and standard guidelines.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Switch tabs (Overview, Timeline, Team) to pivot views. You can check off checklist tasks or select team avatars to inspect certification levels in the Inspector.</span>
                     </div>
                   </div>
@@ -326,18 +326,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. Reporting & Intel Studio</span>
-                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#ffeeba] text-[#ec7211] rounded-[4px] bg-[#fff3cd] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Compiled PDF safety audits, parameter scopes, NDT validation indicators, and compliance reports.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Automates document generation, allowing teams to deliver audited compliance sheets to governmental oversight committees instantly.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Adjust the generation parameters (vibration tolerances, NDT scope) using inputs, click &quot;Ingest Telemetry&quot;, then click &quot;Download Compliance PDF&quot; or &quot;Download Raw CSV&quot; to retrieve compiled data.</span>
                     </div>
                   </div>
@@ -360,18 +360,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Materials Intelligence Lab</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Concrete cylinder compressive stress-strain curves, aggregate mixes, yield points, and load test limits.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Verifies raw concrete aggregate batches, ensuring material compression strength exceeds structural baseline design parameters before pouring.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Select material cylinder specs in the specimen table. Review compression curve load limits, or input a custom aggregate mix to test yield stress points.</span>
                     </div>
                   </div>
@@ -380,18 +380,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Structural Safety & Stability</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Live safety factor ratios, calculated as: Stress Allowable / stress Maximum for all load-bearing columns.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Establishes precise threshold margins for structural safety, letting inspectors identify loading zones nearing physical stress limits.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide the &quot;Dead Load Weight Override&quot; and &quot;Dynamic Traffic Weight Override&quot; sliders to dynamically calculate safety factors in real-time. Select specific columns to check local loading stress values.</span>
                     </div>
                   </div>
@@ -400,18 +400,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Structural Analysis Studio</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Shear stress calculations, fatigue sags under structural loads, and localized pier concrete cavitation values.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Calculates shear fatigue along main piers, warning civil teams of micro-fracturing under cyclic traffic loading.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click the &quot;Trigger Shear Stress Calculations&quot; button to run the analytical solver. Select columns in the data grids to inspect cavitation limits.</span>
                     </div>
                   </div>
@@ -420,18 +420,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. NDT Intelligence Lab</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Ultrasonic non-destructive testing wave charts, transit velocities, and void percentage distributions.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Inspects void formations and micro-delaminations deep within reinforced concrete members without damaging the structure.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Select active test modes (Ultrasonic Pulse Velocity, Dynamic Elastic Modulus, Acoustic Void Inspection) using workspace tabs. Review wave transit charts and record diagnostics data.</span>
                     </div>
                   </div>
@@ -440,18 +440,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">5. AI Defect Detection</span>
-                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#c3e6cb] text-[#1d8102] rounded-[4px] bg-[#edf7ed] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Autonomous drone camera feeds mapping pixel cracks, concrete fractures, and mm defect propagation dimensions.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Automates visual inspections using computer vision neural models, highlighting fracturing models instantly.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Toggle categories (All, Critical, Active) using filter buttons. Click on identified crack highlights directly on the canvas to inspect precise pixel dimensions.</span>
                     </div>
                   </div>
@@ -474,18 +474,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. SHM Monitoring Center</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Real-time scrolling strain gauge telemetry (micro-strain) and concrete micro-vibration channels (Hertz).</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Provides continuous active monitoring of environmental wind and traffic loads, alerting teams immediately if thresholds are breached.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Observe scrolling live waves. Click on individual sensor registers in the data table to load real-time coordinates into the Right Inspector panel.</span>
                     </div>
                   </div>
@@ -494,18 +494,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Digital Twin Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">An interactive 3D WebGL structural columns wireframe model illustrating tension levels through thermal colors (green is nominal, red is danger).</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Allows engineers to locate and visualize load concentrations directly on a virtual representation of the physical assets.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click and drag with mouse inside the viewport to rotate/pan. Scroll wheel to zoom. Click directly on structural column nodes to inspect load coordinates.</span>
                     </div>
                   </div>
@@ -514,18 +514,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. AI Structural Validation & Simulation Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Theoretical Finite Element Analysis (FEA) simulations plotted alongside actual physical sensor telemetry values.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Identifies divergence between predicted loading behaviors and real physical measurements to catch design errors.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click &quot;Run AI Comparative Analysis&quot; to run the mathematical validation solver. Review deviations and check flagged structural members.</span>
                     </div>
                   </div>
@@ -534,18 +534,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">4. Infrastructure GIS Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Geospatial elevation plots, bridge GPS telemetry markers, topological mapping, and drainage channels.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Monitors geological settling, tectonic shifting, and topological structural displacements over long timelines.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Toggle topological/elevation overlays using map control options. Click column coordinates to inspect details.</span>
                     </div>
                   </div>
@@ -554,18 +554,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">5. Emergency Response System</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Platform critical warning levels, broadcast notifications registry, active structural alarms, and sire control keys.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Triggers absolute crisis emergency protocol actions (sirens, broadcast SMS alerts) to clear physical sites in danger.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click the large &quot;ACTIVATE SYSTEM EMERGENCY SIREN&quot; button to toggle alert banners on. Review generated active anomalies to trigger alerts.</span>
                     </div>
                   </div>
@@ -574,18 +574,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">6. Digital Site Inspection & NCR</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Active non-conformance logs (NCRs), field inspector logs, and certification stamp registries.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Immutably logs site inspection records for regulatory quality assurance audits.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Filter field logs using category headers. Click specific non-conformance cards to log detailed NCR status indicators in the Inspector.</span>
                     </div>
                   </div>
@@ -594,18 +594,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">7. Construction Progress Monitoring</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Gantt scheduling tracks, planned vs actual telemetry timelines, physical progress meters, and task milestones.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Visualizes delay risk and structural construction velocity, ensuring key progress parameters are mapped accurately.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Analyze Gantt bars. Click on scheduling rows to inspect precise milestone dates and active work parameters.</span>
                     </div>
                   </div>
@@ -614,18 +614,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">8. Geotechnical & Hydrology Engine</span>
-                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#f5c6cb] text-[#d13212] rounded-[4px] bg-[#f8d7da] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Groundwater moisture sensors, sub-grade soil compaction levels, bore-hole drill parameters, and retaining wall stability equations.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Evaluates soil stability and moisture vectors to prevent retaining wall sliding, tipping, or sub-grade foundation sinking.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide soil parameters to calculate active earth pressure. Run moisture simulations, or click bore-hole nodes in the geotechnical charts.</span>
                     </div>
                   </div>
@@ -649,15 +649,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 1: Pre-Construction Intel</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Terzaghi bearing capacity inputs (Soil Cohesion, Surcharge Pressure, Soil Unit Weight, Foundation Width), topographic LiDAR coordinates radars, and municipal approval checkers.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Validates geologic foundations, maps topography, and logs legal permit compliance before physical construction sweeps begin.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide capacity sliders to simulate Terzaghi bearing safety factors. Click topographic survey waypoints (WP-101, WP-102, WP-103) to inspect radar elevation. Toggle municipal clearances to run permit audits.</span>
                     </div>
                   </div>
@@ -666,15 +666,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 2: Design & Planning</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Mechanical/Electrical/Plumbing (MEP) load values (HVAC kW, Drainage GPM, Electrical kVA), ventilation daylights hour settings, solar radiant flux calculations, and BIM Level 5 coordination rework clash lists.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Prevents substation power overflows, calculates natural ventilation thermal sags, and identifies hard and clearance clashes inside BIM files.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Adjust MEP sliders to test substation grid limits. Adjust solar timeline sliders to calculate radiant flux. Click &quot;Issue Rework Ticket&quot; on BIM clash list items to log action.</span>
                     </div>
                   </div>
@@ -683,15 +683,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 3: Procurement Logistics</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Aggregates sieve modulations, sand quarry source locations, cement mixing concrete transport metrics (Cement drum RPM rotation, temperature), and logistics tracking.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Logs aggregate particle grades and cement mix temperatures to assure top-quality concrete chemical hydration during transport.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Select active quarry sources. Set aggregate grading fineness modulus sliders. Adjust concrete drum rotation speeds and cement temperatures to verify nominal transport states.</span>
                     </div>
                   </div>
@@ -700,15 +700,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 4: Execution Intelligence</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Smart PPE safety gate status (helmets, vests, pass/fail state checklists) and active worker entry camera sweeps.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Enforces occupational gate site safety protocols, auto-flagging breaches directly inside the SSOT database.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Click the &quot;Trigger Smart PPE Webcam Scan&quot; button to simulate AI safety gate checks. View pass/fail listings and automatically generate high-priority safety tickets on failed items.</span>
                     </div>
                   </div>
@@ -717,15 +717,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 5: Advanced QA/QC LIMS</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">LIMS concrete grade compression limits (actual vs target MPa), slump cone height indexes, steel yield strength metrics, and ultrasonic acoustic speeds.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Provides high-fidelity laboratory verification of concrete and steel material strength, generating anomalies on failures.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Switch tabs (Cube, Slump, Steel, NDT). Adjust compressive force parameters to calculate MPa values. Click the &quot;Certify Sample & Log Results&quot; button to compile certificate or trigger tickets on failures.</span>
                     </div>
                   </div>
@@ -734,15 +734,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 6: Live Operations SCADA</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Real-time vibration frequency waves (Hz), strain gauge stress matrices (micro-strain), and interactive SCADA canvas grids.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Monitors physical load fluctuations under daily city traffic to prevent micro-structural fatigue.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Observe active SCADA grid canvas wave cycles. Adjust SCADA vibration frequency and strain sliders to verify wave behavior in real-time.</span>
                     </div>
                   </div>
@@ -751,15 +751,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 7: Disaster Simulation</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Dynamic earthquake Richter indicators, flood water depth variables, and structural deflection responses.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Simulates extreme environmental sags to evaluate the structural integrity of foundations under natural crisis stress.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide the Richter and Flood Depth sliders to simulate extreme structural sags. Observe live wave fluctuations on the SCADA grid below.</span>
                     </div>
                   </div>
@@ -768,15 +768,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 8: Financial ERP Engine</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Asset inventories, planned vs actual material quantities (OPC Cement, Steel Rebar, Sand), and planned vs actual unit costs.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Tracks procurement expenses against initial financial planning budgets, showing structural cost variances.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Review material logs in the inventory grid. Inspect planned and actual quantities to monitor budget margins.</span>
                     </div>
                   </div>
@@ -785,15 +785,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 9: Post-Construction Life</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Infrastructure lifespan age calendars and long-term structural maintenance projections.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Calculates structural degradation timelines to help city planners budget for structural repairs.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide the lifecycle age years slider forward to simulate degradation rates up to 50 years. Review changes in structural metrics.</span>
                     </div>
                   </div>
@@ -802,15 +802,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 10: National Smart City OS</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Macro-urban transit integrations, municipal bridge networks safety logs, and traffic load densities.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Aggregates overall safety records across multiple transit bridges to monitor metropolitan infrastructure safety.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Review urban bridge charts and check general safety index metrics across transit nodes.</span>
                     </div>
                   </div>
@@ -819,15 +819,15 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <span className="font-bold text-[#16191f] text-[13px] block border-b border-[#eaeded] pb-1.5 font-sans">Level 11: Future Generative AI</span>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Generative AI structural column optimization specs, structural weight savings, carbon footprint reduction indices, and rebar layouts.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Optimizes physical designs using generative models to save steel weight and lower carbon mix indices.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Select generative design goals (example: Reduce Pillar Cross Section, Optimize Rebar Steel Layout, Max Carbon Absorption Mix). Click the &quot;Run Generative AI Design&quot; button to compile dynamic specs.</span>
                     </div>
                   </div>
@@ -851,18 +851,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">1. Audit Intelligence Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Cryptographically signed access records, user action logs, and scope switcher audit ledgers.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Assures rigorous data compliance (SOC-2, ISO-27001) by immutably logging all user and admin actions.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Search and filter user logs using the interactive datagrid, or select rows to verify the cryptographic signature.</span>
                     </div>
                   </div>
@@ -871,18 +871,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">2. Predictive AI Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">Compressive decay forecasting models, Paris crack propagation timelines, and 15-year safety index predictions.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Enables preventative maintenance scheduling, predicting when physical members will decline below threshold levels.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Slide the &quot;15-Year Timeline Simulator&quot; slider forward to run AI projection algorithms. Select columns to verify forecasted safety coefficients.</span>
                     </div>
                   </div>
@@ -891,18 +891,18 @@ export default function HelpGuide({ isOpen, onClose }) {
                   <div className="p-4 border border-[#eaeded] rounded-[4px] bg-white shadow-[0_1px_1px_0_rgba(0,28,36,0.15)] space-y-2 font-sans">
                     <div className="flex items-center justify-between border-b border-[#eaeded] pb-2">
                       <span className="font-bold text-[#16191f] text-[13px]">3. Standards & Compliance Engine</span>
-                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[10px] font-bold">WORKSPACE</span>
+                      <span className="border-[#d6c4ff] text-[#8c43fc] rounded-[4px] bg-[#f3efff] px-2 py-0.5 text-[12px] font-bold">WORKSPACE</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHAT IT INDICATES:</strong>
                       <span className="text-[#16191f] text-[12px]">ISO checklists, GDPR status indicators, sensor calibrations validation registers, and compliance alarms.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">WHY IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">WHY IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Guarantees all physical sensors and platform processes meet designated safety standards.</span>
                     </div>
                     <div>
-                      <strong className="text-[#545b64] text-[11px] font-bold block mb-0.5">HOW IT IS USED:</strong>
+                      <strong className="text-[#545b64] text-[12px] font-bold block mb-0.5">HOW IT IS USED:</strong>
                       <span className="text-[#16191f] text-[12px]">Filter check lists by standard category tabs. Review compliance flags and run checks on sensor status coordinates.</span>
                     </div>
                   </div>
@@ -946,7 +946,7 @@ export default function HelpGuide({ isOpen, onClose }) {
         </div>
 
         {/* Footer Info */}
-        <div className="flex items-center justify-between px-6 py-3.5 bg-[#f2f3f3] border-t border-[#eaeded] font-sans text-[11px] text-[#545b64] font-semibold flex-shrink-0">
+        <div className="flex items-center justify-between px-6 py-3.5 bg-[#f2f3f3] border-t border-[#eaeded] font-sans text-[12px] text-[#545b64] font-semibold flex-shrink-0">
           <span>Ouantum OS Infrastructure Intelligence Console v1.0</span>
           <span>© 2026 Ouantum Inc • All Rights Reserved</span>
         </div>

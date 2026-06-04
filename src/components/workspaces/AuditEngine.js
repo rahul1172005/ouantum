@@ -102,7 +102,7 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
               <div 
                 key={item.id} 
                 onClick={() => handleToggleCheck(item.id)}
-                className="flex items-start gap-3 p-3 border border-black bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="flex items-start gap-3 p-3 border border-border-default bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
               >
                 <div className="mt-0.5">
                   {item.checked ? (
@@ -115,7 +115,7 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
                   <p className={`font-bold ${item.checked ? 'line-through text-gray-500' : 'text-black'}`}>
                     {item.text}
                   </p>
-                  <span className="text-[8px] text-gray-500 font-mono">
+                  <span className="text-[12px] text-gray-500 font-mono">
                     SCOPE: {item.category.toUpperCase()} | REQUIRED VERIFICATION LOG
                   </span>
                 </div>
@@ -134,18 +134,18 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
             <div className="flex gap-4 items-start">
               <button 
                 onClick={handleVoiceRecord}
-                className={`p-4 border-2 border-black flex flex-col items-center justify-center gap-1.5 transition-colors ${
+                className={`p-4 border border-border-default flex flex-col items-center justify-center gap-1.5 transition-colors ${
                   isRecording ? 'hazard-hatch-dark text-white' : 'bg-white text-black hover:bg-gray-100'
                 }`}
               >
                 <Mic className={`h-6 w-6 ${isRecording ? 'animate-pulse' : ''}`} />
-                <span className="text-[8px] font-bold uppercase">{isRecording ? 'Listening' : 'Record Voice'}</span>
+                <span className="text-[12px] font-bold uppercase">{isRecording ? 'Listening' : 'Record Voice'}</span>
               </button>
               <div className="flex-1 space-y-2">
-                <div className="w-full h-16 p-2 border border-black bg-gray-50 font-mono text-[9px] overflow-y-auto">
+                <div className="w-full h-16 p-2 border border-border-default bg-gray-50 font-mono text-[12px] overflow-y-auto">
                   {voiceInput || 'Standby. Click record to capture audit verbal findings.'}
                 </div>
-                <p className="text-[8px] text-gray-500 italic">AI converts raw speech matrix into compliance checklists and logs.</p>
+                <p className="text-[12px] text-gray-500 italic">AI converts raw speech matrix into compliance checklists and logs.</p>
               </div>
             </div>
           </div>
@@ -165,11 +165,11 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
           <div className="zoho-card-body">
             <div 
               onClick={handleFileUpload}
-              className="w-full border-2 border-dashed border-black p-6 text-center hover:bg-gray-50 cursor-pointer transition-colors space-y-2"
+              className="w-full border-2 border-dashed border-border-default p-6 text-center hover:bg-gray-50 cursor-pointer transition-colors space-y-2"
             >
               <Paperclip className="h-6 w-6 mx-auto text-black" />
-              <p className="font-bold text-[9px] uppercase">Drag / Drop evidence material</p>
-              <p className="text-[8px] text-gray-500">Supports JPEG visual annotations, CSV telemetry files, PDFs.</p>
+              <p className="font-bold text-[12px] uppercase">Drag / Drop evidence material</p>
+              <p className="text-[12px] text-gray-500">Supports JPEG visual annotations, CSV telemetry files, PDFs.</p>
             </div>
           </div>
         </div>
@@ -182,15 +182,15 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
           </div>
           <div className="zoho-card-body space-y-2 max-h-[280px] overflow-y-auto pr-1">
             {evidenceList.map((ev) => (
-              <div key={ev.id} className="p-2 border border-black bg-gray-50 relative space-y-1">
+              <div key={ev.id} className="p-2 border border-border-default bg-gray-50 relative space-y-1">
                 <button 
                   onClick={() => handleDeleteEvidence(ev.id)}
                   className="absolute top-1 right-1 text-gray-400 hover:text-black font-bold"
                 >
                   <Trash2 className="h-3 w-3" />
                 </button>
-                <p className="font-bold text-[9px] truncate pr-4">{ev.name}</p>
-                <div className="space-y-0.5 text-[8px] text-gray-600 font-mono">
+                <p className="font-bold text-[12px] truncate pr-4">{ev.name}</p>
+                <div className="space-y-0.5 text-[12px] text-gray-600 font-mono">
                   <div className="flex items-center gap-1"><MapPin className="h-2.5 w-2.5" /> {ev.coords}</div>
                   <div className="flex items-center gap-1"><Calendar className="h-2.5 w-2.5" /> {ev.timestamp}</div>
                   <div>SIZE: {ev.size}</div>

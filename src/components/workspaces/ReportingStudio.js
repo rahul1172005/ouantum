@@ -54,15 +54,15 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
                 key={temp}
                 onClick={() => setActiveTemplate(temp)}
                 className={`w-full text-left p-3 border-2 transition-colors ${
-                  activeTemplate === temp ? 'bg-black text-white border-black font-bold' : 'bg-white border-gray-300 hover:bg-gray-50'
+                  activeTemplate === temp ? 'bg-black text-white border-border-default font-bold' : 'bg-white border-gray-300 hover:bg-gray-50'
                 }`}
               >
-                <span className="uppercase font-bold text-[10px]">
+                <span className="uppercase font-bold text-[12px]">
                   {temp === 'compliance' && 'COMPLIANCE AUDIT AUDITING'}
                   {temp === 'structural' && 'STRUCTURAL DESIGN MATRIX'}
                   {temp === 'ndt' && 'NDT TELEMETRY SUMMARY'}
                 </span>
-                <p className={`text-[8px] mt-1 ${activeTemplate === temp ? 'text-gray-300' : 'text-gray-500'}`}>
+                <p className={`text-[12px] mt-1 ${activeTemplate === temp ? 'text-gray-300' : 'text-gray-500'}`}>
                   {temp === 'compliance' && 'Synthesizes site compliance, voice memos, and ISO safety standards.'}
                   {temp === 'structural' && 'Outputs Modulus calculations, deflection formulas, and bending stress.'}
                   {temp === 'ndt' && 'Compiles ultrasonic oscilloscope scans and radiographical voids.'}
@@ -71,7 +71,7 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
             ))}
             <button 
               onClick={handleAutoWrite}
-              className="w-full py-2 bg-black text-white hover:bg-gray-800 border border-black font-bold uppercase text-[9px] flex items-center justify-center gap-1"
+              className="w-full py-2 bg-black text-white hover:bg-gray-800 border border-border-default font-bold uppercase text-[12px] flex items-center justify-center gap-1"
             >
               <Sparkles className="h-4 w-4" /> AI Auto-Write Report
             </button>
@@ -84,7 +84,7 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
             <HelpCircle className="h-3.5 w-3.5" />
             ACTIVE DATA FEEDS
           </div>
-          <div className="zoho-card-body space-y-1 text-[9px]">
+          <div className="zoho-card-body space-y-1 text-[12px]">
             <div className="flex items-center justify-between">
               <span>Applied Force (P):</span>
               <span>150 kN</span>
@@ -111,20 +111,20 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
             <span>PROFESSIONAL BLUEPRINT PRINT PREVIEW</span>
             <button 
               onClick={handlePrint}
-              className="ml-auto px-3 py-1 border border-gray-400 hover:bg-gray-50 flex items-center gap-1.5 font-bold font-mono text-[9px] uppercase"
+              className="ml-auto px-3 py-1 border border-gray-400 hover:bg-gray-50 flex items-center gap-1.5 font-bold font-mono text-[12px] uppercase"
             >
               <Printer className="h-3.5 w-3.5" /> Print / Save as PDF
             </button>
           </div>
           <div className="zoho-card-body">
             {/* Paper visual sheet */}
-            <div className="border-2 border-black p-8 bg-white shadow-[4px_4px_0px_rgba(0,0,0,1)] relative flex flex-col justify-between min-h-[460px] text-black">
+            <div className="border border-border-default p-8 bg-white shadow-sm relative flex flex-col justify-between min-h-[460px] text-black">
               {/* Double technical borders */}
-              <div className="absolute inset-2 border-4 border-double border-black pointer-events-none" />
+              <div className="absolute inset-2 border border-border-default border-border-default pointer-events-none" />
 
               <div className="space-y-6 z-10 p-2">
                 {/* Header specifications block */}
-                <div className="border-b-2 border-black pb-4 grid grid-cols-2 gap-4 font-mono text-[9px] text-black">
+                <div className="border-b-2 border-border-default pb-4 grid grid-cols-2 gap-4 font-mono text-[12px] text-black">
                   <div>
                     <p className="font-black text-xs tracking-wider uppercase">OUANTUM CRM SYSTEMS</p>
                     <p className="mt-1">PROJECT: suspension Link bridge-42</p>
@@ -133,12 +133,12 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
                   <div className="text-right">
                     <p className="font-bold">DOC ID: {activeTemplate.toUpperCase()}-2026-0521</p>
                     <p>DATE: 2026-05-21 12:44</p>
-                    <p className="font-bold border border-black inline-block px-1 mt-1">RESTRICTED // TECHNICAL AUDIT</p>
+                    <p className="font-bold border border-border-default inline-block px-1 mt-1">RESTRICTED // TECHNICAL AUDIT</p>
                   </div>
                 </div>
 
                 {/* Document Title */}
-                <div className="text-center font-bold text-xs uppercase tracking-widest border border-black p-1 bg-gray-50">
+                <div className="text-center font-bold text-xs uppercase tracking-widest border border-border-default p-1 bg-gray-50">
                   {reportTitle}
                 </div>
 
@@ -146,20 +146,20 @@ export default function ReportingStudio({ selectedElement, setSelectedElement })
                 <textarea
                   value={reportContent}
                   onChange={(e) => setReportContent(e.target.value)}
-                  className="w-full h-[220px] bg-transparent border-none outline-none font-mono text-[10px] leading-relaxed resize-none text-black select-text"
+                  className="w-full h-[220px] bg-transparent border-none outline-none font-mono text-[12px] leading-relaxed resize-none text-black select-text"
                 />
               </div>
 
               {/* Footer signatures */}
-              <div className="grid grid-cols-2 gap-8 border-t border-black pt-4 z-10 p-2 text-[8px] font-mono uppercase text-gray-500">
+              <div className="grid grid-cols-2 gap-8 border-t border-border-default pt-4 z-10 p-2 text-[12px] font-mono uppercase text-gray-500">
                 <div>
                   <p>APPROVED BY: COMPLIANCE KERNEL AI</p>
-                  <div className="mt-1.5 h-6 border-b border-dashed border-black w-2/3" />
+                  <div className="mt-1.5 h-6 border-b border-dashed border-border-default w-2/3" />
                   <p className="mt-1">AUTONOMOUS SIGNATURE MATRIX</p>
                 </div>
                 <div className="text-right">
                   <p>AUDITOR SIGN-OFF: DR. R. MEHTA</p>
-                  <div className="mt-1.5 h-6 border-b border-dashed border-black w-2/3 ml-auto" />
+                  <div className="mt-1.5 h-6 border-b border-dashed border-border-default w-2/3 ml-auto" />
                   <p className="mt-1">CHIEF STRUCTURAL COMPLIANCE ENGINE</p>
                 </div>
               </div>

@@ -61,7 +61,7 @@ export default function MissionControl() {
           <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-electric-blue flex items-center gap-2">
             <Video className="h-5 w-5 animate-pulse" /> Live NASA-Style Mission Control Center
           </h2>
-          <p className="text-[10px] font-mono text-metallic-gray mt-1 uppercase">PORT HUDS: MUMBAI SEA LINK | SENSOR NODE FEED ARRAY</p>
+          <p className="text-[12px] font-mono text-metallic-gray mt-1 uppercase">PORT HUDS: MUMBAI SEA LINK | SENSOR NODE FEED ARRAY</p>
         </div>
 
         {/* Action controllers */}
@@ -115,11 +115,11 @@ export default function MissionControl() {
             </svg>
 
             {/* Bounding box overlays text */}
-            <div className="absolute top-10 left-16 border border-ai-purple bg-ai-purple/10 px-1 py-0.5 rounded text-[8px] font-mono text-ai-purple">
+            <div className="absolute top-10 left-16 border border-ai-purple bg-ai-purple/10 px-1 py-0.5 rounded text-[12px] font-mono text-ai-purple">
               NODE B-12 | STRAIN CHECK: 94%
             </div>
             
-            <div className="absolute bottom-24 right-20 border border-danger-red bg-danger-red/10 px-1 py-0.5 rounded text-[8px] font-mono text-danger-red animate-pulse">
+            <div className="absolute bottom-24 right-20 border border-danger-red bg-danger-red/10 px-1 py-0.5 rounded text-[12px] font-mono text-danger-red animate-pulse">
               HAZARD: PILLAR ANOMALY DETECTED
             </div>
 
@@ -129,7 +129,7 @@ export default function MissionControl() {
             </div>
           </div>
           
-          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[9px] text-metallic-gray flex justify-between">
+          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[12px] text-metallic-gray flex justify-between">
             <span>AZIMUTH: 184.22 | ELEV: -12.4</span>
             <span>MODEL: YOLOv8 INTEL CORE</span>
           </div>
@@ -142,7 +142,7 @@ export default function MissionControl() {
             <span className="text-electric-blue animate-pulse">NAV LOCK ON</span>
           </div>
 
-          <div className="flex-1 min-h-[220px] relative bg-slate-950 p-4 font-mono text-[10px] space-y-3">
+          <div className="flex-1 min-h-[220px] relative bg-slate-950 p-4 font-mono text-[12px] space-y-3">
             <p className="text-metallic-gray">LIVE FLIGHT MATRIX TELEMETRY</p>
             
             <div className="grid grid-cols-2 gap-4">
@@ -166,7 +166,7 @@ export default function MissionControl() {
 
             {/* Simulated flight path bar */}
             <div className="space-y-1">
-              <div className="flex justify-between text-[8px] text-metallic-gray">
+              <div className="flex justify-between text-[12px] text-metallic-gray">
                 <span>FLIGHT PATROL PATH PROGRESS</span>
                 <span>84%</span>
               </div>
@@ -176,7 +176,7 @@ export default function MissionControl() {
             </div>
           </div>
 
-          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[9px] text-metallic-gray flex justify-between">
+          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[12px] text-metallic-gray flex justify-between">
             <span>TX LOCK: 98% (ENCRYPTED)</span>
             <span>BATTERY LIFE: 68%</span>
           </div>
@@ -186,7 +186,7 @@ export default function MissionControl() {
         <div className="glass-panel rounded-xl overflow-hidden border border-electric-blue/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
           <div className="p-3 border-b border-white/5 bg-secondary-bg/85 flex items-center justify-between font-mono text-xs">
             <span className="flex items-center gap-1.5 font-bold"><Activity className="h-4 w-4 text-electric-blue" /> ENVIRONMENTAL HAZARD INTELLIGENCE</span>
-            <span className="text-[10px] text-metallic-gray">NODE SENSORS</span>
+            <span className="text-[12px] text-metallic-gray">NODE SENSORS</span>
           </div>
 
           <div className="flex-1 min-h-[220px] p-4 font-mono text-xs space-y-4">
@@ -216,18 +216,18 @@ export default function MissionControl() {
             {/* Safety tracker */}
             <div className="space-y-1">
               <span className="text-metallic-gray flex items-center gap-1"><UserX className="h-3.5 w-3.5 text-alert-orange" /> Active Personnel Safety Tracking</span>
-              <div className="p-2.5 bg-black/60 rounded border border-white/5 flex items-center justify-between text-[11px]">
+              <div className="p-2.5 bg-black/60 rounded border border-white/5 flex items-center justify-between text-[12px]">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-success-green animate-pulse"></span>
                   <span className="text-white-text font-bold">14 Active Personnel on Site</span>
                 </div>
-                <span className="text-metallic-gray uppercase text-[9px]">RESTRICTED SECTOR ACC</span>
+                <span className="text-metallic-gray uppercase text-[12px]">RESTRICTED SECTOR ACC</span>
               </div>
             </div>
 
           </div>
 
-          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[9px] text-metallic-gray flex justify-between border-t border-white/5">
+          <div className="p-2.5 bg-secondary-bg/85 font-mono text-[12px] text-metallic-gray flex justify-between border-t border-white/5">
             <span>ZONE: WEST_SECTOR_LINK_PIER_42</span>
             <span>INTELL: SAFE</span>
           </div>
@@ -241,7 +241,7 @@ export default function MissionControl() {
           <AlertTriangle className="h-6 w-6 animate-pulse" />
           <div>
             <p className="font-bold uppercase tracking-wider">SYSTEM-WIDE CRITICAL SIREN ENABLED</p>
-            <p className="text-[10px] opacity-90">Auto-logging diagnostics reports. Dispatching engineering drone squads...</p>
+            <p className="text-[12px] opacity-90">Auto-logging diagnostics reports. Dispatching engineering drone squads...</p>
           </div>
         </div>
       )}
