@@ -2,18 +2,18 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useCRMStore } from '@/store/crmStore';
-import { 
-  Activity, 
-  Cpu, 
-  Layers, 
-  Sigma, 
-  Upload, 
-  Play, 
-  Check, 
-  AlertTriangle, 
-  Clock, 
-  Sliders, 
-  ShieldAlert, 
+import {
+  Activity,
+  Cpu,
+  Layers,
+  Sigma,
+  Upload,
+  Play,
+  Check,
+  AlertTriangle,
+  Clock,
+  Sliders,
+  ShieldAlert,
   Wrench,
   FileText,
   Globe,
@@ -150,7 +150,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
     const draw = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       // Draw grid
       ctx.strokeStyle = '#f3f4f6';
       ctx.lineWidth = 1;
@@ -171,10 +171,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
       ctx.strokeStyle = '#000000';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      
+
       const amp = 30 + disasterEarthquake * 5;
       const freq = (scadaFrequency / 10) + (disasterEarthquake * 0.05);
-      
+
       for (let x = 0; x < canvas.width; x++) {
         const y = (canvas.height / 2) + Math.sin((x * freq) + offset) * amp;
         if (x === 0) ctx.moveTo(x, y);
@@ -205,7 +205,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
 
     // Ultimate Bearing Capacity Formula: qu = c*Nc + q*Nq + 0.5*y*B*Ny
     const qu = (c * Nc) + (q * Nq) + (0.5 * y * B * Ny);
-    
+
     // Allowable bearing capacity with safety factor 3
     const qa = (qu / 3).toFixed(1);
     const safetyIndex = (qa / 120).toFixed(2); // 120 kPa target threshold
@@ -235,7 +235,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
   const handleCertifyConcreteCube = () => {
     // Auto-resolve associated deal
     const currentAccount = accounts[0] || { id: 'acc-1', name: 'MSRDC' };
-    
+
     if (!concretePassed) {
       // Trigger Anomaly ticket immediately
       const ticketTitle = `LIMS QA/QC FAILURE: concrete ${limsConcreteGrade} strength lower than target`;
@@ -246,7 +246,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
         assetName: `Batch Mix Concrete: Pillar Sector A4`,
         confidence: 99.8
       };
-      
+
       const res = addTicket(ticketDetail);
       if (res.success) {
         setLimsLogMsg(`🚨 QA/QC REJECTED! Strength of ${concreteMpa} MPa failed to satisfy target ${concreteTarget} MPa. CRITICAL anomaly ticket generated in global SSOT.`);
@@ -260,7 +260,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
   const handlePpeWebcamScan = () => {
     setScanningPpe(true);
     setLatestPpeAlert('');
-    
+
     setTimeout(() => {
       setScanningPpe(false);
       // Pick one randomly
@@ -297,7 +297,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
   const handleResolveBimClash = (clashId) => {
     setBimClashes(prev => prev.map(c => c.id === clashId ? { ...c, resolved: true } : c));
     const target = bimClashes.find(c => c.id === clashId);
-    
+
     // Log CRM ticket
     const currentAccount = accounts[0] || { id: 'acc-1', name: 'MSRDC' };
     addTicket({
@@ -344,7 +344,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
 
   return (
     <div className="min-h-[500px] bg-[#f8f9fa] flex flex-col text-gray-800 relative select-none rounded-[8px] border border-[#cccccc] shadow-sm">
-      
+
       {/* Background Engineering Grids Overlay */}
       <div className="absolute inset-0 cad-grid opacity-30 pointer-events-none z-0"></div>
 
@@ -359,7 +359,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
             System status: nominal // 42hz IoT stream telemetry active // SSOT linked
           </p>
         </div>
-        
+
         {/* Active level metrics */}
         <div className="flex gap-2">
           <div className="border border-[#dddddd] px-2.5 py-1.5 bg-white text-[12px] font-bold text-[#0b4c8c] rounded-[8px] shadow-sm flex items-center gap-2">
@@ -377,13 +377,13 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
 
       {/* Core Split Screen Layout */}
       <div className="flex-1 flex flex-col lg:flex-row z-10">
-        
+
         {/* Left Side: 11 levels Navigation (1/4 columns) */}
         <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-[#cccccc] flex flex-col justify-between bg-[#f4f6f8]">
           <div className="px-3 py-2 bg-[#eaecee] border-b border-[#cccccc] flex items-center font-bold text-gray-700 text-xs">
             <span>Lifecycle Explorer Index</span>
           </div>
-          
+
           <nav className="flex-1 p-2 space-y-1 overflow-y-auto">
             {[
               { num: 1, name: 'Pre-Construction Intel', icon: Compass, status: 'Active' },
@@ -400,7 +400,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
             ].map((lvl) => {
               const Icon = lvl.icon;
               const isSelected = activeLevel === lvl.num;
-              
+
               return (
                 <button
                   key={lvl.num}
@@ -408,11 +408,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                     setActiveLevel(lvl.num);
                     if (lvl.num === 5) setActiveSubTab('Cube');
                   }}
-                  className={`w-full flex items-center justify-between p-2 rounded-[8px] text-[12px] font-bold uppercase transition-all border ${
-                    isSelected 
-                      ? 'bg-[#e2e2e2] text-black border-[#b8b8b8] shadow-sm' 
+                  className={`w-full flex items-center justify-between p-2 rounded-[8px] text-[12px] font-bold uppercase transition-all border ${isSelected
+                      ? 'bg-[#e2e2e2] text-black border-[#b8b8b8] shadow-sm'
                       : 'text-[#2d2d2d] bg-transparent border-transparent hover:underline hover:bg-[#ececec]'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2 min-w-0">
                     <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-semibold flex-shrink-0 ${isSelected ? 'border-[#a8a8a8] bg-white text-black' : 'border-gray-300 bg-gray-50 text-gray-600'}`}>L{lvl.num}</span>
@@ -424,7 +423,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               );
             })}
           </nav>
-          
+
           <div className="p-3 border-t border-[#cccccc] bg-white space-y-1">
             <div className="flex justify-between items-center text-[12px] uppercase font-bold text-gray-500">
               <span>Cockpit Telemetry</span>
@@ -440,12 +439,12 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
 
         {/* Right Side: Active Workspace (3/4 columns) */}
         <div className="flex-1 p-6 flex flex-col justify-between overflow-x-hidden">
-          
+
           {/* LEVEL 1: PRE-CONSTRUCTION INTELLIGENCE */}
           {activeLevel === 1 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Compass} 
+              <LevelCard
+                icon={Compass}
                 title="Level 1 - Terzaghi Ultimate Bearing Capacity Simulator"
                 footer="Soil bearing capacities simulated under Terzaghi mechanics"
               >
@@ -528,20 +527,20 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               </LevelCard>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 {/* 3. GIS Waypoint Simulator */}
-                <LevelCard 
-                  icon={Map} 
+                <LevelCard
+                  icon={Map}
                   title="Level 1 - LiDAR Terrain Scanning & GIS mapping"
                   footer="LiDAR mesh data streams live to GIS database"
                 >
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-[12px] font-bold uppercase text-gray-700">Asset Target Area</span>
-                    <select 
+                    <select
                       value={gisLocation} onChange={(e) => {
                         setGisLocation(e.target.value);
                         setSelectedWaypoint(null);
-                      }} 
+                      }}
                       className="border border-[#c8c8c8] bg-white p-1 text-[12px] font-bold focus:outline-none"
                     >
                       <option>Bandra-Worli (Mumbai)</option>
@@ -549,11 +548,11 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       <option>Narmada River Bridge (GJ)</option>
                     </select>
                   </div>
-                  
+
                   <div className="border border-[#d4d4d4] bg-white h-28 relative overflow-hidden flex flex-col justify-center items-center rounded-[8px]-[3px] shadow-inner">
                     <div className="absolute inset-0 cad-grid opacity-60 pointer-events-none"></div>
                     <span className="text-[12px] text-gray-400 absolute top-1 left-1 font-semibold uppercase">TOPOGRAPHIC GRID RADAR</span>
-                    
+
                     {/* Simulated survey dots */}
                     <div className="flex gap-4">
                       {[
@@ -564,9 +563,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         <button
                           key={dot.id}
                           onClick={() => setSelectedWaypoint(dot)}
-                          className={`h-8 w-16 btn-skeuo text-[12px] flex flex-col items-center justify-center font-bold tracking-wider cursor-pointer ${
-                            selectedWaypoint?.id === dot.id ? 'btn-skeuo-dark text-white' : ''
-                          }`}
+                          className={`h-8 w-16 btn-skeuo text-[12px] flex flex-col items-center justify-center font-bold tracking-wider cursor-pointer ${selectedWaypoint?.id === dot.id ? 'btn-skeuo-dark text-white' : ''
+                            }`}
                           style={{ minHeight: 'auto', padding: '2px 4px' }}
                         >
                           <span>{dot.id}</span>
@@ -586,8 +584,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 </LevelCard>
 
                 {/* 4. Legal permit tracker */}
-                <LevelCard 
-                  icon={FileText} 
+                <LevelCard
+                  icon={FileText}
                   title="Level 1 - Legal approvals & Zoning Clearances"
                   footer="Municipal and environmental clearance ledger sync active"
                 >
@@ -644,10 +642,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {activeLevel === 2 && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 {/* MEP balance */}
-                <LevelCard 
-                  icon={Wrench} 
+                <LevelCard
+                  icon={Wrench}
                   title="Level 2 - MEP Engineering Load Balance Gauges"
                   footer="Substation capacity monitored relative to building demand"
                 >
@@ -696,8 +694,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 </LevelCard>
 
                 {/* Sunlight optimization */}
-                <LevelCard 
-                  icon={Layers} 
+                <LevelCard
+                  icon={Layers}
                   title="Level 2 - Ventilation & Sunlight Thermal Flow"
                   footer="Daylight coefficient calibrated to building orientation"
                 >
@@ -711,7 +709,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       onChange={(e) => setTimeOfDay(Number(e.target.value))}
                       className="w-full accent-black cursor-ew-resize"
                     />
-                    
+
                     <div className="text-[12px] font-mono space-y-1 pt-2 uppercase text-gray-700">
                       <div className="flex justify-between">
                         <span>Calculated Solar Radiant Flux:</span>
@@ -732,9 +730,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               </div>
 
               {/* BIM Level 1-7 Clash detector */}
-              <LevelCard 
-                icon={Check} 
-                title="Level 2 - BIM Level 1–7 Clash Detection Platform" 
+              <LevelCard
+                icon={Check}
+                title="Level 2 - BIM Level 1–7 Clash Detection Platform"
                 headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">BIM MODEL: LEVEL 5 (LOD-400)</span>}
                 footer="Unified BIM coordination room and clash detection matrix"
               >
@@ -792,18 +790,18 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {activeLevel === 3 && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 {/* Quarry sourcing grading */}
-                <LevelCard 
-                  icon={Database} 
+                <LevelCard
+                  icon={Database}
                   title="Level 3 - Quarry & Aggregates Source Origin"
                   footer="Sieve fineness grading conforms to IS 383 specification standards"
                 >
                   <div className="space-y-3 pt-2">
                     <div className="flex justify-between items-center text-[12px] font-bold uppercase">
                       <span className="text-gray-700">Source Quarry</span>
-                      <select 
-                        value={quarrySource} onChange={(e) => setQuarrySource(e.target.value)} 
+                      <select
+                        value={quarrySource} onChange={(e) => setQuarrySource(e.target.value)}
                         className="border border-[#c8c8c8] bg-white p-1 text-[12px] focus:outline-none"
                       >
                         <option>Pune Aggregate Quarry</option>
@@ -843,8 +841,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 </LevelCard>
 
                 {/* Logistics tracker */}
-                <LevelCard 
-                  icon={Truck} 
+                <LevelCard
+                  icon={Truck}
                   title="Level 3 - Cement Logistics Transit Controller"
                   footer="Mixer rotation speeds synced to telemetry receiver"
                 >
@@ -860,7 +858,7 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                         className="w-full accent-black cursor-ew-resize"
                       />
                     </div>
-                    
+
                     <div className="text-[12px] font-mono space-y-1 pt-2 uppercase font-semibold text-gray-700">
                       <div className="flex justify-between">
                         <span>Transit Truck ID:</span>
@@ -881,9 +879,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               </div>
 
               {/* Vendor Intelligence */}
-              <LevelCard 
-                icon={Users} 
-                title="Level 3 - Vendor Intelligence System" 
+              <LevelCard
+                icon={Users}
+                title="Level 3 - Vendor Intelligence System"
                 headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">FRAUD DETECTION MODULE ACTIVE</span>}
                 footer="Supplier audit trials and risk evaluation statistics"
               >
@@ -931,10 +929,10 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {activeLevel === 4 && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
+
                 {/* Smart PPE scanner */}
-                <LevelCard 
-                  icon={HardHat} 
+                <LevelCard
+                  icon={HardHat}
                   title="Level 4 - Smart PPE Camera Gate Scanner"
                   footer="Smart PPE camera feeds processed automatically via on-site AI edge server"
                 >
@@ -965,8 +963,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                 </LevelCard>
 
                 {/* Workforce metrics */}
-                <LevelCard 
-                  icon={Users} 
+                <LevelCard
+                  icon={Users}
                   title="Level 4 - Workforce Productivity & Fatigue"
                   footer="Real-time personnel fatigue values tracked from RFID telemetry"
                 >
@@ -1001,9 +999,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
               </div>
 
               {/* Progress AI */}
-              <LevelCard 
-                icon={Activity} 
-                title="Level 4 - Construction GANTT & Delay Tracker" 
+              <LevelCard
+                icon={Activity}
+                title="Level 4 - Construction GANTT & Delay Tracker"
                 footer="Aggregated schedule diagnostics compiled from field manager report"
               >
                 <div className="space-y-2 bg-white border border-[#d4d4d4] rounded-[8px]-[3px] p-3 shadow-sm text-[12px] font-mono font-semibold uppercase text-gray-700">
@@ -1060,8 +1058,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                       <div className="space-y-4">
                         <div className="flex justify-between items-center text-[12px] font-bold uppercase text-gray-700">
                           <span>Designed Concrete Grade</span>
-                          <select 
-                            value={limsConcreteGrade} onChange={(e) => setLimsConcreteGrade(e.target.value)} 
+                          <select
+                            value={limsConcreteGrade} onChange={(e) => setLimsConcreteGrade(e.target.value)}
                             className="border border-[#cccccc] bg-white p-1 text-[12px] focus:outline-none"
                           >
                             <option>M20</option>
@@ -1240,8 +1238,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 6: LIVE OPERATIONS & SCADA */}
           {activeLevel === 6 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Radio} 
+              <LevelCard
+                icon={Radio}
                 title="Level 6 - Live Operations PLC SCADA Telemetry"
                 footer="SCADA PLC Telemetry Stream Sync: 42Hz Active // nominal loop duration: 4ms"
               >
@@ -1284,8 +1282,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 7: DISASTER SIMULATION */}
           {activeLevel === 7 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Sliders} 
+              <LevelCard
+                icon={Sliders}
                 title="Level 7 - Multi-Physics Disaster Simulation Engine"
                 footer="Disaster simulation suite synchronized with structural stress forecasts"
               >
@@ -1337,9 +1335,9 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 8: FINANCIAL ERP & CARBON */}
           {activeLevel === 8 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={BarChart2} 
-                title="Level 8 - ERP Inventory & materials cost tracker" 
+              <LevelCard
+                icon={BarChart2}
+                title="Level 8 - ERP Inventory & materials cost tracker"
                 headerAction={<span className="text-[12px] bg-[#2d2d2d] text-white border border-[#2d2d2d] rounded-[8px]-[2px] px-1.5 py-0.5 font-bold uppercase">PLANNED VS ACTUAL SPEND</span>}
                 footer="ERP Financial ledger linked with project accounts // carbon offset verified"
               >
@@ -1377,8 +1375,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 9: POST-CONSTRUCTION LIFE */}
           {activeLevel === 9 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Clock} 
+              <LevelCard
+                icon={Clock}
                 title="Level 9 - Expected Structural Decay & Lifespan"
                 footer="Acoustic aging and elasticity forecast module online // lifecycle prediction"
               >
@@ -1416,8 +1414,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 10: NATIONAL INFRASTRUCTURE SYSTEM */}
           {activeLevel === 10 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Globe} 
+              <LevelCard
+                icon={Globe}
                 title="Level 10 - Municipal Utilities Smart City Control Desk"
                 footer="Smart City macro-utility grid indicators active // municipal systems online"
               >
@@ -1445,8 +1443,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
           {/* LEVEL 11: FUTURE TECH */}
           {activeLevel === 11 && (
             <div className="space-y-6">
-              <LevelCard 
-                icon={Cpu} 
+              <LevelCard
+                icon={Cpu}
                 title="Level 11 - Generative Engineering AI Design Workspace"
                 footer="AI Generative synthesis engine: calibrated and running"
               >
@@ -1454,8 +1452,8 @@ export default function CivilOSWorkspace({ selectedElement, setSelectedElement }
                   <div className="space-y-4">
                     <div className="flex justify-between items-center text-[12px] font-bold uppercase text-gray-700">
                       <span>Generative Design optimization target</span>
-                      <select 
-                        value={aiDesignGoal} onChange={(e) => setAiDesignGoal(e.target.value)} 
+                      <select
+                        value={aiDesignGoal} onChange={(e) => setAiDesignGoal(e.target.value)}
                         className="border border-[#cccccc] bg-white p-1 text-[12px] focus:outline-none"
                       >
                         <option>Reduce Pillar Cross Section</option>

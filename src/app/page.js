@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowRight,
-  ArrowRightLeft,
   Compass,
   Activity,
   Map,
@@ -46,8 +45,33 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(false);
   const [selectedElement, setSelectedElement] = useState(null);
-  const [showNewDropdown, setShowNewDropdown] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1200);
+  const [contentHeight, setContentHeight] = useState(0);
+  const mainRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Track real rendered height of main content so we can cancel the dead space
+  // that transform:scale() leaves in the layout box (layout box stays full size,
+  // only the visual rendering shrinks). Formula: deadSpace = height * (1 - scale)
+  useEffect(() => {
+    const el = mainRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        setContentHeight(entry.contentRect.height);
+      }
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mainRef.current]);
 
   const currentWorkspace = useCRMStore(state => state.currentWorkspace);
   const setWorkspace = useCRMStore(state => state.setWorkspace);
@@ -279,6 +303,10 @@ export default function Home() {
   }
 
   /* ------------------- 2. ENTERPRISE CRM DASHBOARD ------------------- */
+  const availableWidth = windowWidth - (sidebarOpen ? 304 : 64) - (inspectorOpen ? 280 : 48) - 32;
+  const baseWidth = windowWidth - 144;
+  const scaleFactor = Math.max(0.3, Math.min(1.0, availableWidth / baseWidth));
+
   return (
     <>
       <CommandPalette />
@@ -288,198 +316,54 @@ export default function Home() {
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         setHelpOpen={setHelpOpen}
+        onExit={() => setInApp(false)}
       >
-        {/* Main workspace display area */}
-        <main className="flex-1 overflow-hidden flex flex-col min-w-0 bg-white border border-border-default rounded-none m-4 shadow-card">
-
-            {/* 1. Zoho Reports Tab Bar */}
-            <div className="workspace-tabs flex-shrink-0 select-none">
-              <div className="workspace-tab">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.5 2.5C1.5 2.22386 1.72386 2 2 2H5.5L7.5 4H14C14.2761 4 14.5 4.22386 14.5 4.5V13.5C14.5 13.7761 14.2761 14 14 14H2C1.72386 14 1.5 13.7761 1.5 13.5V2.5Z" fill="#F8C444" stroke="#DCA224" strokeWidth="0.8" />
-                  <path d="M2 4.5H14V13H2V4.5Z" fill="#FDE69E" />
-                </svg>
-                <span>Explorer</span>
-              </div>
-              <div className="workspace-tab active">
-                {currentWorkspace.includes('OVERVIEW') ? (
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                    <rect x="3" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                    <rect x="8.5" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                    <rect x="3" y="8.5" width="10" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                  </svg>
-                ) : currentWorkspace.includes('STUDIO') || currentWorkspace.includes('LAB') || currentWorkspace.includes('CENTER') || currentWorkspace.includes('SAFETY') ? (
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                    <rect x="3.5" y="7.5" width="2" height="5.5" fill="#336600" stroke="#224400" strokeWidth="0.5" />
-                    <rect x="7.5" y="5.5" width="2" height="7.5" fill="#E68A00" stroke="#CC7A00" strokeWidth="0.5" />
-                    <rect x="11.5" y="3.5" width="2" height="9.5" fill="#CC0000" stroke="#990000" strokeWidth="0.5" />
-                    <line x1="2.5" y1="13" x2="13.5" y2="13" stroke="#555555" strokeWidth="0.8" />
-                  </svg>
-                ) : (
-                  <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="1.5" y="2.5" width="13" height="11" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                    <rect x="1.5" y="2.5" width="13" height="3" fill="#E68A00" stroke="#E68A00" strokeWidth="0.8" />
-                    <line x1="1.5" y1="8.5" x2="14.5" y2="8.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                    <line x1="1.5" y1="11.5" x2="14.5" y2="11.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                    <line x1="5.5" y1="5.5" x2="5.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                    <line x1="10.5" y1="5.5" x2="10.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                  </svg>
-                )}
-                <span className="font-bold text-gray-800 text-[12px] uppercase">
-                  {currentWorkspace.replace(/_/g, ' ')}
-                </span>
-              </div>
-            </div>
-
-            {/* 2. Zoho Reports Action Toolbar */}
-            <div className="workspace-toolbar flex-shrink-0 select-none">
-
-              {/* "New" Dropdown Menu Button */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowNewDropdown(!showNewDropdown)}
-                  className="toolbar-btn text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
-                >
-                  <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.5 2.5C1.5 2.22386 1.72386 2 2 2H5.5L7.5 4H14C14.2761 4 14.5 4.22386 14.5 4.5V13.5C14.5 13.7761 14.2761 14 14 14H2C1.72386 14 1.5 13.7761 1.5 13.5V2.5Z" fill="#F8C444" stroke="#DCA224" strokeWidth="0.8" />
-                    <path d="M2 4.5H14V13H2V4.5Z" fill="#FDE69E" />
-                    <circle cx="12" cy="10" r="3.5" fill="#336600" stroke="#ffffff" strokeWidth="0.5" />
-                    <line x1="12" y1="8.5" x2="12" y2="11.5" stroke="#ffffff" strokeWidth="0.8" />
-                    <line x1="10.5" y1="10" x2="13.5" y2="10" stroke="#ffffff" strokeWidth="0.8" />
-                  </svg>
-                  <span>New</span>
-                  <span className="text-[12px] text-gray-500">▼</span>
-                </button>
-
-                {showNewDropdown && (
-                  <div className="absolute left-0 mt-1 w-44 bg-white border border-[#d5dbdb] rounded shadow-lg z-50 py-1">
-                    <button
-                      onClick={() => { setShowNewDropdown(false); alert("Enforcing new table constraints: Select related workspace category in explorer tree."); }}
-                      className="w-full text-left px-3 py-2 hover:bg-[#f1f3f3] text-xs text-[#16191f] flex items-center gap-2 cursor-pointer border-none bg-transparent"
-                    >
-                      <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1.5" y="2.5" width="13" height="11" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                        <rect x="1.5" y="2.5" width="13" height="3" fill="#E68A00" stroke="#E68A00" strokeWidth="0.8" />
-                        <line x1="1.5" y1="8.5" x2="14.5" y2="8.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                        <line x1="1.5" y1="11.5" x2="14.5" y2="11.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                        <line x1="5.5" y1="5.5" x2="5.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                        <line x1="10.5" y1="5.5" x2="10.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8" />
-                      </svg>
-                      <span>New Table</span>
-                    </button>
-                    <button
-                      onClick={() => { setShowNewDropdown(false); alert("Enforcing new report constraints: Select related workspace category in explorer tree."); }}
-                      className="w-full text-left px-3 py-2 hover:bg-[#f1f3f3] text-xs text-[#16191f] flex items-center gap-2 cursor-pointer border-none bg-transparent"
-                    >
-                      <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                        <rect x="3.5" y="7.5" width="2" height="5.5" fill="#336600" stroke="#224400" strokeWidth="0.5" />
-                        <rect x="7.5" y="5.5" width="2" height="7.5" fill="#E68A00" stroke="#CC7A00" strokeWidth="0.5" />
-                        <rect x="11.5" y="3.5" width="2" height="9.5" fill="#CC0000" stroke="#990000" strokeWidth="0.5" />
-                        <line x1="2.5" y1="13" x2="13.5" y2="13" stroke="#555555" strokeWidth="0.8" />
-                      </svg>
-                      <span>New Report</span>
-                    </button>
-                    {/* Highlighted New Dashboard with red box to match reference image */}
-                    <button
-                      onClick={() => { setShowNewDropdown(false); alert("Enforcing new dashboard constraints: Select related workspace category in explorer tree."); }}
-                      className="w-full text-left px-3 py-2 hover:bg-[#f1f3f3] text-xs text-[#16191f] flex items-center gap-2 border border-[#d13212] rounded-sm cursor-pointer bg-transparent"
-                    >
-                      <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8" />
-                        <rect x="3" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                        <rect x="8.5" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                        <rect x="3" y="8.5" width="10" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5" />
-                      </svg>
-                      <span>New Dashboard</span>
-                    </button>
-                    <div className="border-t border-gray-100 my-1"></div>
-                    <button
-                      onClick={() => { setShowNewDropdown(false); alert("Enforcing new folder constraints: System directory is managed under master compliance rules."); }}
-                      className="w-full text-left px-3 py-2 hover:bg-[#f1f3f3] text-xs text-[#16191f] flex items-center gap-2 cursor-pointer border-none bg-transparent"
-                    >
-                      <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.5 2.5C1.5 2.22386 1.72386 2 2 2H5.5L7.5 4H14C14.2761 4 14.5 4.22386 14.5 4.5V13.5C14.5 13.7761 14.2761 14 14 14H2C1.72386 14 1.5 13.7761 1.5 13.5V2.5Z" fill="#F8C444" stroke="#DCA224" strokeWidth="0.8" />
-                        <path d="M2 4.5H14V13H2V4.5Z" fill="#FDE69E" />
-                      </svg>
-                      <span>New Folder</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Refresh button */}
-              <button
-                onClick={() => alert("Refreshed active workspace telemetry.")}
-                className="toolbar-btn text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 text-[#1d8102]" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.5 8C13.5 11.0376 11.0376 13.5 8 13.5C4.96243 13.5 2.5 11.0376 2.5 8C2.5 4.96243 4.96243 2.5 8 2.5V1L10.5 3L8 5V3.5C5.51472 3.5 3.5 5.51472 3.5 8C3.5 10.4853 5.51472 12.5 8 12.5C10.4853 12.5 12.5 10.4853 12.5 8H13.5Z" fill="#1d8102" />
-                </svg>
-                <span>Refresh</span>
-              </button>
-
-              {/* Import button */}
-              <button
-                onClick={() => alert("Import wizard: Choose file to ingest (supported: CSV, XLS, JSON, DWG, PDF).")}
-                className="toolbar-btn text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 text-gray-600" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M2 12V13.5C2 13.7761 2.22386 14 2.5 14H13.5C13.7761 14 14 13.7761 14 13.5V12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span>Import</span>
-              </button>
-
-              {/* Share button */}
-              <button
-                onClick={() => alert("Share dialog: Copy workspace portal link or send secure email invite.")}
-                className="toolbar-btn text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 text-gray-600" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 5C13.1046 5 14 4.10457 14 3C14 1.89543 13.1046 1 12 1C10.8954 1 10 1.89543 10 3C10 3.11184 10.0092 3.22153 10.0268 3.32835L5.83067 5.42641C5.0747 4.55598 3.95156 4 2.7 4C1.20883 4 0 5.20883 0 6.7C0 8.19117 1.20883 9.4 2.7 9.4C3.95156 9.4 5.0747 8.84402 5.83067 7.97359L10.0268 10.0716C10.0092 10.1785 10 10.2882 10 10.4C10 11.5046 10.8954 12.4 12 12.4C13.1046 12.4 14 11.5046 14 10.4C14 9.29543 13.1046 8.4 12 8.4C10.8954 8.4 10 9.29543 10 10.4C10 10.4357 10.001 10.4711 10.003 10.5064L5.80682 8.40833C5.93297 8.11894 6 7.80164 6 7.47C6 7.13836 5.93297 6.82106 5.80682 6.53167L10.003 4.43359C10.001 4.46889 10 4.50428 10 4.54C10 5.10457 10.8954 5.54 12 5.54Z" fill="currentColor" />
-                </svg>
-                <span>Share</span>
-              </button>
-
-              {/* Delete button */}
-              <button
-                onClick={() => alert("Action restricted: Deletion of workspace core tables violates compliance rules.")}
-                className="toolbar-btn toolbar-btn-danger text-xs font-bold flex items-center gap-1.5 cursor-pointer"
-              >
-                <svg className="w-3.5 h-3.5 text-[#d13212]" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 4L12 12M12 4L4 12" stroke="#d13212" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-                <span>Delete</span>
-              </button>
-
-              {/* Spacer */}
-              <div className="flex-1"></div>
-
-              {/* Exit Portal Link */}
-              <button
-                onClick={() => setInApp(false)}
-                className="toolbar-btn text-xs font-semibold flex items-center gap-1 cursor-pointer"
-              >
-                <ArrowRightLeft className="h-3.5 w-3.5 text-gray-400" />
-                <span>Exit Workspace</span>
-              </button>
-
-            </div>
-
-            {/* Dotted border separator */}
-            <div className="border-b border-dashed border-[#cccccc] flex-shrink-0"></div>
-
-            {/* Scrollable Viewport Pane — Master Page Shell Wrapper */}
+        {/* Main viewport container - scrollable at parent level */}
+        <div
+          className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar my-4 ml-4 relative flex flex-col min-w-0 min-h-0 h-[calc(100vh-32px)]"
+          style={{
+            width: `${availableWidth}px`,
+            transition: 'width 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+        >
+          {/* Scaling wrapper: transform:scale keeps layout box at original dims so
+               the parent overflow-y-auto can measure full scroll height correctly.
+               Negative marginBottom + marginRight collapse the dead layout space
+               on both axes when scaleFactor < 1 (sidebar minimized / window narrow) */}
+          <div
+            style={{
+              width: `${baseWidth}px`,
+              transform: `scale(${scaleFactor})`,
+              transformOrigin: 'top left',
+              // Vertical dead space: contentHeight * (1 - scaleFactor)
+              marginBottom: contentHeight > 0 ? `${contentHeight * (scaleFactor - 1)}px` : 0,
+              // Horizontal dead space: baseWidth * (1 - scaleFactor)
+              marginRight: `${baseWidth * (scaleFactor - 1)}px`,
+              transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+              flexShrink: 0,
+            }}
+          >
+          {/* Main workspace display area */}
+          <main
+            ref={mainRef}
+            className="flex flex-col min-w-0"
+            style={{
+              width: `${baseWidth}px`,
+              height: 'auto',
+              background: '#ffffff',
+              border: '1px solid #d4d4d4',
+              borderRadius: '8px',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.07)',
+            }}
+          >
+            {/* Viewport Pane — Master Page Shell Wrapper */}
             <div
-              className="workspace-viewport flex-1 min-h-0 overflow-y-auto"
+              className="workspace-viewport"
               style={{
-                background: '#f2f3f3',
+                background: '#f0f0f0',
                 border: 'none',
                 boxShadow: 'none',
-                padding: '20px',
+                padding: '24px',
                 margin: '0',
               }}
             >
@@ -546,24 +430,26 @@ export default function Home() {
               )}
             </div>
           </main>
+          </div>
+        </div>
 
-          {/* Right Control Panel: Zoho-style contextual inspector */}
-          {/* Right Control Panel: Zoho-style collapsible contextual inspector */}
+          {/* Right Control Panel: Huly-style collapsible contextual inspector */}
           <aside
+            className="custom-scrollbar contextual-inspector"
             style={{
               width: inspectorOpen ? 280 : 48,
               flexShrink: 0,
-              background: '#ffffff',
-              borderLeft: '1px solid #eaeded',
+              background: '#111214',
+              borderLeft: '1px solid #1c1e22',
               display: 'flex',
               flexDirection: 'column',
               fontSize: 12,
-              color: '#2d2d2d',
+              color: '#ffffff',
               overflow: 'hidden',
               transition: 'width 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
               position: 'sticky',
-              top: '64px',
-              height: 'calc(100vh - 64px)',
+              top: '0px',
+              height: '100vh',
               alignSelf: 'flex-start',
             }}
           >
@@ -571,62 +457,64 @@ export default function Home() {
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: 280 }}>
                 {/* Inspector header */}
                 <div style={{
-                  padding: '12px 14px',
-                  background: '#ffffff',
-                  borderBottom: '1px solid #eaeded',
+                  padding: '16px 14px',
+                  background: '#111214',
+                  borderBottom: '1px solid #1c1e22',
                   fontWeight: 600,
                   fontSize: 11.5,
-                  color: '#3d3d3d',
+                  color: '#ffffff',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}>
-                  <span>Contextual Inspector</span>
+                  <span style={{ textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '700', fontSize: '11px', color: '#8f9298' }}>Contextual Inspector</span>
                   <button
                     onClick={() => setInspectorOpen(false)}
+                    className="icon-btn inspector-collapse-btn"
                     style={{
                       background: 'transparent',
                       border: 'none',
                       fontSize: 11,
                       fontWeight: 'bold',
-                      color: '#888',
+                      color: '#8f9298',
                       cursor: 'pointer',
                       padding: '0 4px',
                     }}
                     title="Collapse Panel"
+                    onMouseEnter={e => e.currentTarget.style.color = '#ffffff'}
+                    onMouseLeave={e => e.currentTarget.style.color = '#8f9298'}
                   >
                     ▶
                   </button>
                 </div>
 
-                <div style={{ padding: 14, flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div className="custom-scrollbar" style={{ padding: 14, flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {selectedElement ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
 
                       {/* Element identity card */}
                       <div style={{
-                        padding: '10px 12px',
-                        background: '#ffffff',
-                        border: '1px solid #d5dbdb',
-                        borderRadius: 4,
-                        boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
+                        padding: '12px',
+                        background: '#1a1c20',
+                        border: '1px solid #2a2d34',
+                        borderRadius: 8,
                       }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: '#555555', marginBottom: 4 }}>Selected Element</div>
-                        <div style={{ fontWeight: 700, fontSize: 12, color: '#1a1a1a', wordBreak: 'break-all' }}>{selectedElement.type}</div>
-                        <div style={{ fontSize: 12, color: '#888', marginTop: 2, wordBreak: 'break-all' }}>{selectedElement.id}</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#8f9298', marginBottom: 6 }}>Selected Element</div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: '#ffffff', wordBreak: 'break-all' }}>{selectedElement.type}</div>
+                        <div style={{ fontSize: 11, color: '#8f9298', marginTop: 4, fontFamily: 'monospace', wordBreak: 'break-all' }}>{selectedElement.id}</div>
                       </div>
 
                       {/* Metrics table */}
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600, color: '#545b64', marginBottom: 7, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Diagnostics Metrics</div>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: '#8f9298', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8, paddingBottom: 6, borderBottom: '1px solid #1c1e22' }}>Diagnostics Metrics</div>
                         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
                           <tbody>
                             {Object.entries(selectedElement.metrics || {}).map(([key, value]) => (
-                              <tr key={key} style={{ borderBottom: '1px solid #f0f0f0' }}>
-                                <td style={{ padding: '6px 8px', fontWeight: 600, fontSize: 12, color: '#666', background: '#fafafa', width: '48%', borderRight: '1px solid #ebebeb' }}>
+                              <tr key={key} style={{ borderBottom: '1px solid #1c1e22' }}>
+                                <td style={{ padding: '8px', fontWeight: 600, fontSize: 11, color: '#8f9298', background: '#141517', width: '48%', borderRight: '1px solid #1c1e22' }}>
                                   {key.replace(/([A-Z])/g, ' $1').trim()}
                                 </td>
-                                <td style={{ padding: '6px 8px', color: '#1a1a1a', fontWeight: 600 }}>{value}</td>
+                                <td style={{ padding: '8px', color: '#ffffff', fontWeight: 600, fontFamily: typeof value === 'number' || !isNaN(Number(value)) || value.toString().includes('%') || value.toString().includes('Hz') ? 'monospace' : 'inherit' }}>{value}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -635,14 +523,13 @@ export default function Home() {
 
                       {/* AI analysis */}
                       <div style={{
-                        padding: '10px 12px',
-                        background: '#ffffff',
-                        border: '1px solid #d5dbdb',
-                        borderRadius: 4,
-                        boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
+                        padding: '12px',
+                        background: '#1a1c20',
+                        border: '1px solid #2a2d34',
+                        borderRadius: 8,
                       }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', color: '#555555', marginBottom: 6 }}>AI Diagnostic Analysis</div>
-                        <p style={{ fontSize: 12, lineHeight: 1.55, color: '#3d3d3d', margin: 0 }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#8f9298', marginBottom: 8 }}>AI Diagnostic Analysis</div>
+                        <p style={{ fontSize: 12, lineHeight: 1.6, color: '#e2e8f0', margin: 0 }}>
                           {selectedElement.type.includes('Node') && 'Stress concentrations detected under cyclic load triggers. Monitor displacement velocity channels continuously.'}
                           {selectedElement.type.includes('Member') && 'Corrosion profile suggests fatigue threshold margin at 78.4%. Standard validation lifecycle recommended.'}
                           {selectedElement.type.includes('Twin') && 'Anchor wireframe degradation factor simulated. Maintain continuous sensor feeds to optimize forecasting models.'}
@@ -656,17 +543,21 @@ export default function Home() {
 
                       <button
                         onClick={() => setSelectedElement(null)}
+                        className="inspector-clear-btn"
                         style={{
-                          padding: '8px 0',
+                          padding: '10px 0',
                           width: '100%',
-                          background: '#ffffff',
-                          border: '1px solid #545b64',
-                          borderRadius: 4,
+                          background: '#1a1c20',
+                          border: '1px solid #2a2d34',
+                          borderRadius: 8,
                           fontWeight: 700,
                           fontSize: 12,
-                          color: '#545b64',
+                          color: '#ffffff',
                           cursor: 'pointer',
+                          transition: 'background 0.15s, border-color 0.15s',
                         }}
+                        onMouseEnter={e => { e.currentTarget.style.background = '#22242a'; e.currentTarget.style.borderColor = '#4a90e2'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = '#1a1c20'; e.currentTarget.style.borderColor = '#2a2d34'; }}
                       >
                         Clear Selection (Esc)
                       </button>
@@ -676,35 +567,33 @@ export default function Home() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
 
                       <div style={{
-                        padding: '10px 12px',
-                        background: '#ffffff',
-                        border: '1px solid #d5dbdb',
-                        borderRadius: 4,
+                        padding: '12px',
+                        background: '#1a1c20',
+                        border: '1px solid #2a2d34',
+                        borderRadius: 8,
                         fontSize: 12,
-                        color: '#545b64',
-                        lineHeight: 1.5,
-                        boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
+                        color: '#8f9298',
+                        lineHeight: 1.6,
                       }}>
                         Select any structural member, node, transducer, or digital twin asset in the active workspace to load contextual telemetric data here.
                       </div>
 
                       {/* Mini Activity Feed */}
                       <div>
-                        <div style={{ fontSize: 12, fontWeight: 600, color: '#545b64', marginBottom: 8, paddingBottom: 5, borderBottom: '1px solid #eaeded' }}>Active Project Events</div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                        <div style={{ fontSize: 11, fontWeight: 700, color: '#8f9298', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10, paddingBottom: 6, borderBottom: '1px solid #1c1e22' }}>Active Project Events</div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                           {activities.slice(0, 4).map((act) => (
                             <div key={act.id} style={{
-                              padding: '8px 10px',
-                              border: '1px solid #d5dbdb',
-                              borderRadius: 4,
-                              background: '#ffffff',
-                              boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
+                              padding: '10px',
+                              border: '1px solid #2a2d34',
+                              borderRadius: 8,
+                              background: '#1a1c20',
                             }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-                                <span style={{ fontSize: 12, fontWeight: 700, color: '#555555', textTransform: 'uppercase' }}>{act.type}</span>
-                                <span style={{ fontSize: 12, color: '#aaa' }}>{new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
+                                <span style={{ fontSize: 11, fontWeight: 700, color: act.critical ? '#ff6b6b' : '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{act.type}</span>
+                                <span style={{ fontSize: 11, color: '#8f9298', fontFamily: 'monospace' }}>{new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                               </div>
-                              <p style={{ fontSize: 12, color: '#3d3d3d', margin: 0, lineHeight: 1.4 }}>{act.description}</p>
+                              <p style={{ fontSize: 12, color: '#e2e8f0', margin: 0, lineHeight: 1.5 }}>{act.description}</p>
                             </div>
                           ))}
                         </div>
@@ -712,19 +601,27 @@ export default function Home() {
 
                       {/* Shortcuts */}
                       <div style={{
-                        padding: '10px 12px',
-                        background: '#ffffff',
-                        border: '1px solid #d5dbdb',
-                        borderRadius: 4,
-                        boxShadow: '0 1px 1px 0 rgba(0,28,36,0.15)',
+                        padding: '12px',
+                        background: '#1a1c20',
+                        border: '1px solid #2a2d34',
+                        borderRadius: 8,
                         fontSize: 12,
-                        color: '#545b64',
+                        color: '#8f9298',
                         lineHeight: 1.8,
                       }}>
-                        <div style={{ fontWeight: 700, color: '#333', marginBottom: 5, fontSize: 12 }}>Sys Shortcuts</div>
-                        <div>Ctrl + K — AI Command Palette</div>
-                        <div>Esc — Clear inspection</div>
-                        <div>Sidebar — Workspace switch</div>
+                        <div style={{ fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6, fontSize: 11 }}>Sys Shortcuts</div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span>AI Palette:</span>
+                          <span style={{ fontFamily: 'monospace', color: '#ffffff' }}>Ctrl + K</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Clear Selection:</span>
+                          <span style={{ fontFamily: 'monospace', color: '#ffffff' }}>Esc</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                          <span>Workspace Switch:</span>
+                          <span style={{ fontFamily: 'monospace', color: '#ffffff' }}>Sidebar</span>
+                        </div>
                       </div>
 
                     </div>
@@ -740,26 +637,26 @@ export default function Home() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  paddingTop: 12,
+                  paddingTop: 16,
                   cursor: 'pointer',
-                  background: '#f8f9fa',
+                  background: '#111214',
                   transition: 'background 0.15s',
                   width: 48,
                 }}
-                onMouseEnter={e => e.currentTarget.style.background = '#eaeaea'}
-                onMouseLeave={e => e.currentTarget.style.background = '#f8f9fa'}
+                onMouseEnter={e => e.currentTarget.style.background = '#1a1c20'}
+                onMouseLeave={e => e.currentTarget.style.background = '#111214'}
                 title="Expand Inspector"
               >
-                <div style={{ fontSize: 12, fontWeight: 'bold', color: '#666', marginBottom: 20 }}>
+                <div style={{ fontSize: 12, fontWeight: 'bold', color: '#8f9298', marginBottom: 24 }}>
                   ◀
                 </div>
                 <div style={{
                   writingMode: 'vertical-rl',
                   transform: 'rotate(180deg)',
                   fontWeight: 700,
-                  fontSize: 12,
-                  color: '#555',
-                  letterSpacing: '0.12em',
+                  fontSize: 11,
+                  color: '#8f9298',
+                  letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}>

@@ -23,27 +23,27 @@ const IndiaMap = ({ onHotspotClick }) => (
   <svg viewBox="0 0 400 450" className="w-full h-full max-h-[260px] select-none">
     <path
       d="M150 40 L190 30 L210 60 L240 80 L250 110 L230 140 L240 180 L270 200 L250 250 L200 320 L160 380 L170 410 L160 430 L150 410 L140 370 L110 320 L90 280 L100 240 L120 220 L90 180 L80 140 L100 90 Z"
-      fill="#f5f5f5"
-      stroke="#b0b0b0"
-      strokeWidth="1.5"
+      fill="#f8fafc"
+      stroke="#cbd5e1"
+      strokeWidth="2"
     />
     {/* Mumbai */}
-    <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'MSRDC — Bandra-Worli Sea Link', loc: 'Mumbai, MH', score: 84, activeDeals: '₹4.5 Cr' })}>
-      <circle cx="108" cy="270" r="5" fill="#333333" />
-      <circle cx="108" cy="270" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
-      <text x="120" y="274" fill="#1a1a1a" fontSize="8.5" fontWeight="600">MUMBAI [BWSL]</text>
+    <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'MSRDC — Bandra-Worli Sea Link', loc: 'Mumbai, MH', score: 84, activeDeals: '₹4.5 Cr' })}>
+      <circle cx="108" cy="270" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
+      <circle cx="108" cy="270" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '108px 270px' }} />
+      <text x="120" y="274" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">MUMBAI [BWSL]</text>
     </g>
     {/* Chennai */}
-    <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'CMRL — Chennai Metro Line 3', loc: 'Chennai, TN', score: 92, activeDeals: '₹12.0 Cr' })}>
-      <circle cx="152" cy="370" r="5" fill="#333333" />
-      <circle cx="152" cy="370" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
-      <text x="164" y="374" fill="#1a1a1a" fontSize="8.5" fontWeight="600">CHENNAI [CMRL]</text>
+    <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'CMRL — Chennai Metro Line 3', loc: 'Chennai, TN', score: 92, activeDeals: '₹12.0 Cr' })}>
+      <circle cx="152" cy="370" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
+      <circle cx="152" cy="370" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '152px 370px' }} />
+      <text x="164" y="374" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">CHENNAI [CMRL]</text>
     </g>
     {/* Delhi */}
-    <g className="cursor-pointer" onClick={() => onHotspotClick({ name: 'NHAI — Highway Bridge-42', loc: 'New Delhi, DL', score: 78, activeDeals: '₹8.5 Cr' })}>
-      <circle cx="140" cy="120" r="5" fill="#333333" />
-      <circle cx="140" cy="120" r="9" fill="none" stroke="#333333" strokeWidth="1" strokeDasharray="3,2" opacity="0.5" />
-      <text x="152" y="124" fill="#1a1a1a" fontSize="8.5" fontWeight="600">DELHI [NHAI]</text>
+    <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'NHAI — Highway Bridge-42', loc: 'New Delhi, DL', score: 78, activeDeals: '₹8.5 Cr' })}>
+      <circle cx="140" cy="120" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
+      <circle cx="140" cy="120" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '140px 120px' }} />
+      <text x="152" y="124" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">DELHI [NHAI]</text>
     </g>
   </svg>
 );
@@ -51,16 +51,17 @@ const IndiaMap = ({ onHotspotClick }) => (
 /* ------------------------------------------------------------------ */
 /*  KPI card                                                            */
 /* ------------------------------------------------------------------ */
-function KpiCard({ label, value, badge, icon: Icon, iconBg, iconColor }) {
+function KpiCard({ label, value, badge }) {
   return (
     <div className="zoho-kpi-card">
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div className="flex-1 min-w-0 w-full">
         <div className="zoho-kpi-label">{label}</div>
         <div className="zoho-kpi-value">{value}</div>
-        {badge && <div className="zoho-kpi-badge">{badge}</div>}
-      </div>
-      <div className="zoho-kpi-icon">
-        {Icon && <Icon size={17} color="#444" />}
+        {badge && (
+          <span className="zoho-kpi-badge">
+            {badge}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -69,10 +70,9 @@ function KpiCard({ label, value, badge, icon: Icon, iconBg, iconColor }) {
 /* ------------------------------------------------------------------ */
 /*  Section card header                                                 */
 /* ------------------------------------------------------------------ */
-function CardHeader({ icon: Icon, label, iconColor }) {
+function CardHeader({ label }) {
   return (
     <div className="zoho-card-header">
-      {Icon && <Icon size={14} color={iconColor || '#555'} />}
       <span>{label}</span>
     </div>
   );
@@ -162,155 +162,152 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
   const healthColor = (score) => '#1a1a1a';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <div className="flex flex-col gap-6">
 
       {/* ── Row 1: KPI Cards ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14 }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <KpiCard
           label="Active Asset Owners"
           value={accounts.length}
           badge="3 Portfolios"
           icon={Gauge}
-          iconBg="#f0f6ff"
-          iconColor="#0d6efd"
+          iconBg="#eff6ff"
+          iconColor="#3b82f6"
         />
         <KpiCard
           label="Active Sensor Alerts"
           value={criticalAlarmsCount}
-          badge="Real-Time"
+          badge={criticalAlarmsCount > 0 ? "Critical Alerts Active" : "No Critical Anomalies"}
           icon={ShieldAlert}
-          iconBg={criticalAlarmsCount > 0 ? '#fdecea' : '#f0fdf4'}
-          iconColor={criticalAlarmsCount > 0 ? '#c0392b' : '#217346'}
+          iconBg={criticalAlarmsCount > 0 ? '#fef2f2' : '#f0fdf4'}
+          iconColor={criticalAlarmsCount > 0 ? '#ef4444' : '#10b981'}
         />
         <KpiCard
           label="CRM Pipeline Value"
           value={`₹${(totalDealValue / 10000000).toFixed(2)} Cr`}
-          badge={`${deals.length} Contracts`}
+          badge={`${deals.length} Active Contracts`}
           icon={IndianRupee}
           iconBg="#f0fdf4"
-          iconColor="#217346"
+          iconColor="#10b981"
         />
         <KpiCard
           label="AI Diagnostic Trust"
           value="94.8%"
           badge="Calibrated"
           icon={TrendingUp}
-          iconBg="#f0f6ff"
-          iconColor="#0d6efd"
+          iconBg="#eff6ff"
+          iconColor="#2563eb"
         />
       </div>
 
       {/* ── Row 2: Map | Chart | Log ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
         {/* Regional map */}
-        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
-          <CardHeader icon={MapPin} label="Regional Hotspot Index" iconColor="#444" />
-          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 84px)', overflow: 'hidden' }}>
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div className="zoho-card flex flex-col min-h-[380px]">
+          <CardHeader icon={MapPin} label="Regional Hotspot Index" iconColor="#2563eb" />
+          <div className="zoho-card-body flex-1 flex flex-col justify-between overflow-hidden">
+            <div className="flex-1 flex justify-center items-center py-2">
               <IndiaMap onHotspotClick={handleHotspotClick} />
             </div>
           </div>
-          <div className="zoho-card-footer" style={{ height: 42, overflow: 'hidden' }}>
+          <div className="zoho-card-footer px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
             {selectedAsset ? (
-              <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <div style={{ fontWeight: 700, color: '#1a1a1a', fontSize: '12px', lineHeight: 1.1 }}>{selectedAsset.name}</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#555', marginTop: 1 }}>
-                  <span>{selectedAsset.loc}</span>
-                  <span style={{ fontWeight: 700, color: '#333' }}>Index: {selectedAsset.score}%</span>
+              <div className="w-full flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="font-bold text-slate-800 text-xs">{selectedAsset.name}</span>
+                  <span className="text-[11px] text-slate-500 mt-0.5">{selectedAsset.loc}</span>
                 </div>
+                <span className="text-xs font-bold text-orange-500 bg-orange-50 border border-orange-100 px-2 py-0.5 rounded-full">
+                  Index: {selectedAsset.score}%
+                </span>
               </div>
             ) : (
-              <span style={{ color: '#777', fontSize: '12px' }}>Click highlighted hotspots to view details</span>
+              <span className="text-xs text-slate-500 flex items-center gap-1.5 font-medium">
+                <span className="h-2 w-2 rounded-full bg-orange-400 animate-pulse"></span>
+                Click highlighted hotspots to view details
+              </span>
             )}
           </div>
         </div>
 
         {/* Acoustic telemetry chart */}
-        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
-          <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#444" />
-          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 84px)', gap: 10, overflow: 'hidden' }}>
-            <div style={{ fontSize: 12, color: '#888', marginBottom: 4 }}>
+        <div className="zoho-card flex flex-col min-h-[380px]">
+          <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#2563eb" />
+          <div className="zoho-card-body flex-1 flex flex-col gap-3 overflow-hidden">
+            <div className="text-xs font-semibold text-slate-400">
               Channel Feed: Pillar-B12 Strain Transducers
             </div>
-            <div style={{ flex: 1, minHeight: 200 }}>
+            <div className="flex-1 min-h-[220px]">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={sensorStream} margin={{ top: 5, right: 10, left: -15, bottom: 0 }}>
+                <AreaChart data={sensorStream} margin={{ top: 5, right: 10, left: -25, bottom: 0 }}>
                   <defs>
                     <linearGradient id="vibGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%"  stopColor="#777777" stopOpacity={0.15} />
-                      <stop offset="95%" stopColor="#777777" stopOpacity={0.01} />
+                      <stop offset="5%"  stopColor="#2563eb" stopOpacity={0.2} />
+                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e8e8e8" />
-                  <XAxis dataKey="time" tick={{ fontSize: 12, fill: '#888' }} tickLine={false} axisLine={{ stroke: '#ccc' }} />
-                  <YAxis tick={{ fontSize: 12, fill: '#888' }} tickLine={false} axisLine={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                  <XAxis dataKey="time" tick={{ fontSize: 10, fill: '#64748b' }} tickLine={false} axisLine={false} />
+                  <YAxis tick={{ fontSize: 10, fill: '#64748b' }} tickLine={false} axisLine={false} />
                   <Tooltip
-                    contentStyle={{
-                      background: '#fff',
-                      border: '1px solid #b0b0b0',
-                      borderRadius: 2,
-                      fontSize: 12,
-                      boxShadow: '1px 2px 5px rgba(0,0,0,0.15)',
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        return (
+                          <div className="bg-slate-900 text-white p-3 rounded-xl shadow-xl border border-slate-800 text-xs flex flex-col gap-1">
+                            <span className="font-mono text-slate-400">{payload[0].payload.time}</span>
+                            <span className="font-bold text-orange-400">Vibration: {payload[0].value} Hz</span>
+                          </div>
+                        );
+                      }
+                      return null;
                     }}
-                    itemStyle={{ color: '#333' }}
                   />
-                  <Area type="monotone" dataKey="vibration" stroke="#555555" strokeWidth={1.8} fill="url(#vibGrad)" />
+                  <Area type="monotone" dataKey="vibration" stroke="#2563eb" strokeWidth={2.5} fill="url(#vibGrad)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="zoho-card-footer">
-            <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-              <Activity size={12} color="#555" /> Sensor Link Matrix On-Site
+          <div className="zoho-card-footer px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+            <span className="text-xs text-slate-600 flex items-center gap-1.5 font-medium">
+              <Activity size={13} className="text-blue-500 animate-pulse" /> Sensor Link Matrix On-Site
             </span>
-            <span style={{
-              background: 'linear-gradient(to bottom, #eee, #ddd)',
-              color: '#333',
-              border: '1px solid #b0b0b0',
-              borderRadius: 2,
-              padding: '2px 7px',
-              fontSize: 12,
-              fontWeight: 700,
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7)',
-            }}>SECURE</span>
+            <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider scale-90">
+              SECURE
+            </span>
           </div>
         </div>
 
         {/* AI Diagnostics log */}
-        <div className="zoho-card" style={{ minHeight: 360, display: 'flex', flexDirection: 'column' }}>
-          <CardHeader icon={ShieldCheck} label="AI Diagnostics HUD Log" iconColor="#444" />
-          <div className="zoho-card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', height: 'calc(100% - 42px)', overflowY: 'auto' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {activities.map((act) => (
-                <div
-                  key={act.id}
-                  style={{
-                    padding: '8px 10px',
-                    border: act.critical ? 'none' : '1px solid #d8d8d8',
-                    borderRadius: 2,
-                    background: act.critical
-                      ? 'repeating-linear-gradient(45deg,#3d3d3d,#3d3d3d 6px,#4a4a4a 6px,#4a4a4a 12px)'
-                      : 'linear-gradient(to bottom, #fafafa, #f3f3f3)',
-                    color: act.critical ? '#fff' : '#2d2d2d',
-                    boxShadow: act.critical ? 'none' : 'inset 0 1px 0 rgba(255,255,255,0.8)',
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                    <span style={{
-                      fontSize: 12,
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em',
-                      color: act.critical ? '#ffd580' : '#555555',
-                    }}>{act.type}</span>
-                    <span style={{ fontSize: 12, color: act.critical ? '#ccc' : '#999' }}>
-                      {new Date(act.timestamp).toLocaleTimeString()}
-                    </span>
+        <div className="zoho-card flex flex-col min-h-[380px]">
+          <CardHeader icon={ShieldCheck} label="AI Diagnostics HUD Log" iconColor="#2563eb" />
+          <div className="zoho-card-body flex-1 flex flex-col gap-3 overflow-y-auto max-h-[320px]">
+            <div className="flex flex-col gap-3">
+              {activities.map((act) => {
+                const isCritical = act.critical;
+                return (
+                  <div
+                    key={act.id}
+                    className={`p-3.5 rounded-xl border transition-all duration-200 ${
+                      isCritical
+                        ? 'bg-rose-50/70 border-rose-100 text-rose-800 shadow-[0_4px_12px_rgba(244,63,94,0.02)]'
+                        : act.type.includes('DRONE')
+                        ? 'bg-blue-50/70 border-blue-100 text-blue-800'
+                        : 'bg-emerald-50/70 border-emerald-100 text-emerald-800'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <span className={`text-[11px] font-bold tracking-wider uppercase ${
+                        isCritical ? 'text-rose-600' : act.type.includes('DRONE') ? 'text-blue-600' : 'text-emerald-600'
+                      }`}>{act.type}</span>
+                      <span className="text-[11px] font-mono opacity-60">
+                        {new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                      </span>
+                    </div>
+                    <p className="text-xs leading-relaxed font-semibold opacity-90">{act.description}</p>
                   </div>
-                  <p style={{ fontSize: 12, lineHeight: 1.5, margin: 0 }}>{act.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -318,57 +315,50 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
       </div>
 
       {/* ── Row 3: Deal table + Create form ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-3.5">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
 
         {/* Pipeline contract table */}
-        <div className="zoho-card">
-          <CardHeader icon={FileSpreadsheet} label="Active High-Value Maintenance Pipeline Contracts" iconColor="#217346" />
-          <div className="zoho-card-body" style={{ padding: 0 }}>
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+        <div className="zoho-card flex flex-col">
+          <CardHeader icon={FileSpreadsheet} label="Active High-Value Maintenance Pipeline Contracts" iconColor="#10b981" />
+          <div className="zoho-card-body p-0 flex-1">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
                 <thead>
-                  <tr>
+                  <tr className="border-b border-slate-100">
                     {['Project Name', 'Account Entity', 'Contract Value', 'Pipeline Stage', 'Safety Index'].map(h => (
-                      <th key={h} style={{
-                        padding: '8px 12px',
-                        background: '#f4f4f5',
-                        borderBottom: '1px solid #e0e0e0',
-                        fontWeight: 600,
-                        fontSize: 12,
-                        color: '#555',
-                        textAlign: 'left',
-                        whiteSpace: 'nowrap',
-                      }}>{h}</th>
+                      <th key={h} className="px-5 py-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-left bg-slate-50">{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {deals.map((deal) => {
                     const acc = accounts.find(a => a.id === deal.accountId);
-                    const { bg, color, border } = stageBadge(deal.stage);
+                    const getStageStyles = (stage) => {
+                      const map = {
+                        Proposal: 'bg-amber-50 text-amber-600 border border-amber-200',
+                        Negotiation: 'bg-blue-50 text-blue-600 border border-blue-200',
+                        'Due Diligence': 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+                        Closed: 'bg-slate-50 text-slate-600 border border-slate-200',
+                      };
+                      return map[stage] || 'bg-slate-50 text-slate-600 border border-slate-200';
+                    };
+                    const getHealthColor = (score) => {
+                      if (score >= 90) return 'text-emerald-600 bg-emerald-50 border-emerald-100';
+                      if (score >= 80) return 'text-amber-600 bg-amber-50 border-amber-100';
+                      return 'text-rose-600 bg-rose-50 border-rose-100';
+                    };
                     return (
-                      <tr key={deal.id} style={{ borderBottom: '1px solid #eeeeee', background: '#fff' }}
-                        onMouseEnter={e => e.currentTarget.style.background = '#f5f5f5'}
-                        onMouseLeave={e => e.currentTarget.style.background = '#fff'}
-                      >
-                        <td style={{ padding: '8px 12px', fontWeight: 600, color: '#1a1a1a' }}>{deal.title}</td>
-                        <td style={{ padding: '8px 12px', color: '#555' }}>{acc ? acc.name : 'Unknown Entity'}</td>
-                        <td style={{ padding: '8px 12px', fontWeight: 700, color: '#217346' }}>₹{(deal.amount / 10000000).toFixed(2)} Cr</td>
-                        <td style={{ padding: '8px 12px' }}>
-                          <span style={{
-                            display: 'inline-block',
-                            padding: '2px 7px',
-                            borderRadius: 2,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            background: 'linear-gradient(to bottom, #f5f5f5, #e5e5e5)',
-                            color: '#333',
-                            border: '1px solid #c0c0c0',
-                            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8)',
-                          }}>{deal.stage}</span>
+                      <tr key={deal.id} className="border-b border-slate-100 hover:bg-orange-50/20 transition-colors duration-150">
+                        <td className="px-5 py-4 font-bold text-slate-800">{deal.title}</td>
+                        <td className="px-5 py-4 text-slate-500 font-semibold">{acc ? acc.name : 'Unknown Entity'}</td>
+                        <td className="px-5 py-4 font-bold text-blue-600">₹{(deal.amount / 10000000).toFixed(2)} Cr</td>
+                        <td className="px-5 py-4">
+                          <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${getStageStyles(deal.stage)}`}>
+                            {deal.stage}
+                          </span>
                         </td>
-                        <td style={{ padding: '8px 12px' }}>
-                          <span style={{ fontWeight: 700, color: healthColor(deal.healthScore) }}>
+                        <td className="px-5 py-4 font-mono font-bold">
+                          <span className={`inline-block px-2.5 py-0.5 rounded-full border text-[11px] ${getHealthColor(deal.healthScore)}`}>
                             {deal.healthScore}%
                           </span>
                         </td>
@@ -382,13 +372,13 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
         </div>
 
         {/* Create form */}
-        <div className="zoho-card">
-          <CardHeader icon={Plus} label="Create Maintenance Contract" iconColor="#0d6efd" />
-          <div className="zoho-card-body">
-            <form onSubmit={handleCreateDeal} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div className="zoho-card flex flex-col">
+          <CardHeader icon={Plus} label="Create Maintenance Contract" iconColor="#2563eb" />
+          <div className="zoho-card-body p-6 flex flex-col h-full justify-between">
+            <form onSubmit={handleCreateDeal} className="flex flex-col gap-4">
 
               <div>
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">
                   Contract Title
                 </label>
                 <input
@@ -396,14 +386,14 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                   placeholder="e.g. Bandra Piling Repairs..."
                   value={newDealTitle}
                   onChange={e => setNewDealTitle(e.target.value)}
-                  style={{ width: '100%' }}
+                  className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
                   required
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">
                     Amount (₹)
                   </label>
                   <input
@@ -411,18 +401,18 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                     placeholder="e.g. 5000000"
                     value={newDealAmount}
                     onChange={e => setNewDealAmount(e.target.value)}
-                    style={{ width: '100%' }}
+                    className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
                     required
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: '#555', marginBottom: 4 }}>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide mb-1.5">
                     Asset Owner
                   </label>
                   <select
                     value={newDealAccount}
                     onChange={e => setNewDealAccount(e.target.value)}
-                    style={{ width: '100%' }}
+                    className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
                   >
                     {accounts.map(acc => (
                       <option key={acc.id} value={acc.id}>{acc.name.split(' ')[0]}</option>
@@ -433,30 +423,14 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
               <button
                 type="submit"
-                style={{
-                  width: '100%',
-                  padding: '7px 0',
-                  background: 'linear-gradient(to bottom, #f0f0f0, #d8d8d8)',
-                  color: '#1a1a1a',
-                  border: '1px solid #a0a0a0',
-                  borderRadius: 2,
-                  fontWeight: 700,
-                  fontSize: 12,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 5,
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), 0 1px 2px rgba(0,0,0,0.10)',
-                  textShadow: '0 1px 0 rgba(255,255,255,0.7)',
-                }}
+                className="w-full mt-2 font-bold py-2.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 border-none"
               >
-                <Plus size={14} /> Enforce Contract Entry
+                <Plus size={16} /> Enforce Contract Entry
               </button>
 
             </form>
 
-            <p style={{ marginTop: 14, paddingTop: 10, borderTop: '1px dashed #e0e0e0', fontSize: 12, color: '#aaa', lineHeight: 1.5 }}>
+            <p className="mt-4 pt-4 border-t border-dashed border-slate-100 text-xs text-slate-400 leading-relaxed font-semibold">
               Notice: Strict CRM governance constraints enforced (SSOT). All creations are cascading and immutable.
             </p>
           </div>

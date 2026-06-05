@@ -7,8 +7,8 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
   return (
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
-        {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
+        {Icon && <Icon className="h-4 w-4 text-orange-500 flex-shrink-0" />}
+        <span className="font-semibold text-slate-700 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">
@@ -16,7 +16,7 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
       </div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[12px] uppercase tracking-normal">{footerText}</span>
+          <span className="text-slate-400 font-semibold text-[11px] uppercase tracking-normal">{footerText}</span>
         </div>
       )}
     </div>
@@ -63,9 +63,9 @@ const NDT_RESULTS = {
 };
 
 const VERDICT_STYLE = {
-  GOOD:     'border-gray-300 bg-white text-gray-800',
-  WARNING:  'border-border-default bg-white text-black',
-  CRITICAL: 'border-border-default bg-black text-white animate-pulse',
+  GOOD:     'border-emerald-200 bg-emerald-50 text-emerald-700',
+  WARNING:  'border-amber-200 bg-amber-50 text-amber-700',
+  CRITICAL: 'border-red-200 bg-red-50 text-red-700 animate-pulse',
 };
 
 export default function NDTLab({ selectedElement, setSelectedElement }) {
@@ -152,25 +152,25 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
         <div className="xl:col-span-1 space-y-4">
           <LevelCard icon={Cpu} title="Test Configuration" footerText={`Standard: ${mode.standard}`}>
             <div className="space-y-2 text-[12px]">
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
-                <p className="text-[12px] text-gray-500 uppercase font-bold">Full Test Name</p>
-                <p className="font-bold text-gray-800 mt-0.5">{mode.fullLabel}</p>
+              <div className="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Full Test Name</p>
+                <p className="font-semibold text-slate-700 mt-1">{mode.fullLabel}</p>
               </div>
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
-                <p className="text-[12px] text-gray-500 uppercase font-bold">Compliance Standard</p>
-                <p className="font-bold text-gray-800 mt-0.5">{mode.standard}</p>
+              <div className="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Compliance Standard</p>
+                <p className="font-semibold text-slate-700 mt-1">{mode.standard}</p>
               </div>
-              <div className="p-2 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
-                <p className="text-[12px] text-gray-500 uppercase font-bold">Scan Status</p>
+              <div className="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Scan Status</p>
                 {isScanning ? (
-                  <div className="mt-1 space-y-1">
-                    <div className="flex justify-between text-[12px] font-bold"><span className="animate-pulse">SCANNING...</span><span>{scanProgress}%</span></div>
-                    <div className="w-full h-1.5 bg-gray-100 border border-[#d4d4d4] rounded-[8px] overflow-hidden">
-                      <div style={{ width: `${scanProgress}%` }} className="h-full bg-black transition-all" />
+                  <div className="mt-2 space-y-1.5">
+                    <div className="flex justify-between text-[11px] font-bold text-orange-600"><span className="animate-pulse">SCANNING...</span><span>{scanProgress}%</span></div>
+                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div style={{ width: `${scanProgress}%` }} className="h-full bg-gradient-to-r from-orange-400 to-amber-500 transition-all" />
                     </div>
                   </div>
                 ) : (
-                  <p className="font-bold text-gray-700 mt-0.5">STANDBY — {scanProgress === 100 ? 'SCAN COMPLETE' : 'READY'}</p>
+                  <p className="font-semibold text-slate-600 mt-1">{scanProgress === 100 ? '✓ SCAN COMPLETE' : 'STANDBY — READY'}</p>
                 )}
               </div>
               <button onClick={triggerScan} disabled={isScanning} className="w-full btn-skeuo-dark text-[12px] uppercase tracking-wider mt-1">
@@ -188,9 +188,9 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                 ['Signal Quality', '98.4%'],
                 ['Scan Points', '5 of 5'],
               ].map(([k, v]) => (
-                <div key={k} className="flex justify-between border-b border-gray-200 pb-1">
-                  <span className="text-gray-500 uppercase">{k}</span>
-                  <span className="font-bold">{v}</span>
+                <div key={k} className="flex justify-between border-b border-slate-100 pb-1.5">
+                  <span className="text-slate-400 uppercase text-[10px] tracking-wider">{k}</span>
+                  <span className="font-semibold text-slate-700">{v}</span>
                 </div>
               ))}
             </div>
@@ -204,7 +204,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             title={`${mode.fullLabel} — Scan Viewport`}
             footerText="Hover over viewport to position scan probe"
             headerAction={
-              <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${VERDICT_STYLE[result.verdict]}`}>
+              <span className={`text-[11px] px-3 py-1 border rounded-full font-bold uppercase tracking-wider ${VERDICT_STYLE[result.verdict]}`}>
                 {result.verdict}
               </span>
             }
@@ -215,7 +215,7 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
               {waveformModes.includes(activeMode) && (
                 <div className="h-[240px] relative">
                   <canvas ref={canvasRef} width={600} height={240} className="w-full h-full block" />
-                  <div className="absolute pointer-events-none border border-border-default px-1.5 py-0.5 bg-white font-bold text-[12px]" style={{ left: mousePos.x + 8, top: Math.min(mousePos.y - 12, 200) }}>
+                  <div className="absolute pointer-events-none rounded-lg border border-orange-200 bg-orange-50 px-2 py-1 font-bold text-[10px] text-orange-600 shadow-sm" style={{ left: mousePos.x + 8, top: Math.min(mousePos.y - 12, 200) }}>
                     {mode.label.toUpperCase()}-PROBE
                   </div>
                 </div>
@@ -288,10 +288,10 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                       const h = Math.round((Math.abs(numVal) / maxVal) * 130);
                       const isCrit = i === 2 || i === 4;
                       return (
-                        <div key={i} className="flex flex-col items-center gap-1 cursor-pointer" onClick={() => setSelectedElement({ type: `NDT ${mode.fullLabel}`, id: `Point P${i+1}`, metrics: { TestMethod: mode.fullLabel, Standard: mode.standard, Reading: r, ScanPoint: `P${i+1}`, Verdict: isCrit ? result.verdict : 'NOMINAL' } })}>
-                          <span className="text-[12px] font-bold text-gray-600">{r}</span>
-                          <div style={{ height: `${h}px`, width: '28px' }} className={`${isCrit ? 'bg-black' : 'bg-gray-400'} border border-gray-500`} />
-                          <span className="text-[12px] font-bold text-gray-700">P{i+1}</span>
+                        <div key={i} className="flex flex-col items-center gap-1 cursor-pointer group" onClick={() => setSelectedElement({ type: `NDT ${mode.fullLabel}`, id: `Point P${i+1}`, metrics: { TestMethod: mode.fullLabel, Standard: mode.standard, Reading: r, ScanPoint: `P${i+1}`, Verdict: isCrit ? result.verdict : 'NOMINAL' } })}>
+                          <span className={`text-[11px] font-semibold ${isCrit ? 'text-orange-600' : 'text-slate-500'}`}>{r}</span>
+                          <div style={{ height: `${h}px`, width: '28px' }} className={`rounded-t-sm transition-all ${isCrit ? 'bg-gradient-to-t from-orange-600 to-amber-400' : 'bg-slate-300 group-hover:bg-slate-400'}`} />
+                          <span className={`text-[11px] font-bold ${isCrit ? 'text-orange-700' : 'text-slate-600'}`}>P{i+1}</span>
                         </div>
                       );
                     })}
@@ -301,9 +301,9 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
             </div>
 
             {/* Verdict banner */}
-            <div className={`p-2 border rounded-[8px]-[8px] text-[12px] font-bold uppercase leading-relaxed ${VERDICT_STYLE[result.verdict]}`}>
-              <AlertTriangle className="h-3 w-3 inline mr-1" />
-              {result.note}
+            <div className={`p-3 rounded-xl border text-[12px] font-medium leading-relaxed flex items-start gap-2 ${VERDICT_STYLE[result.verdict]}`}>
+              <AlertTriangle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+              <span>{result.note}</span>
             </div>
           </LevelCard>
 
@@ -320,11 +320,15 @@ export default function NDTLab({ selectedElement, setSelectedElement }) {
                   const isCrit = (i === 2 || i === 4) && result.verdict !== 'GOOD';
                   return (
                     <tr key={i}>
-                      <td>P{i+1}</td>
-                      <td className="font-bold">{r}</td>
-                      <td className="text-gray-500">{mode.standard}</td>
+                      <td className="font-mono font-semibold">P{i+1}</td>
+                      <td className="font-bold text-slate-800">{r}</td>
+                      <td className="text-slate-400 font-mono">{mode.standard}</td>
                       <td>
-                        <span className={`px-1 py-0.5 text-[12px] font-black border rounded-[8px]-[8px] uppercase ${isCrit ? 'bg-black text-white border-border-default' : 'border-[#d4d4d4] text-gray-600'}`}>
+                        <span className={`px-2.5 py-0.5 text-[11px] font-bold border rounded-full uppercase tracking-wider ${
+                          isCrit
+                            ? result.verdict === 'CRITICAL' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-amber-50 text-amber-600 border-amber-200'
+                            : 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                        }`}>
                           {isCrit ? result.verdict : 'PASS'}
                         </span>
                       </td>

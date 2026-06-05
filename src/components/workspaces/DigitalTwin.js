@@ -447,10 +447,10 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             <button
               key={layer}
               onClick={() => setActiveLayer(layer)}
-              className={`px-2.5 py-1 border text-[12px] uppercase font-bold transition-colors ${
-                activeLayer === layer 
-                  ? 'bg-black text-white border-border-default' 
-                  : 'bg-white text-black border-border-default hover:bg-gray-100'
+              className={`px-3 py-1.5 border text-[11px] uppercase font-bold rounded-full transition-all shadow-sm backdrop-blur-sm ${
+                activeLayer === layer
+                  ? 'bg-orange-500 text-white border-orange-500 shadow-orange-200'
+                  : 'bg-white/90 text-slate-600 border-slate-200 hover:border-orange-300 hover:text-orange-600'
               }`}
             >
               {layer}
@@ -460,30 +460,35 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Selected Sensor Floating Inspector panel */}
         {selectedNode && (
-          <div className="absolute top-3 right-3 z-20 w-60 p-3 border border-border-default bg-white shadow-sm animate-in slide-in-from-right-2">
-            <div className="flex items-center justify-between border-b border-border-default pb-1 mb-2 font-bold uppercase text-[12px]">
-              <span className="flex items-center gap-1"><Cpu className="h-3 w-3" /> Telemetry</span>
-              <button onClick={() => setSelectedNode(null)} className="font-bold text-xs">&times;</button>
+          <div className="absolute top-3 right-3 z-20 w-64 p-4 rounded-2xl border border-slate-200 bg-white/95 shadow-xl backdrop-blur-sm">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
+              <span className="flex items-center gap-1.5 font-bold uppercase text-[11px] text-slate-600 tracking-wider">
+                <Cpu className="h-3.5 w-3.5 text-orange-500" /> Telemetry
+              </span>
+              <button onClick={() => setSelectedNode(null)} className="text-slate-300 hover:text-slate-500 font-bold text-sm transition-colors">&times;</button>
             </div>
-            <p className="font-bold text-[12px] uppercase border border-border-default p-1 bg-gray-50 mb-2">{selectedNode.name}</p>
-            <div className="space-y-1 text-[12px]">
-              <div className="flex justify-between">
-                <span>STRESS LOAD:</span>
-                <span className="font-bold">{selectedNode.stress}</span>
+            <p className="font-bold text-[12px] uppercase px-3 py-2 rounded-xl bg-orange-50 border border-orange-100 text-orange-700 mb-3">{selectedNode.name}</p>
+            <div className="space-y-2 text-[12px]">
+              <div className="flex justify-between items-center">
+                <span className="text-slate-400 uppercase tracking-wider text-[10px]">STRESS LOAD</span>
+                <span className="font-bold text-slate-700">{selectedNode.stress}</span>
               </div>
-              <div className="flex justify-between">
-                <span>VIBRATION:</span>
-                <span>{selectedNode.acceleration}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-slate-400 uppercase tracking-wider text-[10px]">VIBRATION</span>
+                <span className="text-slate-600">{selectedNode.acceleration}</span>
               </div>
-              <div className="flex justify-between">
-                <span>STATUS:</span>
-                <span className="font-bold border border-border-default px-1 text-[12px]">{selectedNode.status}</span>
+              <div className="flex justify-between items-center">
+                <span className="text-slate-400 uppercase tracking-wider text-[10px]">STATUS</span>
+                <span className={`font-bold px-2 py-0.5 rounded-full text-[10px] border ${
+                  selectedNode.status === 'FATIGUE DETECTED'
+                    ? 'bg-red-50 text-red-600 border-red-200'
+                    : 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                }`}>{selectedNode.status}</span>
               </div>
             </div>
-            
             <button 
               onClick={triggerDiagnosticTicket}
-              className="w-full mt-3 py-1 bg-black text-white hover:bg-gray-800 text-[12px] uppercase font-bold text-center border border-border-default"
+              className="w-full mt-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[11px] uppercase font-bold text-center shadow-sm hover:shadow-orange-200 hover:from-orange-600 hover:to-amber-600 transition-all"
             >
               Log Failure Ticket
             </button>
@@ -491,38 +496,38 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
         )}
 
         {/* HUD coordinates watermark */}
-        <div className="absolute bottom-3 left-3 z-20 text-[12px] text-gray-500 space-y-0.5 pointer-events-none">
+        <div className="absolute bottom-3 left-3 z-20 text-[11px] text-slate-400 space-y-0.5 pointer-events-none font-mono">
           <div>MODEL SYSTEM: BRIDGE-SUSPENSION-STRUCT-A101</div>
           <div>SIMULATION CLOCK: {new Date().toISOString().slice(11, 19)}</div>
-          <div>TIME HORIZON: {timeStep}</div>
+          <div className="text-orange-400 font-semibold">TIME HORIZON: {timeStep}</div>
         </div>
 
       </div>
 
       {/* Physics Engine & Degradation Timetravel control deck */}
-      <div className="zoho-card-body grid grid-cols-1 md:grid-cols-3 gap-6" style={{ background: '#f8f8f8' }}>
+      <div className="zoho-card-body grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* Degradation Timeline travel */}
         <div className="space-y-2">
-          <p className="font-bold uppercase tracking-wider text-[12px] flex items-center gap-1.5">
-            <Clock className="h-4 w-4" /> AI Timeline Travel (Degradation)
+          <p className="font-semibold uppercase tracking-wider text-[11px] text-slate-500 flex items-center gap-1.5">
+            <Clock className="h-4 w-4 text-orange-500" /> AI Timeline Travel (Degradation)
           </p>
-          <div className="flex border border-border-default bg-white rounded-[8px] overflow-hidden">
+          <div className="flex border border-slate-200 bg-white rounded-xl overflow-hidden shadow-sm">
             {['Present', '+6 Months', '+1 Year', '+5 Years', '+20 Years'].map((step) => (
               <button
                 key={step}
                 onClick={() => setTimeStep(step)}
-                className={`flex-1 py-1 text-[12px] font-bold border-r last:border-r-0 border-border-default transition-colors ${
-                  timeStep === step 
-                    ? 'bg-black text-white' 
-                    : 'bg-white text-black hover:bg-gray-100'
+                className={`flex-1 py-1.5 text-[11px] font-bold border-r last:border-r-0 border-slate-100 transition-colors ${
+                  timeStep === step
+                    ? 'bg-orange-500 text-white'
+                    : 'bg-white text-slate-500 hover:bg-orange-50 hover:text-orange-600'
                 }`}
               >
                 {step}
               </button>
             ))}
           </div>
-          <p className="text-[12px] text-gray-500 font-mono italic">
+          <p className="text-[11px] text-slate-400 font-mono italic">
             {timeStep === 'Present' && '// Geometry fully aligned with blueprint spec.'}
             {timeStep === '+6 Months' && '// Tension loss predicted. Sag: -0.3m.'}
             {timeStep === '+1 Year' && '// Localized microscopic cracking modeled near Anchor 103.'}
@@ -533,9 +538,9 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Dynamic Forces */}
         <div className="space-y-2">
-          <div className="flex justify-between font-bold text-[12px] uppercase">
-            <span className="flex items-center gap-1"><Wind className="h-3.5 w-3.5" /> Wind Load Simulation</span>
-            <span>{windSpeed} km/h</span>
+          <div className="flex justify-between font-semibold text-[11px] uppercase text-slate-500">
+            <span className="flex items-center gap-1.5"><Wind className="h-3.5 w-3.5 text-orange-500" /> Wind Load Simulation</span>
+            <span className="text-orange-600 font-bold">{windSpeed} km/h</span>
           </div>
           <input
             type="range"
@@ -543,9 +548,9 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             max="150"
             value={windSpeed}
             onChange={(e) => setWindSpeed(Number(e.target.value))}
-            className="w-full accent-black cursor-ew-resize"
+            className="w-full accent-orange-500 cursor-ew-resize"
           />
-          <div className="flex justify-between text-[12px] text-gray-500">
+          <div className="flex justify-between text-[11px] text-slate-400">
             <span>0 km/h</span>
             <span>150 km/h</span>
           </div>
@@ -553,9 +558,9 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
 
         {/* Seismic Magnitude */}
         <div className="space-y-2">
-          <div className="flex justify-between font-bold text-[12px] uppercase">
-            <span className="flex items-center gap-1"><Activity className="h-3.5 w-3.5" /> Seismic Coefficient</span>
-            <span>{seismicActivity.toFixed(1)} Richter</span>
+          <div className="flex justify-between font-semibold text-[11px] uppercase text-slate-500">
+            <span className="flex items-center gap-1.5"><Activity className="h-3.5 w-3.5 text-orange-500" /> Seismic Coefficient</span>
+            <span className="text-orange-600 font-bold">{seismicActivity.toFixed(1)} Richter</span>
           </div>
           <input
             type="range"
@@ -564,9 +569,9 @@ export default function DigitalTwin({ selectedElement, setSelectedElement }) {
             step="0.5"
             value={seismicActivity}
             onChange={(e) => setSeismicActivity(Number(e.target.value))}
-            className="w-full accent-black cursor-ew-resize"
+            className="w-full accent-orange-500 cursor-ew-resize"
           />
-          <div className="flex justify-between text-[12px] text-gray-500">
+          <div className="flex justify-between text-[11px] text-slate-400">
             <span>0.0 Magnitude</span>
             <span>7.0 Richter Scale</span>
           </div>

@@ -6,14 +6,14 @@ function LevelCard({ icon: Icon, title, children, footerText = null, headerActio
   return (
     <div className="zoho-card flex flex-col">
       <div className="zoho-card-header">
-        {Icon && <Icon className="h-4 w-4 text-gray-700 flex-shrink-0" />}
-        <span className="font-bold text-gray-800 text-[12px] uppercase tracking-wide">{title}</span>
+        {Icon && <Icon className="h-4 w-4 text-orange-500 flex-shrink-0" />}
+        <span className="font-semibold text-slate-700 text-[12px] uppercase tracking-wide">{title}</span>
         {headerAction && <div className="ml-auto flex-shrink-0">{headerAction}</div>}
       </div>
       <div className="zoho-card-body space-y-3 flex-1">{children}</div>
       {footerText && (
         <div className="zoho-card-footer">
-          <span className="text-gray-500 font-semibold text-[12px] uppercase">{footerText}</span>
+          <span className="text-slate-400 font-semibold text-[11px] uppercase">{footerText}</span>
         </div>
       )}
     </div>
@@ -42,15 +42,15 @@ const NCR_LOG = [
 ];
 
 const STATUS_STYLE = {
-  PASS:    'bg-white text-gray-700 border-[#d4d4d4]',
-  FAIL:    'bg-black text-white border-border-default',
-  PENDING: 'bg-white text-gray-500 border-[#d4d4d4] animate-pulse',
+  PASS:    'bg-emerald-50 text-emerald-700 border-emerald-200',
+  FAIL:    'bg-red-50 text-red-600 border-red-200',
+  PENDING: 'bg-amber-50 text-amber-600 border-amber-200 animate-pulse',
 };
 
 const NCR_STATUS = {
-  OPEN:        'bg-black text-white border-border-default animate-pulse',
-  IN_PROGRESS: 'bg-gray-700 text-white border-gray-700',
-  CLOSED:      'bg-white text-gray-500 border-[#d4d4d4]',
+  OPEN:        'bg-red-50 text-red-600 border-red-200 animate-pulse',
+  IN_PROGRESS: 'bg-orange-50 text-orange-600 border-orange-200',
+  CLOSED:      'bg-emerald-50 text-emerald-600 border-emerald-200',
 };
 
 export default function SiteInspection({ selectedElement, setSelectedElement }) {
@@ -105,7 +105,11 @@ export default function SiteInspection({ selectedElement, setSelectedElement }) 
               <div className="flex items-center gap-2 flex-wrap">
                 {categories.map(cat => (
                   <button key={cat} onClick={() => setActiveCategory(cat)}
-                    className={`text-[12px] px-2 py-1 border font-bold uppercase rounded-[8px]-[8px] ${activeCategory === cat ? 'bg-black text-white border-border-default' : 'bg-white border-[#d4d4d4]'}`}>
+                    className={`text-[11px] px-3 py-1 border font-bold uppercase rounded-full transition-all ${
+                      activeCategory === cat
+                        ? 'bg-orange-500 text-white border-orange-500 shadow-sm'
+                        : 'bg-white border-slate-200 text-slate-500 hover:border-orange-300 hover:text-orange-600'
+                    }`}>
                     {cat}
                   </button>
                 ))}
@@ -117,12 +121,12 @@ export default function SiteInspection({ selectedElement, setSelectedElement }) 
                 <tbody>
                   {filtered.map(c => (
                     <tr key={c.id}>
-                      <td><span className="text-[12px] font-bold text-gray-500 uppercase">{c.category}</span></td>
-                      <td className="font-semibold">{c.item}</td>
-                      <td className="text-gray-500">{c.method}</td>
+                      <td><span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{c.category}</span></td>
+                      <td className="font-medium text-slate-700">{c.item}</td>
+                      <td className="text-slate-400 font-mono">{c.method}</td>
                       <td>
                         <button onClick={() => cycleStatus(c.id)}
-                          className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase cursor-pointer ${STATUS_STYLE[c.status]}`}>
+                          className={`text-[10px] px-2.5 py-0.5 border rounded-full font-bold uppercase cursor-pointer tracking-wider transition-all ${STATUS_STYLE[c.status]}`}>
                           {c.status}
                         </button>
                       </td>
@@ -137,23 +141,28 @@ export default function SiteInspection({ selectedElement, setSelectedElement }) 
           {activeTab === 'NCR Log' && (
             <div className="space-y-3">
               {NCR_LOG.map(ncr => (
-                <div key={ncr.id} className="p-3 border border-[#d4d4d4] bg-white rounded-[8px]-[8px] cursor-pointer hover:bg-gray-50"
+                <div key={ncr.id}
+                  className="p-4 border border-slate-200 bg-white rounded-2xl cursor-pointer hover:border-orange-200 hover:shadow-sm transition-all"
                   onClick={() => setSelectedElement({ type: 'Site Inspection NCR', id: ncr.id, metrics: { Element: ncr.element, Defect: ncr.defect, Severity: ncr.severity, AssignedTo: ncr.assignedTo, DueDate: ncr.dueDate, Status: ncr.status, CorrectiveAction: ncr.action } })}>
-                  <div className="flex justify-between items-start mb-2">
+                  <div className="flex justify-between items-start mb-3">
                     <div>
-                      <span className="font-black text-[12px]">{ncr.id}</span>
-                      <span className="text-[12px] text-gray-500 ml-2">Raised: {ncr.raised}</span>
+                      <span className="font-bold text-[12px] text-orange-600 font-mono">{ncr.id}</span>
+                      <span className="text-[11px] text-slate-400 ml-2">Raised: {ncr.raised}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${ncr.severity === 'MAJOR' ? 'border-border-default text-black' : 'border-gray-400 text-gray-500'}`}>{ncr.severity}</span>
-                      <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${NCR_STATUS[ncr.status]}`}>{ncr.status}</span>
+                      <span className={`text-[10px] px-2.5 py-0.5 border rounded-full font-bold uppercase tracking-wider ${
+                        ncr.severity === 'MAJOR'
+                          ? 'bg-red-50 text-red-600 border-red-200'
+                          : 'bg-slate-50 text-slate-500 border-slate-200'
+                      }`}>{ncr.severity}</span>
+                      <span className={`text-[10px] px-2.5 py-0.5 border rounded-full font-bold uppercase tracking-wider ${NCR_STATUS[ncr.status]}`}>{ncr.status.replace('_', ' ')}</span>
                     </div>
                   </div>
-                  <p className="text-[12px] font-bold text-gray-800 uppercase">{ncr.element}</p>
-                  <p className="text-[12px] text-gray-600">{ncr.defect}</p>
-                  <div className="flex justify-between mt-2 pt-1.5 border-t border-dashed border-gray-200">
-                    <span className="text-[12px] text-gray-500"><User className="h-2.5 w-2.5 inline mr-0.5" />{ncr.assignedTo}</span>
-                    <span className="text-[12px] text-gray-500"><Clock className="h-2.5 w-2.5 inline mr-0.5" />Due: {ncr.dueDate}</span>
+                  <p className="text-[12px] font-bold text-slate-700 uppercase">{ncr.element}</p>
+                  <p className="text-[12px] text-slate-500 mt-0.5">{ncr.defect}</p>
+                  <div className="flex justify-between mt-3 pt-2 border-t border-slate-100">
+                    <span className="text-[11px] text-slate-400 flex items-center gap-1"><User className="h-3 w-3 text-orange-400" />{ncr.assignedTo}</span>
+                    <span className="text-[11px] text-slate-400 flex items-center gap-1"><Clock className="h-3 w-3 text-orange-400" />Due: {ncr.dueDate}</span>
                   </div>
                 </div>
               ))}
@@ -163,20 +172,20 @@ export default function SiteInspection({ selectedElement, setSelectedElement }) 
           {activeTab === 'Corrective Actions' && (
             <div className="space-y-3">
               {NCR_LOG.map(ncr => (
-                <div key={ncr.id} className="p-3 border border-[#d4d4d4] bg-gray-50 rounded-[8px]-[8px]">
-                  <div className="flex justify-between items-center mb-1.5">
-                    <span className="font-black text-[12px] uppercase">{ncr.id}</span>
-                    <span className={`text-[12px] px-1.5 py-0.5 border rounded-[8px]-[8px] font-black uppercase ${NCR_STATUS[ncr.status]}`}>{ncr.status}</span>
+                <div key={ncr.id} className="p-4 border border-slate-200 bg-slate-50 rounded-2xl">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold text-[12px] uppercase text-slate-700 font-mono">{ncr.id}</span>
+                    <span className={`text-[10px] px-2.5 py-0.5 border rounded-full font-bold uppercase tracking-wider ${NCR_STATUS[ncr.status]}`}>{ncr.status.replace('_',' ')}</span>
                   </div>
-                  <p className="text-[12px] text-gray-800 font-bold">{ncr.element} — {ncr.defect}</p>
-                  <div className="mt-2 p-2 border border-[#d4d4d4] bg-white rounded-[8px]-[8px]">
-                    <p className="text-[12px] text-gray-500 uppercase font-bold mb-0.5">Corrective Action</p>
-                    <p className="text-[12px] text-gray-800">{ncr.action}</p>
+                  <p className="text-[12px] text-slate-700 font-semibold">{ncr.element} — {ncr.defect}</p>
+                  <div className="mt-3 p-3 border border-orange-100 bg-orange-50 rounded-xl">
+                    <p className="text-[10px] text-orange-600 uppercase font-bold mb-1 tracking-wider">Corrective Action</p>
+                    <p className="text-[12px] text-slate-700">{ncr.action}</p>
                   </div>
-                  <div className="flex gap-2 mt-2">
-                    <button className="btn-skeuo text-[12px] uppercase">Verify Closure</button>
-                    <button className="btn-skeuo text-[12px] uppercase">Reassign</button>
-                    <button className="btn-skeuo-dark text-[12px] uppercase">Generate Report</button>
+                  <div className="flex gap-2 mt-3">
+                    <button className="btn-skeuo text-[11px] uppercase">Verify Closure</button>
+                    <button className="btn-skeuo text-[11px] uppercase">Reassign</button>
+                    <button className="btn-skeuo-dark text-[11px] uppercase">Generate Report</button>
                   </div>
                 </div>
               ))}

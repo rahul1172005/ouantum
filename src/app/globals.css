@@ -1,105 +1,77 @@
 @import "tailwindcss";
 
 @theme {
-  /* --- Surface tokens --- */
-  --color-surface-page: #f0f1f3;   /* App background */
-  --color-surface-body: #ffffff;   /* Card body */
-  --color-surface-header: #f5f5f5; /* Card header bevel */
-  --color-surface-footer: #f4f5f6; /* Card footer / status bar */
-  --color-surface-hover: #f0f6ff;  /* Row hover, active selections */
-  --color-surface-input: #ffffff;  /* Form inputs */
+  /* --- Surface tokens — clean neutral gray/white (ref screenshot) --- */
+  --color-surface-page: #f0f0f0;     /* Neutral light gray app background */
+  --color-surface-body: #ffffff;     /* Pure white card body */
+  --color-surface-header: #f7f7f7;   /* Soft gray card header */
+  --color-surface-footer: #f4f4f4;   /* Slightly off-white footer */
+  --color-surface-hover: #f5f5f5;    /* Row hover */
+  --color-surface-input: #ffffff;    /* Input bg */
 
   /* --- Border tokens --- */
-  --color-border-default: #d4d4d4;  /* Standard card border */
-  --color-border-header: #c8c8c8;   /* Card header divider */
-  --color-border-input: #c8c8c8;    /* Form inputs border */
-  --color-border-focus: #000000;    /* Input focus ring */
-  --color-border-hover: #b0b0b0;    /* Elevated hover state */
-  --color-border-error: #d93025;    /* Error state border */
-  --color-border-success: #1e7e34;  /* Success state border */
+  --color-border-default: #d4d4d4;   /* Standard thin gray border */
+  --color-border-header: #e0e0e0;    /* Card header divider */
+  --color-border-input: #cccccc;     /* Input border */
+  --color-border-focus: #555555;     /* Focus ring */
+  --color-border-hover: #aaaaaa;     /* Hover border */
+  --color-border-error: #cc3333;     /* Error */
+  --color-border-success: #2a8040;   /* Success */
 
   /* --- Text tokens --- */
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #555555;
-  --color-text-muted: #888888;
-  --color-text-link: #0073e6;
-  --color-text-danger: #c62828;
-  --color-text-success: #2e7d32;
-  --color-text-warning: #e65100;
+  --color-text-primary: #1a1a1a;     /* Near-black */
+  --color-text-secondary: #444444;   /* Dark gray */
+  --color-text-muted: #888888;       /* Muted gray */
+  --color-text-link: #2255aa;        /* Standard link blue */
+  --color-text-danger: #cc2222;
+  --color-text-success: #1e7a30;
+  --color-text-warning: #b85a00;
 
   /* --- Semantic state tokens --- */
-  --color-state-error: #fdecea;
-  --color-state-warning: #fff8e1;
-  --color-state-success: #e8f5e9;
-  --color-state-info: #e3f2fd;
+  --color-state-error: #fff0f0;
+  --color-state-warning: #fff8ec;
+  --color-state-success: #f0faf2;
+  --color-state-info: #f5f5f5;
 
   /* --- Button tokens --- */
-  --color-btn-primary: #0073e6;
-  --color-btn-primary-hv: #005bb5;
-  --color-btn-danger: #d32f2f;
-  --color-btn-danger-hv: #b71c1c;
+  --color-btn-primary: #333333;
+  --color-btn-primary-hv: #111111;
+  --color-btn-danger: #cc2222;
+  --color-btn-danger-hv: #aa1111;
 
-  /* --- Font sizes & weights --- */
-  --font-sans: 'Inter', 'Segoe UI', 'Tahoma', sans-serif;
-  --font-mono: 'Courier New', monospace;
+  /* --- Font — clean system sans-serif --- */
+  --font-sans: 'Segoe UI', system-ui, -apple-system, Tahoma, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-  /* --- Borders and radius --- */
+  /* --- Borders and radius — rounded corners as per screenshot --- */
   --radius-card: 8px;
-  --radius-input: 8px;
-  --radius-btn: 8px;
+  --radius-input: 6px;
+  --radius-btn: 5px;
 
-  /* --- Shadows --- */
-  --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+  /* --- Shadows — very subtle flat shadows --- */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 3px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
   --shadow-dropdown: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 /* ======================================================
-   GLOBAL FONT — AWS standard font stack
-   ====================================================== */
-:root {
-  --background: #f2f3f3;
-  --foreground: #16191f;
-  --font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-
-  /* AWS Cloudscape card tokens */
-  --card-bg: #ffffff;
-  --card-border: #eaeded;
-  --card-border-outer: #d5dbdb;
-  --card-radius: 8px;
-  --card-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08);
-  --card-shadow-hover: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12);
-  --card-header-bg: #ffffff;
-  --card-header-border: #eaeded;
-
-  /* Label / value colors */
-  --label-color: #545b64;
-  --value-color: #16191f;
-  --subtext-color: #545b64;
-
-  /* Accents */
-  --accent-green: #1d8102;
-  --accent-red:   #d13212;
-  --accent-orange: #ec7211;
-}
-
-/* ======================================================
-   FORCE FONT — system-ui everywhere, no exceptions
+   GLOBAL STYLES & typography
    ====================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html, body, button, input, select, textarea, span, p, h1, h2, h3, h4, h5, h6, a {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, Tahoma, sans-serif;
 }
 
 .font-mono, .font-mono *, code, pre, kbd, samp {
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+  font-family: var(--font-mono) !important;
 }
 
 html, body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #f0f0f0;
+  color: var(--color-text-primary);
   font-size: 13px;
   line-height: 1.5;
   overflow-x: hidden;
@@ -110,185 +82,232 @@ html, body {
    CAD GRID (landing page only)
    ====================================================== */
 .cad-grid {
-  background-color: #f8f9fa;
+  background-color: #f5f5f5;
   background-image:
-    linear-gradient(#eaeded 1px, transparent 1px),
-    linear-gradient(90deg, #eaeded 1px, transparent 1px);
+    linear-gradient(#e8e8e8 1px, transparent 1px),
+    linear-gradient(90deg, #e8e8e8 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* ======================================================
-   AWS CLOUDSCAPE — FLAT CARDS
+   CATALYST CARD SYSTEM — Clean Neutral (ref screenshot style)
    ====================================================== */
 
-/* ── Panel / section card ── */
+/* ── Panel / section card — vintage 3D outset bevel, gray background ── */
 .zoho-card {
-  background: #ffffff !important;
-  border: 1px solid #d5dbdb !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08) !important;
+  background: #d4d0c8 !important; /* Classic Windows 95 Gray */
+  border-top: 2px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 2px solid #808080 !important;
+  border-bottom: 2px solid #808080 !important;
+  border-radius: 0px !important; /* Sharp corners */
+  box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #808080, 1px 1px 2px rgba(0,0,0,0.3) !important;
   overflow: hidden !important;
-  transition: border-color 0.1s ease, box-shadow 0.1s ease !important;
+  transition: none !important;
 }
 .zoho-card:hover {
-  border-color: #aab7b8 !important;
-  box-shadow: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12) !important;
+  border-top: 2px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 2px solid #808080 !important;
+  border-bottom: 2px solid #808080 !important;
+  box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #808080, 1px 1px 2px rgba(0,0,0,0.3) !important;
 }
 
-/* ── Card header — AWS Cloudscape style flat title bar ── */
+/* ── Card header — active titlebar: Navy blue with white text ── */
 .zoho-card-header {
-  height: 48px !important;
-  background: #ffffff !important;
-  border-bottom: 1px solid #eaeded !important;
-  padding: 0 20px !important;
+  height: 28px !important;
+  background: linear-gradient(90deg, #000080 0%, #1084d0 100%) !important; /* Classic Windows active titlebar */
+  color: #ffffff !important;
+  border-bottom: 1px solid #808080 !important;
+  padding: 0 8px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  font-size: 14px !important;
+  gap: 6px !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
-  color: #16191f !important;
   text-shadow: none !important;
-  letter-spacing: normal !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif !important;
+}
+.zoho-card-header span,
+.zoho-card-header div {
+  color: #ffffff !important;
 }
 
-/* ── Card body ── */
+/* ── Card body — flat gray ── */
 .zoho-card-body {
-  padding: 20px !important;
-  background: #ffffff !important;
+  padding: 12px !important;
+  background: #d4d0c8 !important;
 }
 
 /* ── Card footer ── */
 .zoho-card-footer {
-  background: #fafafa !important;
-  border-top: 1px solid #eaeded !important;
-  height: 42px !important;
-  padding: 0 20px !important;
+  background: #d4d0c8 !important;
+  border-top: 2px solid !important;
+  border-color: #808080 #ffffff #ffffff #808080 !important; /* Inset bevel divider */
+  height: 24px !important;
+  padding: 0 8px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  font-size: 12px !important;
-  color: #545b64 !important;
+  font-size: 10px !important;
+  color: #000000 !important;
+}
+.zoho-card-footer span {
+  color: #000000 !important;
 }
 
-/* ── KPI stat card ── */
+/* ── KPI stat card — outset bevel ── */
 .zoho-kpi-card {
-  background: #ffffff;
-  border: 1px solid #d5dbdb;
-  border-radius: 8px;
-  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08);
-  padding: 18px 20px;
+  background: #d4d0c8 !important;
+  border-top: 2px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 2px solid #808080 !important;
+  border-bottom: 2px solid #808080 !important;
+  border-radius: 0px !important;
+  box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #808080, 1px 1px 2px rgba(0,0,0,0.3) !important;
+  padding: 12px !important;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  transition: border-color 0.1s ease;
-  min-height: 96px;
+  gap: 6px;
+  min-height: 80px;
+  transition: none !important;
 }
 .zoho-kpi-card:hover {
-  border-color: #aab7b8;
+  border-top: 2px solid #ffffff !important;
+  border-left: 2px solid #ffffff !important;
+  border-right: 2px solid #808080 !important;
+  border-bottom: 2px solid #808080 !important;
+  box-shadow: inset 1px 1px 0px #ffffff, inset -1px -1px 0px #808080, 1px 1px 2px rgba(0,0,0,0.3) !important;
 }
 
 /* ── KPI label ── */
 .zoho-kpi-label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #545b64;
-  text-transform: none;
-  letter-spacing: normal;
-  margin-bottom: 4px;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #444444 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 2px !important;
 }
 
 /* ── KPI value ── */
 .zoho-kpi-value {
-  font-size: 28px;
-  font-weight: 700;
-  color: #16191f;
-  line-height: 1.1;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #000000 !important;
+  font-family: var(--font-mono) !important;
+  line-height: 1 !important;
 }
 
-/* ── KPI badge ── */
+/* ── KPI badge — vintage license plate style / black border box ── */
 .zoho-kpi-badge {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 12px;
-  border: 1px solid #d5dbdb;
-  background: #f2f3f3;
-  color: #545b64;
-  text-transform: none;
-  letter-spacing: normal;
-  box-shadow: none;
+  display: inline-block !important;
+  margin-top: 4px !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  padding: 1px 6px !important;
+  border-top: 1px solid #808080 !important;
+  border-left: 1px solid #808080 !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 1px solid #ffffff !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
 }
 
-/* ── KPI icon box ── */
+/* ── KPI icon box — hidden in vintage ── */
 .zoho-kpi-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 4px;
-  border: 1px solid #d5dbdb;
-  background: #f2f3f3;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #545b64;
+  display: none !important;
+}
+
+/* ── Icon removal & color stripping in cards ── */
+.zoho-card-header svg,
+.zoho-kpi-card svg {
+  display: none !important;
+}
+
+/* Hide AI-related icons inside card bodies specifically */
+.zoho-card svg.lucide-brain-circuit,
+.zoho-card svg.lucide-brain,
+.zoho-card svg.lucide-cpu,
+.zoho-card svg.lucide-zap,
+.zoho-card svg.lucide-sparkles,
+.zoho-card svg.lucide-bot,
+.zoho-card svg.lucide-wand2,
+.zoho-card svg.lucide-activity,
+.zoho-card svg.lucide-gauge,
+.zoho-card svg.lucide-shield-alert {
+  display: none !important;
+}
+
+/* Make other body icons monochrome black to fit vintage aesthetic */
+.zoho-card svg.lucide,
+.zoho-kpi-card svg.lucide {
+  color: #000000 !important;
+  stroke: #000000 !important;
+  fill: none !important;
 }
 
 /* ======================================================
-   PANEL & GLASS (legacy classes mapping to AWS theme)
+   PANEL & GLASS — clean neutral panels
    ====================================================== */
 .glass-panel, .glass-panel-purple {
-  background: var(--card-bg) !important;
-  border: 1px solid var(--card-border-outer) !important;
-  border-radius: var(--card-radius) !important;
-  box-shadow: var(--card-shadow) !important;
-  transition: border-color 0.1s ease;
+  background: #ffffff !important;
+  border: 1px solid #d4d4d4 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07) !important;
+  transition: box-shadow 0.15s ease;
 }
 .glass-panel:hover, .glass-panel-purple:hover {
-  border-color: #aab7b8 !important;
+  border-color: #aaaaaa !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
 }
 
-.tech-border  { border: 1px solid var(--card-border-outer) !important; }
-.tech-border-double { border: 1px solid var(--card-border-outer) !important; background: #ffffff; }
-.tech-border-dashed { border: 1px dashed var(--card-border-outer) !important; }
+.tech-border  { border: 1px solid #d4d4d4 !important; }
+.tech-border-double { border: 1px solid #d4d4d4 !important; background: #ffffff; }
+.tech-border-dashed { border: 1px dashed #d4d4d4 !important; }
 
 /* ======================================================
    HAZARD PATTERNS
    ====================================================== */
 .hazard-hatch {
   background: repeating-linear-gradient(
-    45deg, #ffffff, #ffffff 8px, #f2f3f3 8px, #f2f3f3 16px
+    45deg, #ffffff, #ffffff 8px, #f8fafc 8px, #f8fafc 16px
   ) !important;
-  border: 1px solid var(--card-border-outer) !important;
+  border: 1px solid var(--color-border-default) !important;
 }
 .hazard-hatch-dark {
   background: repeating-linear-gradient(
-    45deg, #16191f, #16191f 8px, #232f3e 8px, #232f3e 16px
+    45deg, #0f172a, #0f172a 8px, #1e293b 8px, #1e293b 16px
   ) !important;
   color: #fff !important;
-  border: 1px solid #16191f !important;
+  border: 1px solid #0f172a !important;
 }
 
 /* ======================================================
-   BUTTONS — AWS Cloudscape flat buttons
+   BUTTONS — clean flat white/gray buttons
    ====================================================== */
 .btn-skeuo,
 button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button) {
   background: #ffffff !important;
-  border: 1px solid #545b64 !important;
-  border-radius: 4px !important;
-  color: #545b64 !important;
+  border: 1px solid #cccccc !important;
+  border-radius: 5px !important;
+  color: #333333 !important;
   text-shadow: none !important;
-  box-shadow: none !important;
-  font-weight: 700 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06) !important;
+  font-weight: 600 !important;
   font-size: 12px !important;
-  padding: 6px 16px !important;
+  padding: 6px 14px !important;
   cursor: pointer !important;
-  transition: all 0.1s ease !important;
+  transition: background 0.1s ease, border-color 0.1s ease !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -298,18 +317,17 @@ button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([
 }
 .btn-skeuo:hover,
 button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button):hover {
-  background: #f1f3f3 !important;
-  color: #16191f !important;
-  border-color: #16191f !important;
+  background: #f5f5f5 !important;
+  border-color: #999999 !important;
+  color: #111111 !important;
 }
 .btn-skeuo:active,
 button:not(.sidebar-btn):not(.topbar-btn):not(.icon-btn):not(.toolbar-btn):not([class*="react-"]):not([class*="bg-"]):not([class*="text-"]):not([class*="hover:"]):not([class*="active:"]):not(.workspace-tab):not([class*="workspace-"]):not(nav button):active {
-  background: #eaeded !important;
+  background: #ebebeb !important;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !important;
 }
 
-/* ======================================================
-   BUTTON LAYOUT & STATE COMPLIANCE OVERRIDES
-   ====================================================== */
+/* Button layout helper overrides */
 button[class*="w-full"] {
   display: block !important;
 }
@@ -321,32 +339,32 @@ button[class*="flex-col"] {
   flex-direction: column !important;
 }
 
-/* Primary AWS CTA Button styles (orange with white text) */
+/* Primary button — dark filled action button */
 button.bg-black,
 button[class*="bg-black"],
 button.active-btn,
 button[type="submit"] {
-  background: #ec7211 !important;
-  border: 1px solid #ec7211 !important;
+  background: #222222 !important;
+  border: 1px solid #111111 !important;
   color: #ffffff !important;
-  box-shadow: none !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
   text-shadow: none !important;
-  border-radius: 4px !important;
+  border-radius: 5px !important;
   font-weight: 700 !important;
+  transition: background 0.1s ease !important;
 }
 button.bg-black:hover,
 button[class*="bg-black"]:hover,
 button[type="submit"]:hover {
-  background: #dd5a12 !important;
-  border-color: #dd5a12 !important;
+  background: #000000 !important;
   color: #ffffff !important;
-  box-shadow: none !important;
 }
 button.bg-black:active,
 button[class*="bg-black"]:active,
 button[type="submit"]:active {
-  background: #c54e0e !important;
-  border-color: #c54e0e !important;
+  background: #333333 !important;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3) !important;
+  transform: translateY(0px) !important;
 }
 
 /* Respect original Tailwind padding utility classes on custom buttons */
@@ -359,7 +377,7 @@ button[class*="py-0.5"] { padding-top: 2px !important; padding-bottom: 2px !impo
 button[class*="px-2"] { padding-left: 8px !important; padding-right: 8px !important; }
 
 /* ======================================================
-   TABLES — AWS Cloudscape table styling
+   TABLES — clean striped listview
    ====================================================== */
 table {
   width: 100%;
@@ -367,29 +385,31 @@ table {
   font-size: 12px;
 }
 th {
-  background-color: #f2f3f3 !important;
-  color: #545b64 !important;
-  font-weight: 600 !important;
-  border-bottom: 1px solid #eaeded !important;
+  background: #f4f4f4 !important;
+  color: #444444 !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid #d4d4d4 !important;
   border-right: none !important;
-  padding: 10px 14px !important;
+  padding: 8px 12px !important;
   font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
   text-align: left;
 }
 td {
-  border-bottom: 1px solid #eaeded !important;
+  border-bottom: 1px solid var(--color-border-header) !important;
   border-right: none !important;
-  padding: 10px 14px !important;
-  color: #16191f !important;
+  padding: 12px 16px !important;
+  color: var(--color-text-secondary) !important;
   background-color: #ffffff;
-  font-size: 12px;
+  font-size: 13px;
 }
 tr:hover td {
-  background-color: #f1f3f3 !important;
+  background-color: var(--color-surface-hover) !important;
 }
 
 /* ======================================================
-   SIDEBAR — AWS Console Left Navigation Drawer style
+   SIDEBAR — Left Navigation overrides
    ====================================================== */
 .sidebar-btn {
   background: transparent !important;
@@ -397,7 +417,7 @@ tr:hover td {
   box-shadow: none !important;
   text-shadow: none !important;
   border-radius: 0px !important;
-  color: #545b64 !important;
+  color: var(--color-text-muted) !important;
   font-weight: 500 !important;
   font-size: 13px !important;
   padding: 8px 16px !important;
@@ -410,20 +430,20 @@ tr:hover td {
 }
 .sidebar-btn:hover {
   text-decoration: none !important;
-  color: #16191f !important;
-  background: #f1f3f3 !important;
+  color: var(--color-text-primary) !important;
+  background: var(--color-surface-page) !important;
 }
 .sidebar-btn.active {
-  background: #f1f3f3 !important;
-  color: #16191f !important;
+  background: var(--color-surface-page) !important;
+  color: var(--color-btn-primary) !important;
   font-weight: 700 !important;
-  border-left: 3px solid #ec7211 !important;
+  border-left: 3px solid var(--color-btn-primary) !important;
   border-top: none !important;
   border-right: none !important;
   border-bottom: none !important;
 }
 .sidebar-folder {
-  color: #545b64 !important;
+  color: var(--color-text-muted) !important;
   font-weight: 700 !important;
   font-size: 11px !important;
   text-transform: uppercase;
@@ -437,35 +457,35 @@ tr:hover td {
 }
 
 /* ======================================================
-   WORKSPACE TABS & TOOLBAR — AWS Tabs style
+   WORKSPACE TABS & TOOLBAR — Catalyst Pills & Outline Action Buttons
    ====================================================== */
 .workspace-tabs {
   display: flex;
   flex-wrap: wrap;
   background: #ffffff !important;
-  border-bottom: 1px solid #eaeded !important;
-  padding: 0 16px !important;
+  border-bottom: 1px solid var(--color-border-header) !important;
+  padding: 0 20px !important;
   flex-shrink: 0;
   position: relative;
-  min-height: 48px !important;
+  min-height: 52px !important;
   align-items: center !important;
-  gap: 20px !important;
+  gap: 24px !important;
 }
 .workspace-tab {
-  padding: 12px 4px !important;
+  padding: 14px 4px !important;
   background: transparent !important;
   border: none !important;
   border-radius: 0px !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 13px !important;
-  color: #545b64 !important;
+  color: var(--color-text-muted) !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   position: relative !important;
-  transition: all 0.1s ease !important;
-  height: 48px !important;
+  transition: all 0.2s ease !important;
+  height: 52px !important;
   text-shadow: none !important;
   box-shadow: none !important;
   text-transform: none !important;
@@ -475,51 +495,53 @@ tr:hover td {
 }
 .workspace-tab:hover {
   background: transparent !important;
-  color: #16191f !important;
-  border-bottom: 2px solid #aab7b8 !important;
+  color: var(--color-text-primary) !important;
+  border-bottom: 2px solid var(--color-border-outer) !important;
   box-shadow: none !important;
 }
 .workspace-tab.active {
   background: transparent !important;
-  border-bottom: 2px solid #ec7211 !important;
-  color: #16191f !important;
-  font-weight: 700 !important;
+  border-bottom: 2px solid var(--color-btn-primary) !important;
+  color: var(--color-btn-primary) !important;
+  font-weight: 600 !important;
   text-shadow: none !important;
   box-shadow: none !important;
   border-radius: 0px !important;
 }
 .workspace-tab.active:hover {
   background: transparent !important;
-  border-bottom: 2px solid #ec7211 !important;
-  color: #16191f !important;
+  border-bottom: 2px solid var(--color-btn-primary) !important;
+  color: var(--color-btn-primary) !important;
 }
 .workspace-toolbar {
   background: #ffffff;
-  border-bottom: 1px solid #eaeded;
-  padding: 8px 16px;
+  border-bottom: 1px solid var(--color-border-header);
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
 .toolbar-btn {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  background: #ffffff !important;
+  border: 1px solid var(--color-border-outer) !important;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.02) !important;
   text-shadow: none !important;
   font-size: 12px !important;
   font-weight: 600 !important;
-  color: #545b64 !important;
-  padding: 6px 12px !important;
+  color: var(--color-text-secondary) !important;
+  padding: 6px 14px !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   cursor: pointer !important;
-  border-radius: 4px !important;
+  border-radius: var(--radius-btn) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 .toolbar-btn:hover {
-  background: #f1f3f3 !important;
-  color: #16191f !important;
+  background: var(--color-surface-page) !important;
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-border-hover) !important;
 }
 .topbar-btn {
   background: transparent !important;
@@ -530,36 +552,36 @@ tr:hover td {
 }
 
 /* ======================================================
-   INPUTS — AWS standard input fields
+   INPUTS — Catalyst Standard Input Fields
    ====================================================== */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 select,
 textarea {
-  font-family: var(--font-ui) !important;
+  font-family: var(--font-sans) !important;
   font-size: 13px !important;
-  border: 1px solid #aab7b8 !important;
-  border-radius: 4px !important;
+  border: 1px solid var(--color-border-input) !important;
+  border-radius: var(--radius-input) !important;
   background: #ffffff !important;
-  color: #16191f !important;
-  padding: 6px 10px !important;
-  box-shadow: none !important;
+  color: var(--color-text-primary) !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.02) !important;
   outline: none !important;
-  transition: all 0.1s ease !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 input:focus, select:focus, textarea:focus {
-  border-color: #0073bb !important;
-  box-shadow: 0 0 0 1px #0073bb !important;
+  border-color: var(--color-border-focus) !important;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15) !important;
 }
 
 /* ======================================================
    SCROLLBARS
    ====================================================== */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #f2f3f3; border-left: none; }
-::-webkit-scrollbar-thumb { background: #c4c8c8; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #aab7b8; }
+::-webkit-scrollbar-track { background: var(--color-surface-page); border-left: none; }
+::-webkit-scrollbar-thumb { background: var(--color-border-input); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-border-hover); }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none !important;
@@ -570,8 +592,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ======================================================
-   /* ======================================================
-   WORKSPACE DIV CARDS -> AWS CLOUDSCAPE OVERRIDES
+   WORKSPACE DIV CARDS -> Catalyst overrides
    ====================================================== */
 div[class*="border-2 border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
 div[class*="border-2 border-slate-900"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
@@ -581,12 +602,12 @@ div[class*="border border-black"]:not([class*="bg-black"]):not([class*="text-whi
 div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper),
 div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-indigo"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper) {
   background: #ffffff !important;
-  border: 1px solid #d5dbdb !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15), 0 1px 1px 0 rgba(0,28,36,0.08) !important;
-  transition: border-color 0.1s ease !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: all 0.2s ease !important;
   overflow: visible !important;
-  padding: 20px !important;
+  padding: 24px !important;
 }
 
 div[class*="border-2 border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
@@ -596,8 +617,8 @@ div[class*="border-2 border-gray-900"]:not([class*="bg-black"]):not([class*="tex
 div[class*="border border-black"]:not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="rounded-full"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
 div[class*="border-4 border-black"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover,
 div[class*="border-4 border-double"]:not([class*="absolute"]):not([class*="bg-black"]):not([class*="text-white"]):not([class*="bg-red"]):not([class*="bg-green"]):not([class*="bg-amber"]):not([class*="cursor-"]):not(.zoho-card-body *):not(.no-zoho-card):not(.no-zoho-table-wrapper):hover {
-  border-color: #aab7b8 !important;
-  box-shadow: 0 2px 4px 0 rgba(0,28,36,0.20), 0 1px 2px 0 rgba(0,28,36,0.12) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: var(--shadow-card-hover) !important;
 }
 
 /* Card containers containing absolute floating nameplates */
@@ -609,8 +630,8 @@ div[class*="border border-black"]:has(> span[class*="absolute"]):not(.no-zoho-ca
 div[class*="border-4 border-black"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper),
 div[class*="border-4 border-double"]:has(> span[class*="absolute"]):not(.no-zoho-card):not(.no-zoho-table-wrapper) {
   overflow: visible !important;
-  padding: 20px !important;
-  padding-top: 32px !important;
+  padding: 24px !important;
+  padding-top: 36px !important;
 }
 
 /* Header Title Bar Overrides */
@@ -626,20 +647,20 @@ div[class*="border-4 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrappe
 div[class*="border-4 border-black"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
 div[class*="border-4 border-double"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :first-child[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]),
 div[class*="border-4 border-double"]:not(.no-zoho-card):not(.no-zoho-table-wrapper) > :nth-child(2)[class*="border-b"]:not([class*="hazard"]):not([class*="bg-black"]) {
-  height: 48px !important;
+  height: 52px !important;
   background: #ffffff !important;
-  border-bottom: 1px solid #eaeded !important;
+  border-bottom: 1px solid var(--color-border-header) !important;
   padding: 0 20px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  color: #16191f !important;
-  letter-spacing: normal !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  letter-spacing: 0.05em !important;
   text-shadow: none !important;
-  text-transform: none !important;
-  border-radius: 8px 8px 0 0 !important;
+  text-transform: uppercase !important;
+  border-radius: var(--radius-card) var(--radius-card) 0 0 !important;
 }
 
 /* Header inner items */
@@ -651,25 +672,25 @@ div[class*="border-4 border-black"] > :first-child[class*="border-b"] svg,
 div[class*="border-4 border-black"] > :nth-child(2)[class*="border-b"] svg,
 div[class*="border-4 border-double"] > :first-child[class*="border-b"] svg,
 div[class*="border-4 border-double"] > :nth-child(2)[class*="border-b"] svg {
-  color: #545b64 !important;
+  color: var(--color-text-muted) !important;
   stroke-width: 2.0 !important;
 }
 
 /* ======================================================
-   AWS CLOUDSCAPE STATUS BADGES
+   CATALYST STATUS BADGES
    ====================================================== */
 div[class*="border"] > span[class*="absolute"],
 div[class*="border"] > span[class*="top-2"],
 div[class*="border"] > span[class*="-top-2"] {
-  background: #f2f3f3 !important;
-  color: #545b64 !important;
-  border: 1px solid #d5dbdb !important;
-  border-radius: 8px !important;
+  background: #f8fafc !important;
+  color: var(--color-text-secondary) !important;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 20px !important;
   box-shadow: none !important;
   text-shadow: none !important;
-  font-weight: 700 !important;
-  font-size: 10px !important;
-  padding: 2px 8px !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  padding: 3px 10px !important;
   text-transform: none !important;
   letter-spacing: normal !important;
 }
@@ -680,9 +701,9 @@ div[class*="border"] > span[class*="absolute"][class*="emerald"],
 div[class*="border"] > span[class*="absolute"][class*="success"],
 div[class*="border"] > span[class*="top-2"][class*="green"],
 div[class*="border"] > span[class*="top-2"][class*="success"] {
-  background: #edf7ed !important;
-  color: #1d8102 !important;
-  border: 1px solid #c3e6cb !important;
+  background: var(--color-state-success) !important;
+  color: var(--color-text-success) !important;
+  border: 1px solid #bbf7d0 !important;
 }
 
 /* Warning/Alert Status Badges */
@@ -691,9 +712,9 @@ div[class*="border"] > span[class*="absolute"][class*="orange"],
 div[class*="border"] > span[class*="absolute"][class*="warning"],
 div[class*="border"] > span[class*="top-2"][class*="amber"],
 div[class*="border"] > span[class*="top-2"][class*="warning"] {
-  background: #fff3cd !important;
-  color: #ec7211 !important;
-  border: 1px solid #ffeeba !important;
+  background: var(--color-state-warning) !important;
+  color: var(--color-text-warning) !important;
+  border: 1px solid #ffedd5 !important;
 }
 
 /* Danger/Alert Status Badges */
@@ -701,9 +722,9 @@ div[class*="border"] > span[class*="absolute"][class*="red"],
 div[class*="border"] > span[class*="absolute"][class*="danger"],
 div[class*="border"] > span[class*="top-2"][class*="red"],
 div[class*="border"] > span[class*="top-2"][class*="danger"] {
-  background: #f8d7da !important;
-  color: #d13212 !important;
-  border: 1px solid #f5c6cb !important;
+  background: var(--color-state-error) !important;
+  color: var(--color-text-danger) !important;
+  border: 1px solid #fee2e2 !important;
 }
 
 .no-zoho-card {
@@ -711,10 +732,10 @@ div[class*="border"] > span[class*="top-2"][class*="danger"] {
 }
 
 .no-zoho-table-wrapper {
-  border: 1px solid #d5dbdb !important;
+  border: 1px solid var(--color-border-default) !important;
   background: #ffffff !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 1px 0 rgba(0,28,36,0.15) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: var(--shadow-card) !important;
   overflow-x: auto !important;
   padding: 0px !important;
   position: relative !important;
@@ -734,35 +755,35 @@ input.command-palette-input {
   border-radius: 0 !important;
 }
 
-/* Strict override to force all dashed borders in workspaces to be solid flat AWS borders */
+/* Overrides to force solid borders in workspaces */
 div[class*="border-dashed"]:not(svg):not(path):not(line),
 div[class*="dashed"]:not(svg):not(path):not(line),
 div[style*="dashed"]:not(svg):not(path):not(line) {
   border-style: solid !important;
-  border-color: #d5dbdb !important;
+  border-color: var(--color-border-default) !important;
   border-width: 1px !important;
 }
 
 /* ======================================================
-   AWS CLOUDSCAPE — WORKSPACE VIEWPORT GENERAL OVERRIDES
+   CATALYST — WORKSPACE VIEWPORT GENERAL OVERRIDES
    ====================================================== */
 
-/* Force all buttons in workspace-viewport to match AWS styling rules */
+/* Force all buttons in workspace-viewport to match Catalyst styling rules */
 .workspace-viewport button:not(.workspace-tab) {
-  font-family: var(--font-ui) !important;
+  font-family: var(--font-sans) !important;
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   text-transform: none !important;
   letter-spacing: normal !important;
-  border-radius: 8px !important;
+  border-radius: var(--radius-btn) !important;
   box-shadow: none !important;
   text-shadow: none !important;
   transform: none !important;
-  transition: all 0.1s ease !important;
-  padding: 6px 14px !important;
+  transition: all 0.2s ease !important;
+  padding: 8px 16px !important;
 }
 
-/* Primary buttons in workspace (e.g. submit, black bg, or green actions) */
+/* Primary buttons in workspace — dark charcoal (no blue) */
 .workspace-viewport button.bg-black:not(.workspace-tab),
 .workspace-viewport button[class*="bg-black"]:not(.workspace-tab),
 .workspace-viewport button[class*="bg-blue-"]:not(.workspace-tab),
@@ -773,9 +794,10 @@ div[style*="dashed"]:not(svg):not(path):not(line) {
 .workspace-viewport button[class*="bg-orange-"]:not(.workspace-tab),
 .workspace-viewport button[type="submit"]:not(.workspace-tab),
 .workspace-viewport button.active-btn:not(.workspace-tab) {
-  background: #ec7211 !important;
-  border: 1px solid #ec7211 !important;
+  background: #222222 !important;
+  border: 1px solid #111111 !important;
   color: #ffffff !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
 }
 .workspace-viewport button.bg-black:not(.workspace-tab):hover,
 .workspace-viewport button[class*="bg-black"]:not(.workspace-tab):hover,
@@ -787,39 +809,36 @@ div[style*="dashed"]:not(svg):not(path):not(line) {
 .workspace-viewport button[class*="bg-orange-"]:not(.workspace-tab):hover,
 .workspace-viewport button[type="submit"]:not(.workspace-tab):hover,
 .workspace-viewport button.active-btn:not(.workspace-tab):hover {
-  background: #dd5a12 !important;
-  border-color: #dd5a12 !important;
+  background: #111111 !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25) !important;
+  transform: none !important;
   color: #ffffff !important;
 }
 .workspace-viewport button.bg-black:not(.workspace-tab):active,
 .workspace-viewport button[class*="bg-black"]:not(.workspace-tab):active,
 .workspace-viewport button[type="submit"]:not(.workspace-tab):active {
-  background: #c54e0e !important;
-  border-color: #c54e0e !important;
+  background: #333333 !important;
+  transform: none !important;
 }
 
-/* Secondary/Default buttons in workspace (e.g. bg-white, transparent, grey outlines) */
+/* Secondary/Default buttons in workspace */
 .workspace-viewport button.bg-white:not(.workspace-tab),
 .workspace-viewport button[class*="bg-white"]:not(.workspace-tab),
 .workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab) {
   background: #ffffff !important;
-  border: 1px solid #545b64 !important;
-  color: #545b64 !important;
+  border: 1px solid var(--color-border-input) !important;
+  color: var(--color-text-secondary) !important;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.02) !important;
 }
 .workspace-viewport button.bg-white:not(.workspace-tab):hover,
 .workspace-viewport button[class*="bg-white"]:not(.workspace-tab):hover,
 .workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab):hover {
-  background: #f1f3f3 !important;
-  color: #16191f !important;
-  border-color: #16191f !important;
-}
-.workspace-viewport button.bg-white:not(.workspace-tab):active,
-.workspace-viewport button[class*="bg-white"]:not(.workspace-tab):active,
-.workspace-viewport button:not(.bg-black):not([class*="bg-black"]):not([class*="bg-blue-"]):not([class*="bg-indigo-"]):not([class*="bg-emerald-"]):not([class*="bg-green-"]):not([class*="bg-red-"]):not([class*="bg-orange-"]):not([type="submit"]):not(.active-btn):not(.workspace-tab):active {
-  background: #eaeded !important;
+  background: var(--color-surface-page) !important;
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-border-hover) !important;
 }
 
-/* Typography control - force sans-serif by default inside workspace viewport to keep it user friendly */
+/* Typography control inside workspace viewport */
 .workspace-viewport,
 .workspace-viewport *,
 .workspace-viewport p,
@@ -829,168 +848,188 @@ div[style*="dashed"]:not(svg):not(path):not(line) {
 .workspace-viewport input,
 .workspace-viewport select,
 .workspace-viewport textarea {
-  font-family: var(--font-ui) !important;
+  font-family: var(--font-sans) !important;
 }
 
-/* Maintain Monaco monospace only for codes or charts where mono is specifically designated */
+/* Maintain monospace only for codes or charts where mono is specifically designated */
 .workspace-viewport code,
 .workspace-viewport pre,
 .workspace-viewport kbd,
 .workspace-viewport samp,
-.workspace-viewport [class*="font-mono"],
-.workspace-viewport [class*="font-mono"] *,
-.workspace-viewport .font-mono,
-.workspace-viewport .font-mono * {
-  font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+.workspace-viewport .font-mono {
+  font-family: var(--font-mono) !important;
 }
 
-/* AWS table header styles */
+/* Table header styling */
 .workspace-viewport th {
-  background-color: #f2f3f3 !important;
-  color: #545b64 !important;
+  background-color: #f8fafc !important;
+  color: var(--color-text-muted) !important;
   font-weight: 600 !important;
-  border-bottom: 1px solid #eaeded !important;
-  padding: 10px 14px !important;
+  border-bottom: 1px solid var(--color-border-header) !important;
+  padding: 12px 16px !important;
   font-size: 11px !important;
   text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
 }
 
-/* Disable raw uppercase transforms on body lists/paragraph content inside workspace to look user-friendly */
+/* Disable raw uppercase transforms on body lists/paragraph content inside workspace */
 .workspace-viewport td,
 .workspace-viewport p,
 .workspace-viewport li {
   text-transform: none !important;
 }
 
-/* AWS standard inputs overrides in workspace */
+/* Catalyst inputs overrides in workspace */
 .workspace-viewport input[type="text"],
 .workspace-viewport input[type="number"],
 .workspace-viewport select,
 .workspace-viewport textarea {
-  border: 1px solid #aab7b8 !important;
-  border-radius: 8px !important;
+  border: 1px solid var(--color-border-input) !important;
+  border-radius: var(--radius-input) !important;
   background-color: #ffffff !important;
-  color: #16191f !important;
+  color: var(--color-text-primary) !important;
   font-size: 13px !important;
+  padding: 8px 12px !important;
 }
 
 .workspace-viewport input[type="text"]:focus,
 .workspace-viewport input[type="number"]:focus,
 .workspace-viewport select:focus,
 .workspace-viewport textarea:focus {
-  border-color: #0073bb !important;
-  box-shadow: 0 0 0 1px #0073bb !important;
+  border-color: var(--color-border-focus) !important;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15) !important;
 }
 
 /* Destructive actions in header toolbar */
 .toolbar-btn-danger {
-  color: #d13212 !important;
+  color: var(--color-text-danger) !important;
+  border-color: #fca5a5 !important;
 }
 .toolbar-btn-danger:hover {
-  background: #fdf3f2 !important;
-  color: #d13212 !important;
+  background: var(--color-state-error) !important;
+  color: #dc2626 !important;
+  border-color: var(--color-text-danger) !important;
 }
 .toolbar-btn-danger svg {
-  color: #d13212 !important;
+  color: var(--color-text-danger) !important;
 }
 
-/* AWS Console search bar header styling */
+/* Search bar header styling — neutral gray, no blue */
 header input[placeholder*="Search"] {
-  background-color: #2b343f !important;
-  border: 1px solid #545b64 !important;
-  color: #ffffff !important;
-  border-radius: 8px !important;
+  background-color: #f0f0f0 !important;
+  border: 1px solid #d4d4d4 !important;
+  color: var(--color-text-primary) !important;
+  border-radius: var(--radius-input) !important;
   font-size: 13px !important;
-  transition: all 0.15s ease !important;
+  transition: all 0.2s ease !important;
 }
 header input[placeholder*="Search"]::placeholder {
-  color: #aab7b8 !important;
+  color: var(--color-text-muted) !important;
 }
 header input[placeholder*="Search"]:focus {
   background-color: #ffffff !important;
-  border-color: #0073bb !important;
-  color: #16191f !important;
-  box-shadow: 0 0 0 1px #0073bb !important;
+  border-color: #888888 !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08) !important;
 }
 
 /* ======================================================
-   BUTTON SYSTEM (ZOHO/AWS STANDARD)
+   BUTTON SYSTEM (ZOHO/AWS STANDARD OVERRIDES)
    ====================================================== */
 .btn-primary {
-  height: 34px;
-  padding: 0 16px;
+  height: 36px;
+  padding: 0 18px;
   font-size: 13px;
-  font-weight: 500;
-  border-radius: 8px;
+  font-weight: 600;
+  border-radius: var(--radius-btn);
   border: none;
-  background: #0073e6;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #ffffff;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  box-shadow: 0 4px 12px 0 rgba(249, 115, 22, 0.15);
 }
-.btn-primary:hover { background: #005bb5; }
-.btn-primary:active { background: #004fa3; }
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 6px 16px 0 rgba(249, 115, 22, 0.25);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-secondary {
-  height: 34px;
-  padding: 0 14px;
-  font-size: 13px;
-  font-weight: 400;
-  border-radius: 8px;
-  border: 1px solid #b5b5b5;
-  background: linear-gradient(to bottom, #fdfdfd, #eaeaea);
-  color: #333333;
-  cursor: pointer;
-  transition: background 0.15s;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.btn-secondary:hover { background: linear-gradient(to bottom, #f5f5f5, #e0e0e0); }
-.btn-secondary:active { background: #e0e0e0; }
-
-.btn-tertiary {
-  height: 34px;
-  padding: 0 10px;
-  font-size: 13px;
-  background: none;
-  border: none;
-  color: #0073e6;
-  cursor: pointer;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.btn-tertiary:hover { background: #f0f6ff; }
-
-.btn-danger {
-  height: 34px;
+  height: 36px;
   padding: 0 16px;
   font-size: 13px;
   font-weight: 500;
-  border-radius: 8px;
-  border: none;
-  background: #d32f2f;
-  color: #ffffff;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-border-input);
+  background: #ffffff;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.02);
 }
-.btn-danger:hover { background: #b71c1c; }
+.btn-secondary:hover {
+  background: #f8fafc;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-hover);
+}
 
-.btn-sm { height: 28px; padding: 0 10px; font-size: 12px; }
+.btn-tertiary {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  background: none;
+  border: none;
+  color: var(--color-btn-primary);
+  cursor: pointer;
+  border-radius: var(--radius-btn);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn-tertiary:hover { background: var(--color-state-warning); }
+
+.btn-danger {
+  height: 36px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-btn);
+  border: none;
+  background: var(--color-btn-danger);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px 0 rgba(239, 68, 68, 0.15);
+}
+.btn-danger:hover {
+  background: var(--color-btn-danger-hv);
+  box-shadow: 0 6px 16px 0 rgba(239, 68, 68, 0.25);
+  transform: translateY(-1px);
+}
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+.btn-sm { height: 30px; padding: 0 12px; font-size: 12px; }
 
 /* ======================================================
    STRICT SUB-12PX TYPOGRAPHY PURGE
    ====================================================== */
-/* Override all Tailwind classes for sub-12px font sizes */
 .text-\[9px\],
 .text-\[9\.5px\],
 .text-\[10px\],
@@ -1000,7 +1039,6 @@ header input[placeholder*="Search"]:focus {
   font-size: 12px !important;
 }
 
-/* Force inline styles with sub-12px values inside workspaces to scale up to 12px */
 .workspace-viewport [style*="font-size:9"],
 .workspace-viewport [style*="font-size: 9"],
 .workspace-viewport [style*="font-size:10"],
@@ -1016,4 +1054,156 @@ header input[placeholder*="Search"]:focus {
   font-size: 12px !important;
 }
 
+/* Custom scrollbar and fadeIn animation for Huly-style sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2a2d34;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #3a3f4a;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95) translateX(-5px); }
+  to { opacity: 1; transform: scale(1) translateX(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Contextual Inspector Table Overrides */
+.contextual-inspector table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+.contextual-inspector td {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #1c1e22 !important;
+  border-right: none !important;
+  padding: 8px 12px !important;
+  font-size: 11px !important;
+}
+.contextual-inspector td:first-child {
+  color: #8f9298 !important;
+  background-color: #141517 !important;
+  font-weight: 600 !important;
+  width: 48% !important;
+  border-right: 1px solid #1c1e22 !important;
+}
+
+/* Contextual Inspector Button Overrides */
+.contextual-inspector .inspector-collapse-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #8f9298 !important;
+  padding: 0 4px !important;
+  width: auto !important;
+  height: auto !important;
+  display: inline-flex !important;
+}
+.contextual-inspector .inspector-collapse-btn:hover {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+.contextual-inspector .inspector-clear-btn {
+  background: #1a1c20 !important;
+  border: 1px solid #2a2d34 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  width: 100% !important;
+  padding: 10px 0 !important;
+  display: block !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+.contextual-inspector .inspector-clear-btn:hover {
+  background: #2a2d34 !important;
+  border-color: #555555 !important;
+}
+
+/* Custom Sleek Scrollbar for Workspace Viewport */
+.workspace-viewport::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+.workspace-viewport::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.workspace-viewport::-webkit-scrollbar-thumb {
+  background: #cccccc !important;
+  border-radius: 6px !important;
+}
+.workspace-viewport::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa !important;
+}
+
+/* ======================================================
+   VINTAGE FORM INPUTS & RANGE SLIDERS
+   ====================================================== */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-top: 2px solid #808080 !important;
+  border-left: 2px solid #808080 !important;
+  border-right: 2px solid #ffffff !important;
+  border-bottom: 2px solid #ffffff !important;
+  border-radius: 0px !important;
+  padding: 4px 6px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  outline: none !important;
+  box-shadow: inset 1px 1px 0px #000000 !important;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-top: 2px solid #000000 !important;
+  border-left: 2px solid #000000 !important;
+  border-right: 2px solid #dfdfdf !important;
+  border-bottom: 2px solid #dfdfdf !important;
+}
+
+/* Range input vintage style */
+input[type="range"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px !important;
+  background: #ffffff !important;
+  border-top: 1px solid #808080 !important;
+  border-left: 1px solid #808080 !important;
+  border-right: 1px solid #ffffff !important;
+  border-bottom: 1px solid #ffffff !important;
+  box-shadow: inset 1px 1px 0px #000000 !important;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  margin-top: -6px !important;
+  width: 12px !important;
+  height: 16px !important;
+  background: #d4d0c8 !important;
+  border-top: 1px solid #ffffff !important;
+  border-left: 1px solid #ffffff !important;
+  border-right: 1px solid #808080 !important;
+  border-bottom: 1px solid #808080 !important;
+  box-shadow: inset 1px 1px 0px #ffffff !important;
+  cursor: pointer !important;
+}

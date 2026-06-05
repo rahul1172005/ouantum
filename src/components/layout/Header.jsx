@@ -16,31 +16,18 @@ export function Header({ sidebarOpen, setSidebarOpen, setHelpOpen }) {
 
   const openTickets = tickets.filter(t => t.status === 'OPEN');
 
+  const currentWorkspace = useCRMStore(state => state.currentWorkspace);
+
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 z-50 px-4 bg-white border-b border-border-default flex items-center justify-between select-none">
+    <header className={`fixed top-0 right-0 h-16 z-30 px-6 bg-white border-b border-border-default flex items-center justify-between select-none transition-all duration-200 ${
+      sidebarOpen ? 'left-[304px]' : 'left-[64px]'
+    }`}>
       
-      {/* Brand & Left controls */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-1.5 hover:bg-surface-hover text-text-secondary hover:text-text-primary rounded-[8px] cursor-pointer border-none bg-transparent flex items-center justify-center"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
-        <div className="flex items-center">
-          <img
-            src="/ouantum-logo.png"
-            alt="OUANTUM"
-            style={{
-              height: 48,
-              width: 'auto',
-              display: 'block',
-              objectFit: 'contain',
-              transform: 'scale(3.2) translateX(0px) translateY(1.5px)',
-              transformOrigin: 'left center',
-            }}
-          />
-        </div>
+      {/* Workspace Breadcrumbs */}
+      <div className="flex items-center gap-2">
+        <span className="text-[11px] font-bold text-text-muted uppercase tracking-wider">Ouantum</span>
+        <span className="text-text-muted text-xs font-semibold">/</span>
+        <span className="text-[13px] font-semibold text-text-primary uppercase tracking-wide truncate max-w-[150px] md:max-w-xs">{currentWorkspace}</span>
       </div>
 
       {/* Middle search console (Ctrl+K Command Palette Trigger) */}

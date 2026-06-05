@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ClipboardCheck, Mic, Paperclip, CheckSquare, Square, Trash2, MapPin, Calendar } from 'lucide-react';
+import { ClipboardCheck, Mic, Paperclip, CheckSquare, Square, Trash2, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 
 export default function AuditEngine({ selectedElement, setSelectedElement }) {
   const [activeCategory, setActiveCategory] = useState('Structural');
@@ -72,6 +72,10 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
     setEvidenceList(evidenceList.filter(ev => ev.id !== id));
   };
 
+  const categories = ['Structural', 'Safety', 'Material'];
+  const completedCount = auditChecklist.filter(i => i.category === activeCategory && i.checked).length;
+  const totalCount = auditChecklist.filter(i => i.category === activeCategory).length;
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 font-mono text-xs text-black">
       
@@ -81,41 +85,60 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
         {/* Checklist Workspace */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <ClipboardCheck className="h-3.5 w-3.5" />
+            <ClipboardCheck className="h-3.5 w-3.5 text-orange-500" />
             <span>SMART INSPECTION TASK LISTS</span>
-            <div className="ml-auto flex border border-gray-400 rounded-[8px] overflow-hidden">
-              {['Structural', 'Safety', 'Material'].map((cat) => (
+            <div className="ml-auto flex rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+              {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1 border-r last:border-r-0 border-gray-400 transition-colors ${
-                    activeCategory === cat ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-100'
+                  style={activeCategory === cat ? {
+                    background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                    color: '#ffffff',
+                    border: 'none'
+                  } : {}}
+                  className={`px-3 py-1.5 border-r last:border-r-0 border-slate-200 text-[11px] font-bold uppercase transition-colors ${
+                    activeCategory === cat ? '' : 'bg-white text-slate-600 hover:bg-orange-50 hover:text-orange-600'
                   }`}
                 >
-                  {cat.toUpperCase()}
+                  {cat}
                 </button>
               ))}
             </div>
           </div>
-          <div className="zoho-card-body space-y-2">
+          <div className="zoho-card-body space-y-3">
+            {/* Progress bar */}
+            <div className="flex items-center gap-3 mb-1">
+              <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                <div 
+                  style={{ width: `${(completedCount/totalCount)*100}%`, background: 'linear-gradient(90deg, #f97316, #ea580c)' }}
+                  className="h-full rounded-full transition-all duration-500"
+                />
+              </div>
+              <span className="text-[11px] text-slate-400 font-semibold">{completedCount}/{totalCount} done</span>
+            </div>
             {auditChecklist.filter(item => item.category === activeCategory).map((item) => (
               <div 
                 key={item.id} 
                 onClick={() => handleToggleCheck(item.id)}
-                className="flex items-start gap-3 p-3 border border-border-default bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                className={`flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition-all ${
+                  item.checked 
+                    ? 'bg-emerald-50 border-emerald-200' 
+                    : 'bg-white border-slate-200 hover:border-orange-200 hover:bg-orange-50/50'
+                }`}
               >
-                <div className="mt-0.5">
+                <div className="mt-0.5 flex-shrink-0">
                   {item.checked ? (
-                    <CheckSquare className="h-4 w-4 text-black" />
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                   ) : (
-                    <Square className="h-4 w-4 text-black" />
+                    <Square className="h-4 w-4 text-slate-300" />
                   )}
                 </div>
-                <div>
-                  <p className={`font-bold ${item.checked ? 'line-through text-gray-500' : 'text-black'}`}>
+                <div className="flex-1">
+                  <p className={`font-semibold text-[12px] ${item.checked ? 'line-through text-slate-400' : 'text-slate-700'}`}>
                     {item.text}
                   </p>
-                  <span className="text-[12px] text-gray-500 font-mono">
+                  <span className="text-[10px] text-slate-400 font-mono mt-0.5 block">
                     SCOPE: {item.category.toUpperCase()} | REQUIRED VERIFICATION LOG
                   </span>
                 </div>
@@ -127,25 +150,27 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
         {/* AI voice inspection recorder */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <Mic className="h-3.5 w-3.5" />
+            <Mic className="h-3.5 w-3.5 text-orange-500" />
             AI VOICE INSPECTION ASSISTANT
           </div>
           <div className="zoho-card-body">
             <div className="flex gap-4 items-start">
               <button 
                 onClick={handleVoiceRecord}
-                className={`p-4 border border-border-default flex flex-col items-center justify-center gap-1.5 transition-colors ${
-                  isRecording ? 'hazard-hatch-dark text-white' : 'bg-white text-black hover:bg-gray-100'
+                className={`p-4 rounded-2xl flex flex-col items-center justify-center gap-2 transition-all min-w-[80px] shadow-sm ${
+                  isRecording 
+                    ? 'bg-red-500 text-white shadow-red-200' 
+                    : 'bg-orange-50 text-orange-500 border border-orange-200 hover:bg-orange-100'
                 }`}
               >
                 <Mic className={`h-6 w-6 ${isRecording ? 'animate-pulse' : ''}`} />
-                <span className="text-[12px] font-bold uppercase">{isRecording ? 'Listening' : 'Record Voice'}</span>
+                <span className="text-[10px] font-bold uppercase">{isRecording ? 'Listening' : 'Record'}</span>
               </button>
               <div className="flex-1 space-y-2">
-                <div className="w-full h-16 p-2 border border-border-default bg-gray-50 font-mono text-[12px] overflow-y-auto">
+                <div className="w-full min-h-16 p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-[11px] text-slate-600 overflow-y-auto">
                   {voiceInput || 'Standby. Click record to capture audit verbal findings.'}
                 </div>
-                <p className="text-[12px] text-gray-500 italic">AI converts raw speech matrix into compliance checklists and logs.</p>
+                <p className="text-[11px] text-slate-400 italic">AI converts raw speech matrix into compliance checklists and logs.</p>
               </div>
             </div>
           </div>
@@ -159,17 +184,19 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
         {/* Upload portal */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <Paperclip className="h-3.5 w-3.5" />
+            <Paperclip className="h-3.5 w-3.5 text-orange-500" />
             EVIDENCE UPLOAD MATRIX
           </div>
           <div className="zoho-card-body">
             <div 
               onClick={handleFileUpload}
-              className="w-full border-2 border-dashed border-border-default p-6 text-center hover:bg-gray-50 cursor-pointer transition-colors space-y-2"
+              className="w-full border-2 border-dashed border-orange-200 rounded-xl p-6 text-center hover:bg-orange-50 hover:border-orange-400 cursor-pointer transition-all space-y-2"
             >
-              <Paperclip className="h-6 w-6 mx-auto text-black" />
-              <p className="font-bold text-[12px] uppercase">Drag / Drop evidence material</p>
-              <p className="text-[12px] text-gray-500">Supports JPEG visual annotations, CSV telemetry files, PDFs.</p>
+              <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center mx-auto">
+                <Paperclip className="h-5 w-5 text-orange-500" />
+              </div>
+              <p className="font-bold text-[12px] text-slate-700">Drag / Drop Evidence Material</p>
+              <p className="text-[11px] text-slate-400">Supports JPEG visual annotations, CSV telemetry files, PDFs.</p>
             </div>
           </div>
         </div>
@@ -177,23 +204,29 @@ export default function AuditEngine({ selectedElement, setSelectedElement }) {
         {/* Evidence files list */}
         <div className="zoho-card">
           <div className="zoho-card-header">
-            <ClipboardCheck className="h-3.5 w-3.5" />
+            <ClipboardCheck className="h-3.5 w-3.5 text-orange-500" />
             AUDIT EVIDENCE LOGS
           </div>
-          <div className="zoho-card-body space-y-2 max-h-[280px] overflow-y-auto pr-1">
+          <div className="zoho-card-body space-y-2.5 max-h-[280px] overflow-y-auto pr-1">
             {evidenceList.map((ev) => (
-              <div key={ev.id} className="p-2 border border-border-default bg-gray-50 relative space-y-1">
+              <div key={ev.id} className="p-2.5 rounded-xl border border-slate-200 bg-slate-50 relative space-y-1.5">
                 <button 
                   onClick={() => handleDeleteEvidence(ev.id)}
-                  className="absolute top-1 right-1 text-gray-400 hover:text-black font-bold"
+                  className="absolute top-2 right-2 text-slate-300 hover:text-red-400 transition-colors"
                 >
-                  <Trash2 className="h-3 w-3" />
+                  <Trash2 className="h-3.5 w-3.5" />
                 </button>
-                <p className="font-bold text-[12px] truncate pr-4">{ev.name}</p>
-                <div className="space-y-0.5 text-[12px] text-gray-600 font-mono">
-                  <div className="flex items-center gap-1"><MapPin className="h-2.5 w-2.5" /> {ev.coords}</div>
-                  <div className="flex items-center gap-1"><Calendar className="h-2.5 w-2.5" /> {ev.timestamp}</div>
-                  <div>SIZE: {ev.size}</div>
+                <p className="font-bold text-[12px] text-slate-700 truncate pr-5">{ev.name}</p>
+                <div className="space-y-1 text-[11px] text-slate-400 font-mono">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="h-3 w-3 text-orange-400" />
+                    <span>{ev.coords}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="h-3 w-3 text-orange-400" />
+                    <span>{ev.timestamp}</span>
+                  </div>
+                  <div className="text-slate-300">SIZE: {ev.size}</div>
                 </div>
               </div>
             ))}

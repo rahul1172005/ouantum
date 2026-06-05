@@ -3,18 +3,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { useCRMStore } from '@/store/crmStore';
-import { 
-  Activity, 
-  Cpu, 
-  Layers, 
-  Sigma, 
-  Upload, 
-  Play, 
-  Check, 
-  AlertTriangle, 
-  Clock, 
-  Sliders, 
-  ShieldAlert, 
+import {
+  Activity,
+  Cpu,
+  Layers,
+  Sigma,
+  Upload,
+  Play,
+  Check,
+  AlertTriangle,
+  Clock,
+  Sliders,
+  ShieldAlert,
   Wrench,
   FileText
 } from 'lucide-react';
@@ -116,7 +116,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
     const I = (Math.pow(columnWidth / 1000, 4) / 12); // column moment of inertia m⁴
     const H = floorHeight; // m
     const P = (liveLoad + deadLoad) * 35; // Total column load estimate in kN
-    
+
     // Euler Buckling Load: P_cr = (pi² * E * I) / (KL)² where K=1 (hinged columns approximation)
     const E_Pa = E * 1e9;
     const P_cr = (Math.PI * Math.PI * E_Pa * I) / Math.pow(H, 2) / 1000; // in kN
@@ -148,7 +148,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
     if (seismicZone === 'Zone V' && concreteGrade === 'M20') baseScore -= 10;
     if (timeProgression === '+10 Years') baseScore -= 8;
     if (timeProgression === '+25 Years') baseScore -= 18;
-    
+
     // Thermal disaster penalties
     if (fireTemp > 100) baseScore -= Math.min(40, (fireTemp - 100) * 0.06);
     // Flood saturation penalty
@@ -178,7 +178,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
   useEffect(() => {
     const logInterval = setInterval(() => {
       const formulas = [
-        `CALC STRESS: σ = P/A = ${(metrics.structuralLoadKn / 1000).toFixed(2)} / ${Math.pow(columnWidth/1000, 2).toFixed(3)} = ${metrics.stressMpa} MPa`,
+        `CALC STRESS: σ = P/A = ${(metrics.structuralLoadKn / 1000).toFixed(2)} / ${Math.pow(columnWidth / 1000, 2).toFixed(3)} = ${metrics.stressMpa} MPa`,
         `CALC DEFLECTION: δ_max = FL³ / 3EI = ${metrics.deflectionMm} mm`,
         `BUCKLING LIMIT: P_cr = π²EI / (KL)² = ${metrics.bucklingK_N} kN`,
         `SOIL BEARING SAFETY INDEX: SF_soil = ${metrics.soilSafety} (LIMIT: ${Math.round(soilType === 'Clay' ? 120 * (floodHeight > 1.5 ? Math.max(0.45, 1 - (floodHeight * 0.08)) : 1.0) : soilType === 'Silt' ? 75 * (floodHeight > 1.5 ? Math.max(0.45, 1 - (floodHeight * 0.08)) : 1.0) : 250)} kN/m²)`,
@@ -217,7 +217,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
     const interval = setInterval(() => {
       progress += 20;
       setScanProgress(progress);
-      
+
       setCalculationFeed(prev => [
         { id: Date.now() + progress, type: 'AI_SCAN', text: `Analyzing floorplan matrix vectors ${progress}%...` },
         ...prev
@@ -227,7 +227,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         clearInterval(interval);
         setIsScanningFile(false);
         setUploadedFiles(prev => prev.map(f => f.name === file.name ? { ...f, status: 'PARSED' } : f));
-        
+
         // Auto-configure building parameters based on drawing
         setFloors(8);
         setBuildingType('Commercial');
@@ -303,22 +303,22 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
       slabWire: new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true }),
       beamSolid: new THREE.MeshStandardMaterial({ color: 0xf3f4f6, roughness: 0.85 }),
       beamWire: new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true }),
-      
+
       // Stress Heatmap States
       greenStress: new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.8 }),
       yellowStress: new THREE.MeshStandardMaterial({ color: 0xf59e0b, roughness: 0.8 }),
       orangeStress: new THREE.MeshStandardMaterial({ color: 0xf97316, roughness: 0.8 }),
       redStress: new THREE.MeshStandardMaterial({ color: 0xef4444, roughness: 0.8 }),
-      
+
       // Crack Prediction States
       crackCritical: new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.8 }),
       crackNormal: new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8 }),
-      
+
       // Corrosion States
       corrodedCritical: new THREE.MeshStandardMaterial({ color: 0x4b5563, roughness: 0.8 }),
       corrodedCaution: new THREE.MeshStandardMaterial({ color: 0x9ca3af, roughness: 0.8 }),
       corrodedNormal: new THREE.MeshStandardMaterial({ color: 0xf9fafb, roughness: 0.8 }),
-      
+
       // Fire State
       fireNormal: new THREE.MeshStandardMaterial({ color: 0xf3f4f6, roughness: 0.8 })
     };
@@ -332,11 +332,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
     // 2. Rising Flood Water Plane
     const waterGeo = new THREE.BoxGeometry(80, 1, 80);
-    const waterMat = new THREE.MeshStandardMaterial({ 
-      color: 0x3b82f6, 
-      transparent: true, 
-      opacity: 0.45, 
-      roughness: 0.1 
+    const waterMat = new THREE.MeshStandardMaterial({
+      color: 0x3b82f6,
+      transparent: true,
+      opacity: 0.45,
+      roughness: 0.1
     });
     const waterMesh = new THREE.Mesh(waterGeo, waterMat);
     waterMesh.position.set(0, -6, 0);
@@ -344,10 +344,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
     // 3. Fire Ignition / Pulsing Heat Source Node
     const fireMeshGeo = new THREE.SphereGeometry(1.2, 12, 12);
-    const fireMeshMat = new THREE.MeshBasicMaterial({ 
-      color: 0xef4444, 
-      transparent: true, 
-      opacity: 0.8 
+    const fireMeshMat = new THREE.MeshBasicMaterial({
+      color: 0xef4444,
+      transparent: true,
+      opacity: 0.8
     });
     const fireMesh = new THREE.Mesh(fireMeshGeo, fireMeshMat);
     fireMesh.position.set(0, 2.3, 0); // Positioned near center column, first floor
@@ -398,8 +398,8 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
     const rebuildStructuralScene = (numFloors, flHeight, colW) => {
       // Clear previous group children
-      while(buildingGroup.children.length > 0){ 
-        buildingGroup.remove(buildingGroup.children[0]); 
+      while (buildingGroup.children.length > 0) {
+        buildingGroup.remove(buildingGroup.children[0]);
       }
       pillarMeshes.length = 0;
       beamMeshes.length = 0;
@@ -423,8 +423,8 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
       // Coordinates columns relative offsets
       const colCoords = [
         { x: -6, z: -6 }, { x: 0, z: -6 }, { x: 6, z: -6 },
-        { x: -6, z: 0 },  { x: 0, z: 0 },  { x: 6, z: 0 },
-        { x: -6, z: 6 },  { x: 0, z: 6 },  { x: 6, z: 6 }
+        { x: -6, z: 0 }, { x: 0, z: 0 }, { x: 6, z: 0 },
+        { x: -6, z: 6 }, { x: 0, z: 6 }, { x: 6, z: 6 }
       ];
 
       // Reconstruct Multi-story frame structure
@@ -436,12 +436,12 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         // Render Columns for this story
         colCoords.forEach((coord, idx) => {
           const colGeo = new THREE.CylinderGeometry(colRadius, colRadius * 1.05, colHeight, 8);
-          
+
           const colSolid = new THREE.Mesh(colGeo, materials.normalSolid);
           const colWire = new THREE.Mesh(colGeo, materials.normalWire);
           colSolid.position.set(coord.x, floorY, coord.z);
           colWire.position.set(coord.x, floorY, coord.z);
-          
+
           colWire.userData = { isWire: true };
           colSolid.userData = {
             type: 'Structural Column Pillar',
@@ -462,14 +462,14 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
           // Internal steel reinforcing rebar mesh visualization (Internal X-Ray Mode)
           const rebarGeo = new THREE.CylinderGeometry(colRadius * 0.08, colRadius * 0.08, colHeight, 4);
-          
+
           const rebar1 = new THREE.Mesh(rebarGeo, materials.rebarSolid);
           const rebar1_W = new THREE.Mesh(rebarGeo, materials.normalWire);
           rebar1.position.set(coord.x + colRadius * 0.4, floorY, coord.z + colRadius * 0.4);
           rebar1_W.position.set(coord.x + colRadius * 0.4, floorY, coord.z + colRadius * 0.4);
           rebar1.userData = { isRebar: true, parentPillar: colSolid };
           rebar1_W.userData = { isRebar: true, parentPillar: colSolid };
-          
+
           const rebar2 = new THREE.Mesh(rebarGeo, materials.rebarSolid);
           const rebar2_W = new THREE.Mesh(rebarGeo, materials.normalWire);
           rebar2.position.set(coord.x - colRadius * 0.4, floorY, coord.z - colRadius * 0.4);
@@ -495,7 +495,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             const beamSolid = new THREE.Mesh(xBeamGeo, materials.beamSolid);
             const beamWire = new THREE.Mesh(xBeamGeo, materials.normalWire);
             const beamY = floorY + colHeight / 2 - bDepth / 2;
-            
+
             beamSolid.position.set(midX, beamY, midZ);
             beamWire.position.set(midX, beamY, midZ);
             beamWire.userData = { isWire: true };
@@ -544,11 +544,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
         // Render Slabs for this floor level (thickness 0.2m)
         const slabGeo = new THREE.BoxGeometry(14.5, 0.2, 14.5);
-        
+
         const slabSolid = new THREE.Mesh(slabGeo, materials.slabSolid);
         const slabWire = new THREE.Mesh(slabGeo, materials.normalWire);
         const slabY = floorY + colHeight / 2 + 0.1;
-        
+
         slabSolid.position.set(0, slabY, 0);
         slabWire.position.set(0, slabY, 0);
         slabWire.userData = { isWire: true };
@@ -606,10 +606,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             } else {
               mesh.material = materials.greenStress;
             }
-          } 
+          }
           else if (activeMode === 'Crack Prediction') {
             mesh.material = isCriticalElement ? materials.crackCritical : materials.crackNormal;
-          } 
+          }
           else if (activeMode === 'Corrosion') {
             if (isCriticalElement || timeStep === '+25 Years') {
               mesh.material = materials.corrodedCritical;
@@ -618,7 +618,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             } else {
               mesh.material = materials.corrodedNormal;
             }
-          } 
+          }
           else if (activeMode === 'Fire') {
             mesh.material = materials.fireNormal;
           }
@@ -741,7 +741,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
         // Custom engineering risk matrix details
         const isCritical = data.stressLevel === 'CRITICAL FAILURE';
-        
+
         setSelectedElement({
           type: data.type,
           id: data.name,
@@ -870,7 +870,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         windParticles.forEach(wp => {
           wp.visible = true;
           wp.position.x += (windSpeedValue / 150) * 1.6 + 0.1;
-          
+
           if (wp.position.x > -10 && wp.position.x < 10) {
             const wrapFactor = Math.max(0.1, (10 - Math.abs(wp.position.x)) / 10);
             if (wp.position.z > 0) {
@@ -894,8 +894,8 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
       if (activeMode === 'Load Flow') {
         const colCoords = [
           { x: -6, z: -6 }, { x: 0, z: -6 }, { x: 6, z: -6 },
-          { x: -6, z: 0 },  { x: 0, z: 0 },  { x: 6, z: 0 },
-          { x: -6, z: 6 },  { x: 0, z: 6 },  { x: 6, z: 6 }
+          { x: -6, z: 0 }, { x: 0, z: 0 }, { x: 6, z: 0 },
+          { x: -6, z: 6 }, { x: 0, z: 6 }, { x: 6, z: 6 }
         ];
         flowParticles.forEach((fp, idx) => {
           fp.visible = true;
@@ -982,7 +982,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
             mesh.userData.gravityVelocity = (mesh.userData.gravityVelocity || 0) + 0.15;
             const fallenY = Math.max(0.4, userData.initialY - mesh.userData.gravityVelocity * 0.06);
             targetY = fallenY;
-            
+
             if (fallenY > 0.5) {
               targetRotZ = mesh.rotation.z + 0.04;
               targetRotX = mesh.rotation.x + 0.025;
@@ -1174,10 +1174,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 font-mono text-xs text-black">
-      
+
       {/* 1. Parameters Left Control Panel */}
       <div className="xl:col-span-1 space-y-6 flex flex-col justify-between">
-        
+
         {/* Param Inputs Form */}
         <LevelCard
           icon={Wrench}
@@ -1185,11 +1185,11 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           headerAction={<span className="text-[12px] px-1.5 py-0.5 border border-border-default bg-black text-white font-bold rounded-[8px]-[8px] uppercase">MANUAL</span>}
           footerText="Adjust variables to run multi-physics structural twin simulations"
         >
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div>
               <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Building Type</label>
-              <select 
-                value={buildingType} 
+              <select
+                value={buildingType}
                 onChange={(e) => setBuildingType(e.target.value)}
                 className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
               >
@@ -1199,78 +1199,72 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Floors: {floors}</label>
-                <input 
-                  type="range" min="1" max="15" value={floors}
-                  onChange={(e) => setFloors(Number(e.target.value))}
-                  className="w-full accent-black cursor-ew-resize"
-                />
-              </div>
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Height: {floorHeight}m</label>
-                <input 
-                  type="range" min="3.0" max="4.5" step="0.1" value={floorHeight}
-                  onChange={(e) => setFloorHeight(Number(e.target.value))}
-                  className="w-full accent-black cursor-ew-resize"
-                />
-              </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Floors: {floors}</label>
+              <input
+                type="range" min="1" max="15" value={floors}
+                onChange={(e) => setFloors(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
+            </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Height: {floorHeight}m</label>
+              <input
+                type="range" min="3.0" max="4.5" step="0.1" value={floorHeight}
+                onChange={(e) => setFloorHeight(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Concrete Spec</label>
-                <select 
-                  value={concreteGrade} 
-                  onChange={(e) => setConcreteGrade(e.target.value)}
-                  className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
-                >
-                  <option value="M20">M20 Concrete</option>
-                  <option value="M25">M25 Grade</option>
-                  <option value="M30">M30 Structural</option>
-                  <option value="M40">M40 High-Strength</option>
-                </select>
-              </div>
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Soil Profile</label>
-                <select 
-                  value={soilType} 
-                  onChange={(e) => setSoilType(e.target.value)}
-                  className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
-                >
-                  <option value="Hard Rock">Hard Rock (600 kPa)</option>
-                  <option value="Sandy Soil">Sandy Soil (250 kPa)</option>
-                  <option value="Clay">Soft Clay (120 kPa)</option>
-                  <option value="Silt">Silt/Marsh (75 kPa)</option>
-                </select>
-              </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Concrete Spec</label>
+              <select
+                value={concreteGrade}
+                onChange={(e) => setConcreteGrade(e.target.value)}
+                className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
+              >
+                <option value="M20">M20 Concrete</option>
+                <option value="M25">M25 Grade</option>
+                <option value="M30">M30 Structural</option>
+                <option value="M40">M40 High-Strength</option>
+              </select>
+            </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Soil Profile</label>
+              <select
+                value={soilType}
+                onChange={(e) => setSoilType(e.target.value)}
+                className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
+              >
+                <option value="Hard Rock">Hard Rock (600 kPa)</option>
+                <option value="Sandy Soil">Sandy Soil (250 kPa)</option>
+                <option value="Clay">Soft Clay (120 kPa)</option>
+                <option value="Silt">Silt/Marsh (75 kPa)</option>
+              </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Col Width: {columnWidth}mm</label>
-                <input 
-                  type="range" min="300" max="800" step="50" value={columnWidth}
-                  onChange={(e) => setColumnWidth(Number(e.target.value))}
-                  className="w-full accent-black cursor-ew-resize"
-                />
-              </div>
-              <div>
-                <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Beam Depth: {beamDepth}mm</label>
-                <input 
-                  type="range" min="300" max="800" step="50" value={beamDepth}
-                  onChange={(e) => setBeamDepth(Number(e.target.value))}
-                  className="w-full accent-black cursor-ew-resize"
-                />
-              </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Col Width: {columnWidth}mm</label>
+              <input
+                type="range" min="300" max="800" step="50" value={columnWidth}
+                onChange={(e) => setColumnWidth(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
+            </div>
+            <div>
+              <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Beam Depth: {beamDepth}mm</label>
+              <input
+                type="range" min="300" max="800" step="50" value={beamDepth}
+                onChange={(e) => setBeamDepth(Number(e.target.value))}
+                className="w-full accent-black cursor-ew-resize"
+              />
             </div>
 
-            <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
+            <div className="border-t border-[#eeeeee] pt-3 space-y-3">
               <div>
                 <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Seismic Zone</label>
-                <select 
-                  value={seismicZone} 
+                <select
+                  value={seismicZone}
                   onChange={(e) => setSeismicZone(e.target.value)}
                   className="w-full p-1 border border-[#c8c8c8] rounded-[8px]-[3px] bg-white focus:outline-none text-[12px]"
                 >
@@ -1282,7 +1276,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
               <div>
                 <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Live load: {liveLoad} kN</label>
-                <input 
+                <input
                   type="range" min="1.5" max="10.0" step="0.5" value={liveLoad}
                   onChange={(e) => setLiveLoad(Number(e.target.value))}
                   className="w-full accent-black cursor-ew-resize"
@@ -1290,10 +1284,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 border-t border-[#eeeeee] pt-2 mt-2">
+            <div className="border-t border-[#eeeeee] pt-3 space-y-3">
               <div>
                 <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Flood Depth: {floodHeight}m</label>
-                <input 
+                <input
                   type="range" min="0.0" max="8.0" step="0.5" value={floodHeight}
                   onChange={(e) => setFloodHeight(Number(e.target.value))}
                   className="w-full accent-black cursor-ew-resize"
@@ -1301,7 +1295,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
               </div>
               <div>
                 <label className="block font-bold text-[12px] uppercase text-gray-500 mb-0.5">Fire Temp: {fireTemp}°C</label>
-                <input 
+                <input
                   type="range" min="25" max="1000" step="25" value={fireTemp}
                   onChange={(e) => setFireTemp(Number(e.target.value))}
                   className="w-full accent-black cursor-ew-resize"
@@ -1319,8 +1313,8 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
         >
           <div className="space-y-3">
             <div className="border border-dashed border-[#cccccc] rounded-[8px]-[3px] p-3 bg-gray-50 text-center relative cursor-pointer group hover:bg-gray-100 transition-colors">
-              <input 
-                type="file" accept=".dwg,.ifc,.pdf,.png,.jpg" 
+              <input
+                type="file" accept=".dwg,.ifc,.pdf,.png,.jpg"
                 onChange={handleFileUpload}
                 className="absolute inset-0 opacity-0 cursor-pointer"
                 disabled={isScanningFile}
@@ -1363,10 +1357,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
       {/* 2. Interactive Viewport & Render View modes */}
       <div className="xl:col-span-2 space-y-4 flex flex-col">
-        
+
         {/* Unified 3D Structural Twin Zoho Card Container */}
         <div className="zoho-card flex flex-col flex-1 justify-between" style={{ minHeight: '460px' }}>
-          
+
           {/* View selector — fully closed button strip acting as card header */}
           <div className="workspace-tabs flex-shrink-0 select-none">
             {['Skeleton', 'Stress Heatmap', 'Load Flow', 'Crack Prediction', 'Corrosion', 'Seismic', 'Wind', 'Flood', 'Fire', 'X-Ray'].map((mode) => {
@@ -1384,7 +1378,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           </div>
 
           {/* WebGL viewport body */}
-          <div 
+          <div
             ref={mountRef}
             className="w-full relative bg-white overflow-hidden flex-1"
             style={{ padding: '0px', minHeight: '340px' }}
@@ -1433,11 +1427,10 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
                   <button
                     key={step}
                     onClick={() => setTimeProgression(step)}
-                    className={`flex-1 py-1 text-[12px] font-bold border-r last:border-r-0 border-[#c8c8c8] transition-colors cursor-pointer ${
-                      timeProgression === step 
-                        ? 'bg-black text-white border-border-default' 
+                    className={`flex-1 py-1 text-[12px] font-bold border-r last:border-r-0 border-[#c8c8c8] transition-colors cursor-pointer ${timeProgression === step
+                        ? 'bg-black text-white border-border-default'
                         : 'bg-white text-black hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {step}
                   </button>
@@ -1492,7 +1485,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
 
       {/* 3. Right Analytics Output & Summary diagnostics */}
       <div className="xl:col-span-1 space-y-4 flex flex-col justify-between">
-        
+
         {/* Core health scorecard */}
         <LevelCard
           icon={Activity}
@@ -1537,7 +1530,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           title="Senior AI Code Compliance"
           footerText="Real-time compliance validation checking against ACI & IS codes"
         >
-          <div className="space-y-2 max-h-[160px] overflow-y-auto pr-1">
+          <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
             {seismicComplianceWarning && (
               <div className="p-2 border border-[#d4d4d4] rounded-[8px]-[3px] bg-white text-[12px] space-y-1 shadow-sm">
                 <div className="flex justify-between items-center border-b border-[#eeeeee] pb-0.5">
@@ -1617,7 +1610,7 @@ export default function BuildingValidation({ selectedElement, setSelectedElement
           title="Engineering Calculations Log"
           footerText="Real-time mathematical telemetry logged to core SSOT"
         >
-          <div className="flex-grow bg-gray-50 border border-[#d4d4d4] rounded-[8px]-[3px] p-2 font-mono text-[12px] leading-normal overflow-y-auto max-h-[130px] space-y-1.5 select-all pr-1">
+          <div className="flex-grow bg-gray-50 border border-[#d4d4d4] rounded-[8px]-[3px] p-2 font-mono text-[12px] leading-normal overflow-y-auto max-h-[220px] space-y-1.5 select-all pr-1">
             {calculationFeed.map((feed) => (
               <div key={feed.id} className="border-b border-gray-200 last:border-b-0 pb-1 text-gray-700">
                 <span className="text-[6.5px] border border-border-default bg-black text-white px-0.5 rounded-[8px] font-black mr-1 uppercase">
