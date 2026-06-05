@@ -25,7 +25,7 @@ const DEFECT_TYPES = [
   { id: 'honeycomb',   label: 'Honeycombing',         color: '#f97316', desc: 'Porous voids in concrete from poor compaction' },
   { id: 'spalling',    label: 'Spalling',             color: '#f59e0b', desc: 'Concrete surface flaking and breakage' },
   { id: 'corrosion',   label: 'Corrosion',            color: '#8b5cf6', desc: 'Rebar rust staining and surface oxidation' },
-  { id: 'leakage',     label: 'Water Leakage',        color: '#3b82f6', desc: 'Seepage, efflorescence and moisture ingress' },
+  { id: 'leakage',     label: 'Water Leakage',        color: '#0d9488', desc: 'Seepage, efflorescence and moisture ingress' },
   { id: 'surface',     label: 'Surface Defects',      color: '#6b7280', desc: 'Scaling, crazing, pop-outs and bug holes' },
   { id: 'rebar',       label: 'Rebar Exposure',       color: '#dc2626', desc: 'Uncovered reinforcement bars' },
 ];
@@ -70,7 +70,7 @@ export default function DefectDetection({ selectedElement, setSelectedElement })
       { x: 230, y: 90, w: 100, h: 80, color: '#f59e0b', label: 'SPALLING D002 89.2%' },
       { x: 80, y: 160, w: 90, h: 60, color: '#f97316', label: 'HONEYCOMB D003 94.1%' },
       { x: 360, y: 50, w: 80, h: 70, color: '#8b5cf6', label: 'CORROSION D004 91.8%' },
-      { x: 310, y: 160, w: 100, h: 50, color: '#3b82f6', label: 'LEAKAGE D005 87.3%' },
+      { x: 310, y: 160, w: 100, h: 50, color: '#0d9488', label: 'LEAKAGE D005 87.3%' },
       { x: 460, y: 130, w: 70, h: 90, color: '#dc2626', label: 'REBAR D006 99.1%' },
     ];
 

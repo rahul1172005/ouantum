@@ -621,7 +621,7 @@ export default function UPVTestSection({ setSelectedElement }) {
                     <tr 
                       key={r.id} 
                       onClick={() => selectScanPoint(r)}
-                      className="border-b border-[#f0f0f0] hover:bg-[#f5f8fc] cursor-pointer transition-colors"
+                      className="border-b border-[#f0f0f0] hover:bg-slate-50 cursor-pointer transition-colors"
                     >
                       <td className="py-2 font-bold text-gray-800">{r.id}</td>
                       <td className="py-2">
@@ -959,7 +959,7 @@ export default function UPVTestSection({ setSelectedElement }) {
           {/* Divider */}
           <div className="border-t border-dashed border-[#d4d4d4] pt-4" />
 
-          {/* 2. Bottom Section: 3D Isometric Digital Twin & Wave Telemetry */}
+          {/* 2. Bottom Section: 3D Isometric Column Digital Twin & Wave Telemetry */}
           <div>
             <div className="text-[12px] font-bold text-gray-700 uppercase tracking-wider mb-3 flex items-center justify-between">
               <span>II. 3D Isometric Column Digital Twin</span>
@@ -1228,8 +1228,8 @@ export default function UPVTestSection({ setSelectedElement }) {
                             <circle cx={pt.tx.x.toFixed(1)} cy={pt.tx.y.toFixed(1)} r="3.5" fill="#10b981" stroke="#000" strokeWidth="1" />
                             <text x={pt.tx.x - 6} y={pt.tx.y + 1.8} fontSize="5" fontWeight="bold" textAnchor="end" fill="#10b981">TX</text>
                             
-                            <circle cx={pt.rx.x.toFixed(1)} cy={pt.rx.y.toFixed(1)} r="3.5" fill="#3b82f6" stroke="#000" strokeWidth="1" />
-                            <text x={pt.rx.x + 6} y={pt.rx.y + 1.8} fontSize="5" fontWeight="bold" textAnchor="start" fill="#3b82f6">RX</text>
+                            <circle cx={pt.rx.x.toFixed(1)} cy={pt.rx.y.toFixed(1)} r="3.5" fill="#475569" stroke="#000" strokeWidth="1" />
+                            <text x={pt.rx.x + 6} y={pt.rx.y + 1.8} fontSize="5" fontWeight="bold" textAnchor="start" fill="#475569">RX</text>
 
                             {pt.isAnomaly && (
                               <g>

@@ -56,9 +56,9 @@ export default function MissionControl() {
     }`}>
       
       {/* 1. Header Alarm Command Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-electric-blue/15 pb-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#ea580c]/15 pb-4">
         <div>
-          <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-electric-blue flex items-center gap-2">
+          <h2 className="text-sm font-mono font-bold uppercase tracking-widest text-[#ea580c] flex items-center gap-2">
             <Video className="h-5 w-5 animate-pulse" /> Live NASA-Style Mission Control Center
           </h2>
           <p className="text-[12px] font-mono text-metallic-gray mt-1 uppercase">PORT HUDS: MUMBAI SEA LINK | SENSOR NODE FEED ARRAY</p>
@@ -71,7 +71,7 @@ export default function MissionControl() {
           <button 
             onClick={() => setMuteSound(!muteSound)}
             className={`p-2 rounded-[8px] border transition-colors ${
-              muteSound ? 'bg-white/5 text-metallic-gray border-white/10' : 'bg-electric-blue/15 text-electric-blue border-electric-blue/30'
+              muteSound ? 'bg-white/5 text-metallic-gray border-white/10' : 'bg-[#ea580c]/15 text-[#ea580c] border-[#ea580c]/30'
             }`}
           >
             {muteSound ? <VolumeX className="h-4.5 w-4.5" /> : <Volume2 className="h-4.5 w-4.5 animate-bounce" />}
@@ -96,26 +96,26 @@ export default function MissionControl() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* CCTV AI Detection feed wireframe */}
-        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-electric-blue/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
+        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-[#ea580c]/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
           <div className="p-3 border-b border-white/5 bg-secondary-bg/85 flex items-center justify-between font-mono text-xs">
-            <span className="flex items-center gap-1.5 font-bold"><Tv className="h-4 w-4 text-electric-blue" /> CCTV AI-CAMERA 04</span>
+            <span className="flex items-center gap-1.5 font-bold"><Tv className="h-4 w-4 text-[#ea580c]" /> CCTV AI-CAMERA 04</span>
             <span className="text-success-green animate-pulse">REC (1080P)</span>
           </div>
           
           {/* AI Bounding Boxes procedural animation */}
           <div className="flex-1 min-h-[220px] relative bg-slate-950 flex items-center justify-center overflow-hidden">
             {/* Camera grid line overlay */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.15)_50%),linear-gradient(90deg,rgba(0,212,255,0.02),rgba(0,212,255,0.02))] bg-[size:100%_8px,8px_100%] pointer-events-none"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.15)_50%),linear-gradient(90deg,rgba(249,115,22,0.02),rgba(249,115,22,0.02))] bg-[size:100%_8px,8px_100%] pointer-events-none"></div>
             
             {/* Visualizer wireframe lines */}
             <svg className="absolute inset-0 w-full h-full opacity-40">
-              <path d="M 20 20 L 120 180 L 220 80 L 320 200" stroke="#00d4ff" strokeWidth="1" fill="none" />
-              <rect x="50" y="40" width="80" height="90" stroke="#7b61ff" strokeWidth="1.5" fill="none" className="animate-pulse" />
+              <path d="M 20 20 L 120 180 L 220 80 L 320 200" stroke="#ea580c" strokeWidth="1" fill="none" />
+              <rect x="50" y="40" width="80" height="90" stroke="#94a3b8" strokeWidth="1.5" fill="none" className="animate-pulse" />
               <rect x="180" y="110" width="90" height="60" stroke="#ff4d6d" strokeWidth="1.5" fill="none" />
             </svg>
 
             {/* Bounding box overlays text */}
-            <div className="absolute top-10 left-16 border border-ai-purple bg-ai-purple/10 px-1 py-0.5 rounded-[8px] text-[12px] font-mono text-ai-purple">
+            <div className="absolute top-10 left-16 border border-orange-500 bg-orange-500/10 px-1 py-0.5 rounded-[8px] text-[12px] font-mono text-orange-600">
               NODE B-12 | STRAIN CHECK: 94%
             </div>
             
@@ -124,8 +124,8 @@ export default function MissionControl() {
             </div>
 
             {/* Simulated target crosshair */}
-            <div className="w-12 h-12 rounded-[8px]-full border border-dashed border-electric-blue/40 flex items-center justify-center animate-spin-slow">
-              <div className="w-2 h-2 rounded-[8px]-full bg-electric-blue animate-ping"></div>
+            <div className="w-12 h-12 rounded-[8px]-full border border-dashed border-[#ea580c]/40 flex items-center justify-center animate-spin-slow">
+              <div className="w-2 h-2 rounded-[8px]-full bg-[#ea580c] animate-ping"></div>
             </div>
           </div>
           
@@ -136,10 +136,10 @@ export default function MissionControl() {
         </div>
 
         {/* Drone Inspections Path telemetry */}
-        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-electric-blue/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
+        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-[#ea580c]/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
           <div className="p-3 border-b border-white/5 bg-secondary-bg/85 flex items-center justify-between font-mono text-xs">
-            <span className="flex items-center gap-1.5 font-bold"><Compass className="h-4 w-4 text-electric-blue animate-spin-slow" /> AUTONOMOUS DRONE APEX-9</span>
-            <span className="text-electric-blue animate-pulse">NAV LOCK ON</span>
+            <span className="flex items-center gap-1.5 font-bold"><Compass className="h-4 w-4 text-[#ea580c] animate-spin-slow" /> AUTONOMOUS DRONE APEX-9</span>
+            <span className="text-[#ea580c] animate-pulse">NAV LOCK ON</span>
           </div>
 
           <div className="flex-1 min-h-[220px] relative bg-slate-950 p-4 font-mono text-[12px] space-y-3">
@@ -160,7 +160,7 @@ export default function MissionControl() {
               </div>
               <div className="p-2.5 bg-black/60 rounded-[8px] border border-white/5">
                 <p className="text-metallic-gray/70">AUTONOMY DEVIATION</p>
-                <p className="text-base font-bold text-electric-blue mt-0.5">0.12%</p>
+                <p className="text-base font-bold text-[#ea580c] mt-0.5">0.12%</p>
               </div>
             </div>
 
@@ -171,7 +171,7 @@ export default function MissionControl() {
                 <span>84%</span>
               </div>
               <div className="w-full h-1.5 bg-black/80 rounded-[8px] overflow-hidden">
-                <div className="h-full bg-electric-blue rounded-[8px]" style={{ width: '84%' }}></div>
+                <div className="h-full bg-[#ea580c] rounded-[8px]" style={{ width: '84%' }}></div>
               </div>
             </div>
           </div>
@@ -183,9 +183,9 @@ export default function MissionControl() {
         </div>
 
         {/* Gas leak, overload, and worker safety logs */}
-        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-electric-blue/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
+        <div className="glass-panel rounded-[8px]-xl overflow-hidden border border-[#ea580c]/15 bg-black/60 min-h-[300px] flex flex-col justify-between">
           <div className="p-3 border-b border-white/5 bg-secondary-bg/85 flex items-center justify-between font-mono text-xs">
-            <span className="flex items-center gap-1.5 font-bold"><Activity className="h-4 w-4 text-electric-blue" /> ENVIRONMENTAL HAZARD INTELLIGENCE</span>
+            <span className="flex items-center gap-1.5 font-bold"><Activity className="h-4 w-4 text-[#ea580c]" /> ENVIRONMENTAL HAZARD INTELLIGENCE</span>
             <span className="text-[12px] text-metallic-gray">NODE SENSORS</span>
           </div>
 
@@ -205,11 +205,11 @@ export default function MissionControl() {
             {/* Overload force load */}
             <div className="space-y-1.5">
               <div className="flex justify-between text-metallic-gray">
-                <span className="flex items-center gap-1"><Gauge className="h-3.5 w-3.5 text-electric-blue" /> Live Bearing Overload Stress</span>
+                <span className="flex items-center gap-1"><Gauge className="h-3.5 w-3.5 text-[#ea580c]" /> Live Bearing Overload Stress</span>
                 <span className="text-white-text">{loadLevel.toFixed(1)} Tons</span>
               </div>
               <div className="w-full h-2 bg-black rounded-[8px] overflow-hidden">
-                <div className="h-full bg-electric-blue rounded-[8px] transition-all duration-500" style={{ width: `${Math.min(100, (loadLevel / 200) * 100)}%` }}></div>
+                <div className="h-full bg-[#ea580c] rounded-[8px] transition-all duration-500" style={{ width: `${Math.min(100, (loadLevel / 200) * 100)}%` }}></div>
               </div>
             </div>
 

@@ -395,7 +395,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
         <div className="relative mt-2" ref={avatarRef}>
           <button 
             onClick={() => setShowProfileMenu(!showProfileMenu)}
-            className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4a90e2] to-[#357abd] flex items-center justify-center text-[12px] font-bold text-white border-none cursor-pointer shadow-md select-none relative group"
+            className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f97316] to-[#ea580c] flex items-center justify-center text-[12px] font-bold text-white border-none cursor-pointer shadow-md select-none relative group"
             title="Scope & Role Settings"
           >
             AG
@@ -423,7 +423,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
                     }}
                     className={`w-full text-left text-[12px] font-semibold py-2 px-2.5 rounded-lg border-none bg-transparent cursor-pointer transition-colors ${
                       currentRole === role
-                        ? 'text-white bg-[#0073e6] font-bold'
+                        ? 'text-white bg-[#ea580c] font-bold'
                         : 'text-[#8f9298] hover:bg-[#1a1c20] hover:text-white'
                     }`}
                   >
@@ -465,7 +465,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
               placeholder="Search workspaces..."
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="w-full h-8 pl-3 pr-8 bg-[#191a1d] border border-[#2a2d34] text-white text-[12px] focus:outline-none focus:border-[#4a90e2] rounded-lg placeholder-[#5f6368]"
+              className="w-full h-8 pl-3 pr-8 bg-[#191a1d] border border-[#2a2d34] text-white text-[12px] focus:outline-none focus:border-[#ea580c] rounded-lg placeholder-[#5f6368]"
             />
             <span className="absolute right-2.5 text-[#5f6368]">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -477,7 +477,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
             <span>Filter: Active</span>
             <button 
               onClick={() => setSearchFilter('')} 
-              className="text-[#4a90e2] hover:text-[#357abd] hover:underline border-none bg-transparent text-[11px] cursor-pointer font-semibold"
+              className="text-[#ea580c] hover:text-[#ea580c] hover:underline border-none bg-transparent text-[11px] cursor-pointer font-semibold"
             >
               Clear
             </button>
@@ -527,7 +527,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
                         >
                           {/* Selected marker blue line */}
                           {isActive && (
-                            <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded bg-[#3b82f6]"></span>
+                            <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded bg-[#ea580c]"></span>
                           )}
                           <div className="flex items-center gap-2 truncate">
                             <span>{getWorkspaceIcon(item.type)}</span>

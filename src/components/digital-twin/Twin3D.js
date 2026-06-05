@@ -50,11 +50,11 @@ export default function Twin3D() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     mountRef.current.appendChild(renderer.domElement);
 
-    // LIGHTING setup (futuristic metallic/cyan accents)
+    // LIGHTING setup (futuristic metallic/orange accents)
     const ambientLight = new THREE.AmbientLight(0x0d162d, 2.5);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0x00d4ff, 2.0);
+    const dirLight1 = new THREE.DirectionalLight(0xea580c, 2.0);
     dirLight1.position.set(20, 40, 20);
     scene.add(dirLight1);
 
@@ -80,7 +80,7 @@ export default function Twin3D() {
     bridgeGroup.add(deck);
 
     // Bridge Grid / Guidelines (Futuristic hologram style)
-    const gridHelper = new THREE.GridHelper(120, 40, 0x00d4ff, 0x0b1224);
+    const gridHelper = new THREE.GridHelper(120, 40, 0xea580c, 0x0b1224);
     gridHelper.position.y = 0;
     scene.add(gridHelper);
 
@@ -149,9 +149,9 @@ export default function Twin3D() {
       positions[i * 3 + 1] = 11; // just above deck
       positions[i * 3 + 2] = (Math.random() - 0.5) * 6; // random lanes
 
-      colors[i * 3] = 0.0;     // R
-      colors[i * 3 + 1] = 0.83; // G (Electric blue 00d4ff)
-      colors[i * 3 + 2] = 1.0;  // B
+      colors[i * 3] = 1.0;     // R
+      colors[i * 3 + 1] = 0.35; // G (Orange)
+      colors[i * 3 + 2] = 0.0;  // B
 
       speeds.push(0.1 + Math.random() * 0.15);
     }
@@ -203,9 +203,9 @@ export default function Twin3D() {
           if (layer === 'Stress Heatmap') {
             n.material.color.setHex(idx === 2 ? 0xff4d6d : 0x00ffb2);
           } else if (layer === 'Corrosion Overlay') {
-            n.material.color.setHex(idx === 4 ? 0xff9f43 : 0x7b61ff);
+            n.material.color.setHex(idx === 4 ? 0xff9f43 : 0xea580c);
           } else {
-            n.material.color.setHex(0x00d4ff); // Raw telemetry
+            n.material.color.setHex(0xea580c); // Raw telemetry
           }
         });
       }
@@ -289,7 +289,7 @@ export default function Twin3D() {
   };
 
   return (
-    <div className="h-full flex flex-col glass-panel rounded-[8px]-xl overflow-hidden border border-electric-blue/10 bg-primary-bg/70">
+    <div className="h-full flex flex-col glass-panel rounded-[8px]-xl overflow-hidden border border-[#ea580c]/10 bg-primary-bg/70">
       {/* 3D Render Frame */}
       <div className="flex-1 min-h-[350px] relative" ref={mountRef}>
         
@@ -301,7 +301,7 @@ export default function Twin3D() {
               onClick={() => setActiveLayer(layer)}
               className={`px-3 py-1.5 rounded-[8px]-md border ${
                 activeLayer === layer 
-                  ? 'bg-electric-blue/20 text-electric-blue border-electric-blue/50 neon-glow-blue' 
+                  ? 'bg-[#ea580c]/20 text-[#ea580c] border-[#ea580c]/50 neon-glow-orange' 
                   : 'bg-black/60 text-metallic-gray border-white/10 hover:text-white-text'
               }`}
             >
@@ -312,9 +312,9 @@ export default function Twin3D() {
 
         {/* Selected Sensor Diagnostics details */}
         {selectedNode && (
-          <div className="absolute top-4 right-4 z-20 w-64 p-3 rounded-[8px]-lg glass-panel bg-black/85 border-electric-blue/30 font-mono text-xs animate-in slide-in-from-right-4">
+          <div className="absolute top-4 right-4 z-20 w-64 p-3 rounded-[8px]-lg glass-panel bg-black/85 border-[#ea580c]/30 font-mono text-xs animate-in slide-in-from-right-4">
             <div className="flex items-center justify-between border-b border-white/10 pb-1.5 mb-2">
-              <span className="text-electric-blue font-bold flex items-center gap-1"><Cpu className="h-3.5 w-3.5" /> telemetry</span>
+              <span className="text-[#ea580c] font-bold flex items-center gap-1"><Cpu className="h-3.5 w-3.5" /> telemetry</span>
               <button onClick={() => setSelectedNode(null)} className="text-metallic-gray hover:text-white">&times;</button>
             </div>
             <p className="text-white-text font-bold mb-1">{selectedNode.name}</p>
@@ -356,13 +356,13 @@ export default function Twin3D() {
       </div>
 
       {/* Physics Deflection simulation control panel */}
-      <div className="p-4 border-t border-electric-blue/10 bg-secondary-bg/90 grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+      <div className="p-4 border-t border-[#ea580c]/10 bg-secondary-bg/90 grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
         
         {/* Wind sway slider */}
         <div>
           <div className="flex justify-between text-metallic-gray mb-1.5">
-            <span className="flex items-center gap-1"><Wind className="h-3.5 w-3.5 text-electric-blue" /> WIND FORCE SIM</span>
-            <span className="text-electric-blue">{windSpeed} km/h</span>
+            <span className="flex items-center gap-1"><Wind className="h-3.5 w-3.5 text-[#ea580c]" /> WIND FORCE SIM</span>
+            <span className="text-[#ea580c]">{windSpeed} km/h</span>
           </div>
           <input
             type="range"
@@ -370,7 +370,7 @@ export default function Twin3D() {
             max="180"
             value={windSpeed}
             onChange={(e) => setWindSpeed(Number(e.target.value))}
-            className="w-full h-1 bg-black/60 rounded-[8px]-lg appearance-none cursor-pointer accent-electric-blue"
+            className="w-full h-1 bg-black/60 rounded-[8px]-lg appearance-none cursor-pointer accent-orange-600"
           />
           <div className="flex justify-between text-[12px] text-metallic-gray/50 mt-1">
             <span>0 km/h (CALM)</span>
@@ -407,7 +407,7 @@ export default function Twin3D() {
           <div className="flex gap-2">
             <button 
               onClick={() => { setWindSpeed(150); setSeismicActivity(0); }}
-              className="flex-1 py-1.5 bg-electric-blue/10 hover:bg-electric-blue/20 border border-electric-blue/30 rounded-[8px] text-[12px] font-bold text-white transition-colors"
+              className="flex-1 py-1.5 bg-[#ea580c]/10 hover:bg-[#ea580c]/20 border border-[#ea580c]/30 rounded-[8px] text-[12px] font-bold text-white transition-colors"
             >
               TYPHOON SWAY
             </button>

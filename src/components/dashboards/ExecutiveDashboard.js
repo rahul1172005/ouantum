@@ -29,21 +29,21 @@ const IndiaMap = ({ onHotspotClick }) => (
     />
     {/* Mumbai */}
     <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'MSRDC — Bandra-Worli Sea Link', loc: 'Mumbai, MH', score: 84, activeDeals: '₹4.5 Cr' })}>
-      <circle cx="108" cy="270" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
-      <circle cx="108" cy="270" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '108px 270px' }} />
-      <text x="120" y="274" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">MUMBAI [BWSL]</text>
+      <circle cx="108" cy="270" r="10" fill="#ea580c" opacity="0.25" className="animate-pulse" />
+      <circle cx="108" cy="270" r="5" fill="#ea580c" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '108px 270px' }} />
+      <text x="120" y="274" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-orange-600 transition-colors">MUMBAI [BWSL]</text>
     </g>
     {/* Chennai */}
     <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'CMRL — Chennai Metro Line 3', loc: 'Chennai, TN', score: 92, activeDeals: '₹12.0 Cr' })}>
-      <circle cx="152" cy="370" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
-      <circle cx="152" cy="370" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '152px 370px' }} />
-      <text x="164" y="374" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">CHENNAI [CMRL]</text>
+      <circle cx="152" cy="370" r="10" fill="#ea580c" opacity="0.25" className="animate-pulse" />
+      <circle cx="152" cy="370" r="5" fill="#ea580c" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '152px 370px' }} />
+      <text x="164" y="374" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-orange-600 transition-colors">CHENNAI [CMRL]</text>
     </g>
     {/* Delhi */}
     <g className="cursor-pointer group" onClick={() => onHotspotClick({ name: 'NHAI — Highway Bridge-42', loc: 'New Delhi, DL', score: 78, activeDeals: '₹8.5 Cr' })}>
-      <circle cx="140" cy="120" r="10" fill="#2563eb" opacity="0.25" className="animate-pulse" />
-      <circle cx="140" cy="120" r="5" fill="#2563eb" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '140px 120px' }} />
-      <text x="152" y="124" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-blue-600 transition-colors">DELHI [NHAI]</text>
+      <circle cx="140" cy="120" r="10" fill="#ea580c" opacity="0.25" className="animate-pulse" />
+      <circle cx="140" cy="120" r="5" fill="#ea580c" className="group-hover:scale-125 transition-transform duration-200" style={{ transformOrigin: '140px 120px' }} />
+      <text x="152" y="124" fill="#334155" fontSize="9" fontWeight="700" className="group-hover:fill-orange-600 transition-colors">DELHI [NHAI]</text>
     </g>
   </svg>
 );
@@ -82,11 +82,11 @@ function CardHeader({ label }) {
 /*  Main dashboard                                                      */
 /* ------------------------------------------------------------------ */
 export default function ExecutiveDashboard({ selectedElement, setSelectedElement }) {
-  const accounts  = useCRMStore(state => state.accounts);
-  const deals     = useCRMStore(state => state.deals);
-  const tickets   = useCRMStore(state => state.tickets);
+  const accounts = useCRMStore(state => state.accounts);
+  const deals = useCRMStore(state => state.deals);
+  const tickets = useCRMStore(state => state.tickets);
   const activities = useCRMStore(state => state.activities);
-  const addDeal   = useCRMStore(state => state.addDeal);
+  const addDeal = useCRMStore(state => state.addDeal);
 
   const [sensorStream, setSensorStream] = useState(() => {
     return Array.from({ length: 20 }, (_, i) => ({
@@ -96,8 +96,8 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
   });
 
   const [selectedAsset, setSelectedAsset] = useState(null);
-  const [newDealTitle,   setNewDealTitle]   = useState('');
-  const [newDealAmount,  setNewDealAmount]  = useState('');
+  const [newDealTitle, setNewDealTitle] = useState('');
+  const [newDealAmount, setNewDealAmount] = useState('');
   const [newDealAccount, setNewDealAccount] = useState('acc-1');
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
     return () => clearInterval(iv);
   }, []);
 
-  const totalDealValue      = deals.reduce((s, d) => s + d.amount, 0);
+  const totalDealValue = deals.reduce((s, d) => s + d.amount, 0);
   const criticalAlarmsCount = tickets.filter(t => t.status === 'OPEN' && (t.severity === 'CRITICAL' || t.severity === 'HIGH')).length;
 
   const handleCreateDeal = (e) => {
@@ -121,9 +121,9 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
     if (!newDealTitle || !newDealAmount) return;
     const res = addDeal({
       accountId: newDealAccount,
-      title:     newDealTitle,
-      amount:    parseFloat(newDealAmount),
-      stage:     'Proposal',
+      title: newDealTitle,
+      amount: parseFloat(newDealAmount),
+      stage: 'Proposal',
       healthScore: 100,
       closeDate: new Date(Date.now() + 90 * 86400000).toISOString().split('T')[0],
     });
@@ -141,7 +141,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
       id: asset.name.split(' ')[0],
       metrics: {
         RegionalHealthIndex: `${asset.score}%`,
-        ContractValueScope:  asset.activeDeals,
+        ContractValueScope: asset.activeDeals,
         LocationCoordinates: asset.loc,
       },
     });
@@ -150,10 +150,10 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
   /* ── stage badge colors ── */
   const stageBadge = (stage) => {
     const map = {
-      Proposal:    { bg: '#fff8e1', color: '#b45309', border: '#fde68a' },
-      Negotiation: { bg: '#eff6ff', color: '#1d4ed8', border: '#bfdbfe' },
+      Proposal: { bg: '#fff8e1', color: '#b45309', border: '#fde68a' },
+      Negotiation: { bg: '#fff7ed', color: '#ea580c', border: '#ffedd5' },
       'Due Diligence': { bg: '#f0fdf4', color: '#166534', border: '#bbf7d0' },
-      Closed:      { bg: '#f9fafb', color: '#374151', border: '#d1d5db' },
+      Closed: { bg: '#f9fafb', color: '#374151', border: '#d1d5db' },
     };
     return map[stage] || { bg: '#f4f4f4', color: '#555', border: '#ddd' };
   };
@@ -171,8 +171,8 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
           value={accounts.length}
           badge="3 Portfolios"
           icon={Gauge}
-          iconBg="#eff6ff"
-          iconColor="#3b82f6"
+          iconBg="#fff7ed"
+          iconColor="#ea580c"
         />
         <KpiCard
           label="Active Sensor Alerts"
@@ -195,8 +195,8 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
           value="94.8%"
           badge="Calibrated"
           icon={TrendingUp}
-          iconBg="#eff6ff"
-          iconColor="#2563eb"
+          iconBg="#fff7ed"
+          iconColor="#ea580c"
         />
       </div>
 
@@ -205,7 +205,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
         {/* Regional map */}
         <div className="zoho-card flex flex-col min-h-[380px]">
-          <CardHeader icon={MapPin} label="Regional Hotspot Index" iconColor="#2563eb" />
+          <CardHeader icon={MapPin} label="Regional Hotspot Index" iconColor="#ea580c" />
           <div className="zoho-card-body flex-1 flex flex-col justify-between overflow-hidden">
             <div className="flex-1 flex justify-center items-center py-2">
               <IndiaMap onHotspotClick={handleHotspotClick} />
@@ -233,7 +233,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
         {/* Acoustic telemetry chart */}
         <div className="zoho-card flex flex-col min-h-[380px]">
-          <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#2563eb" />
+          <CardHeader icon={Activity} label="Live Acoustic Telemetry" iconColor="#ea580c" />
           <div className="zoho-card-body flex-1 flex flex-col gap-3 overflow-hidden">
             <div className="text-xs font-semibold text-slate-400">
               Channel Feed: Pillar-B12 Strain Transducers
@@ -243,8 +243,8 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                 <AreaChart data={sensorStream} margin={{ top: 5, right: 10, left: -25, bottom: 0 }}>
                   <defs>
                     <linearGradient id="vibGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%"  stopColor="#2563eb" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="#2563eb" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#ea580c" stopOpacity={0.2} />
+                      <stop offset="95%" stopColor="#ea580c" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
@@ -263,14 +263,14 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                       return null;
                     }}
                   />
-                  <Area type="monotone" dataKey="vibration" stroke="#2563eb" strokeWidth={2.5} fill="url(#vibGrad)" />
+                  <Area type="monotone" dataKey="vibration" stroke="#ea580c" strokeWidth={2.5} fill="url(#vibGrad)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
           <div className="zoho-card-footer px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
             <span className="text-xs text-slate-600 flex items-center gap-1.5 font-medium">
-              <Activity size={13} className="text-blue-500 animate-pulse" /> Sensor Link Matrix On-Site
+              <Activity size={13} className="text-orange-500 animate-pulse" /> Sensor Link Matrix On-Site
             </span>
             <span className="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider scale-90">
               SECURE
@@ -280,7 +280,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
         {/* AI Diagnostics log */}
         <div className="zoho-card flex flex-col min-h-[380px]">
-          <CardHeader icon={ShieldCheck} label="AI Diagnostics HUD Log" iconColor="#2563eb" />
+          <CardHeader label="AI Diagnostics HUD Log" />
           <div className="zoho-card-body flex-1 flex flex-col gap-3 overflow-y-auto max-h-[320px]">
             <div className="flex flex-col gap-3">
               {activities.map((act) => {
@@ -288,18 +288,16 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                 return (
                   <div
                     key={act.id}
-                    className={`p-3.5 rounded-xl border transition-all duration-200 ${
-                      isCritical
+                    className={`p-3.5 rounded-xl border transition-all duration-200 ${isCritical
                         ? 'bg-rose-50/70 border-rose-100 text-rose-800 shadow-[0_4px_12px_rgba(244,63,94,0.02)]'
                         : act.type.includes('DRONE')
-                        ? 'bg-blue-50/70 border-blue-100 text-blue-800'
-                        : 'bg-emerald-50/70 border-emerald-100 text-emerald-800'
-                    }`}
+                          ? 'bg-slate-50/70 border-slate-200 text-slate-800'
+                          : 'bg-emerald-50/70 border-emerald-100 text-emerald-800'
+                      }`}
                   >
                     <div className="flex justify-between items-center mb-1">
-                      <span className={`text-[11px] font-bold tracking-wider uppercase ${
-                        isCritical ? 'text-rose-600' : act.type.includes('DRONE') ? 'text-blue-600' : 'text-emerald-600'
-                      }`}>{act.type}</span>
+                      <span className={`text-[11px] font-bold tracking-wider uppercase ${isCritical ? 'text-rose-600' : act.type.includes('DRONE') ? 'text-slate-600' : 'text-emerald-600'
+                        }`}>{act.type}</span>
                       <span className="text-[11px] font-mono opacity-60">
                         {new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                       </span>
@@ -336,7 +334,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                     const getStageStyles = (stage) => {
                       const map = {
                         Proposal: 'bg-amber-50 text-amber-600 border border-amber-200',
-                        Negotiation: 'bg-blue-50 text-blue-600 border border-blue-200',
+                        Negotiation: 'bg-orange-50 text-orange-600 border border-orange-200',
                         'Due Diligence': 'bg-emerald-50 text-emerald-600 border border-emerald-200',
                         Closed: 'bg-slate-50 text-slate-600 border border-slate-200',
                       };
@@ -351,7 +349,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                       <tr key={deal.id} className="border-b border-slate-100 hover:bg-orange-50/20 transition-colors duration-150">
                         <td className="px-5 py-4 font-bold text-slate-800">{deal.title}</td>
                         <td className="px-5 py-4 text-slate-500 font-semibold">{acc ? acc.name : 'Unknown Entity'}</td>
-                        <td className="px-5 py-4 font-bold text-blue-600">₹{(deal.amount / 10000000).toFixed(2)} Cr</td>
+                        <td className="px-5 py-4 font-bold text-orange-600">₹{(deal.amount / 10000000).toFixed(2)} Cr</td>
                         <td className="px-5 py-4">
                           <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${getStageStyles(deal.stage)}`}>
                             {deal.stage}
@@ -373,7 +371,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
         {/* Create form */}
         <div className="zoho-card flex flex-col">
-          <CardHeader icon={Plus} label="Create Maintenance Contract" iconColor="#2563eb" />
+          <CardHeader label="Create Maintenance Contract" />
           <div className="zoho-card-body p-6 flex flex-col h-full justify-between">
             <form onSubmit={handleCreateDeal} className="flex flex-col gap-4">
 
@@ -386,7 +384,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                   placeholder="e.g. Bandra Piling Repairs..."
                   value={newDealTitle}
                   onChange={e => setNewDealTitle(e.target.value)}
-                  className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
+                  className="w-full text-sm rounded-md border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   required
                 />
               </div>
@@ -401,7 +399,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                     placeholder="e.g. 5000000"
                     value={newDealAmount}
                     onChange={e => setNewDealAmount(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
+                    className="w-full text-sm rounded-md border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                     required
                   />
                 </div>
@@ -412,7 +410,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
                   <select
                     value={newDealAccount}
                     onChange={e => setNewDealAccount(e.target.value)}
-                    className="w-full text-sm rounded-xl border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
+                    className="w-full text-sm rounded-md border border-slate-200 px-3 py-2 bg-white text-slate-800 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
                   >
                     {accounts.map(acc => (
                       <option key={acc.id} value={acc.id}>{acc.name.split(' ')[0]}</option>
@@ -423,7 +421,7 @@ export default function ExecutiveDashboard({ selectedElement, setSelectedElement
 
               <button
                 type="submit"
-                className="w-full mt-2 font-bold py-2.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-lg shadow-blue-500/10 hover:shadow-blue-500/20 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 border-none"
+                className="w-full mt-2 font-bold py-2.5 px-4 bg-black text-white rounded-md cursor-pointer flex items-center justify-center gap-2 border-none"
               >
                 <Plus size={16} /> Enforce Contract Entry
               </button>

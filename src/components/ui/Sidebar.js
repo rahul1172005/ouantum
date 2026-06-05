@@ -43,9 +43,9 @@ const ColumnChartIcon = () => (
 const DashboardPanelIcon = () => (
   <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8"/>
-    <rect x="3" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5"/>
-    <rect x="8.5" y="3" width="4.5" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5"/>
-    <rect x="3" y="8.5" width="10" height="4.5" fill="#EBF3FB" stroke="#4A90E2" strokeWidth="0.5"/>
+    <rect x="3" y="3" width="4.5" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
+    <rect x="8.5" y="3" width="4.5" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
+    <rect x="3" y="8.5" width="10" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
   </svg>
 );
 
@@ -180,7 +180,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                 placeholder="Search Tables/Reports"
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
-                className="w-full h-8 px-2 pr-6 bg-white border border-[#aab7b8] text-xs focus:outline-none focus:border-[#0073bb] rounded-[8px]"
+                className="w-full h-8 px-2 pr-6 bg-white border border-[#aab7b8] text-xs focus:outline-none focus:border-[#ea580c] rounded-[8px]"
               />
               <button className="absolute right-1.5 p-0.5 icon-btn hover:bg-gray-100 rounded-[8px]-[8px]">
                 <svg className="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

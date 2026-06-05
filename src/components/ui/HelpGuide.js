@@ -84,7 +84,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <HelpCircle className="h-3.5 w-3.5 flex-shrink-0 text-[#0073bb]" />
+              <HelpCircle className="h-3.5 w-3.5 flex-shrink-0 text-[#ea580c]" />
               <span>Platform Core Overview</span>
             </button>
 
@@ -144,7 +144,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Sliders className="h-3.5 w-3.5 flex-shrink-0 text-[#0073bb]" />
+              <Sliders className="h-3.5 w-3.5 flex-shrink-0 text-[#ea580c]" />
               <span>Civil OS Lifecycle Levels 1-11</span>
             </button>
 
@@ -198,7 +198,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                 <div className="space-y-3">
                   <h4 className="font-bold text-[#16191f] text-[13px] uppercase tracking-wider font-sans">Core Operating Rules:</h4>
                   
-                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] rounded-[8px]-[4px] bg-[#ebf3fb] space-y-1.5 font-sans">
+                  <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#ea580c] rounded-[8px]-[4px] bg-[#fff7ed] space-y-1.5 font-sans">
                     <p className="font-bold text-[#16191f] text-[13px]">Rule 1: Single Source of Truth (SSOT)</p>
                     <p className="text-[#545b64] text-[12px] leading-relaxed">Every contact, deal, ticket, sensor feed, and document must belong to a canonical Account (example: MSRDC). Isolated orphan records are programmatically blocked to preserve database integrity.</p>
                   </div>
@@ -209,7 +209,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   </div>
                 </div>
 
-                <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#0073bb] bg-[#ebf3fb] rounded-[8px]-[4px] text-[#16191f] font-sans">
+                <div className="p-4 border border-[#eaeded] border-l-4 border-l-[#ea580c] bg-[#fff7ed] rounded-[8px]-[4px] text-[#16191f] font-sans">
                   <span className="font-bold block mb-1 text-[13px]">Role-Based Access Control (RBAC) Switcher</span>
                   <span className="text-[12px] text-[#545b64]">Access is governed by zero-trust Role-Based Access Control (RBAC). Use the Scope switcher in the Topbar to switch access levels (example: Admin, Sales/Ops, Viewer) to test view limitations.</span>
                 </div>
