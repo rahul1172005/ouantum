@@ -20,25 +20,25 @@ const QuantumFuturisticLogo = () => (
 );
 
 const MenuToggleIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
   </svg>
 );
 
 const BellIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
   </svg>
 );
 
 const ChatIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
   </svg>
 );
 
 const SearchProfileIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <circle cx="9" cy="8" r="3.5" />
     <path d="M4 18a5 5 0 0110 0" />
     <circle cx="16.5" cy="14.5" r="2.5" />
@@ -47,40 +47,42 @@ const SearchProfileIcon = () => (
 );
 
 const ChecklistIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
   </svg>
 );
 
 const SettingsIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
   </svg>
 );
 
 const HelpIcon = () => (
-  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
     <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
 );
 
+
 // ── Explorer Item Icons — Vintage Windows 95/98 style ──────────────────────
-// Classic 16-color palette: navy #000080, forest green #008000, maroon #800000
-// teal #008080, olive #808000. Small bevel + inner highlight for retro depth.
+// Small bevel + inner highlight for retro depth. Gray/silver tones (no blue).
 
 const DashboardIcon = () => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: 16, height: 16, borderRadius: 2, flexShrink: 0,
-    background: '#000080',
-    border: '1px solid #000040',
-    boxShadow: 'inset 1px 1px 0 rgba(255,255,255,0.35), 1px 1px 0 #00003a',
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
   }}>
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <rect x="1"   y="1"   width="3" height="3" fill="#ffffff" opacity="0.95"/>
-      <rect x="5.5" y="1"   width="3" height="3" fill="#ffffff" opacity="0.55"/>
-      <rect x="1"   y="5.5" width="3" height="3" fill="#ffffff" opacity="0.55"/>
-      <rect x="5.5" y="5.5" width="3" height="3" fill="#ffffff" opacity="0.95"/>
+      <rect x="2" y="2" width="6" height="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="2" y1="5" x2="8" y2="5" stroke="#475569" strokeWidth="1"/>
+      <line x1="5" y1="2" x2="5" y2="8" stroke="#475569" strokeWidth="1"/>
     </svg>
   </span>
 );
@@ -89,15 +91,18 @@ const TableIcon = () => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: 16, height: 16, borderRadius: 2, flexShrink: 0,
-    background: '#008000',
-    border: '1px solid #004000',
-    boxShadow: 'inset 1px 1px 0 rgba(255,255,255,0.35), 1px 1px 0 #002800',
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
   }}>
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <rect x="1" y="1"   width="8" height="2"   fill="#ffffff" opacity="0.95"/>
-      <rect x="1" y="4"   width="8" height="1.5" fill="#ffffff" opacity="0.50"/>
-      <rect x="1" y="6.5" width="8" height="1.5" fill="#ffffff" opacity="0.50"/>
-      <line x1="1" y1="3.2" x2="9" y2="3.2" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5"/>
+      <rect x="1.5" y="2" width="7" height="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="1.5" y1="4" x2="8.5" y2="4" stroke="#475569" strokeWidth="1"/>
+      <line x1="1.5" y1="6" x2="8.5" y2="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="5" y1="2" x2="5" y2="8" stroke="#475569" strokeWidth="1"/>
     </svg>
   </span>
 );
@@ -106,15 +111,18 @@ const ChartIcon = () => (
   <span style={{
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     width: 16, height: 16, borderRadius: 2, flexShrink: 0,
-    background: '#800000',
-    border: '1px solid #400000',
-    boxShadow: 'inset 1px 1px 0 rgba(255,255,255,0.35), 1px 1px 0 #2a0000',
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
   }}>
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-      <rect x="1"   y="6"   width="2"   height="3" fill="#ffffff" opacity="0.95"/>
-      <rect x="4"   y="3.5" width="2"   height="5.5" fill="#ffffff" opacity="0.95"/>
-      <rect x="7"   y="1"   width="2"   height="8" fill="#ffffff" opacity="0.95"/>
-      <line x1="1" y1="9.2" x2="9" y2="9.2" stroke="rgba(255,255,255,0.4)" strokeWidth="0.5"/>
+      <line x1="2" y1="8" x2="8" y2="8" stroke="#475569" strokeWidth="1"/>
+      <line x1="2" y1="2" x2="2" y2="8" stroke="#475569" strokeWidth="1"/>
+      <rect x="3.5" y="5" width="1.5" height="3" fill="#ea580c"/>
+      <rect x="6" y="3" width="1.5" height="5" fill="#ea580c"/>
     </svg>
   </span>
 );
@@ -385,7 +393,7 @@ export function Sidebar({ isOpen, setIsOpen, setHelpOpen, onExit }) {
             className="w-10 h-10 rounded-lg flex items-center justify-center border-none bg-transparent text-[#8f9298] hover:bg-[#1a1c20] hover:text-[#d32f2f] cursor-pointer mt-2 transition-all duration-150"
             title="Exit Workspace"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
           </button>

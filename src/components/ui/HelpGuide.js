@@ -32,6 +32,10 @@ const SECTIONS = {
 export default function HelpGuide({ isOpen, onClose }) {
   const [activeSection, setActiveSection] = useState(SECTIONS.WELCOME);
 
+  const getIconColor = (section) => {
+    return activeSection === section ? 'text-[#ea580c]' : 'text-[#545b64]';
+  };
+
   // Close on ESC key press
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -84,7 +88,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <HelpCircle className="h-3.5 w-3.5 flex-shrink-0 text-[#ea580c]" />
+              <HelpCircle className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.WELCOME)}`} />
               <span>Platform Core Overview</span>
             </button>
 
@@ -96,7 +100,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Layers className="h-3.5 w-3.5 flex-shrink-0 text-[#8c43fc]" />
+              <Layers className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.NAVIGATION)}`} />
               <span>UI Shell & Inspector Control</span>
             </button>
 
@@ -108,7 +112,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Grid className="h-3.5 w-3.5 flex-shrink-0 text-[#ec7211]" />
+              <Grid className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.TABLES)}`} />
               <span>Tables & Reports</span>
             </button>
 
@@ -120,7 +124,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Cpu className="h-3.5 w-3.5 flex-shrink-0 text-[#1d8102]" />
+              <Cpu className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.LABS)}`} />
               <span>Engineering Labs</span>
             </button>
 
@@ -132,7 +136,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Activity className="h-3.5 w-3.5 flex-shrink-0 text-[#d13212]" />
+              <Activity className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.IOT)}`} />
               <span>Live IoT & Twins</span>
             </button>
 
@@ -144,7 +148,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Sliders className="h-3.5 w-3.5 flex-shrink-0 text-[#ea580c]" />
+              <Sliders className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.CIVIL_LEVELS)}`} />
               <span>Civil OS Lifecycle Levels 1-11</span>
             </button>
 
@@ -156,7 +160,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <FileCheck className="h-3.5 w-3.5 flex-shrink-0 text-[#8c43fc]" />
+              <FileCheck className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.SYSTEMS)}`} />
               <span>Systems & Compliance</span>
             </button>
 
@@ -168,7 +172,7 @@ export default function HelpGuide({ isOpen, onClose }) {
                   : 'text-[#545b64] hover:bg-[#f1f3f3] hover:text-[#16191f] border-l-[3px] border-transparent pl-[9px]'
               }`}
             >
-              <Terminal className="h-3.5 w-3.5 flex-shrink-0 text-[#545b64]" />
+              <Terminal className={`h-3.5 w-3.5 flex-shrink-0 ${getIconColor(SECTIONS.COMMANDS)}`} />
               <span>AI Command Console</span>
             </button>
 

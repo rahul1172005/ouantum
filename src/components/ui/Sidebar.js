@@ -13,40 +13,69 @@ const FolderNewIcon = () => (
   <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M1.5 2.5C1.5 2.22386 1.72386 2 2 2H5.5L7.5 4H14C14.2761 4 14.5 4.22386 14.5 4.5V13.5C14.5 13.7761 14.2761 14 14 14H2C1.72386 14 1.5 13.7761 1.5 13.5V2.5Z" fill="#F8C444" stroke="#DCA224" strokeWidth="0.8"/>
     <path d="M2 4.5H14V13H2V4.5Z" fill="#FDE69E"/>
-    <circle cx="12" cy="10" r="3.5" fill="#336600" stroke="#ffffff" strokeWidth="0.5"/>
+    <circle cx="12" cy="10" r="3.5" fill="#ea580c" stroke="#ffffff" strokeWidth="0.5"/>
     <line x1="12" y1="8.5" x2="12" y2="11.5" stroke="#ffffff" strokeWidth="0.8"/>
     <line x1="10.5" y1="10" x2="13.5" y2="10" stroke="#ffffff" strokeWidth="0.8"/>
   </svg>
 );
 
 const TableGridIcon = () => (
-  <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1.5" y="2.5" width="13" height="11" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8"/>
-    <rect x="1.5" y="2.5" width="13" height="3" fill="#E68A00" stroke="#E68A00" strokeWidth="0.8"/>
-    <line x1="1.5" y1="8.5" x2="14.5" y2="8.5" stroke="#DDDDDD" strokeWidth="0.8"/>
-    <line x1="1.5" y1="11.5" x2="14.5" y2="11.5" stroke="#DDDDDD" strokeWidth="0.8"/>
-    <line x1="5.5" y1="5.5" x2="5.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8"/>
-    <line x1="10.5" y1="5.5" x2="10.5" y2="13.5" stroke="#DDDDDD" strokeWidth="0.8"/>
-  </svg>
+  <span style={{
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    width: 16, height: 16, borderRadius: 2, flexShrink: 0,
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
+  }}>
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <rect x="1.5" y="2" width="7" height="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="1.5" y1="4" x2="8.5" y2="4" stroke="#475569" strokeWidth="1"/>
+      <line x1="1.5" y1="6" x2="8.5" y2="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="5" y1="2" x2="5" y2="8" stroke="#475569" strokeWidth="1"/>
+    </svg>
+  </span>
 );
 
 const ColumnChartIcon = () => (
-  <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8"/>
-    <rect x="3.5" y="7.5" width="2" height="5.5" fill="#336600" stroke="#224400" strokeWidth="0.5"/>
-    <rect x="7.5" y="5.5" width="2" height="7.5" fill="#E68A00" stroke="#CC7A00" strokeWidth="0.5"/>
-    <rect x="11.5" y="3.5" width="2" height="9.5" fill="#CC0000" stroke="#990000" strokeWidth="0.5"/>
-    <line x1="2.5" y1="13" x2="13.5" y2="13" stroke="#555555" strokeWidth="0.8"/>
-  </svg>
+  <span style={{
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    width: 16, height: 16, borderRadius: 2, flexShrink: 0,
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
+  }}>
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <line x1="2" y1="8" x2="8" y2="8" stroke="#475569" strokeWidth="1"/>
+      <line x1="2" y1="2" x2="2" y2="8" stroke="#475569" strokeWidth="1"/>
+      <rect x="3.5" y="5" width="1.5" height="3" fill="#ea580c"/>
+      <rect x="6" y="3" width="1.5" height="5" fill="#ea580c"/>
+    </svg>
+  </span>
 );
 
 const DashboardPanelIcon = () => (
-  <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1.5" y="1.5" width="13" height="13" rx="0.5" fill="#FFFFFF" stroke="#777777" strokeWidth="0.8"/>
-    <rect x="3" y="3" width="4.5" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
-    <rect x="8.5" y="3" width="4.5" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
-    <rect x="3" y="8.5" width="10" height="4.5" fill="#ececec" stroke="#777777" strokeWidth="0.5"/>
-  </svg>
+  <span style={{
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    width: 16, height: 16, borderRadius: 2, flexShrink: 0,
+    background: '#ececec',
+    borderTop: '1.5px solid #ffffff',
+    borderLeft: '1.5px solid #ffffff',
+    borderBottom: '1.5px solid #808080',
+    borderRight: '1.5px solid #808080',
+    boxShadow: '1px 1px 0 #000000',
+  }}>
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <rect x="2" y="2" width="6" height="6" stroke="#475569" strokeWidth="1"/>
+      <line x1="2" y1="5" x2="8" y2="5" stroke="#475569" strokeWidth="1"/>
+      <line x1="5" y1="2" x2="5" y2="8" stroke="#475569" strokeWidth="1"/>
+    </svg>
+  </span>
 );
 
 const CollapseIcon = ({ collapsed }) => (

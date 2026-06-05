@@ -1343,3 +1343,19 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
   cursor: pointer !important;
 }
+
+/* Specific override for command palette input to be borderless and full-height */
+.command-palette-input,
+.command-palette-input:focus,
+.command-palette-input:hover,
+.command-palette-input:active {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  font-size: 14px !important;
+}
